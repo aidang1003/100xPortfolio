@@ -24,19 +24,11 @@ async function boot() {
   state.data = await fetch("/api/daily").then((r) => r.json());
   renderProgress();
 
-  const saved = loadSaved();
-  if (saved && saved.day === state.data.day) {
-    $("already-played").classList.remove("hidden");
-    $("start-btn").textContent = "See today's result →";
-    $("start-btn").onclick = () => showResult(saved.result, false);
-  } else {
-    $("start-btn").onclick = startGame;
-  }
-
+  $("start-btn").onclick = startGame;
   $("skip-era").onclick = () => useSkip("era");
   $("skip-industry").onclick = () => useSkip("industry");
   $("share-btn").onclick = shareResult;
-  $("replay-btn").onclick = () => location.reload();
+  $("replay-btn").onclick = startGame;
 }
 
 function startGame() {
