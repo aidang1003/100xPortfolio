@@ -15,16 +15,22 @@ Run from anywhere with open internet (locally, or via the GitHub Action):
 """
 
 import csv
+import importlib.util
 import io
 import json
 import os
-import sys
 import time
 import urllib.request
 from datetime import datetime, timezone
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from app import catalog  # noqa: E402
+# Load app/catalog.py directly (it's standalone) so we don't pull in app/__init__,
+# which imports Flask — unnecessary here and absent in a bare fetch environment.
+_CATALOG_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "app", "catalog.py"
+)
+_spec = importlib.util.spec_from_file_location("catalog", _CATALOG_PATH)
+catalog = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(catalog)
 
 try:
     import yfinance  # type: ignore
@@ -50,6 +56,36 @@ FORCE_SEED = {
 def _window(era):
     start, end = era.split("-")
     return f"{start}-01-01", f"{end}-12-31"
+
+
+def try_yahoo_chart(ticker, era):
+    """Hit Yahoo's public chart JSON directly — no yfinance dependency.
+
+    Uses split+dividend adjusted closes (adjclose) over the era window.
+    """
+    sym = SYMBOL.get(ticker, ticker)
+    start, end = era.split("-")
+    p1 = int(datetime(int(start), 1, 1, tzinfo=timezone.utc).timestamp())
+    p2 = int(datetime(int(end), 12, 31, tzinfo=timezone.utc).timestamp())
+    url = (
+        f"https://query1.finance.yahoo.com/v8/finance/chart/{sym}"
+        f"?period1={p1}&period2={p2}&interval=1mo&events=div%2Csplit"
+    )
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            data = json.load(resp)
+        result = data["chart"]["result"][0]
+        indicators = result["indicators"]
+        series = indicators.get("adjclose", [{}])[0].get("adjclose")
+        if not series:
+            series = indicators["quote"][0]["close"]
+        closes = [float(x) for x in series if x and float(x) > 0]
+    except Exception:  # noqa: BLE001 - network is best-effort
+        return None
+    if len(closes) < 2:
+        return None
+    return round(closes[-1] / closes[0], 2)
 
 
 def try_yfinance(ticker, era):
@@ -97,6 +133,10 @@ def fetch_multiple(ticker, era):
     """Return (multiple, source). Falls back to seed via caller on None."""
     if ticker in FORCE_SEED:
         return None, "forced-seed"
+    mult = try_yahoo_chart(ticker, era)
+    if mult is not None:
+        return mult, "yahoo"
+    time.sleep(REQUEST_DELAY)
     mult = try_yfinance(ticker, era)
     if mult is not None:
         return mult, "yfinance"

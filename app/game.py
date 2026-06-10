@@ -7,8 +7,17 @@ from datetime import date
 from .data import ERAS, INDUSTRIES, STOCKS, cell
 
 NUM_ROUNDS = 5
-ALLOCATION = 10_000  # dollars invested per pick
-TOTAL_INVESTED = ALLOCATION * NUM_ROUNDS
+STARTING_STAKE = 50_000  # dollars you start with; rolls from one pick into the next
+
+
+def era_label(era):
+    """Display label for an era: a clean 5-year span (e.g. '2020-2024' -> '2020-2025').
+
+    The underlying key still drives the data window; this only changes how the
+    span reads to the player.
+    """
+    start = era.split("-")[0]
+    return f"{start}-{int(start) + 5}"
 
 
 def _seed_for(day):
@@ -47,8 +56,10 @@ def daily_rounds(day=None):
             {
                 "index": len(rounds),
                 "era": era,
+                "eraLabel": era_label(era),
                 "industry": industry,
                 "altEra": alt_era,
+                "altEraLabel": era_label(alt_era),
                 "altIndustry": alt_industry,
                 "cells": {
                     "primary": _cell_payload(industry, era),
@@ -64,6 +75,7 @@ def _cell_payload(industry, era):
     return {
         "industry": industry,
         "era": era,
+        "eraLabel": era_label(era),
         "stocks": [
             {"ticker": s["ticker"], "name": s["name"], "blurb": s["blurb"]}
             for s in cell(industry, era)
@@ -108,6 +120,7 @@ def score(picks, day=None):
         raise ValueError(f"Expected {NUM_ROUNDS} picks, got {len(picks)}")
 
     legs = []
+    balance = STARTING_STAKE  # rolls from one pick into the next
     for i, pick in enumerate(picks):
         rnd = rounds[i]
         industry = pick["industry"]
@@ -126,23 +139,25 @@ def score(picks, day=None):
         if not stock:
             raise ValueError(f"Round {i}: unknown stock {pick['ticker']}")
 
-        final = ALLOCATION * stock["multiple"]
+        invested = balance
+        balance = balance * stock["multiple"]  # whole pot rides on this pick
         legs.append(
             {
                 "ticker": stock["ticker"],
                 "name": stock["name"],
                 "industry": industry,
                 "era": era,
+                "eraLabel": era_label(era),
                 "blurb": stock["blurb"],
                 "multiple": round(stock["multiple"], 2),
-                "invested": ALLOCATION,
-                "finalValue": round(final, 2),
+                "invested": round(invested, 2),
+                "finalValue": round(balance, 2),
                 "gainPct": round((stock["multiple"] - 1) * 100, 1),
             }
         )
 
-    final_value = sum(leg["finalValue"] for leg in legs)
-    multiple = final_value / TOTAL_INVESTED
+    final_value = balance
+    multiple = final_value / STARTING_STAKE  # = product of every pick's multiple
     grade, verdict, color = _grade(multiple)
 
     best = max(legs, key=lambda l: l["multiple"])
@@ -151,7 +166,7 @@ def score(picks, day=None):
     return {
         "day": data["day"],
         "legs": legs,
-        "invested": TOTAL_INVESTED,
+        "invested": STARTING_STAKE,
         "finalValue": round(final_value, 2),
         "multiple": round(multiple, 2),
         "gainPct": round((multiple - 1) * 100, 1),

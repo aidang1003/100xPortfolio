@@ -3,6 +3,13 @@
 const $ = (id) => document.getElementById(id);
 const STORAGE_KEY = "100x_result";
 
+// Display label for an era key: a clean 5-year span (e.g. "2020-2024" -> "2020-2025").
+// The key still drives the game logic; this only changes how the span reads.
+const eraLabel = (era) => {
+  const start = parseInt(era.slice(0, 4), 10);
+  return `${start}-${start + 5}`;
+};
+
 const state = {
   data: null, // daily payload from /api/daily
   round: 0, // current round index
@@ -76,13 +83,13 @@ function spinReels(finalEra, finalIndustry, done) {
   indReel.classList.add("spinning");
   let ticks = 0;
   const spin = setInterval(() => {
-    eraReel.textContent = eras[Math.floor(Math.random() * eras.length)];
+    eraReel.textContent = eraLabel(eras[Math.floor(Math.random() * eras.length)]);
     indReel.textContent = inds[Math.floor(Math.random() * inds.length)];
     if (++ticks > 14) {
       clearInterval(spin);
       eraReel.classList.remove("spinning");
       indReel.classList.remove("spinning");
-      eraReel.textContent = finalEra;
+      eraReel.textContent = eraLabel(finalEra);
       indReel.textContent = finalIndustry;
       done();
     }
@@ -93,7 +100,7 @@ function renderStocks() {
   const grid = $("stock-grid");
   grid.innerHTML = "";
   // Reflect any active skip in the reels.
-  $("reel-era").textContent = state.active.era;
+  $("reel-era").textContent = eraLabel(state.active.era);
   $("reel-industry").textContent = state.active.industry;
 
   state.active.stocks.forEach((s) => {
@@ -168,14 +175,15 @@ function showResult(res, animate) {
 
   const legs = $("result-legs");
   legs.innerHTML = "";
-  res.legs.forEach((l) => {
+  res.legs.forEach((l, i) => {
     const cls = l.multiple >= 2 ? "up" : l.multiple >= 1 ? "flat" : "down";
     const sign = l.gainPct >= 0 ? "+" : "";
     const row = document.createElement("div");
     row.className = "leg";
     row.innerHTML = `
-      <div class="leg-tag">${l.era} · ${l.industry}</div>
+      <div class="leg-tag">#${i + 1} · ${eraLabel(l.era)} · ${l.industry}</div>
       <div class="leg-name">${l.name} <small>${l.ticker}</small></div>
+      <div class="leg-flow">${usd(l.invested)} → <b>${usd(l.finalValue)}</b></div>
       <div class="leg-mult ${cls}">${l.multiple}× <small>${sign}${l.gainPct}%</small></div>`;
     legs.appendChild(row);
   });
