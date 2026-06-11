@@ -13,13 +13,8 @@
   <!-- dark rounded tile, matching the site surface -->
   <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#tile)" stroke="#332e1c" stroke-width="2"/>
 
-  <!-- upward chart line -->
-  <polyline points="12,46 24,38 32,42 44,26 53,17"
-            fill="none" stroke="url(#line)" stroke-width="6"
-            stroke-linecap="round" stroke-linejoin="round"/>
-
-  <!-- arrowhead pointing up-right -->
-  <polyline points="43,15 55,15 55,27"
-            fill="none" stroke="#2ee06b" stroke-width="6"
+  <!-- jagged upward chart line, 📈-style -->
+  <polyline points="11,44 20,38 27,42 35,32 42,36 53,18"
+            fill="none" stroke="url(#line)" stroke-width="4"
             stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
