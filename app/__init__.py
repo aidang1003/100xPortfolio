@@ -2,7 +2,7 @@
 
 import os
 
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, send_from_directory
 
 from .game import daily_rounds, learn_data, score
 
@@ -20,6 +20,11 @@ def create_app():
     @app.route("/")
     def index():
         return render_template("index.html")
+
+    @app.route("/favicon.ico")
+    def favicon():
+        # Browsers request /favicon.ico at the site root regardless of <link>s.
+        return send_from_directory(app.static_folder, "favicon.ico", mimetype="image/x-icon")
 
     @app.route("/api/daily")
     def api_daily():
