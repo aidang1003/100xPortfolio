@@ -42,6 +42,7 @@
           <li><span class="dot">④</span><span>Everyone gets the same spins each day. Replay as much as you like.</span></li>
         </ul>
         <button id="start-btn" class="btn btn-primary btn-lg">Start today's run →</button>
+        <button id="learn-btn" class="btn btn-ghost learn-link">Learning mode — study the returns →</button>
       </section>
 
       <!-- GAME -->
@@ -119,6 +120,24 @@
           <button id="replay-btn" class="btn btn-ghost">Play again</button>
         </div>
         <p id="share-toast" class="hint hidden">Copied to clipboard!</p>
+      </section>
+
+      <!-- LEARNING MODE -->
+      <section id="learn" class="screen hidden">
+        <div class="learn-head">
+          <h2 class="learn-title">Learning mode</h2>
+          <button id="learn-back" class="btn btn-ghost btn-sm">← Back</button>
+        </div>
+        <p class="learn-sub">
+          Browse how every stock actually did. Returns are the 5-year total (split + dividend
+          adjusted), best to worst.
+        </p>
+        <div class="learn-controls">
+          <label>Era <select id="learn-era" class="learn-select"></select></label>
+          <label>Category <select id="learn-cat" class="learn-select"></select></label>
+        </div>
+        <div class="learn-summary" id="learn-summary"></div>
+        <div class="learn-list" id="learn-list"></div>
       </section>
     </main>
 

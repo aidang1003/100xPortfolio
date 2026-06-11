@@ -17,6 +17,7 @@ const state = {
   active: null, // active cell {industry, era, stocks}
   eraSkipUsed: false,
   industrySkipUsed: false,
+  learn: null, // cached /api/learn payload
 };
 
 // ---- boot ----------------------------------------------------------------
@@ -29,6 +30,59 @@ async function boot() {
   $("skip-industry").onclick = () => useSkip("industry");
   $("share-btn").onclick = shareResult;
   $("replay-btn").onclick = replay;
+
+  $("learn-btn").onclick = openLearn;
+  $("learn-back").onclick = () => show("intro");
+  $("learn-era").onchange = renderLearn;
+  $("learn-cat").onchange = renderLearn;
+}
+
+// ---- learning mode -------------------------------------------------------
+async function openLearn() {
+  if (!state.learn) {
+    state.learn = await fetch("/api/learn").then((r) => r.json());
+    const eraSel = $("learn-era");
+    state.learn.eras.forEach((e) => {
+      const o = document.createElement("option");
+      o.value = e;
+      o.textContent = eraLabel(e);
+      eraSel.appendChild(o);
+    });
+    const catSel = $("learn-cat");
+    state.learn.industries.forEach((c) => {
+      const o = document.createElement("option");
+      o.value = c;
+      o.textContent = c;
+      catSel.appendChild(o);
+    });
+    eraSel.value = state.learn.eras[state.learn.eras.length - 1]; // newest era
+  }
+  show("learn");
+  renderLearn();
+}
+
+function renderLearn() {
+  if (!state.learn) return;
+  const era = $("learn-era").value;
+  const cat = $("learn-cat").value;
+  const rows = state.learn.stocks[cat][era] || [];
+  $("learn-summary").textContent = `${cat} · ${eraLabel(era)} — ${rows.length} stocks, best to worst`;
+
+  const list = $("learn-list");
+  list.innerHTML = "";
+  rows.forEach((s, i) => {
+    const sign = s.gainPct >= 0 ? "+" : "";
+    const cls = s.gainPct >= 0 ? "up" : "down";
+    const row = document.createElement("div");
+    row.className = "learn-row";
+    row.innerHTML = `
+      <span class="learn-rank">${i + 1}</span>
+      <span class="learn-ticker">${s.ticker}</span>
+      <span class="learn-name">${s.name} <small>${s.sub}</small></span>
+      <span class="learn-mult">${s.multiple}×</span>
+      <span class="learn-pct ${cls}">${sign}${s.gainPct}%</span>`;
+    list.appendChild(row);
+  });
 }
 
 // Fetch a round set. No seed -> today's shared daily; a seed -> a specific set.
@@ -259,7 +313,7 @@ function shareResult() {
 
 // ---- helpers -------------------------------------------------------------
 function show(id) {
-  ["intro", "game", "result"].forEach((s) => $(s).classList.add("hidden"));
+  ["intro", "game", "result", "learn"].forEach((s) => $(s).classList.add("hidden"));
   $(id).classList.remove("hidden");
 }
 

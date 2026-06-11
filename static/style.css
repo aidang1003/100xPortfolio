@@ -646,6 +646,138 @@ main {
   justify-content: center;
 }
 
+/* Learning mode */
+.learn-link {
+  display: block;
+  margin-top: 12px;
+}
+.learn-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.learn-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 900;
+  font-size: 26px;
+  margin: 0;
+}
+.learn-sub {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 16px;
+}
+.learn-controls {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.learn-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--muted);
+  flex: 1;
+  min-width: 140px;
+}
+.learn-select {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+.learn-summary {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.learn-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 62vh;
+  overflow-y: auto;
+  padding-right: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: #265a3c transparent;
+}
+.learn-list::-webkit-scrollbar {
+  width: 8px;
+}
+.learn-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.learn-list::-webkit-scrollbar-thumb {
+  background: #265a3c;
+  border-radius: 99px;
+}
+.learn-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 14px;
+}
+.learn-row .learn-rank {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--muted);
+  width: 22px;
+  flex-shrink: 0;
+}
+.learn-row .learn-ticker {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  color: var(--green);
+  font-size: 14px;
+  width: 62px;
+  flex-shrink: 0;
+}
+.learn-row .learn-name {
+  flex: 1;
+  min-width: 0;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.learn-row .learn-name small {
+  color: var(--muted);
+  font-weight: 400;
+  margin-left: 6px;
+}
+.learn-row .learn-mult {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.learn-row .learn-pct {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 14px;
+  width: 84px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.learn-row .learn-pct.up {
+  color: var(--green);
+}
+.learn-row .learn-pct.down {
+  color: var(--red);
+}
+
 .site-footer {
   text-align: center;
   color: var(--muted);

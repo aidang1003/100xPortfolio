@@ -4,7 +4,7 @@ import os
 
 from flask import Flask, jsonify, render_template, request
 
-from .game import daily_rounds, score
+from .game import daily_rounds, learn_data, score
 
 # templates/ and static/ live one level up from this package.
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,6 +25,10 @@ def create_app():
     def api_daily():
         # No seed -> today's shared daily spin; a random seed -> a fresh replay.
         return jsonify(daily_rounds(request.args.get("seed")))
+
+    @app.route("/api/learn")
+    def api_learn():
+        return jsonify(learn_data())
 
     @app.route("/api/score", methods=["POST"])
     def api_score():

@@ -244,3 +244,28 @@ def score(picks, seed=None):
         "best": best_possible,
         "capturedPct": captured,
     }
+
+
+def learn_data():
+    """Full universe with returns revealed, for the (non-game) learning mode.
+
+    Every (industry, era) cell's stocks with their 5-year return %, sorted best
+    to worst — a study view, not a guessing game, so the numbers are shown.
+    """
+    out = {}
+    for industry in INDUSTRIES:
+        out[industry] = {}
+        for era in ERAS:
+            rows = [
+                {
+                    "ticker": s["ticker"],
+                    "name": s["name"],
+                    "sub": s.get("sub", ""),
+                    "multiple": round(s["multiple"], 2),
+                    "gainPct": round((s["multiple"] - 1) * 100, 1),
+                }
+                for s in cell(industry, era)
+            ]
+            rows.sort(key=lambda r: r["multiple"], reverse=True)
+            out[industry][era] = rows
+    return {"eras": ERAS, "industries": INDUSTRIES, "stocks": out}
