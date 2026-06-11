@@ -35,6 +35,13 @@ async function boot() {
   $("learn-back").onclick = () => show("intro");
   $("learn-era").onchange = renderLearn;
   $("learn-cat").onchange = renderLearn;
+
+  if (loadSaved()) unlockLearn(); // already finished a game in a past session
+}
+
+// Learning mode unlocks only after the player completes at least one run.
+function unlockLearn() {
+  $("learn-btn").classList.remove("hidden");
 }
 
 // ---- learning mode -------------------------------------------------------
@@ -228,6 +235,7 @@ async function submit() {
     return;
   }
   save({ day: state.data.day, result: res });
+  unlockLearn();
   showResult(res, true);
 }
 
