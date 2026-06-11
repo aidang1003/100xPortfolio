@@ -85,7 +85,7 @@ function spinReels(finalEra, finalIndustry, done) {
   const eraReel = $("reel-era");
   const indReel = $("reel-industry");
   const eras = ["1990-1994", "1995-1999", "2000-2004", "2005-2009", "2010-2014", "2015-2019", "2020-2024"];
-  const inds = ["Technology", "Healthcare", "Energy", "Financials", "Consumer & Retail", "Auto & Transport"];
+  const inds = ["Technology", "Healthcare", "Financials", "Consumer Discretionary", "Consumer Staples", "Industrials", "Utilities", "Materials"];
 
   eraReel.classList.add("spinning");
   indReel.classList.add("spinning");
@@ -111,15 +111,23 @@ function renderStocks() {
   $("reel-era").textContent = eraLabel(state.active.era);
   $("reel-industry").textContent = state.active.industry;
 
+  const count = state.active.stocks.length;
+  const header = document.createElement("div");
+  header.className = "stock-list-head";
+  header.textContent = `${count} stocks — pick the one you think mooned 🚀`;
+  grid.appendChild(header);
+
   state.active.stocks.forEach((s) => {
-    const card = document.createElement("div");
-    card.className = "stock-card";
-    card.innerHTML = `
-      <div class="stock-ticker">${s.ticker}</div>
-      <div class="stock-name">${s.name}</div>
-      <div class="stock-blurb">${s.blurb}</div>`;
-    card.onclick = () => pick(s.ticker);
-    grid.appendChild(card);
+    const row = document.createElement("div");
+    row.className = "stock-row";
+    // Curated blurb if we have one, otherwise the GICS sub-industry.
+    const meta = s.blurb || s.sub || "";
+    row.innerHTML = `
+      <span class="stock-ticker">${s.ticker}</span>
+      <span class="stock-name">${s.name}</span>
+      <span class="stock-meta">${meta}</span>`;
+    row.onclick = () => pick(s.ticker);
+    grid.appendChild(row);
   });
 }
 
@@ -198,6 +206,36 @@ function showResult(res, animate) {
 
   $("best-pick").textContent = `${res.bestPick.name} (${res.bestPick.ticker}) — ${res.bestPick.multiple}×`;
   $("weak-pick").textContent = `${res.weakness.name} (${res.weakness.ticker}) — ${res.weakness.multiple}×`;
+
+  renderBest(res);
+}
+
+// The best run that was achievable on these spins (perfect picks + optimal skips).
+function renderBest(res) {
+  const b = res.best;
+  if (!b) return;
+  $("best-final").textContent = usd(b.finalValue);
+  $("best-multiple").textContent = b.multiple + "×";
+
+  const pct = res.capturedPct;
+  $("captured-pct").textContent = pct + "%";
+  $("captured-bar").style.width = Math.max(0, Math.min(100, pct)) + "%";
+  $("captured-line").textContent =
+    pct >= 100
+      ? "🏆 You nailed the perfect run. Diamond hands."
+      : `You captured ${pct}% of the best possible run.`;
+
+  const ideal = $("best-legs");
+  ideal.innerHTML = "";
+  b.legs.forEach((l, i) => {
+    const row = document.createElement("div");
+    row.className = "ideal-leg";
+    row.innerHTML = `
+      <span class="ideal-tag">${l.eraLabel} · ${l.industry}</span>
+      <span class="ideal-name">${l.name} <small>${l.ticker}</small></span>
+      <span class="ideal-mult">${l.multiple}×</span>`;
+    ideal.appendChild(row);
+  });
 }
 
 function shareResult() {

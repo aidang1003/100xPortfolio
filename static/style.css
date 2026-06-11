@@ -262,13 +262,18 @@ main {
 .slot-reel {
   font-family: "JetBrains Mono", monospace;
   font-weight: 700;
-  font-size: 24px;
+  font-size: clamp(15px, 4.5vw, 21px);
+  line-height: 1.15;
   color: var(--text);
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 12px 8px;
-  min-height: 30px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 .slot-reel.spinning {
   color: var(--purple-1);
@@ -297,50 +302,72 @@ main {
   color: var(--muted);
 }
 
-/* Stock grid */
+/* Stock list */
 .stock-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-@media (max-width: 560px) {
-  .stock-grid {
-    grid-template-columns: 1fr;
-  }
-}
-.stock-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px;
-  cursor: pointer;
-  transition:
-    transform 0.1s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  max-height: 58vh;
+  overflow-y: auto;
+  padding-right: 4px;
 }
-.stock-card:hover {
-  transform: translateY(-3px);
+.stock-list-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--bg);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  padding: 2px 2px 8px;
+}
+.stock-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition:
+    border-color 0.12s ease,
+    background 0.12s ease,
+    transform 0.06s ease;
+}
+.stock-row:hover {
   border-color: var(--gold);
-  box-shadow: 0 12px 30px rgba(24, 224, 106, 0.22);
+  background: var(--surface-2);
 }
-.stock-ticker {
+.stock-row:active {
+  transform: scale(0.995);
+}
+.stock-row .stock-ticker {
   font-family: "JetBrains Mono", monospace;
   font-weight: 700;
-  color: var(--pink);
+  color: var(--gold);
   font-size: 14px;
+  width: 66px;
+  flex-shrink: 0;
 }
-.stock-name {
+.stock-row .stock-name {
   font-weight: 700;
-  font-size: 17px;
+  font-size: 15px;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.stock-blurb {
+.stock-row .stock-meta {
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.45;
+  font-size: 12px;
+  text-align: right;
+  flex-shrink: 0;
+  max-width: 46%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Result */
@@ -502,6 +529,101 @@ main {
 }
 .callout.weak {
   border-color: rgba(255, 77, 79, 0.45);
+}
+
+/* Best-possible comparison */
+.best-compare {
+  margin-bottom: 20px;
+  padding: 18px 20px;
+}
+.best-compare-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.best-compare-title {
+  font-weight: 700;
+  color: var(--gold);
+}
+.best-compare-figures {
+  font-family: "JetBrains Mono", monospace;
+}
+.best-compare-figures b {
+  font-size: 18px;
+}
+.best-compare-figures .best-mult {
+  color: var(--muted);
+  margin-left: 8px;
+}
+.captured {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 0 8px;
+}
+.captured-track {
+  flex: 1;
+  height: 10px;
+  border-radius: 99px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.captured-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--gold), var(--green));
+  transition: width 0.6s ease;
+}
+.captured-pct {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  color: var(--green);
+  min-width: 48px;
+  text-align: right;
+}
+.captured-line {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.ideal-legs {
+  display: grid;
+  gap: 4px;
+}
+.ideal-leg {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 13px;
+  padding: 4px 0;
+  border-top: 1px solid var(--border);
+}
+.ideal-leg .ideal-tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--muted);
+  width: 200px;
+  flex-shrink: 0;
+}
+.ideal-leg .ideal-name {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ideal-leg .ideal-name small {
+  color: var(--muted);
+  margin-left: 4px;
+}
+.ideal-leg .ideal-mult {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  color: var(--green);
+  flex-shrink: 0;
 }
 
 .result-actions {

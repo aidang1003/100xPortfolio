@@ -1,40 +1,41 @@
 """Runtime dataset loader.
 
-Loads `app/stocks.json` (produced by `scripts/fetch_prices.py`) if present,
-otherwise falls back to the editorial catalog's seed multiples. Exposes the same
-interface the game engine expects: ERAS, INDUSTRIES, STOCKS, cell().
+Loads `app/universe.json` (produced by `scripts/build_universe.py`): the full
+S&P 500 universe bucketed into the 8 game categories x 7 eras. Falls back to the
+hand-curated catalog if the universe file is missing, so the app always runs.
+
+Exposes the interface the game engine expects: ERAS, INDUSTRIES, STOCKS, cell().
 """
 
 import json
 import os
 
 from . import catalog
-from .catalog import ERAS, INDUSTRIES  # noqa: F401  (re-exported)
 
-_JSON_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "stocks.json")
+_UNIVERSE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "universe.json")
 
 
 def _from_catalog():
-    """Build the STOCKS map straight from the editorial catalog (seed multiples)."""
-    return {
-        industry: {era: [dict(s) for s in stocks] for era, stocks in eras.items()}
+    """Fallback: the old hand-curated 6-category catalog."""
+    stocks = {
+        industry: {era: [dict(s) for s in cells] for era, cells in eras.items()}
         for industry, eras in catalog.CATALOG.items()
     }
+    return catalog.INDUSTRIES, catalog.ERAS, stocks
 
 
 def _load():
-    if os.path.exists(_JSON_PATH):
-        try:
-            with open(_JSON_PATH, encoding="utf-8") as f:
-                data = json.load(f)
-            if data.get("stocks"):
-                return data["stocks"]
-        except (json.JSONDecodeError, OSError, KeyError):
-            pass
+    try:
+        with open(_UNIVERSE_PATH, encoding="utf-8") as f:
+            data = json.load(f)
+        if data.get("stocks") and data.get("industries") and data.get("eras"):
+            return data["industries"], data["eras"], data["stocks"]
+    except (json.JSONDecodeError, OSError, KeyError):
+        pass
     return _from_catalog()
 
 
-STOCKS = _load()
+INDUSTRIES, ERAS, STOCKS = _load()
 
 
 def cell(industry, era):

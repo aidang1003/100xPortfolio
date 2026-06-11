@@ -80,7 +80,12 @@ def _cell_payload(industry, era):
         "era": era,
         "eraLabel": era_label(era),
         "stocks": [
-            {"ticker": s["ticker"], "name": s["name"], "blurb": s["blurb"]}
+            {
+                "ticker": s["ticker"],
+                "name": s["name"],
+                "sub": s.get("sub", ""),
+                "blurb": s.get("blurb", ""),
+            }
             for s in cell(industry, era)
         ],
     }
@@ -109,6 +114,60 @@ def _grade(multiple):
     if multiple >= 1.0:
         return ("E", "Treading water", "yellow")
     return ("F", "You lost money. Brutal.", "red")
+
+
+def _cell_best(industry, era):
+    """Highest-multiple stock in a cell (a 0x landmine never wins a max)."""
+    stocks = STOCKS.get(industry, {}).get(era, [])
+    return max(stocks, key=lambda s: s["multiple"]) if stocks else None
+
+
+def _best_possible(rounds):
+    """The best achievable run on these spins, using the two skips optimally.
+
+    Each round you can pick from the primary cell, or swap to the alt-era or
+    alt-industry cell — but the era skip and industry skip are each usable once
+    for the whole game, and a round can use at most one (you pick one cell). We
+    brute-force the (era-skip round, industry-skip round) assignment and keep the
+    product-maximising path.
+    """
+    n = len(rounds)
+    P = [_cell_best(r["industry"], r["era"]) for r in rounds]
+    AE = [_cell_best(r["industry"], r["altEra"]) for r in rounds]
+    AI = [_cell_best(r["altIndustry"], r["era"]) for r in rounds]
+
+    best_prod, best_path = -1.0, None
+    choices = [None] + list(range(n))
+    for er in choices:
+        for ir in choices:
+            if er is not None and er == ir:
+                continue  # one round can't spend both skips
+            prod, path = 1.0, []
+            for i, r in enumerate(rounds):
+                if er == i:
+                    pick, ind, era = AE[i], r["industry"], r["altEra"]
+                elif ir == i:
+                    pick, ind, era = AI[i], r["altIndustry"], r["era"]
+                else:
+                    pick, ind, era = P[i], r["industry"], r["era"]
+                prod *= pick["multiple"]
+                path.append((ind, era, pick))
+            if prod > best_prod:
+                best_prod, best_path = prod, path
+
+    balance, legs = STARTING_STAKE, []
+    for ind, era, pick in best_path:
+        balance *= pick["multiple"]
+        legs.append(
+            {
+                "ticker": pick["ticker"],
+                "name": pick["name"],
+                "industry": ind,
+                "eraLabel": era_label(era),
+                "multiple": round(pick["multiple"], 2),
+            }
+        )
+    return {"multiple": round(best_prod, 2), "finalValue": round(balance, 2), "legs": legs}
 
 
 def score(picks, seed=None):
@@ -151,7 +210,7 @@ def score(picks, seed=None):
                 "industry": industry,
                 "era": era,
                 "eraLabel": era_label(era),
-                "blurb": stock["blurb"],
+                "blurb": stock.get("blurb", ""),
                 "multiple": round(stock["multiple"], 2),
                 "invested": round(invested, 2),
                 "finalValue": round(balance, 2),
@@ -166,6 +225,9 @@ def score(picks, seed=None):
     best = max(legs, key=lambda l: l["multiple"])
     worst = min(legs, key=lambda l: l["multiple"])
 
+    best_possible = _best_possible(rounds)
+    captured = round(final_value / best_possible["finalValue"] * 100, 1) if best_possible["finalValue"] else 0.0
+
     return {
         "day": data["day"],
         "seed": data["seed"],
@@ -179,4 +241,6 @@ def score(picks, seed=None):
         "gradeColor": color,
         "bestPick": {"ticker": best["ticker"], "name": best["name"], "multiple": best["multiple"]},
         "weakness": {"ticker": worst["ticker"], "name": worst["name"], "multiple": worst["multiple"]},
+        "best": best_possible,
+        "capturedPct": captured,
     }
