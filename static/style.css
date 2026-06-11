@@ -670,9 +670,13 @@ main {
 }
 .learn-controls {
   display: flex;
+  align-items: flex-end;
   gap: 14px;
   flex-wrap: wrap;
   margin-bottom: 14px;
+}
+.learn-random {
+  flex-shrink: 0;
 }
 .learn-controls label {
   display: flex;

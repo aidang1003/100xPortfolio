@@ -35,6 +35,7 @@ async function boot() {
   $("learn-back").onclick = () => show("intro");
   $("learn-era").onchange = renderLearn;
   $("learn-cat").onchange = renderLearn;
+  $("learn-random").onclick = randomizeLearn;
 
   if (loadSaved()) unlockLearn(); // already finished a game in a past session
 }
@@ -62,9 +63,16 @@ async function openLearn() {
       o.textContent = c;
       catSel.appendChild(o);
     });
-    eraSel.value = state.learn.eras[state.learn.eras.length - 1]; // newest era
   }
   show("learn");
+  randomizeLearn(); // start on a random era + category, like the game's spin
+}
+
+function randomizeLearn() {
+  const eras = state.learn.eras;
+  const cats = state.learn.industries;
+  $("learn-era").value = eras[Math.floor(Math.random() * eras.length)];
+  $("learn-cat").value = cats[Math.floor(Math.random() * cats.length)];
   renderLearn();
 }
 
