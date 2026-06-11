@@ -3,11 +3,12 @@
 A daily stock-picking game inspired by [82-0.com](https://www.82-0.com), but for investing.
 
 The slot machine deals you a random **5-year era** and a random **industry**. You
-pick the one stock you think crushed it — five times. You start with **$50,000**
+pick the one stock you think crushed it — five times. You start with **$10,000**
 and it **compounds**: the whole pot rides on pick #1, then those earnings ride on
-pick #2, and so on. Then the engine grades the run. Can you go **100×**?
+pick #2, and so on. Then the engine grades the run. Can you go **100×** and turn it
+into a million?
 
-- **5 rounds.** Start with $50,000 — gains roll from each pick into the next.
+- **5 rounds.** Start with $10,000 — gains roll from each pick into the next.
 - Stats are **hidden** — it's a test of market history.
 - **One era skip + one industry skip** for the whole game.
 - The day's spins are **the same for everyone** (seeded by date).
@@ -42,6 +43,34 @@ the app falls back to the catalog so it always runs.
 > loads `app/catalog.py` directly (no Flask needed), so you can run it from any
 > machine with open internet, then commit the JSON.
 
+### Finding new names: `scripts/find_candidates.py`
+
+To grow the catalog without survivorship bias, this tool pulls the historical
+S&P 500 membership list from [fja05680/sp500](https://github.com/fja05680/sp500),
+takes the index roster as of each era's **start**, drops names already in the
+catalog (deduped by `(ticker, era)` — a ticker can be a new candidate in an era
+it's not yet listed in), then fetches each candidate's 5-year return from Yahoo
+with an **identity check**: the first close must land near the era start, so a
+reused or renamed symbol (`CC` = Chemours today, not Circuit City) is flagged
+rather than silently scored as the wrong company.
+
+```bash
+python scripts/find_candidates.py --era 2010-2014   # ranked menu for one era
+python scripts/find_candidates.py --no-fetch        # just the roster diff (fast)
+```
+
+Output is a ranked, identity-flagged menu (`full` / `partial` / `LATE` / `dead`)
+to drive manual curation — bucketing into the game's six industries stays a human
+call. The list starts in 1996, so the 1990s eras are approximated/manual.
+
+### Bankruptcy landmines
+
+Famous flameouts are intentionally seeded into the era they collapsed as `0.0`
+"gotcha" picks — WorldCom, Lehman, Bear Stearns, Washington Mutual, Blockbuster,
+Circuit City, Sears, Bed Bath & Beyond, JCPenney, Kodak, Enron, GM, SVB… Their
+tickers are pinned in `FORCE_SEED` (in `scripts/fetch_prices.py`) because many
+have since been reused by other companies, so they must never be fetched.
+
 ## Run locally
 
 ```bash
@@ -73,7 +102,9 @@ vercel --prod
 │   ├── data.py         # runtime loader: reads stocks.json (falls back to catalog)
 │   ├── game.py         # daily spins, skips, scoring & grading
 │   └── stocks.json     # generated static dataset (real returns)
-├── scripts/fetch_prices.py  # Yahoo/yfinance/Stooq scraper → app/stocks.json
+├── scripts/
+│   ├── fetch_prices.py      # Yahoo/yfinance/Stooq scraper → app/stocks.json
+│   └── find_candidates.py   # S&P 500 membership → identity-checked candidate menu
 ├── templates/index.html
 ├── static/{style.css,game.js}
 ├── requirements.txt

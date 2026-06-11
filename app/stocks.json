@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-11T00:49:04.149866+00:00",
+  "generatedAt": "2026-06-11T03:07:15.715630+00:00",
   "source": "stooq",
   "note": "multiple = 5y total return (split-adjusted close). seed = curated fallback.",
   "stocks": {
@@ -134,6 +134,48 @@
           "blurb": "Round-trips after the 1999 moonshot.",
           "multiple": 0.67,
           "source": "yahoo"
+        },
+        {
+          "ticker": "WCOM",
+          "name": "WorldCom",
+          "blurb": "Telecom titan felled by an $11B accounting fraud. Bankrupt 2002.",
+          "multiple": 0.0,
+          "source": "seed"
+        },
+        {
+          "ticker": "GBLX",
+          "name": "Global Crossing",
+          "blurb": "Fiber-optic empire drowns in debt. Bankrupt 2002.",
+          "multiple": 0.0,
+          "source": "seed"
+        },
+        {
+          "ticker": "CTSH",
+          "name": "Cognizant",
+          "blurb": "IT-outsourcing wave mints a compounder.",
+          "multiple": 6.75,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "NVDA",
+          "name": "Nvidia",
+          "blurb": "GeForce era; survives the bust, quietly climbs.",
+          "multiple": 2.54,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "ADBE",
+          "name": "Adobe",
+          "blurb": "Acrobat + Creative Suite hold up post-bubble.",
+          "multiple": 2.29,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "IBM",
+          "name": "IBM",
+          "blurb": "Big Blue treads water after the bubble.",
+          "multiple": 0.91,
+          "source": "yahoo"
         }
       ],
       "2005-2009": [
@@ -177,6 +219,41 @@
           "name": "Booking (Priceline)",
           "blurb": "Negotiator-era turnaround into a travel giant.",
           "multiple": 9.67,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "NT",
+          "name": "Nortel Networks",
+          "blurb": "Telecom-equipment giant collapses. Bankrupt 2009.",
+          "multiple": 0.0,
+          "source": "seed"
+        },
+        {
+          "ticker": "CTSH",
+          "name": "Cognizant",
+          "blurb": "Offshore IT keeps compounding through the crisis.",
+          "multiple": 2.39,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "ORCL",
+          "name": "Oracle",
+          "blurb": "Acquisition spree (PeopleSoft, Siebel) pays off.",
+          "multiple": 1.79,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "ACN",
+          "name": "Accenture",
+          "blurb": "Consulting giant grinds higher post-IPO.",
+          "multiple": 1.71,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "IBM",
+          "name": "IBM",
+          "blurb": "Services + software steady through the crash.",
+          "multiple": 1.51,
           "source": "yahoo"
         }
       ],
@@ -222,6 +299,41 @@
           "blurb": "Cloud-software land grab continues.",
           "multiple": 3.73,
           "source": "yahoo"
+        },
+        {
+          "ticker": "EK",
+          "name": "Eastman Kodak",
+          "blurb": "Invented digital, then killed by it. Bankrupt 2012.",
+          "multiple": 0.02,
+          "source": "seed"
+        },
+        {
+          "ticker": "AVGO",
+          "name": "Broadcom (Avago)",
+          "blurb": "Avago/Broadcom roll-up machine takes off.",
+          "multiple": 6.18,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "BKNG",
+          "name": "Booking (Priceline)",
+          "blurb": "Priceline becomes the travel-booking giant.",
+          "multiple": 5.84,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "EA",
+          "name": "Electronic Arts",
+          "blurb": "Console + mobile gaming reaccelerates.",
+          "multiple": 2.89,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "EBAY",
+          "name": "eBay",
+          "blurb": "PayPal-era marketplace re-rates.",
+          "multiple": 2.44,
+          "source": "yahoo"
         }
       ],
       "2015-2019": [
@@ -266,6 +378,27 @@
           "blurb": "Creative Cloud subscription flywheel.",
           "multiple": 4.7,
           "source": "yahoo"
+        },
+        {
+          "ticker": "NFLX",
+          "name": "Netflix",
+          "blurb": "Original-content bet conquers streaming.",
+          "multiple": 5.13,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "MELI",
+          "name": "MercadoLibre",
+          "blurb": "The Amazon + PayPal of Latin America.",
+          "multiple": 4.66,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "NOW",
+          "name": "ServiceNow",
+          "blurb": "Turns IT workflows into a juggernaut.",
+          "multiple": 3.87,
+          "source": "yahoo"
         }
       ],
       "2020-2024": [
@@ -309,6 +442,41 @@
           "name": "Broadcom",
           "blurb": "Chips + VMware; rides the AI wave.",
           "multiple": 8.73,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "SMCI",
+          "name": "Super Micro",
+          "blurb": "AI-server maker rockets on the GPU boom.",
+          "multiple": 10.9,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "ANET",
+          "name": "Arista Networks",
+          "blurb": "Data-center networking rides the AI buildout.",
+          "multiple": 7.92,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "CRWD",
+          "name": "CrowdStrike",
+          "blurb": "Cloud-native cybersecurity land grab.",
+          "multiple": 5.6,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "AAPL",
+          "name": "Apple",
+          "blurb": "Services + buybacks push toward $3T.",
+          "multiple": 3.34,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "Google",
+          "blurb": "Search cash funds the AI pivot.",
+          "multiple": 2.65,
           "source": "yahoo"
         }
       ]
@@ -444,6 +612,27 @@
           "blurb": "Device leader treads water.",
           "multiple": 1.11,
           "source": "yahoo"
+        },
+        {
+          "ticker": "SYK",
+          "name": "Stryker",
+          "blurb": "Orthopedics + surgical gear compound.",
+          "multiple": 3.07,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "BDX",
+          "name": "Becton Dickinson",
+          "blurb": "Medical-supplies workhorse grinds up.",
+          "multiple": 2.29,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "ABT",
+          "name": "Abbott",
+          "blurb": "Diversified pharma/devices steady.",
+          "multiple": 1.83,
+          "source": "yahoo"
         }
       ],
       "2005-2009": [
@@ -487,6 +676,27 @@
           "name": "Bristol-Myers Squibb",
           "blurb": "Patent cliffs, dividend safety.",
           "multiple": 1.37,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "BDX",
+          "name": "Becton Dickinson",
+          "blurb": "Defensive medical supplier through the crisis.",
+          "multiple": 1.49,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "SYK",
+          "name": "Stryker",
+          "blurb": "Orthopedics demand cools in the downturn.",
+          "multiple": 1.05,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "AMGN",
+          "name": "Amgen",
+          "blurb": "Biotech bellwether stalls.",
+          "multiple": 0.91,
           "source": "yahoo"
         }
       ],
@@ -532,6 +742,34 @@
           "blurb": "Spins off AbbVie, refocuses.",
           "multiple": 2.04,
           "source": "yahoo"
+        },
+        {
+          "ticker": "ILMN",
+          "name": "Illumina",
+          "blurb": "Gene-sequencing costs crater; Illumina soars.",
+          "multiple": 5.03,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "MCK",
+          "name": "McKesson",
+          "blurb": "Drug-distribution oligopoly compounds.",
+          "multiple": 3.68,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "ALGN",
+          "name": "Align Technology",
+          "blurb": "Invisalign clears the orthodontics market.",
+          "multiple": 2.98,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "ISRG",
+          "name": "Intuitive Surgical",
+          "blurb": "da Vinci installed base keeps growing.",
+          "multiple": 1.61,
+          "source": "yahoo"
         }
       ],
       "2015-2019": [
@@ -576,6 +814,27 @@
           "blurb": "Serial-acquirer compounding machine.",
           "multiple": 3.94,
           "source": "yahoo"
+        },
+        {
+          "ticker": "EW",
+          "name": "Edwards Lifesciences",
+          "blurb": "TAVR heart valves dominate.",
+          "multiple": 3.72,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "DXCM",
+          "name": "Dexcom",
+          "blurb": "Continuous glucose monitoring goes mainstream.",
+          "multiple": 3.66,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "ISRG",
+          "name": "Intuitive Surgical",
+          "blurb": "Surgical-robot leader reaccelerates.",
+          "multiple": 3.59,
+          "source": "yahoo"
         }
       ],
       "2020-2024": [
@@ -619,6 +878,27 @@
           "name": "Vertex",
           "blurb": "CF monopoly + new pain/gene bets.",
           "multiple": 1.77,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "ISRG",
+          "name": "Intuitive Surgical",
+          "blurb": "Procedures rebound post-COVID.",
+          "multiple": 2.8,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "REGN",
+          "name": "Regeneron",
+          "blurb": "Eylea + Dupixent + a COVID antibody.",
+          "multiple": 2.11,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "DXCM",
+          "name": "Dexcom",
+          "blurb": "CGM growth meets GLP-1 fears.",
+          "multiple": 1.29,
           "source": "yahoo"
         }
       ]
@@ -726,6 +1006,20 @@
           "blurb": "Rising crude lifts the E&P.",
           "multiple": 3.47,
           "source": "yahoo"
+        },
+        {
+          "ticker": "EOG",
+          "name": "EOG Resources",
+          "blurb": "Gas-to-oil pivot ahead of the shale boom.",
+          "multiple": 4.6,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "HAL",
+          "name": "Halliburton",
+          "blurb": "Oilfield services ride rising crude.",
+          "multiple": 1.19,
+          "source": "yahoo"
         }
       ],
       "2005-2009": [
@@ -769,6 +1063,34 @@
           "name": "ConocoPhillips",
           "blurb": "Integrated major rides the oil cycle.",
           "multiple": 1.26,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "RRC",
+          "name": "Range Resources",
+          "blurb": "Marcellus shale gas land grab.",
+          "multiple": 3.42,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "EOG",
+          "name": "EOG Resources",
+          "blurb": "Shale pioneer outruns the oil crash.",
+          "multiple": 2.68,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "CVX",
+          "name": "Chevron",
+          "blurb": "Major rides oil to $147, then the bust.",
+          "multiple": 1.66,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "HAL",
+          "name": "Halliburton",
+          "blurb": "Services boom and bust with crude.",
+          "multiple": 1.54,
           "source": "yahoo"
         }
       ],
@@ -814,6 +1136,27 @@
           "blurb": "Refiner feasts on cheap shale crude.",
           "multiple": 3.21,
           "source": "yahoo"
+        },
+        {
+          "ticker": "COP",
+          "name": "ConocoPhillips",
+          "blurb": "Spins off refining, focuses on E&P.",
+          "multiple": 2.31,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "KMI",
+          "name": "Kinder Morgan",
+          "blurb": "Pipeline empire re-IPOs and rolls up.",
+          "multiple": 1.62,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "OXY",
+          "name": "Occidental",
+          "blurb": "Permian-heavy major plods along.",
+          "multiple": 1.2,
+          "source": "yahoo"
         }
       ],
       "2015-2019": [
@@ -858,6 +1201,27 @@
           "blurb": "Refining margins ride out the slump.",
           "multiple": 2.13,
           "source": "yahoo"
+        },
+        {
+          "ticker": "SUNE",
+          "name": "SunEdison",
+          "blurb": "Solar darling's debt-fueled binge implodes. Bankrupt 2016.",
+          "multiple": 0.0,
+          "source": "seed"
+        },
+        {
+          "ticker": "FANG",
+          "name": "Diamondback Energy",
+          "blurb": "Diamondback's low-cost Permian barrels.",
+          "multiple": 1.36,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "TRGP",
+          "name": "Targa Resources",
+          "blurb": "Midstream caught in the 2015-16 bust.",
+          "multiple": 0.69,
+          "source": "yahoo"
         }
       ],
       "2020-2024": [
@@ -901,6 +1265,34 @@
           "name": "Devon Energy",
           "blurb": "Fixed-plus-variable dividend frenzy.",
           "multiple": 2.0,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "TRGP",
+          "name": "Targa Resources",
+          "blurb": "Midstream roars back with volumes + buybacks.",
+          "multiple": 5.52,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "TPL",
+          "name": "Texas Pacific Land",
+          "blurb": "Permian land/royalty stream mints cash.",
+          "multiple": 4.82,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "MPC",
+          "name": "Marathon Petroleum",
+          "blurb": "Refining margins + massive buybacks.",
+          "multiple": 3.02,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "FANG",
+          "name": "Diamondback Energy",
+          "blurb": "Permian pure-play feasts on the windfall.",
+          "multiple": 2.74,
           "source": "yahoo"
         }
       ]
@@ -1022,6 +1414,27 @@
           "blurb": "Mortgage boom tailwind.",
           "multiple": 1.76,
           "source": "yahoo"
+        },
+        {
+          "ticker": "PGR",
+          "name": "Progressive",
+          "blurb": "Direct-to-consumer auto insurance disrupts.",
+          "multiple": 4.16,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "TROW",
+          "name": "T. Rowe Price",
+          "blurb": "Asset manager compounds through the bust.",
+          "multiple": 1.74,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "USB",
+          "name": "U.S. Bancorp",
+          "blurb": "Best-in-class regional bank, steady.",
+          "multiple": 1.56,
+          "source": "yahoo"
         }
       ],
       "2005-2009": [
@@ -1065,6 +1478,41 @@
           "name": "American Express",
           "blurb": "Card losses bite, then recovers.",
           "multiple": 0.94,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "BSC",
+          "name": "Bear Stearns",
+          "blurb": "March 2008 fire-sale to JPM at ~$2/share. Wiped out.",
+          "multiple": 0.06,
+          "source": "seed"
+        },
+        {
+          "ticker": "WM",
+          "name": "Washington Mutual",
+          "blurb": "Largest bank failure in U.S. history. Bankrupt 2008.",
+          "multiple": 0.0,
+          "source": "seed"
+        },
+        {
+          "ticker": "ICE",
+          "name": "Intercontinental Exch.",
+          "blurb": "Electronic exchanges eat the trading pits.",
+          "multiple": 3.48,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "BLK",
+          "name": "BlackRock",
+          "blurb": "BlackRock scales into the ETF era.",
+          "multiple": 3.13,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "USB",
+          "name": "U.S. Bancorp",
+          "blurb": "Conservative bank scrapes through the crisis.",
+          "multiple": 0.91,
           "source": "yahoo"
         }
       ],
@@ -1110,6 +1558,34 @@
           "blurb": "Trading recovers off the lows.",
           "multiple": 1.39,
           "source": "yahoo"
+        },
+        {
+          "ticker": "MCO",
+          "name": "Moody's",
+          "blurb": "Ratings duopoly's toll booth on debt.",
+          "multiple": 3.75,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "SPGI",
+          "name": "S&P Global",
+          "blurb": "Indices + ratings compound quietly.",
+          "multiple": 2.94,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "BLK",
+          "name": "BlackRock",
+          "blurb": "iShares juggernaut gathers assets.",
+          "multiple": 1.91,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "C",
+          "name": "Citigroup",
+          "blurb": "Citi slowly digs out post-bailout.",
+          "multiple": 1.64,
+          "source": "yahoo"
         }
       ],
       "2015-2019": [
@@ -1154,6 +1630,27 @@
           "blurb": "ETF flywheel keeps gathering assets.",
           "multiple": 1.67,
           "source": "yahoo"
+        },
+        {
+          "ticker": "MKTX",
+          "name": "MarketAxess",
+          "blurb": "Electronic bond trading takes share.",
+          "multiple": 5.19,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "MSCI",
+          "name": "MSCI",
+          "blurb": "Index licensing + ESG data flywheel.",
+          "multiple": 5.1,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "SPGI",
+          "name": "S&P Global",
+          "blurb": "Ratings + indices keep compounding.",
+          "multiple": 3.24,
+          "source": "yahoo"
         }
       ],
       "2020-2024": [
@@ -1197,6 +1694,27 @@
           "name": "Morgan Stanley",
           "blurb": "Wealth-management pivot pays off.",
           "multiple": 2.83,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "KKR",
+          "name": "KKR",
+          "blurb": "Private-equity giant's assets balloon.",
+          "multiple": 4.9,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "BX",
+          "name": "Blackstone",
+          "blurb": "Blackstone crosses $1T in assets.",
+          "multiple": 3.36,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "MA",
+          "name": "Mastercard",
+          "blurb": "Payments rail rebounds with spending.",
+          "multiple": 1.71,
           "source": "yahoo"
         }
       ]
@@ -1332,6 +1850,34 @@
           "blurb": "Cheap-chic 'Tarzhay' era begins.",
           "multiple": 1.63,
           "source": "yahoo"
+        },
+        {
+          "ticker": "ROST",
+          "name": "Ross Stores",
+          "blurb": "Off-price retail thrives in a soft economy.",
+          "multiple": 4.68,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "YUM",
+          "name": "Yum! Brands",
+          "blurb": "KFC/Taco Bell/Pizza Hut spin-off scales.",
+          "multiple": 3.31,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "TJX",
+          "name": "TJX Companies",
+          "blurb": "TJ Maxx off-price model compounds.",
+          "multiple": 3.19,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "LOW",
+          "name": "Lowe's",
+          "blurb": "Home-improvement boom lifts Lowe's.",
+          "multiple": 2.61,
+          "source": "yahoo"
         }
       ],
       "2005-2009": [
@@ -1375,6 +1921,34 @@
           "name": "Domino's",
           "blurb": "Pre-turnaround pizza, still a laggard.",
           "multiple": 0.89,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "CC",
+          "name": "Circuit City",
+          "blurb": "Big-box electronics chain liquidates. Gone by 2009.",
+          "multiple": 0.0,
+          "source": "seed"
+        },
+        {
+          "ticker": "AZO",
+          "name": "AutoZone",
+          "blurb": "Auto-parts retailer, recession-resistant.",
+          "multiple": 1.77,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "ROST",
+          "name": "Ross Stores",
+          "blurb": "Off-price wins as shoppers trade down.",
+          "multiple": 1.56,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "TJX",
+          "name": "TJX Companies",
+          "blurb": "Bargain retail holds up in the crash.",
+          "multiple": 1.55,
           "source": "yahoo"
         }
       ],
@@ -1420,6 +1994,41 @@
           "blurb": "Membership flywheel hums.",
           "multiple": 2.8,
           "source": "yahoo"
+        },
+        {
+          "ticker": "BBI",
+          "name": "Blockbuster",
+          "blurb": "Passed on buying Netflix. Bankrupt 2010.",
+          "multiple": 0.0,
+          "source": "seed"
+        },
+        {
+          "ticker": "ULTA",
+          "name": "Ulta Beauty",
+          "blurb": "Beauty superstore format explodes.",
+          "multiple": 6.66,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "TSCO",
+          "name": "Tractor Supply",
+          "blurb": "Rural retailer quietly compounds.",
+          "multiple": 6.51,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "HD",
+          "name": "Home Depot",
+          "blurb": "Housing recovery powers Home Depot.",
+          "multiple": 4.22,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "DG",
+          "name": "Dollar General",
+          "blurb": "Rides the post-crisis value boom.",
+          "multiple": 3.01,
+          "source": "yahoo"
         }
       ],
       "2015-2019": [
@@ -1464,6 +2073,41 @@
           "blurb": "All-day breakfast reignites traffic.",
           "multiple": 2.46,
           "source": "yahoo"
+        },
+        {
+          "ticker": "SHLD",
+          "name": "Sears",
+          "blurb": "An American retail icon fades to nothing. Bankrupt 2018.",
+          "multiple": 0.02,
+          "source": "seed"
+        },
+        {
+          "ticker": "RSH",
+          "name": "RadioShack",
+          "blurb": "The corner electronics store runs out of road. Bankrupt 2015.",
+          "multiple": 0.0,
+          "source": "seed"
+        },
+        {
+          "ticker": "FIVE",
+          "name": "Five Below",
+          "blurb": "Teen treasure-hunt format scales.",
+          "multiple": 3.84,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "DECK",
+          "name": "Deckers",
+          "blurb": "Hoka + Ugg reignite Deckers.",
+          "multiple": 2.56,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "ULTA",
+          "name": "Ulta Beauty",
+          "blurb": "Beauty retailer keeps expanding.",
+          "multiple": 1.92,
+          "source": "yahoo"
         }
       ],
       "2020-2024": [
@@ -1507,6 +2151,48 @@
           "name": "Starbucks",
           "blurb": "Reopening boom, then a China wobble.",
           "multiple": 1.2,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "BBBY",
+          "name": "Bed Bath & Beyond",
+          "blurb": "Meme-stock mania can't stop the bankruptcy. 2023.",
+          "multiple": 0.0,
+          "source": "seed"
+        },
+        {
+          "ticker": "JCP",
+          "name": "JCPenney",
+          "blurb": "Century-old department store undone by COVID. Bankrupt 2020.",
+          "multiple": 0.0,
+          "source": "seed"
+        },
+        {
+          "ticker": "ELF",
+          "name": "e.l.f. Beauty",
+          "blurb": "TikTok-era cosmetics breakout.",
+          "multiple": 8.01,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "DECK",
+          "name": "Deckers",
+          "blurb": "Hoka goes from cult to mainstream.",
+          "multiple": 6.38,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "DKS",
+          "name": "Dick's Sporting Goods",
+          "blurb": "Pandemic-era retail reinvention.",
+          "multiple": 6.07,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "CMG",
+          "name": "Chipotle",
+          "blurb": "Digital + throughput machine.",
+          "multiple": 3.48,
           "source": "yahoo"
         }
       ]
@@ -1628,6 +2314,34 @@
           "blurb": "China-led commodity boom lifts demand.",
           "multiple": 2.64,
           "source": "yahoo"
+        },
+        {
+          "ticker": "PCAR",
+          "name": "Paccar",
+          "blurb": "Paccar's trucks ride the freight cycle.",
+          "multiple": 5.08,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "CMI",
+          "name": "Cummins",
+          "blurb": "Cummins engines power the boom.",
+          "multiple": 2.53,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "NSC",
+          "name": "Norfolk Southern",
+          "blurb": "Eastern rail rolls with coal + freight.",
+          "multiple": 2.36,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "CSX",
+          "name": "CSX",
+          "blurb": "Rail network grinds higher.",
+          "multiple": 1.53,
+          "source": "yahoo"
         }
       ],
       "2005-2009": [
@@ -1664,6 +2378,27 @@
           "name": "Caterpillar",
           "blurb": "Commodity-supercycle boom and bust.",
           "multiple": 1.44,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "CSX",
+          "name": "CSX",
+          "blurb": "Precision railroading lifts margins.",
+          "multiple": 2.61,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "CMI",
+          "name": "Cummins",
+          "blurb": "Global engine demand peaks, then dips.",
+          "multiple": 2.54,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "NSC",
+          "name": "Norfolk Southern",
+          "blurb": "Coal-heavy rail through the cycle.",
+          "multiple": 1.66,
           "source": "yahoo"
         }
       ],
@@ -1709,6 +2444,27 @@
           "blurb": "Out of bankruptcy, airlines re-rate.",
           "multiple": 4.08,
           "source": "yahoo"
+        },
+        {
+          "ticker": "ALK",
+          "name": "Alaska Air",
+          "blurb": "Soars on cheap fuel + discipline.",
+          "multiple": 7.75,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "CMI",
+          "name": "Cummins",
+          "blurb": "Truck-engine maker rides the recovery.",
+          "multiple": 3.46,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "BWA",
+          "name": "BorgWarner",
+          "blurb": "Powertrain tech compounds.",
+          "multiple": 3.18,
+          "source": "yahoo"
         }
       ],
       "2015-2019": [
@@ -1752,6 +2508,27 @@
           "name": "Caterpillar",
           "blurb": "Late-cycle industrial rebound.",
           "multiple": 2.16,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "HEI",
+          "name": "Heico",
+          "blurb": "Aftermarket aero parts compound.",
+          "multiple": 3.71,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "TDG",
+          "name": "TransDigm",
+          "blurb": "Proprietary aero parts mint cash.",
+          "multiple": 3.43,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "BA",
+          "name": "Boeing",
+          "blurb": "Rerates before the MAX crisis.",
+          "multiple": 2.55,
           "source": "yahoo"
         }
       ],
@@ -1803,6 +2580,34 @@
           "name": "Caterpillar",
           "blurb": "Infrastructure + pricing power.",
           "multiple": 3.08,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "HWM",
+          "name": "Howmet Aerospace",
+          "blurb": "Aero components ride the travel rebound.",
+          "multiple": 4.82,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "CMI",
+          "name": "Cummins",
+          "blurb": "Powers the freight + power-gen boom.",
+          "multiple": 2.48,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "TDG",
+          "name": "TransDigm",
+          "blurb": "Aftermarket aero monopoly keeps compounding.",
+          "multiple": 2.22,
+          "source": "yahoo"
+        },
+        {
+          "ticker": "DAL",
+          "name": "Delta Air Lines",
+          "blurb": "Claws back from the COVID collapse.",
+          "multiple": 1.11,
           "source": "yahoo"
         }
       ]

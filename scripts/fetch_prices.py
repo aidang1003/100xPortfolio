@@ -50,6 +50,11 @@ SYMBOL = {"BRK": "BRK-B", "FB": "META"}
 # different company (e.g. PETS = PetMed Express today, not Pets.com). Use seed.
 FORCE_SEED = {
     "PETS", "ENE", "LEH", "SUNW", "DNA", "GMCR", "KKD", "SIVB", "DELL", "GM",
+    # House-name bankruptcies kept as landmines. Several symbols have since been
+    # reused by a different company (CC=Chemours, WM=Waste Management, EK/NT gone),
+    # so fetching would score the wrong stock — always seed these.
+    "WCOM", "GBLX", "NT", "EK", "BSC", "WM", "CC", "BBI", "SHLD", "RSH",
+    "BBBY", "JCP", "SUNE",
 }
 
 

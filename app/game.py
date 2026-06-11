@@ -7,7 +7,7 @@ from datetime import date
 from .data import ERAS, INDUSTRIES, STOCKS, cell
 
 NUM_ROUNDS = 5
-STARTING_STAKE = 50_000  # dollars you start with; rolls from one pick into the next
+STARTING_STAKE = 10_000  # dollars you start with; rolls from one pick into the next (100x = $1M)
 
 
 def era_label(era):
