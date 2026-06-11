@@ -329,7 +329,9 @@ function copyResults() {
     .map((r) => `${r.emoji}  ${r.ticker.padEnd(tickerW)}  ${r.pct.padStart(pctW)}`)
     .join("\n");
 
-  const text = `100xPortfolio ${res.day} — ${res.multiple}× · Grade ${res.grade}\n\n${grid}\n\nplay → 100xportfolio.vercel.app`;
+  const retired = res.multiple >= 100 ? "did" : "did not";
+  const pct = Math.round(res.gainPct).toLocaleString("en-US");
+  const text = `I returned ${pct}% and ${retired} retire early. Can you beat me?\n\n${grid}\n\nplay → 100xportfolio.vercel.app`;
 
   navigator.clipboard
     .writeText(text)
