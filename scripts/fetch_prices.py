@@ -8,9 +8,9 @@ adjusted) -> seed (curated fallback in app/catalog.py). Anything we can't fetch
 (delisted, bankrupt, or a ticker that now points at a different company) keeps
 its seed multiple.
 
-Run from anywhere with open internet (locally, or via the GitHub Action):
+Run from any machine with open internet, then commit the regenerated JSON:
 
-    pip install yfinance        # optional but preferred
+    pip install yfinance        # optional; Yahoo's public chart JSON needs no deps
     python scripts/fetch_prices.py
 """
 
