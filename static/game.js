@@ -18,6 +18,7 @@ const state = {
   eraSkipUsed: false,
   industrySkipUsed: false,
   learn: null, // cached /api/learn payload
+  learnReturn: "intro", // screen to return to when leaving learning mode
 };
 
 // ---- boot ----------------------------------------------------------------
@@ -32,7 +33,8 @@ async function boot() {
   $("replay-btn").onclick = replay;
 
   $("learn-btn").onclick = openLearn;
-  $("learn-back").onclick = () => show("intro");
+  $("learn-btn-result").onclick = openLearn;
+  $("learn-back").onclick = () => show(state.learnReturn);
   $("learn-era").onchange = renderLearn;
   $("learn-cat").onchange = renderLearn;
   $("learn-random").onclick = randomizeLearn;
@@ -47,6 +49,8 @@ function unlockLearn() {
 
 // ---- learning mode -------------------------------------------------------
 async function openLearn() {
+  // Remember where we came from (intro or result) so "Back" returns there.
+  state.learnReturn = $("result").classList.contains("hidden") ? "intro" : "result";
   if (!state.learn) {
     state.learn = await fetch("/api/learn").then((r) => r.json());
     const eraSel = $("learn-era");
