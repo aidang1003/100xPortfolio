@@ -331,7 +331,7 @@ function copyResults() {
 
   const retired = res.multiple >= 100 ? "did" : "did not";
   const pct = Math.round(res.gainPct).toLocaleString("en-US");
-  const text = `I returned ${pct}% and ${retired} retire early. Can you beat me?\n\n${grid}\n\nplay → 100xportfolio.vercel.app`;
+  const text = `I returned ${pct}% and ${retired} retire early. Can you beat me? 100xportfolio.vercel.app\n\n${grid}`;
 
   navigator.clipboard
     .writeText(text)
