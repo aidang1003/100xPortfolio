@@ -30,15 +30,18 @@ def today_str():
     return date.today().isoformat()
 
 
-def daily_rounds(day=None):
-    """Deterministically generate the day's 5 rounds.
+def daily_rounds(seed=None):
+    """Generate a set of 5 rounds from a seed.
+
+    With no seed it uses today's date, so everyone in the world gets the same
+    daily spin. A replay passes a random seed to get a fresh, different set.
 
     Each round carries a primary (era, industry) plus one alternate era and one
     alternate industry the player can swap to with their single era/industry skip.
     Every relevant cell's stock list is bundled so the client never re-fetches.
     """
-    day = day or today_str()
-    rng = random.Random(_seed_for(day))
+    seed = seed or today_str()
+    rng = random.Random(_seed_for(seed))
 
     rounds = []
     used = set()
@@ -68,7 +71,7 @@ def daily_rounds(day=None):
                 },
             }
         )
-    return {"day": day, "rounds": rounds}
+    return {"seed": seed, "day": today_str(), "rounds": rounds}
 
 
 def _cell_payload(industry, era):
@@ -108,13 +111,13 @@ def _grade(multiple):
     return ("F", "You lost money. Brutal.", "red")
 
 
-def score(picks, day=None):
+def score(picks, seed=None):
     """Score a finished game.
 
     `picks` is a list of dicts: {industry, era, ticker}. Returns the simulated
-    portfolio result, validating each pick against the day's actual rounds.
+    portfolio result, validating each pick against the seed's actual rounds.
     """
-    data = daily_rounds(day)
+    data = daily_rounds(seed)
     rounds = data["rounds"]
     if len(picks) != NUM_ROUNDS:
         raise ValueError(f"Expected {NUM_ROUNDS} picks, got {len(picks)}")
@@ -165,6 +168,7 @@ def score(picks, day=None):
 
     return {
         "day": data["day"],
+        "seed": data["seed"],
         "legs": legs,
         "invested": STARTING_STAKE,
         "finalValue": round(final_value, 2),

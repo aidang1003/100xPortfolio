@@ -23,7 +23,8 @@ def create_app():
 
     @app.route("/api/daily")
     def api_daily():
-        return jsonify(daily_rounds())
+        # No seed -> today's shared daily spin; a random seed -> a fresh replay.
+        return jsonify(daily_rounds(request.args.get("seed")))
 
     @app.route("/api/score", methods=["POST"])
     def api_score():
@@ -32,7 +33,7 @@ def create_app():
         if not isinstance(picks, list):
             return jsonify({"error": "picks must be a list"}), 400
         try:
-            return jsonify(score(picks, body.get("day")))
+            return jsonify(score(picks, body.get("seed") or body.get("day")))
         except (ValueError, KeyError, TypeError) as e:
             return jsonify({"error": str(e)}), 400
 

@@ -21,14 +21,20 @@ const state = {
 
 // ---- boot ----------------------------------------------------------------
 async function boot() {
-  state.data = await fetch("/api/daily").then((r) => r.json());
+  await loadRounds(); // today's shared daily spin
   renderProgress();
 
   $("start-btn").onclick = startGame;
   $("skip-era").onclick = () => useSkip("era");
   $("skip-industry").onclick = () => useSkip("industry");
   $("share-btn").onclick = shareResult;
-  $("replay-btn").onclick = startGame;
+  $("replay-btn").onclick = replay;
+}
+
+// Fetch a round set. No seed -> today's shared daily; a seed -> a specific set.
+async function loadRounds(seed) {
+  const url = seed ? `/api/daily?seed=${encodeURIComponent(seed)}` : "/api/daily";
+  state.data = await fetch(url).then((r) => r.json());
 }
 
 function startGame() {
@@ -38,6 +44,12 @@ function startGame() {
   state.industrySkipUsed = false;
   show("game");
   renderRound();
+}
+
+// Replay with a fresh random seed so the spins differ from the daily run.
+async function replay() {
+  await loadRounds("r-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8));
+  startGame();
 }
 
 // ---- rendering -----------------------------------------------------------
@@ -141,7 +153,7 @@ async function submit() {
   const res = await fetch("/api/score", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ picks: state.picks, day: state.data.day }),
+    body: JSON.stringify({ picks: state.picks, seed: state.data.seed }),
   }).then((r) => r.json());
 
   if (res.error) {
