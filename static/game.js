@@ -29,7 +29,7 @@ async function boot() {
   $("start-btn").onclick = startGame;
   $("skip-era").onclick = () => useSkip("era");
   $("skip-industry").onclick = () => useSkip("industry");
-  $("share-btn").onclick = shareResult;
+  $("copy-btn").onclick = copyResults;
   $("replay-btn").onclick = replay;
 
   $("learn-btn").onclick = openLearn;
@@ -312,14 +312,24 @@ function renderBest(res) {
   });
 }
 
-function shareResult() {
+function copyResults() {
   const saved = loadSaved();
   if (!saved) return;
   const res = saved.result;
-  const grid = res.legs
-    .map((l) => (l.multiple >= 2 ? "🟩" : l.multiple >= 1 ? "🟨" : "🟥"))
-    .join("");
-  const text = `100xPortfolio ${res.day}\n${grid}  ${res.multiple}×  Grade ${res.grade}\nplay → 100xportfolio.com`;
+
+  // Three borderless columns per pick: performance emoji · ticker · % return.
+  const rows = res.legs.map((l) => {
+    const emoji = l.multiple >= 2 ? "🟩" : l.multiple >= 1 ? "🟨" : "🟥";
+    const sign = l.gainPct >= 0 ? "+" : "";
+    return { emoji, ticker: l.ticker, pct: `${sign}${Math.round(l.gainPct).toLocaleString("en-US")}%` };
+  });
+  const tickerW = Math.max(...rows.map((r) => r.ticker.length));
+  const pctW = Math.max(...rows.map((r) => r.pct.length));
+  const grid = rows
+    .map((r) => `${r.emoji}  ${r.ticker.padEnd(tickerW)}  ${r.pct.padStart(pctW)}`)
+    .join("\n");
+
+  const text = `100xPortfolio ${res.day} — ${res.multiple}× · Grade ${res.grade}\n\n${grid}\n\nplay → 100xportfolio.vercel.app`;
 
   navigator.clipboard
     .writeText(text)
