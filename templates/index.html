@@ -42,7 +42,7 @@
           <li><span class="dot">④</span><span>Everyone gets the same spins each day. Replay as much as you like.</span></li>
         </ul>
         <button id="start-btn" class="btn btn-primary btn-lg">Build the portfolio →</button>
-        <button id="learn-btn" class="btn btn-ghost learn-link hidden">Learning mode — study the returns →</button>
+        <button id="learn-btn" class="btn btn-ghost learn-link hidden">Learning mode — play with the returns shown →</button>
       </section>
 
       <!-- GAME -->
@@ -72,6 +72,7 @@
 
       <!-- RESULT -->
       <section id="result" class="screen hidden">
+        <div id="learn-result-tag" class="learn-result-tag hidden">📘 Learning mode — practice run, returns were shown</div>
         <div class="result-head card">
           <div class="grade-badge" id="grade-badge">–</div>
           <div class="result-headline">
@@ -121,25 +122,6 @@
           <button id="learn-btn-result" class="btn btn-ghost">Learning mode →</button>
         </div>
         <p id="share-toast" class="hint hidden">Copied to clipboard!</p>
-      </section>
-
-      <!-- LEARNING MODE -->
-      <section id="learn" class="screen hidden">
-        <div class="learn-head">
-          <h2 class="learn-title">Learning mode</h2>
-          <button id="learn-back" class="btn btn-ghost btn-sm">← Back</button>
-        </div>
-        <p class="learn-sub">
-          Browse how every stock actually did. Returns are the 5-year total (split + dividend
-          adjusted), best to worst.
-        </p>
-        <div class="learn-controls">
-          <label>Era <select id="learn-era" class="learn-select"></select></label>
-          <label>Category <select id="learn-cat" class="learn-select"></select></label>
-          <button id="learn-random" class="btn btn-ghost learn-random">⟳ Randomize</button>
-        </div>
-        <div class="learn-summary" id="learn-summary"></div>
-        <div class="learn-list" id="learn-list"></div>
       </section>
     </main>
 

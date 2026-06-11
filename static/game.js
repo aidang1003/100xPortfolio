@@ -17,8 +17,8 @@ const state = {
   active: null, // active cell {industry, era, stocks}
   eraSkipUsed: false,
   industrySkipUsed: false,
-  learn: null, // cached /api/learn payload
-  learnReturn: "intro", // screen to return to when leaving learning mode
+  learn: null, // cached /api/learn payload (returns, for learning mode)
+  learnMode: false, // when true, the run reveals each stock's return as you pick
 };
 
 // ---- boot ----------------------------------------------------------------
@@ -26,18 +26,17 @@ async function boot() {
   await loadRounds(); // today's shared daily spin
   renderProgress();
 
-  $("start-btn").onclick = startGame;
+  $("start-btn").onclick = () => {
+    state.learnMode = false;
+    startGame();
+  };
   $("skip-era").onclick = () => useSkip("era");
   $("skip-industry").onclick = () => useSkip("industry");
   $("copy-btn").onclick = copyResults;
   $("replay-btn").onclick = replay;
 
-  $("learn-btn").onclick = openLearn;
-  $("learn-btn-result").onclick = openLearn;
-  $("learn-back").onclick = () => show(state.learnReturn);
-  $("learn-era").onchange = renderLearn;
-  $("learn-cat").onchange = renderLearn;
-  $("learn-random").onclick = randomizeLearn;
+  $("learn-btn").onclick = startLearnGame;
+  $("learn-btn-result").onclick = startLearnGame;
 
   if (loadSaved()) unlockLearn(); // already finished a game in a past session
 }
@@ -48,60 +47,26 @@ function unlockLearn() {
 }
 
 // ---- learning mode -------------------------------------------------------
-async function openLearn() {
-  // Remember where we came from (intro or result) so "Back" returns there.
-  state.learnReturn = $("result").classList.contains("hidden") ? "intro" : "result";
+// The same game as a normal run, but every stock's 5-year return is shown on
+// the pick rows so you learn which names mooned. Uses a fresh random spin (so
+// you can practice freely) and never overwrites your saved daily result.
+async function startLearnGame() {
   if (!state.learn) {
     state.learn = await fetch("/api/learn").then((r) => r.json());
-    const eraSel = $("learn-era");
-    state.learn.eras.forEach((e) => {
-      const o = document.createElement("option");
-      o.value = e;
-      o.textContent = eraLabel(e);
-      eraSel.appendChild(o);
-    });
-    const catSel = $("learn-cat");
-    state.learn.industries.forEach((c) => {
-      const o = document.createElement("option");
-      o.value = c;
-      o.textContent = c;
-      catSel.appendChild(o);
-    });
   }
-  show("learn");
-  randomizeLearn(); // start on a random era + category, like the game's spin
+  state.learnMode = true;
+  await loadRounds("learn-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8));
+  startGame();
 }
 
-function randomizeLearn() {
-  const eras = state.learn.eras;
-  const cats = state.learn.industries;
-  $("learn-era").value = eras[Math.floor(Math.random() * eras.length)];
-  $("learn-cat").value = cats[Math.floor(Math.random() * cats.length)];
-  renderLearn();
-}
-
-function renderLearn() {
-  if (!state.learn) return;
-  const era = $("learn-era").value;
-  const cat = $("learn-cat").value;
-  const rows = state.learn.stocks[cat][era] || [];
-  $("learn-summary").textContent = `${cat} · ${eraLabel(era)} — ${rows.length} stocks, best to worst`;
-
-  const list = $("learn-list");
-  list.innerHTML = "";
-  rows.forEach((s, i) => {
-    const sign = s.gainPct >= 0 ? "+" : "";
-    const cls = s.gainPct >= 0 ? "up" : "down";
-    const row = document.createElement("div");
-    row.className = "learn-row";
-    row.innerHTML = `
-      <span class="learn-rank">${i + 1}</span>
-      <span class="learn-ticker">${s.ticker}</span>
-      <span class="learn-name">${s.name} <small>${s.sub}</small></span>
-      <span class="learn-mult">${s.multiple}×</span>
-      <span class="learn-pct ${cls}">${sign}${s.gainPct}%</span>`;
-    list.appendChild(row);
+// ticker -> gainPct for one (industry, era) cell, from the revealed learn data.
+function learnReturns(industry, era) {
+  const rows = (state.learn.stocks[industry] || {})[era] || [];
+  const map = {};
+  rows.forEach((r) => {
+    map[r.ticker] = r.gainPct;
   });
+  return map;
 }
 
 // Fetch a round set. No seed -> today's shared daily; a seed -> a specific set.
@@ -184,10 +149,15 @@ function renderStocks() {
   $("reel-era").textContent = eraLabel(state.active.era);
   $("reel-industry").textContent = state.active.industry;
 
+  // In learning mode every return is on the table; otherwise stats stay hidden.
+  const returns = state.learnMode ? learnReturns(state.active.industry, state.active.era) : null;
+
   const count = state.active.stocks.length;
   const header = document.createElement("div");
   header.className = "stock-list-head";
-  header.textContent = `${count} stocks — pick the one you think mooned`;
+  header.textContent = returns
+    ? `${count} stocks — returns shown, pick the one that mooned`
+    : `${count} stocks — pick the one you think mooned`;
   grid.appendChild(header);
 
   const stocks = [...state.active.stocks].sort((a, b) => a.ticker.localeCompare(b.ticker));
@@ -196,10 +166,16 @@ function renderStocks() {
     row.className = "stock-row";
     // Curated blurb if we have one, otherwise the GICS sub-industry.
     const meta = s.blurb || s.sub || "";
+    let pctCol = "";
+    if (returns && returns[s.ticker] !== undefined) {
+      const g = returns[s.ticker];
+      const sign = g >= 0 ? "+" : "";
+      pctCol = `<span class="stock-pct ${g >= 0 ? "up" : "down"}">${sign}${g}%</span>`;
+    }
     row.innerHTML = `
       <span class="stock-ticker">${s.ticker}</span>
       <span class="stock-name">${s.name}</span>
-      <span class="stock-meta">${meta}</span>`;
+      <span class="stock-meta">${meta}</span>${pctCol}`;
     row.onclick = () => pick(s.ticker);
     grid.appendChild(row);
   });
@@ -246,7 +222,8 @@ async function submit() {
     alert("Scoring error: " + res.error);
     return;
   }
-  save({ day: state.data.day, result: res });
+  // A learning run is practice — don't overwrite the shared daily result/share.
+  if (!state.learnMode) save({ day: state.data.day, result: res });
   unlockLearn();
   showResult(res, true);
 }
@@ -254,6 +231,10 @@ async function submit() {
 // ---- result --------------------------------------------------------------
 function showResult(res, animate) {
   show("result");
+
+  // Sharing posts the saved daily result; a learning run isn't that, so hide it.
+  $("copy-btn").classList.toggle("hidden", state.learnMode);
+  $("learn-result-tag").classList.toggle("hidden", !state.learnMode);
 
   const badge = $("grade-badge");
   badge.textContent = res.grade;
@@ -345,7 +326,7 @@ function copyResults() {
 
 // ---- helpers -------------------------------------------------------------
 function show(id) {
-  ["intro", "game", "result", "learn"].forEach((s) => $(s).classList.add("hidden"));
+  ["intro", "game", "result"].forEach((s) => $(s).classList.add("hidden"));
   $(id).classList.remove("hidden");
 }
 
