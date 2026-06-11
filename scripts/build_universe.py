@@ -54,26 +54,63 @@ CATEGORIES = [
 ]
 
 # Famous flameouts, layered in as 0x gotcha picks for the era they collapsed
-# (the survivor-only data set can't supply them). (ticker, name, era, mult, cat, blurb)
+# (the survivor-only data set can't supply them, so without these the old eras
+# show almost nothing but winners). (ticker, name, era, mult, cat, blurb)
+#
+# Display tickers are the recognizable forms (EK, not the EKDKQ bankruptcy
+# symbol). Multiples are the holder's outcome buying at era start: 0.0 for a
+# wipeout, a small fraction for a fire-sale / ~90% collapse.
 LANDMINES = [
+    # 1990-1994 — proxied era, zero survivor losers; the S&L crisis + early-90s recession.
+    ("PN", "Pan Am", "1990-1994", 0.0, "Industrials", "The iconic airline runs out of altitude. Ceased flying Dec 1991."),
+    ("WANG", "Wang Laboratories", "1990-1994", 0.0, "Technology", "Minicomputer pioneer crushed by the PC. Bankrupt 1992."),
+    ("NEB", "Bank of New England", "1990-1994", 0.0, "Financials", "Seized by regulators in the 1991 credit crunch."),
+    # 1995-1999 — dot-com run-up, but plenty of old-economy names imploded.
+    ("FTL", "Fruit of the Loom", "1995-1999", 0.0, "Consumer Discretionary", "Underwear giant unravels under its debt. Bankrupt 1999."),
+    ("SOC", "Sunbeam", "1995-1999", 0.2, "Consumer Discretionary", "'Chainsaw Al' Dunlap's accounting fraud unravels. 1998."),
+    ("IRID", "Iridium", "1995-1999", 0.0, "Technology", "Motorola's $5B satellite-phone moonshot. Bankrupt 1999."),
+    # 2000-2004 — the dot-com / telecom bust.
     ("ENE", "Enron", "2000-2004", 0.0, "Materials", "Accounting-fraud implosion. Bankrupt 2001."),
     ("WCOM", "WorldCom", "2000-2004", 0.0, "Technology", "$11B accounting fraud. Bankrupt 2002."),
     ("GBLX", "Global Crossing", "2000-2004", 0.0, "Technology", "Fiber-optic empire drowns in debt. Bankrupt 2002."),
     ("PETS", "Pets.com", "2000-2004", 0.0, "Consumer Discretionary", "The sock puppet goes to zero."),
+    ("LU", "Lucent Technologies", "2000-2004", 0.07, "Technology", "Telecom-gear darling falls ~90% as the bubble bursts."),
+    ("KM", "Kmart", "2000-2004", 0.0, "Consumer Discretionary", "Then the largest retail bankruptcy in U.S. history. 2002."),
+    # 2005-2009 — the global financial crisis.
     ("NT", "Nortel Networks", "2005-2009", 0.0, "Technology", "Telecom-equipment giant collapses. Bankrupt 2009."),
     ("LEH", "Lehman Brothers", "2005-2009", 0.0, "Financials", "September 2008. The one that broke the system."),
     ("BSC", "Bear Stearns", "2005-2009", 0.06, "Financials", "March 2008 fire-sale to JPM at ~$2/share."),
     ("WM", "Washington Mutual", "2005-2009", 0.0, "Financials", "Largest bank failure in U.S. history. 2008."),
+    ("CFC", "Countrywide Financial", "2005-2009", 0.07, "Financials", "Subprime poster child sold to BofA for scraps. 2008."),
+    ("FNM", "Fannie Mae", "2005-2009", 0.02, "Financials", "Mortgage giant seized by the government. Sept 2008."),
+    ("FRE", "Freddie Mac", "2005-2009", 0.02, "Financials", "Into federal conservatorship as housing collapses. 2008."),
+    ("WB", "Wachovia", "2005-2009", 0.08, "Financials", "Sold to Wells Fargo in the 2008 panic."),
+    ("GGP", "General Growth Properties", "2005-2009", 0.05, "Financials", "Mall-REIT giant buried by debt. Bankrupt 2009."),
     ("CC", "Circuit City", "2005-2009", 0.0, "Consumer Discretionary", "Big-box electronics chain liquidates by 2009."),
     ("GM", "General Motors", "2005-2009", 0.0, "Consumer Discretionary", "2009 bankruptcy wipes out the old GM."),
+    # 2010-2014 — long bull market, but the wreckage of the crisis kept landing.
     ("EK", "Eastman Kodak", "2010-2014", 0.02, "Technology", "Invented digital, then killed by it. Bankrupt 2012."),
     ("BBI", "Blockbuster", "2010-2014", 0.0, "Consumer Discretionary", "Passed on buying Netflix. Bankrupt 2010."),
+    ("MF", "MF Global", "2010-2014", 0.0, "Financials", "Corzine's brokerage makes a fatal sovereign-debt bet. Bankrupt 2011."),
+    ("BGP", "Borders Group", "2010-2014", 0.0, "Consumer Discretionary", "Bookstore chain shelved by Amazon. Liquidated 2011."),
+    ("DYN", "Dynegy", "2010-2014", 0.0, "Utilities", "Power producer collapses under its debt. Bankrupt 2011."),
+    ("DNDN", "Dendreon", "2010-2014", 0.0, "Healthcare", "Provenge cancer-vaccine maker burns through its cash. Bankrupt 2014."),
+    # 2015-2019 — retail apocalypse + the energy bust.
     ("SUNE", "SunEdison", "2015-2019", 0.0, "Technology", "Solar darling's debt binge implodes. Bankrupt 2016."),
     ("SHLD", "Sears", "2015-2019", 0.02, "Consumer Discretionary", "An American retail icon fades to nothing. 2018."),
     ("RSH", "RadioShack", "2015-2019", 0.0, "Consumer Discretionary", "The corner electronics store runs out of road. 2015."),
+    ("VRX", "Valeant Pharmaceuticals", "2015-2019", 0.1, "Healthcare", "Price-gouging scandal vaporizes ~90% of its value. 2016."),
+    ("WFT", "Weatherford", "2015-2019", 0.0, "Materials", "Oilfield-services giant drowns in debt. Bankrupt 2019."),
+    ("CHK", "Chesapeake Energy", "2015-2019", 0.12, "Materials", "Shale-gas pioneer's debt binge collapses ~85%."),
+    ("FTR", "Frontier Communications", "2015-2019", 0.05, "Technology", "Rural-telecom rollup falls ~95% under its debt."),
+    # 2020-2024 — the 2023 banking crisis + the meme-stock hangover.
     ("BBBY", "Bed Bath & Beyond", "2020-2024", 0.0, "Consumer Discretionary", "Meme mania can't stop the bankruptcy. 2023."),
     ("JCP", "JCPenney", "2020-2024", 0.0, "Consumer Discretionary", "Century-old department store undone by COVID. 2020."),
     ("SIVB", "SVB Financial", "2020-2024", 0.0, "Financials", "March 2023 bank run. Gone in 48 hours."),
+    ("SBNY", "Signature Bank", "2020-2024", 0.0, "Financials", "Seized by regulators days after SVB. March 2023."),
+    ("FRC", "First Republic Bank", "2020-2024", 0.0, "Financials", "Third major U.S. bank to fall in 2023. Seized in May."),
+    ("WE", "WeWork", "2020-2024", 0.0, "Financials", "From a $47B valuation to bankruptcy. 2023."),
+    ("RAD", "Rite Aid", "2020-2024", 0.0, "Consumer Staples", "Drugstore chain buckles under debt and opioid suits. 2023."),
 ]
 
 

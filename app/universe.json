@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-06-11T04:39:44.393222+00:00",
+ "generatedAt": "2026-06-11T13:29:19.756336+00:00",
  "source": "Yahoo (cached 5y adj-close returns) + GICS sectors (fja05680 sp500.csv)",
  "eras": [
   "1990-1994",
@@ -137,6 +137,13 @@
      "name": "IBM",
      "multiple": 0.91,
      "sub": "IT Consulting & Other Services"
+    },
+    {
+     "ticker": "WANG",
+     "name": "Wang Laboratories",
+     "multiple": 0.0,
+     "sub": "Bankruptcy",
+     "blurb": "Minicomputer pioneer crushed by the PC. Bankrupt 1992."
     }
    ],
    "1995-1999": [
@@ -251,6 +258,13 @@
      "name": "Advanced Micro Devices",
      "multiple": 0.99,
      "sub": "Semiconductors"
+    },
+    {
+     "ticker": "IRID",
+     "name": "Iridium",
+     "multiple": 0.0,
+     "sub": "Bankruptcy",
+     "blurb": "Motorola's $5B satellite-phone moonshot. Bankrupt 1999."
     }
    ],
    "2000-2004": [
@@ -414,6 +428,13 @@
      "name": "Corning Inc.",
      "multiple": 0.23,
      "sub": "Electronic Components"
+    },
+    {
+     "ticker": "LU",
+     "name": "Lucent Technologies",
+     "multiple": 0.07,
+     "sub": "Bankruptcy",
+     "blurb": "Telecom-gear darling falls ~90% as the bubble bursts."
     },
     {
      "ticker": "WCOM",
@@ -1157,6 +1178,13 @@
      "name": "Western Digital",
      "multiple": 0.76,
      "sub": "Technology Hardware, Storage & Peripherals"
+    },
+    {
+     "ticker": "FTR",
+     "name": "Frontier Communications",
+     "multiple": 0.05,
+     "sub": "Bankruptcy",
+     "blurb": "Rural-telecom rollup falls ~95% under its debt."
     },
     {
      "ticker": "SUNE",
@@ -2210,6 +2238,13 @@
      "name": "Quest Diagnostics",
      "multiple": 1.29,
      "sub": "Health Care Services"
+    },
+    {
+     "ticker": "DNDN",
+     "name": "Dendreon",
+     "multiple": 0.0,
+     "sub": "Bankruptcy",
+     "blurb": "Provenge cancer-vaccine maker burns through its cash. Bankrupt 2014."
     }
    ],
    "2015-2019": [
@@ -2430,6 +2465,13 @@
      "name": "McKesson Corporation",
      "multiple": 0.68,
      "sub": "Health Care Distributors"
+    },
+    {
+     "ticker": "VRX",
+     "name": "Valeant Pharmaceuticals",
+     "multiple": 0.1,
+     "sub": "Bankruptcy",
+     "blurb": "Price-gouging scandal vaporizes ~90% of its value. 2016."
     }
    ],
    "2020-2024": [
@@ -2794,6 +2836,13 @@
      "name": "Loews Corporation",
      "multiple": 0.85,
      "sub": "Multi-line Insurance"
+    },
+    {
+     "ticker": "NEB",
+     "name": "Bank of New England",
+     "multiple": 0.0,
+     "sub": "Bankruptcy",
+     "blurb": "Seized by regulators in the 1991 credit crunch."
     }
    ],
    "1995-1999": [
@@ -3344,6 +3393,20 @@
      "sub": "Diversified Banks"
     },
     {
+     "ticker": "WB",
+     "name": "Wachovia",
+     "multiple": 0.08,
+     "sub": "Bankruptcy",
+     "blurb": "Sold to Wells Fargo in the 2008 panic."
+    },
+    {
+     "ticker": "CFC",
+     "name": "Countrywide Financial",
+     "multiple": 0.07,
+     "sub": "Bankruptcy",
+     "blurb": "Subprime poster child sold to BofA for scraps. 2008."
+    },
+    {
      "ticker": "BSC",
      "name": "Bear Stearns",
      "multiple": 0.06,
@@ -3351,11 +3414,32 @@
      "blurb": "March 2008 fire-sale to JPM at ~$2/share."
     },
     {
+     "ticker": "GGP",
+     "name": "General Growth Properties",
+     "multiple": 0.05,
+     "sub": "Bankruptcy",
+     "blurb": "Mall-REIT giant buried by debt. Bankrupt 2009."
+    },
+    {
      "ticker": "AIG",
      "name": "American International Group",
      "multiple": 0.02,
      "sub": "Multi-line Insurance",
      "blurb": "$182B bailout; near-total wipeout."
+    },
+    {
+     "ticker": "FNM",
+     "name": "Fannie Mae",
+     "multiple": 0.02,
+     "sub": "Bankruptcy",
+     "blurb": "Mortgage giant seized by the government. Sept 2008."
+    },
+    {
+     "ticker": "FRE",
+     "name": "Freddie Mac",
+     "multiple": 0.02,
+     "sub": "Bankruptcy",
+     "blurb": "Into federal conservatorship as housing collapses. 2008."
     },
     {
      "ticker": "LEH",
@@ -3735,6 +3819,13 @@
      "multiple": 1.2,
      "sub": "Diversified Banks",
      "blurb": "Slow crisis recovery."
+    },
+    {
+     "ticker": "MF",
+     "name": "MF Global",
+     "multiple": 0.0,
+     "sub": "Bankruptcy",
+     "blurb": "Corzine's brokerage makes a fatal sovereign-debt bet. Bankrupt 2011."
     }
    ],
    "2015-2019": [
@@ -4626,6 +4717,27 @@
      "multiple": 0.0,
      "sub": "Bankruptcy",
      "blurb": "March 2023 bank run. Gone in 48 hours."
+    },
+    {
+     "ticker": "SBNY",
+     "name": "Signature Bank",
+     "multiple": 0.0,
+     "sub": "Bankruptcy",
+     "blurb": "Seized by regulators days after SVB. March 2023."
+    },
+    {
+     "ticker": "FRC",
+     "name": "First Republic Bank",
+     "multiple": 0.0,
+     "sub": "Bankruptcy",
+     "blurb": "Third major U.S. bank to fall in 2023. Seized in May."
+    },
+    {
+     "ticker": "WE",
+     "name": "WeWork",
+     "multiple": 0.0,
+     "sub": "Bankruptcy",
+     "blurb": "From a $47B valuation to bankruptcy. 2023."
     }
    ]
   },
@@ -4751,6 +4863,20 @@
      "name": "Genuine Parts Company",
      "multiple": 1.18,
      "sub": "Distributors"
+    },
+    {
+     "ticker": "SOC",
+     "name": "Sunbeam",
+     "multiple": 0.2,
+     "sub": "Bankruptcy",
+     "blurb": "'Chainsaw Al' Dunlap's accounting fraud unravels. 1998."
+    },
+    {
+     "ticker": "FTL",
+     "name": "Fruit of the Loom",
+     "multiple": 0.0,
+     "sub": "Bankruptcy",
+     "blurb": "Underwear giant unravels under its debt. Bankrupt 1999."
     }
    ],
    "2000-2004": [
@@ -4854,6 +4980,13 @@
      "multiple": 0.0,
      "sub": "Bankruptcy",
      "blurb": "The sock puppet goes to zero."
+    },
+    {
+     "ticker": "KM",
+     "name": "Kmart",
+     "multiple": 0.0,
+     "sub": "Bankruptcy",
+     "blurb": "Then the largest retail bankruptcy in U.S. history. 2002."
     }
    ],
    "2005-2009": [
@@ -5161,6 +5294,13 @@
      "multiple": 0.0,
      "sub": "Bankruptcy",
      "blurb": "Passed on buying Netflix. Bankrupt 2010."
+    },
+    {
+     "ticker": "BGP",
+     "name": "Borders Group",
+     "multiple": 0.0,
+     "sub": "Bankruptcy",
+     "blurb": "Bookstore chain shelved by Amazon. Liquidated 2011."
     }
    ],
    "2015-2019": [
@@ -6628,6 +6768,13 @@
      "name": "Est\u00e9e Lauder Companies (The)",
      "multiple": 0.41,
      "sub": "Personal Care Products"
+    },
+    {
+     "ticker": "RAD",
+     "name": "Rite Aid",
+     "multiple": 0.0,
+     "sub": "Bankruptcy",
+     "blurb": "Drugstore chain buckles under debt and opioid suits. 2023."
     }
    ]
   },
@@ -6808,6 +6955,13 @@
      "name": "Masco",
      "multiple": 1.06,
      "sub": "Building Products"
+    },
+    {
+     "ticker": "PN",
+     "name": "Pan Am",
+     "multiple": 0.0,
+     "sub": "Bankruptcy",
+     "blurb": "The iconic airline runs out of altitude. Ceased flying Dec 1991."
     }
    ],
    "1995-1999": [
@@ -8895,6 +9049,13 @@
      "name": "Exelon",
      "multiple": 1.03,
      "sub": "Electric Utilities"
+    },
+    {
+     "ticker": "DYN",
+     "name": "Dynegy",
+     "multiple": 0.0,
+     "sub": "Bankruptcy",
+     "blurb": "Power producer collapses under its debt. Bankrupt 2011."
     }
    ],
    "2015-2019": [
@@ -10094,6 +10255,20 @@
      "name": "EQT Corporation",
      "multiple": 0.27,
      "sub": "Oil & Gas Exploration & Production"
+    },
+    {
+     "ticker": "CHK",
+     "name": "Chesapeake Energy",
+     "multiple": 0.12,
+     "sub": "Bankruptcy",
+     "blurb": "Shale-gas pioneer's debt binge collapses ~85%."
+    },
+    {
+     "ticker": "WFT",
+     "name": "Weatherford",
+     "multiple": 0.0,
+     "sub": "Bankruptcy",
+     "blurb": "Oilfield-services giant drowns in debt. Bankrupt 2019."
     }
    ],
    "2020-2024": [
