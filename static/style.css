@@ -6,15 +6,15 @@
   --border: #332e1c;
   --text: #f4eddb;
   --muted: #a59d85;
-  --green: #18e06a; /* money green — tendies / gains */
+  --green: #28c76f; /* money green — gains ONLY (up multiples, grades, best run) */
   --yellow: #f5b301;
-  --red: #ff4d4f; /* losses / red candles */
+  --red: #ff4d4f; /* losses */
   --blue: #4a90e2;
-  --gold: #ffce47; /* WoWS gold */
-  /* legacy accent names, repurposed to the gold + money-green palette */
-  --pink: #ffce47; /* gold accent: tickers, gradient start, glow */
-  --purple: #0e9c46; /* deep money green: button/gradient end, glow */
-  --purple-1: #18e06a; /* bright green highlight: dots, active, hovers */
+  --gold: #d4af37; /* gold — the single decorative accent */
+  /* legacy accent names, now all aliased to gold (green is semantic-only) */
+  --pink: #d4af37;
+  --purple: #0e9c46; /* unused */
+  --purple-1: #d4af37; /* highlight accent -> gold (dots, active, hovers) */
 }
 
 * {
@@ -55,7 +55,7 @@ body {
 .glow-b {
   width: 520px;
   height: 520px;
-  background: var(--purple);
+  background: var(--gold);
   bottom: -200px;
   right: -160px;
 }
@@ -81,10 +81,7 @@ main,
   letter-spacing: 0;
 }
 .brand-mark {
-  background: linear-gradient(90deg, var(--pink), var(--purple-1));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--gold);
 }
 .brand-rest {
   color: var(--text);
@@ -122,9 +119,8 @@ main {
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 14px;
   padding: 28px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
 /* Buttons */
@@ -150,11 +146,11 @@ main {
 }
 .btn-primary {
   color: #0b1207;
-  background: linear-gradient(90deg, var(--gold), var(--green));
-  box-shadow: 0 8px 28px rgba(255, 206, 71, 0.32);
+  background: var(--gold);
+  box-shadow: 0 6px 22px rgba(212, 175, 55, 0.28);
 }
 .btn-primary:hover:not(:disabled) {
-  box-shadow: 0 10px 36px rgba(24, 224, 106, 0.5);
+  box-shadow: 0 8px 28px rgba(212, 175, 55, 0.42);
 }
 .btn-ghost {
   background: transparent;
@@ -183,10 +179,7 @@ main {
   margin: 0 0 14px;
 }
 .gradient {
-  background: linear-gradient(90deg, var(--pink), var(--purple-1));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--gold);
 }
 .hero-sub {
   color: var(--muted);
@@ -233,7 +226,7 @@ main {
   transition: background 0.3s ease;
 }
 .progress-rail .pip.done {
-  background: linear-gradient(90deg, var(--pink), var(--purple-1));
+  background: var(--gold);
 }
 .progress-rail .pip.active {
   background: var(--purple-1);
@@ -309,7 +302,22 @@ main {
   gap: 6px;
   max-height: 58vh;
   overflow-y: auto;
-  padding-right: 4px;
+  padding-right: 6px;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #4a4226 transparent;
+}
+.stock-grid::-webkit-scrollbar {
+  width: 8px;
+}
+.stock-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+.stock-grid::-webkit-scrollbar-thumb {
+  background: #4a4226; /* muted gold */
+  border-radius: 99px;
+}
+.stock-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
 }
 .stock-list-head {
   position: sticky;
@@ -473,17 +481,6 @@ main {
   font-weight: 400;
   margin-left: 6px;
 }
-.leg .leg-flow {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 12px;
-  color: var(--muted);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.leg .leg-flow b {
-  color: var(--text);
-  font-weight: 700;
-}
 .leg .leg-mult {
   font-family: "JetBrains Mono", monospace;
   font-weight: 700;
@@ -574,7 +571,7 @@ main {
   height: 100%;
   width: 0;
   border-radius: 99px;
-  background: linear-gradient(90deg, var(--gold), var(--green));
+  background: var(--green);
   transition: width 0.6s ease;
 }
 .captured-pct {
@@ -589,9 +586,26 @@ main {
   color: var(--muted);
   margin-bottom: 10px;
 }
+.ideal-toggle > summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 13px;
+  color: var(--gold);
+  padding: 4px 0;
+}
+.ideal-toggle > summary::-webkit-details-marker {
+  display: none;
+}
+.ideal-toggle > summary::before {
+  content: "▸ ";
+}
+.ideal-toggle[open] > summary::before {
+  content: "▾ ";
+}
 .ideal-legs {
   display: grid;
   gap: 4px;
+  margin-top: 6px;
 }
 .ideal-leg {
   display: flex;

@@ -199,7 +199,6 @@ function showResult(res, animate) {
     row.innerHTML = `
       <div class="leg-tag">#${i + 1} · ${eraLabel(l.era)} · ${l.industry}</div>
       <div class="leg-name">${l.name} <small>${l.ticker}</small></div>
-      <div class="leg-flow">${usd(l.invested)} → <b>${usd(l.finalValue)}</b></div>
       <div class="leg-mult ${cls}">${l.multiple}× <small>${sign}${l.gainPct}%</small></div>`;
     legs.appendChild(row);
   });
