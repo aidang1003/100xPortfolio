@@ -1,18 +1,20 @@
 :root {
-  --bg: #080812;
-  --surface: hsl(260 18% 9%);
-  --surface-2: hsl(260 15% 14%);
-  --border: hsl(260 15% 20%);
-  --text: #ece8f5;
-  --muted: #9a93b3;
-  --pink: #ff1a8c;
-  --purple: #9200e1;
-  --purple-1: #b75fff;
-  --green: #22c55e;
-  --yellow: #f59e0b;
-  --red: #ef4444;
+  /* The Wolf of Wall Street x r/wallstreetbets — black, gold, money green */
+  --bg: #07080a;
+  --surface: #111410;
+  --surface-2: #1a1f15;
+  --border: #332e1c;
+  --text: #f4eddb;
+  --muted: #a59d85;
+  --green: #18e06a; /* money green — tendies / gains */
+  --yellow: #f5b301;
+  --red: #ff4d4f; /* losses / red candles */
   --blue: #4a90e2;
-  --gold: #ffcf4d;
+  --gold: #ffce47; /* WoWS gold */
+  /* legacy accent names, repurposed to the gold + money-green palette */
+  --pink: #ffce47; /* gold accent: tickers, gradient start, glow */
+  --purple: #0e9c46; /* deep money green: button/gradient end, glow */
+  --purple-1: #18e06a; /* bright green highlight: dots, active, hovers */
 }
 
 * {
@@ -73,9 +75,10 @@ main,
   text-align: center;
 }
 .brand {
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 0;
 }
 .brand-mark {
   background: linear-gradient(90deg, var(--pink), var(--purple-1));
@@ -146,12 +149,12 @@ main {
   cursor: not-allowed;
 }
 .btn-primary {
-  color: white;
-  background: linear-gradient(90deg, var(--pink), var(--purple));
-  box-shadow: 0 8px 28px rgba(255, 26, 140, 0.35);
+  color: #0b1207;
+  background: linear-gradient(90deg, var(--gold), var(--green));
+  box-shadow: 0 8px 28px rgba(255, 206, 71, 0.32);
 }
 .btn-primary:hover:not(:disabled) {
-  box-shadow: 0 10px 34px rgba(255, 26, 140, 0.5);
+  box-shadow: 0 10px 36px rgba(24, 224, 106, 0.5);
 }
 .btn-ghost {
   background: transparent;
@@ -173,8 +176,10 @@ main {
 
 /* Intro */
 .hero-title {
-  font-size: 34px;
-  line-height: 1.15;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1.12;
   margin: 0 0 14px;
 }
 .gradient {
@@ -201,7 +206,7 @@ main {
   gap: 12px;
   align-items: baseline;
   font-size: 15px;
-  color: #cfc9e0;
+  color: #ddd6c2;
 }
 .rules .dot {
   color: var(--purple-1);
@@ -319,8 +324,8 @@ main {
 }
 .stock-card:hover {
   transform: translateY(-3px);
-  border-color: var(--purple-1);
-  box-shadow: 0 12px 30px rgba(146, 0, 225, 0.25);
+  border-color: var(--gold);
+  box-shadow: 0 12px 30px rgba(24, 224, 106, 0.22);
 }
 .stock-ticker {
   font-family: "JetBrains Mono", monospace;
@@ -368,7 +373,7 @@ main {
 .grade-badge.green {
   color: var(--green);
   border-color: var(--green);
-  box-shadow: 0 0 24px rgba(34, 197, 94, 0.4);
+  box-shadow: 0 0 24px rgba(24, 224, 106, 0.45);
 }
 .grade-badge.blue {
   color: var(--blue);
@@ -493,10 +498,10 @@ main {
   font-weight: 700;
 }
 .callout.best {
-  border-color: rgba(34, 197, 94, 0.4);
+  border-color: rgba(24, 224, 106, 0.45);
 }
 .callout.weak {
-  border-color: rgba(239, 68, 68, 0.4);
+  border-color: rgba(255, 77, 79, 0.45);
 }
 
 .result-actions {

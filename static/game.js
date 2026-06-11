@@ -74,6 +74,10 @@ function renderRound() {
   $("skip-era").disabled = state.eraSkipUsed;
   $("skip-industry").disabled = state.industrySkipUsed;
 
+  // Hide the company list while the reels are still spinning — it only makes
+  // sense once the era + industry have landed.
+  $("stock-grid").innerHTML = "";
+
   spinReels(rnd.era, rnd.industry, () => renderStocks());
 }
 
