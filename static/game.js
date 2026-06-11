@@ -114,10 +114,11 @@ function renderStocks() {
   const count = state.active.stocks.length;
   const header = document.createElement("div");
   header.className = "stock-list-head";
-  header.textContent = `${count} stocks — pick the one you think mooned 🚀`;
+  header.textContent = `${count} stocks — pick the one you think mooned`;
   grid.appendChild(header);
 
-  state.active.stocks.forEach((s) => {
+  const stocks = [...state.active.stocks].sort((a, b) => a.ticker.localeCompare(b.ticker));
+  stocks.forEach((s) => {
     const row = document.createElement("div");
     row.className = "stock-row";
     // Curated blurb if we have one, otherwise the GICS sub-industry.

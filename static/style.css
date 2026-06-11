@@ -6,15 +6,15 @@
   --border: #332e1c;
   --text: #f4eddb;
   --muted: #a59d85;
-  --green: #28c76f; /* money green — gains ONLY (up multiples, grades, best run) */
-  --yellow: #f5b301;
+  --green: #2ee06b; /* light money green — the single accent (decor + gains) */
+  --yellow: #f5b301; /* "flat / meh" returns only */
   --red: #ff4d4f; /* losses */
   --blue: #4a90e2;
-  --gold: #d4af37; /* gold — the single decorative accent */
-  /* legacy accent names, now all aliased to gold (green is semantic-only) */
-  --pink: #d4af37;
+  --gold: #d4af37; /* gold — reserved for the 100x jackpot grade badge only */
+  /* legacy accent names, now all aliased to the green accent */
+  --pink: #2ee06b;
   --purple: #0e9c46; /* unused */
-  --purple-1: #d4af37; /* highlight accent -> gold (dots, active, hovers) */
+  --purple-1: #2ee06b;
 }
 
 * {
@@ -55,7 +55,7 @@ body {
 .glow-b {
   width: 520px;
   height: 520px;
-  background: var(--gold);
+  background: var(--green);
   bottom: -200px;
   right: -160px;
 }
@@ -81,7 +81,7 @@ main,
   letter-spacing: 0;
 }
 .brand-mark {
-  color: var(--gold);
+  color: var(--green);
 }
 .brand-rest {
   color: var(--text);
@@ -146,11 +146,11 @@ main {
 }
 .btn-primary {
   color: #0b1207;
-  background: var(--gold);
-  box-shadow: 0 6px 22px rgba(212, 175, 55, 0.28);
+  background: var(--green);
+  box-shadow: 0 6px 22px rgba(46, 224, 107, 0.26);
 }
 .btn-primary:hover:not(:disabled) {
-  box-shadow: 0 8px 28px rgba(212, 175, 55, 0.42);
+  box-shadow: 0 8px 28px rgba(46, 224, 107, 0.4);
 }
 .btn-ghost {
   background: transparent;
@@ -179,7 +179,7 @@ main {
   margin: 0 0 14px;
 }
 .gradient {
-  color: var(--gold);
+  color: var(--green);
 }
 .hero-sub {
   color: var(--muted);
@@ -226,7 +226,7 @@ main {
   transition: background 0.3s ease;
 }
 .progress-rail .pip.done {
-  background: var(--gold);
+  background: var(--green);
 }
 .progress-rail .pip.active {
   background: var(--purple-1);
@@ -304,7 +304,7 @@ main {
   overflow-y: auto;
   padding-right: 6px;
   scrollbar-width: thin; /* Firefox */
-  scrollbar-color: #4a4226 transparent;
+  scrollbar-color: #265a3c transparent;
 }
 .stock-grid::-webkit-scrollbar {
   width: 8px;
@@ -313,11 +313,11 @@ main {
   background: transparent;
 }
 .stock-grid::-webkit-scrollbar-thumb {
-  background: #4a4226; /* muted gold */
+  background: #265a3c; /* muted green */
   border-radius: 99px;
 }
 .stock-grid::-webkit-scrollbar-thumb:hover {
-  background: var(--gold);
+  background: var(--green);
 }
 .stock-list-head {
   position: sticky;
@@ -344,7 +344,7 @@ main {
     transform 0.06s ease;
 }
 .stock-row:hover {
-  border-color: var(--gold);
+  border-color: var(--green);
   background: var(--surface-2);
 }
 .stock-row:active {
@@ -353,7 +353,7 @@ main {
 .stock-row .stock-ticker {
   font-family: "JetBrains Mono", monospace;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--green);
   font-size: 14px;
   width: 66px;
   flex-shrink: 0;
@@ -542,7 +542,7 @@ main {
 }
 .best-compare-title {
   font-weight: 700;
-  color: var(--gold);
+  color: var(--green);
 }
 .best-compare-figures {
   font-family: "JetBrains Mono", monospace;
@@ -590,7 +590,7 @@ main {
   cursor: pointer;
   list-style: none;
   font-size: 13px;
-  color: var(--gold);
+  color: var(--green);
   padding: 4px 0;
 }
 .ideal-toggle > summary::-webkit-details-marker {
