@@ -2,6 +2,14 @@
 
 const $ = (id) => document.getElementById(id);
 const STORAGE_KEY = "100x_result";
+const MEDAL_EMOJI = { gold: "🥇", silver: "🥈", bronze: "🥉" };
+
+// 1 -> "1st", 2 -> "2nd", 3 -> "3rd", 4 -> "4th" ...
+const ordinal = (n) => {
+  const s = ["th", "st", "nd", "rd"];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+};
 
 // Display label for an era key: a clean 5-year span (e.g. "2020-2024" -> "2020-2025").
 // The key still drives the game logic; this only changes how the span reads.
@@ -263,13 +271,18 @@ function showResult(res, animate) {
   const legs = $("result-legs");
   legs.innerHTML = "";
   res.legs.forEach((l, i) => {
-    const cls = l.multiple >= 2 ? "up" : l.multiple >= 1 ? "flat" : "down";
+    // Color reflects standing in the era/industry dealt (top/mid/worst third);
+    // a medal marks a top-3 finish in that cell.
+    const cls = l.perf || (l.multiple >= 2 ? "up" : l.multiple >= 1 ? "flat" : "down");
     const sign = l.gainPct >= 0 ? "+" : "";
+    const medal = l.medal
+      ? `<span class="leg-medal" title="${ordinal(l.rank)} of ${l.cellSize} in this era/industry">${MEDAL_EMOJI[l.medal]}</span>`
+      : "";
     const row = document.createElement("div");
     row.className = "leg";
     row.innerHTML = `
       <div class="leg-tag">#${i + 1} · ${eraLabel(l.era)} · ${l.industry}</div>
-      <div class="leg-name">${l.name} <small>${l.ticker}</small></div>
+      <div class="leg-name">${medal}${l.name} <small>${l.ticker}</small></div>
       <div class="leg-mult ${cls}">${l.multiple}× <small>${sign}${l.gainPct}%</small></div>`;
     legs.appendChild(row);
   });

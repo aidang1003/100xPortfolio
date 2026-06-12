@@ -99,21 +99,43 @@ def _lookup(industry, era, ticker):
 
 
 def _grade(multiple):
+    # Tiers by total portfolio multiple. S is the 100x dream; D is the floor.
     if multiple >= 100:
-        return ("100x", "Mythical — the dream realized", "gold")
-    if multiple >= 15:
-        return ("S", "Legendary timing", "gold")
-    if multiple >= 8:
+        return ("S", "Legendary — you 100×'d the pot", "gold")
+    if multiple >= 60:
         return ("A", "Elite stock-picking", "green")
-    if multiple >= 4:
-        return ("B", "Strong portfolio", "green")
-    if multiple >= 2:
-        return ("C", "Solid, you beat the market", "blue")
-    if multiple >= 1.2:
-        return ("D", "Meh — barely moved the needle", "yellow")
-    if multiple >= 1.0:
-        return ("E", "Treading water", "yellow")
-    return ("F", "You lost money. Brutal.", "red")
+    if multiple >= 40:
+        return ("B", "Strong portfolio", "blue")
+    if multiple >= 20:
+        return ("C", "Solid — a respectable haul", "yellow")
+    return ("D", "Below the bar — keep grinding", "red")
+
+
+# Medal for a top-3 finish within an (industry, era) cell.
+_MEDALS = {1: "gold", 2: "silver", 3: "bronze"}
+
+
+def _cell_rank(industry, era, ticker):
+    """1-based rank of `ticker` within its cell by return (best = 1) + cell size."""
+    stocks = sorted(cell(industry, era), key=lambda s: s["multiple"], reverse=True)
+    n = len(stocks)
+    for idx, s in enumerate(stocks):
+        if s["ticker"] == ticker:
+            return idx + 1, n
+    return n, n  # shouldn't happen — the pick was validated against this cell
+
+
+def _perf_class(rank, n):
+    """Tercile of a pick within its cell, as a leg-mult color class:
+    top third -> green (up), middle -> yellow (flat), worst -> red (down)."""
+    if not n:
+        return "flat"
+    frac = (rank - 1) / n
+    if frac < 1 / 3:
+        return "up"
+    if frac < 2 / 3:
+        return "flat"
+    return "down"
 
 
 def _cell_best(industry, era):
@@ -203,6 +225,7 @@ def score(picks, seed=None):
 
         invested = balance
         balance = balance * stock["multiple"]  # whole pot rides on this pick
+        rank, cell_size = _cell_rank(industry, era, stock["ticker"])
         legs.append(
             {
                 "ticker": stock["ticker"],
@@ -215,6 +238,11 @@ def score(picks, seed=None):
                 "invested": round(invested, 2),
                 "finalValue": round(balance, 2),
                 "gainPct": round((stock["multiple"] - 1) * 100, 1),
+                # Standing within the era/industry the player was dealt.
+                "rank": rank,
+                "cellSize": cell_size,
+                "medal": _MEDALS.get(rank),  # gold/silver/bronze, else None
+                "perf": _perf_class(rank, cell_size),  # up/flat/down (green/yellow/red)
             }
         )
 

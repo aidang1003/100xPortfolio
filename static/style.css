@@ -499,6 +499,10 @@ main {
   flex: 1;
   font-weight: 700;
 }
+.leg .leg-medal {
+  margin-right: 6px;
+  font-size: 15px;
+}
 .leg .leg-name small {
   color: var(--muted);
   font-weight: 400;
