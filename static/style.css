@@ -108,15 +108,22 @@ main {
 
 .screen {
   animation: fade 0.35s ease;
+  /* Keep the element on its own GPU layer for the whole animation. WebKit
+     flashes black when it switches an element in/out of accelerated rendering
+     mid-animation; promoting it up front (translate3d + backface-visibility)
+     avoids that switch. */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 @keyframes fade {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translate3d(0, 8px, 0);
   }
   to {
     opacity: 1;
-    transform: none;
+    transform: translate3d(0, 0, 0);
   }
 }
 
