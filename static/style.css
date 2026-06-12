@@ -261,8 +261,13 @@ main {
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 12px 8px;
-  min-height: 52px;
+  padding: 8px 10px;
+  /* Fixed height (incl. padding/border) so the box never resizes as the reel
+     cycles through names of different lengths — tall enough for a 2-line wrap
+     like "Consumer Discretionary". */
+  height: 68px;
+  box-sizing: border-box;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
