@@ -548,6 +548,16 @@ main {
     width: 70px;
     font-size: 13px;
   }
+  /* The fixed-width era·industry tag is too wide for portrait, so let each
+     ideal pick wrap: tag on its own line, name + multiple on the next. */
+  .ideal-leg {
+    flex-wrap: wrap;
+    gap: 2px 10px;
+  }
+  .ideal-leg .ideal-tag {
+    width: 100%;
+    flex-basis: 100%;
+  }
 }
 .callout {
   background: var(--surface);
