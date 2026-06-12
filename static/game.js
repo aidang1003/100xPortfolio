@@ -93,7 +93,9 @@ function startGame() {
 }
 
 // Replay with a fresh random seed so the spins differ from the daily run.
+// This is always a regular run ("Play again" in regular, "Play regular" in learning).
 async function replay() {
+  state.learnMode = false;
   await loadRounds("r-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8));
   startGame();
 }
@@ -258,6 +260,11 @@ function showResult(res, animate) {
   // Sharing posts the saved daily result; a learning run isn't that, so hide it.
   $("copy-btn").classList.toggle("hidden", state.learnMode);
   $("learn-result-tag").classList.toggle("hidden", !state.learnMode);
+
+  // Same two play buttons in the same slots; only the labels flip by mode.
+  // replay-btn always starts a regular run; learn-btn-result always learning.
+  $("replay-btn").textContent = state.learnMode ? "Play regular" : "Play again";
+  $("learn-btn-result").textContent = state.learnMode ? "Play again" : "Learning mode →";
 
   const badge = $("grade-badge");
   badge.textContent = res.grade;
