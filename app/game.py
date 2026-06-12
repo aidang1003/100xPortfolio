@@ -99,16 +99,18 @@ def _lookup(industry, era, ticker):
 
 
 def _grade(multiple):
-    # Tiers by total portfolio multiple. S is the 100x dream; D is the floor.
+    # Tiers by total portfolio multiple. S is the 100x dream; F is the floor.
     if multiple >= 100:
         return ("S", "Legendary — you 100×'d the pot", "gold")
-    if multiple >= 60:
+    if multiple >= 56:
         return ("A", "Elite stock-picking", "green")
-    if multiple >= 40:
+    if multiple >= 36:
         return ("B", "Strong portfolio", "blue")
-    if multiple >= 20:
+    if multiple >= 16:
         return ("C", "Solid — a respectable haul", "yellow")
-    return ("D", "Below the bar — keep grinding", "red")
+    if multiple >= 2:
+        return ("D", "Modest — barely beat the pack", "red")
+    return ("F", "Brutal — you barely moved", "red")
 
 
 # Medal for a top-3 finish within an (industry, era) cell.
