@@ -8,6 +8,7 @@ from .data import ERAS, INDUSTRIES, STOCKS, cell
 
 NUM_ROUNDS = 5
 STARTING_STAKE = 10_000  # dollars you start with; rolls from one pick into the next (100x = $1M)
+TECH_INDUSTRY = "Technology"  # the marquee-name cell every game is guaranteed to offer
 
 
 def era_label(era):
@@ -43,11 +44,20 @@ def daily_rounds(seed=None):
     seed = seed or today_str()
     rng = random.Random(_seed_for(seed))
 
+    # Guarantee one round serves up Technology as its primary cell — the marquee
+    # names live there, so every game gets at least one shot at them without
+    # having to spend the industry skip.
+    tech_round = rng.randrange(NUM_ROUNDS)
+
     rounds = []
     used = set()
     while len(rounds) < NUM_ROUNDS:
-        era = rng.choice(ERAS)
-        industry = rng.choice(INDUSTRIES)
+        if len(rounds) == tech_round:
+            industry = TECH_INDUSTRY
+            era = rng.choice(ERAS)
+        else:
+            era = rng.choice(ERAS)
+            industry = rng.choice(INDUSTRIES)
         if (era, industry) in used:
             continue
         used.add((era, industry))

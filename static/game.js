@@ -435,9 +435,12 @@ function copyResults() {
     .map((r) => `${r.emoji}  ${r.ticker.padEnd(tickerW)}  ${r.pct.padStart(pctW)}`)
     .join("\n");
 
-  const retired = res.multiple >= 100 ? "did" : "did not";
   const pct = Math.round(res.gainPct).toLocaleString("en-US");
-  const text = `I returned ${pct}% and ${retired} retire early. Can you beat me? 100xportfolio.vercel.app\n\n${grid}`;
+  const headline =
+    res.multiple >= 100
+      ? `I Retired with ${pct}% gains, can you beat me? play100x.com`
+      : `I returned ${pct}%, can you beat me? play100x.com`;
+  const text = `${headline}\n\n${grid}`;
 
   navigator.clipboard
     .writeText(text)
