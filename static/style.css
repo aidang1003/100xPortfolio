@@ -529,6 +529,25 @@ main {
   .result-callouts {
     grid-template-columns: 1fr;
   }
+  /* Tighten the pick rows so ticker, name and % fit in portrait. */
+  .stock-row {
+    gap: 8px;
+    padding: 10px 12px;
+  }
+  .stock-row .stock-ticker {
+    width: 52px;
+    font-size: 13px;
+  }
+  .stock-row .stock-name {
+    font-size: 14px;
+  }
+  .stock-row .stock-meta {
+    font-size: 11px;
+  }
+  .stock-row .stock-pct {
+    width: 70px;
+    font-size: 13px;
+  }
 }
 .callout {
   background: var(--surface);

@@ -160,22 +160,37 @@ function renderStocks() {
     : `${count} stocks — pick the one you think mooned`;
   grid.appendChild(header);
 
-  const stocks = [...state.active.stocks].sort((a, b) => a.ticker.localeCompare(b.ticker));
+  // Learning mode: rank best-to-worst by return, and keep rows compact (just
+  // ticker, name, %) so they fit on a phone. The game keeps its A–Z list +
+  // descriptions with stats hidden.
+  const stocks = [...state.active.stocks];
+  if (returns) {
+    stocks.sort((a, b) => (returns[b.ticker] ?? -Infinity) - (returns[a.ticker] ?? -Infinity));
+  } else {
+    stocks.sort((a, b) => a.ticker.localeCompare(b.ticker));
+  }
+
   stocks.forEach((s) => {
     const row = document.createElement("div");
     row.className = "stock-row";
-    // Curated blurb if we have one, otherwise the GICS sub-industry.
-    const meta = s.blurb || s.sub || "";
-    let pctCol = "";
-    if (returns && returns[s.ticker] !== undefined) {
+    if (returns) {
       const g = returns[s.ticker];
-      const sign = g >= 0 ? "+" : "";
-      pctCol = `<span class="stock-pct ${g >= 0 ? "up" : "down"}">${sign}${g}%</span>`;
+      let pctCol = "";
+      if (g !== undefined) {
+        const sign = g >= 0 ? "+" : "";
+        pctCol = `<span class="stock-pct ${g >= 0 ? "up" : "down"}">${sign}${g}%</span>`;
+      }
+      row.innerHTML = `
+        <span class="stock-ticker">${s.ticker}</span>
+        <span class="stock-name">${s.name}</span>${pctCol}`;
+    } else {
+      // Curated blurb if we have one, otherwise the GICS sub-industry.
+      const meta = s.blurb || s.sub || "";
+      row.innerHTML = `
+        <span class="stock-ticker">${s.ticker}</span>
+        <span class="stock-name">${s.name}</span>
+        <span class="stock-meta">${meta}</span>`;
     }
-    row.innerHTML = `
-      <span class="stock-ticker">${s.ticker}</span>
-      <span class="stock-name">${s.name}</span>
-      <span class="stock-meta">${meta}</span>${pctCol}`;
     row.onclick = () => pick(s.ticker);
     grid.appendChild(row);
   });
