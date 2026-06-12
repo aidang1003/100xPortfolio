@@ -720,8 +720,18 @@ main {
 
 .result-actions {
   display: flex;
-  gap: 12px;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin-top: 28px;
+}
+/* Primary Share gets its own prominent full-width row... */
+.result-actions .btn-primary {
+  flex: 1 1 100%;
+}
+/* ...while the secondary actions split the row below and wrap when cramped. */
+.result-actions .btn-ghost {
+  flex: 1 1 0;
+  min-width: 140px;
 }
 
 /* Learning mode — the intro/result entry button. */

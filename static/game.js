@@ -438,7 +438,7 @@ function copyResults() {
   const pct = Math.round(res.gainPct).toLocaleString("en-US");
   const headline =
     res.multiple >= 100
-      ? `I Retired with ${pct}% gains, can you beat me? play100x.com`
+      ? `I retired with ${pct}% gains, can you beat me? play100x.com`
       : `I returned ${pct}%, can you beat me? play100x.com`;
   const text = `${headline}\n\n${grid}`;
 
