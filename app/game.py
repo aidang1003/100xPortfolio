@@ -110,7 +110,7 @@ def _grade(multiple):
         return ("C", "Solid — a respectable haul", "yellow")
     if multiple >= 2:
         return ("D", "Modest — barely beat the pack", "red")
-    return ("F", "Brutal — you barely moved", "red")
+    return ("F", "Brutal — you barely moved", "gray")
 
 
 # Medal for a top-3 finish within an (industry, era) cell.

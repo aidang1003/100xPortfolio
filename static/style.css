@@ -445,6 +445,13 @@ main {
   color: var(--red);
   border-color: var(--red);
 }
+/* F — busted: a dead, washed-out grey, distinctly worse than a red D. */
+.grade-badge.gray {
+  color: #7a7363;
+  border-color: #3a352a;
+  background: #14130f;
+  opacity: 0.85;
+}
 .result-headline {
   flex: 1;
   min-width: 160px;
