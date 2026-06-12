@@ -1,4 +1,10 @@
 :root {
+  /* Declare the page as dark so the browser paints its own surfaces — the
+     canvas backdrop, overscroll gutter and top inset on mobile — dark from the
+     first frame, instead of flashing a black/light box once it composites.
+     This is the fix for "flash of inaccurate color theme" on iOS Safari. */
+  color-scheme: dark;
+
   /* The Wolf of Wall Street x r/wallstreetbets — black, gold, money green */
   --bg: #07080a;
   --surface: #111410;
