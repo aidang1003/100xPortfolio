@@ -25,6 +25,8 @@ html,
 body {
   margin: 0;
   padding: 0;
+  /* Theme the overscroll/refresh gutter on mobile so it isn't a black bar. */
+  background: var(--bg);
 }
 
 body {

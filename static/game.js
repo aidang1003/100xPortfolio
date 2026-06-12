@@ -23,17 +23,51 @@ const state = {
   round: 0, // current round index
   picks: [], // [{industry, era, ticker}]
   active: null, // active cell {industry, era, stocks}
+  activeKind: "primary", // which cell is active this round: primary | altEra | altIndustry
   eraSkipUsed: false,
   industrySkipUsed: false,
   learn: null, // cached /api/learn payload (returns, for learning mode)
   learnMode: false, // when true, the run reveals each stock's return as you pick
+  screen: null, // current visible screen, for refresh restore
+  lastResult: null, // last scored result, for refresh restore
 };
+
+// A snapshot of where the player is, kept in sessionStorage so a page refresh
+// (especially mobile pull-to-refresh) resumes instead of bouncing to the intro.
+const SESSION_KEY = "100x_session";
+
+function snapshot() {
+  return {
+    screen: state.screen,
+    seed: state.data && state.data.seed,
+    learnMode: state.learnMode,
+    round: state.round,
+    picks: state.picks,
+    activeKind: state.activeKind,
+    eraSkipUsed: state.eraSkipUsed,
+    industrySkipUsed: state.industrySkipUsed,
+    result: state.lastResult,
+  };
+}
+
+function saveSession() {
+  try {
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify(snapshot()));
+  } catch (e) {
+    /* ignore */
+  }
+}
+
+function loadSession() {
+  try {
+    return JSON.parse(sessionStorage.getItem(SESSION_KEY));
+  } catch (e) {
+    return null;
+  }
+}
 
 // ---- boot ----------------------------------------------------------------
 async function boot() {
-  await loadRounds(); // today's shared daily spin
-  renderProgress();
-
   $("start-btn").onclick = () => {
     state.learnMode = false;
     startGame();
@@ -47,6 +81,55 @@ async function boot() {
   $("learn-btn-result").onclick = startLearnGame;
 
   if (loadSaved()) unlockLearn(); // already finished a game in a past session
+
+  // Resume an in-progress game or result across a refresh; else fresh daily.
+  const sess = loadSession();
+  if (sess && (sess.screen === "game" || sess.screen === "result")) {
+    try {
+      await restoreSession(sess);
+      return;
+    } catch (e) {
+      /* fall through to a clean daily boot */
+    }
+  }
+
+  await loadRounds(); // today's shared daily spin
+  renderProgress();
+}
+
+// Rebuild the saved screen after a refresh. Seeds are deterministic, so
+// re-fetching the same seed reproduces the exact rounds the player was on.
+async function restoreSession(s) {
+  state.learnMode = !!s.learnMode;
+  if (state.learnMode && !state.learn) {
+    state.learn = await fetch("/api/learn").then((r) => r.json());
+  }
+  await loadRounds(s.seed || undefined);
+
+  if (s.screen === "result" && s.result) {
+    state.lastResult = s.result;
+    showResult(s.result, false);
+    return;
+  }
+
+  state.round = s.round || 0;
+  state.picks = Array.isArray(s.picks) ? s.picks : [];
+  state.activeKind = s.activeKind || "primary";
+  state.eraSkipUsed = !!s.eraSkipUsed;
+  state.industrySkipUsed = !!s.industrySkipUsed;
+  show("game");
+  resumeRound();
+}
+
+// Render the current round without the slot animation (we're resuming, not spinning).
+function resumeRound() {
+  const rnd = state.data.rounds[state.round];
+  state.active = rnd.cells[state.activeKind] || rnd.cells.primary;
+  renderProgress();
+  $("round-counter").textContent = `Round ${state.round + 1} / ${state.data.rounds.length}`;
+  $("skip-era").disabled = state.eraSkipUsed;
+  $("skip-industry").disabled = state.industrySkipUsed;
+  renderStocks(); // sets the reels + pick list from state.active
 }
 
 // Learning mode unlocks only after the player completes at least one run.
@@ -88,6 +171,7 @@ function startGame() {
   state.picks = [];
   state.eraSkipUsed = false;
   state.industrySkipUsed = false;
+  state.lastResult = null;
   show("game");
   renderRound();
 }
@@ -116,6 +200,8 @@ function renderProgress() {
 function renderRound() {
   const rnd = state.data.rounds[state.round];
   state.active = rnd.cells.primary;
+  state.activeKind = "primary";
+  saveSession(); // persist the round advance for refresh-resume
 
   renderProgress();
   $("round-counter").textContent = `Round ${state.round + 1} / ${state.data.rounds.length}`;
@@ -212,12 +298,15 @@ function useSkip(kind) {
   if (kind === "era" && !state.eraSkipUsed) {
     state.eraSkipUsed = true;
     state.active = rnd.cells.altEra;
+    state.activeKind = "altEra";
     $("skip-era").disabled = true;
   } else if (kind === "industry" && !state.industrySkipUsed) {
     state.industrySkipUsed = true;
     state.active = rnd.cells.altIndustry;
+    state.activeKind = "altIndustry";
     $("skip-industry").disabled = true;
   }
+  saveSession();
   renderStocks();
 }
 
@@ -255,6 +344,7 @@ async function submit() {
 
 // ---- result --------------------------------------------------------------
 function showResult(res, animate) {
+  state.lastResult = res; // captured before show() so the session snapshot has it
   show("result");
 
   // Sharing posts the saved daily result; a learning run isn't that, so hide it.
@@ -363,6 +453,8 @@ function copyResults() {
 function show(id) {
   ["intro", "game", "result"].forEach((s) => $(s).classList.add("hidden"));
   $(id).classList.remove("hidden");
+  state.screen = id;
+  saveSession();
 }
 
 function usd(n) {
