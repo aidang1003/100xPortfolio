@@ -418,11 +418,7 @@ function renderBest(res) {
   });
 }
 
-function copyResults() {
-  const saved = loadSaved();
-  if (!saved) return;
-  const res = saved.result;
-
+function shareText(res) {
   // Three borderless columns per pick: performance emoji · ticker · % return.
   const rows = res.legs.map((l) => {
     const emoji = l.multiple >= 2 ? "🟩" : l.multiple >= 1 ? "🟨" : "🟥";
@@ -440,16 +436,72 @@ function copyResults() {
     res.multiple >= 100
       ? `I Retired with ${pct}% gains, can you beat me? play100x.com`
       : `I returned ${pct}%, can you beat me? play100x.com`;
-  const text = `${headline}\n\n${grid}`;
+  return `${headline}\n\n${grid}`;
+}
 
-  navigator.clipboard
-    .writeText(text)
-    .then(() => {
-      const toast = $("share-toast");
-      toast.classList.remove("hidden");
-      setTimeout(() => toast.classList.add("hidden"), 2000);
-    })
-    .catch(() => alert(text));
+function flashToast() {
+  const toast = $("share-toast");
+  toast.classList.remove("hidden");
+  setTimeout(() => toast.classList.add("hidden"), 2000);
+}
+
+// Legacy clipboard path for browsers without the Async Clipboard API
+// (e.g. Brave on iOS with shields blocking it). Returns true on success.
+function legacyCopy(text) {
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    const ok = document.execCommand("copy");
+    document.body.removeChild(ta);
+    return ok;
+  } catch (e) {
+    return false;
+  }
+}
+
+// Share the result. Prefer the native share sheet (best on mobile, and what a
+// "Share" button implies), then fall back to clipboard, then to manual copy —
+// each guarded so a blocked/absent API never silently no-ops the button.
+async function copyResults() {
+  // Use the result on screen, not localStorage — survives blocked storage and
+  // a refresh-restored result.
+  const res = state.lastResult || (loadSaved() && loadSaved().result);
+  if (!res) return;
+  const text = shareText(res);
+
+  if (navigator.share) {
+    try {
+      await navigator.share({ text });
+      return; // shared via the OS sheet
+    } catch (e) {
+      if (e && e.name === "AbortError") return; // user dismissed — not an error
+      // otherwise fall through to copying
+    }
+  }
+
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+      flashToast();
+      return;
+    }
+  } catch (e) {
+    /* fall through to legacy copy */
+  }
+
+  if (legacyCopy(text)) {
+    flashToast();
+    return;
+  }
+
+  // Last resort: surface the text so it can be copied by hand.
+  window.prompt("Copy your result:", text);
 }
 
 // ---- helpers -------------------------------------------------------------
