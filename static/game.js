@@ -297,30 +297,38 @@ function renderStocks() {
 
 // ---- actions -------------------------------------------------------------
 // A skip re-rolls the era (or industry) and lands on the alternate cell. The
-// server picks that alternate at random, excluding the original, so the result
-// is always different from what the player had. We spin only the re-rolled reel
-// and rebuild the list once it settles.
+// server picks that alternate at random excluding the original, so a skip can
+// never land on the era/industry the player already had. We spin only the
+// re-rolled reel and rebuild the list once it settles.
+//
+// Learning mode gets unlimited skips: the buttons are never consumed/disabled,
+// so you can keep re-rolling to study other eras and industries.
 function useSkip(kind) {
   const rnd = state.data.rounds[state.round];
+  const unlimited = state.learnMode;
   let reel, frames, finalText;
-  if (kind === "era" && !state.eraSkipUsed) {
-    state.eraSkipUsed = true;
+  if (kind === "era" && (unlimited || !state.eraSkipUsed)) {
+    if (!unlimited) {
+      state.eraSkipUsed = true;
+      $("skip-era").disabled = true;
+    }
     state.active = rnd.cells.altEra;
     state.activeKind = "altEra";
-    $("skip-era").disabled = true;
     reel = $("reel-era");
     frames = SPIN_ERAS.map(eraLabel);
     finalText = eraLabel(state.active.era);
-  } else if (kind === "industry" && !state.industrySkipUsed) {
-    state.industrySkipUsed = true;
+  } else if (kind === "industry" && (unlimited || !state.industrySkipUsed)) {
+    if (!unlimited) {
+      state.industrySkipUsed = true;
+      $("skip-industry").disabled = true;
+    }
     state.active = rnd.cells.altIndustry;
     state.activeKind = "altIndustry";
-    $("skip-industry").disabled = true;
     reel = $("reel-industry");
     frames = SPIN_INDUSTRIES;
     finalText = state.active.industry;
   } else {
-    return; // skip already spent
+    return; // skip already spent (regular mode)
   }
   saveSession();
   $("stock-grid").innerHTML = ""; // hide picks while the reel re-rolls
