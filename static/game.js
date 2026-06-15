@@ -215,27 +215,30 @@ function renderRound() {
   spinReels(rnd.era, rnd.industry, () => renderStocks());
 }
 
-function spinReels(finalEra, finalIndustry, done) {
-  const eraReel = $("reel-era");
-  const indReel = $("reel-industry");
-  const eras = ["1990-1994", "1995-1999", "2000-2004", "2005-2009", "2010-2014", "2015-2019", "2020-2024"];
-  const inds = ["Technology", "Healthcare", "Financials", "Consumer Discretionary", "Consumer Staples", "Industrials", "Utilities", "Materials"];
+// Values the reels flash through while spinning.
+const SPIN_ERAS = ["1990-1994", "1995-1999", "2000-2004", "2005-2009", "2010-2014", "2015-2019", "2020-2024"];
+const SPIN_INDUSTRIES = ["Technology", "Healthcare", "Financials", "Consumer Discretionary", "Consumer Staples", "Industrials", "Utilities", "Materials"];
 
-  eraReel.classList.add("spinning");
-  indReel.classList.add("spinning");
+// Flash one reel through random frames, then settle on finalText.
+function spinReel(reel, frames, finalText, done) {
+  reel.classList.add("spinning");
   let ticks = 0;
-  const spin = setInterval(() => {
-    eraReel.textContent = eraLabel(eras[Math.floor(Math.random() * eras.length)]);
-    indReel.textContent = inds[Math.floor(Math.random() * inds.length)];
+  const id = setInterval(() => {
+    reel.textContent = frames[Math.floor(Math.random() * frames.length)];
     if (++ticks > 14) {
-      clearInterval(spin);
-      eraReel.classList.remove("spinning");
-      indReel.classList.remove("spinning");
-      eraReel.textContent = eraLabel(finalEra);
-      indReel.textContent = finalIndustry;
-      done();
+      clearInterval(id);
+      reel.classList.remove("spinning");
+      reel.textContent = finalText;
+      if (done) done();
     }
   }, 70);
+}
+
+function spinReels(finalEra, finalIndustry, done) {
+  // Both reels spin the same number of frames, so they land together; the
+  // industry reel fires the shared `done` callback.
+  spinReel($("reel-era"), SPIN_ERAS.map(eraLabel), eraLabel(finalEra), null);
+  spinReel($("reel-industry"), SPIN_INDUSTRIES, finalIndustry, done);
 }
 
 function renderStocks() {
@@ -293,21 +296,35 @@ function renderStocks() {
 }
 
 // ---- actions -------------------------------------------------------------
+// A skip re-rolls the era (or industry) and lands on the alternate cell. The
+// server picks that alternate at random, excluding the original, so the result
+// is always different from what the player had. We spin only the re-rolled reel
+// and rebuild the list once it settles.
 function useSkip(kind) {
   const rnd = state.data.rounds[state.round];
+  let reel, frames, finalText;
   if (kind === "era" && !state.eraSkipUsed) {
     state.eraSkipUsed = true;
     state.active = rnd.cells.altEra;
     state.activeKind = "altEra";
     $("skip-era").disabled = true;
+    reel = $("reel-era");
+    frames = SPIN_ERAS.map(eraLabel);
+    finalText = eraLabel(state.active.era);
   } else if (kind === "industry" && !state.industrySkipUsed) {
     state.industrySkipUsed = true;
     state.active = rnd.cells.altIndustry;
     state.activeKind = "altIndustry";
     $("skip-industry").disabled = true;
+    reel = $("reel-industry");
+    frames = SPIN_INDUSTRIES;
+    finalText = state.active.industry;
+  } else {
+    return; // skip already spent
   }
   saveSession();
-  renderStocks();
+  $("stock-grid").innerHTML = ""; // hide picks while the reel re-rolls
+  spinReel(reel, frames, finalText, () => renderStocks());
 }
 
 function pick(ticker) {
