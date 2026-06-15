@@ -306,11 +306,12 @@ function renderStocks() {
 function useSkip(kind) {
   const rnd = state.data.rounds[state.round];
   const unlimited = state.learnMode;
-  let reel, frames, finalText;
+  let reel, frames, finalText, btn;
   if (kind === "era" && (unlimited || !state.eraSkipUsed)) {
+    btn = $("skip-era");
     if (!unlimited) {
       state.eraSkipUsed = true;
-      $("skip-era").disabled = true;
+      btn.disabled = true;
     }
     state.active = rnd.cells.altEra;
     state.activeKind = "altEra";
@@ -318,9 +319,10 @@ function useSkip(kind) {
     frames = SPIN_ERAS.map(eraLabel);
     finalText = eraLabel(state.active.era);
   } else if (kind === "industry" && (unlimited || !state.industrySkipUsed)) {
+    btn = $("skip-industry");
     if (!unlimited) {
       state.industrySkipUsed = true;
-      $("skip-industry").disabled = true;
+      btn.disabled = true;
     }
     state.active = rnd.cells.altIndustry;
     state.activeKind = "altIndustry";
@@ -332,7 +334,10 @@ function useSkip(kind) {
   }
   saveSession();
   $("stock-grid").innerHTML = ""; // hide picks while the reel re-rolls
-  spinReel(reel, frames, finalText, () => renderStocks());
+  spinReel(reel, frames, finalText, () => {
+    renderStocks();
+    btn.blur(); // drop the lingering focus/activation highlight on the skip button
+  });
 }
 
 function pick(ticker) {
