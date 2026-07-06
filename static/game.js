@@ -215,27 +215,30 @@ function renderRound() {
   spinReels(rnd.era, rnd.industry, () => renderStocks());
 }
 
-function spinReels(finalEra, finalIndustry, done) {
-  const eraReel = $("reel-era");
-  const indReel = $("reel-industry");
-  const eras = ["1990-1994", "1995-1999", "2000-2004", "2005-2009", "2010-2014", "2015-2019", "2020-2024"];
-  const inds = ["Technology", "Healthcare", "Financials", "Consumer Discretionary", "Consumer Staples", "Industrials", "Utilities", "Materials"];
+// Values the reels flash through while spinning.
+const SPIN_ERAS = ["1990-1994", "1995-1999", "2000-2004", "2005-2009", "2010-2014", "2015-2019", "2020-2024"];
+const SPIN_INDUSTRIES = ["Technology", "Healthcare", "Financials", "Consumer Discretionary", "Consumer Staples", "Industrials", "Utilities", "Materials"];
 
-  eraReel.classList.add("spinning");
-  indReel.classList.add("spinning");
+// Flash one reel through random frames, then settle on finalText.
+function spinReel(reel, frames, finalText, done) {
+  reel.classList.add("spinning");
   let ticks = 0;
-  const spin = setInterval(() => {
-    eraReel.textContent = eraLabel(eras[Math.floor(Math.random() * eras.length)]);
-    indReel.textContent = inds[Math.floor(Math.random() * inds.length)];
+  const id = setInterval(() => {
+    reel.textContent = frames[Math.floor(Math.random() * frames.length)];
     if (++ticks > 14) {
-      clearInterval(spin);
-      eraReel.classList.remove("spinning");
-      indReel.classList.remove("spinning");
-      eraReel.textContent = eraLabel(finalEra);
-      indReel.textContent = finalIndustry;
-      done();
+      clearInterval(id);
+      reel.classList.remove("spinning");
+      reel.textContent = finalText;
+      if (done) done();
     }
   }, 70);
+}
+
+function spinReels(finalEra, finalIndustry, done) {
+  // Both reels spin the same number of frames, so they land together; the
+  // industry reel fires the shared `done` callback.
+  spinReel($("reel-era"), SPIN_ERAS.map(eraLabel), eraLabel(finalEra), null);
+  spinReel($("reel-industry"), SPIN_INDUSTRIES, finalIndustry, done);
 }
 
 function renderStocks() {
@@ -293,21 +296,48 @@ function renderStocks() {
 }
 
 // ---- actions -------------------------------------------------------------
+// A skip re-rolls the era (or industry) and lands on the alternate cell. The
+// server picks that alternate at random excluding the original, so a skip can
+// never land on the era/industry the player already had. We spin only the
+// re-rolled reel and rebuild the list once it settles.
+//
+// Learning mode gets unlimited skips: the buttons are never consumed/disabled,
+// so you can keep re-rolling to study other eras and industries.
 function useSkip(kind) {
   const rnd = state.data.rounds[state.round];
-  if (kind === "era" && !state.eraSkipUsed) {
-    state.eraSkipUsed = true;
+  const unlimited = state.learnMode;
+  let reel, frames, finalText, btn;
+  if (kind === "era" && (unlimited || !state.eraSkipUsed)) {
+    btn = $("skip-era");
+    if (!unlimited) {
+      state.eraSkipUsed = true;
+      btn.disabled = true;
+    }
     state.active = rnd.cells.altEra;
     state.activeKind = "altEra";
-    $("skip-era").disabled = true;
-  } else if (kind === "industry" && !state.industrySkipUsed) {
-    state.industrySkipUsed = true;
+    reel = $("reel-era");
+    frames = SPIN_ERAS.map(eraLabel);
+    finalText = eraLabel(state.active.era);
+  } else if (kind === "industry" && (unlimited || !state.industrySkipUsed)) {
+    btn = $("skip-industry");
+    if (!unlimited) {
+      state.industrySkipUsed = true;
+      btn.disabled = true;
+    }
     state.active = rnd.cells.altIndustry;
     state.activeKind = "altIndustry";
-    $("skip-industry").disabled = true;
+    reel = $("reel-industry");
+    frames = SPIN_INDUSTRIES;
+    finalText = state.active.industry;
+  } else {
+    return; // skip already spent (regular mode)
   }
   saveSession();
-  renderStocks();
+  $("stock-grid").innerHTML = ""; // hide picks while the reel re-rolls
+  spinReel(reel, frames, finalText, () => {
+    renderStocks();
+    btn.blur(); // drop the lingering focus/activation highlight on the skip button
+  });
 }
 
 function pick(ticker) {
@@ -418,11 +448,7 @@ function renderBest(res) {
   });
 }
 
-function copyResults() {
-  const saved = loadSaved();
-  if (!saved) return;
-  const res = saved.result;
-
+function shareText(res) {
   // Three borderless columns per pick: performance emoji · ticker · % return.
   const rows = res.legs.map((l) => {
     const emoji = l.multiple >= 2 ? "🟩" : l.multiple >= 1 ? "🟨" : "🟥";
@@ -440,16 +466,72 @@ function copyResults() {
     res.multiple >= 100
       ? `I retired with ${pct}% gains, can you beat me? play100x.com`
       : `I returned ${pct}%, can you beat me? play100x.com`;
-  const text = `${headline}\n\n${grid}`;
+  return `${headline}\n\n${grid}`;
+}
 
-  navigator.clipboard
-    .writeText(text)
-    .then(() => {
-      const toast = $("share-toast");
-      toast.classList.remove("hidden");
-      setTimeout(() => toast.classList.add("hidden"), 2000);
-    })
-    .catch(() => alert(text));
+function flashToast() {
+  const toast = $("share-toast");
+  toast.classList.remove("hidden");
+  setTimeout(() => toast.classList.add("hidden"), 2000);
+}
+
+// Legacy clipboard path for browsers without the Async Clipboard API
+// (e.g. Brave on iOS with shields blocking it). Returns true on success.
+function legacyCopy(text) {
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    const ok = document.execCommand("copy");
+    document.body.removeChild(ta);
+    return ok;
+  } catch (e) {
+    return false;
+  }
+}
+
+// Share the result. Prefer the native share sheet (best on mobile, and what a
+// "Share" button implies), then fall back to clipboard, then to manual copy —
+// each guarded so a blocked/absent API never silently no-ops the button.
+async function copyResults() {
+  // Use the result on screen, not localStorage — survives blocked storage and
+  // a refresh-restored result.
+  const res = state.lastResult || (loadSaved() && loadSaved().result);
+  if (!res) return;
+  const text = shareText(res);
+
+  if (navigator.share) {
+    try {
+      await navigator.share({ text });
+      return; // shared via the OS sheet
+    } catch (e) {
+      if (e && e.name === "AbortError") return; // user dismissed — not an error
+      // otherwise fall through to copying
+    }
+  }
+
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+      flashToast();
+      return;
+    }
+  } catch (e) {
+    /* fall through to legacy copy */
+  }
+
+  if (legacyCopy(text)) {
+    flashToast();
+    return;
+  }
+
+  // Last resort: surface the text so it can be copied by hand.
+  window.prompt("Copy your result:", text);
 }
 
 // ---- helpers -------------------------------------------------------------
