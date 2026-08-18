@@ -2,5 +2,6 @@ __pycache__/
 *.pyc
 .venv/
 .vercel/
-.vercel
 scripts/.cache/
+node_modules/
+static/app.js.map

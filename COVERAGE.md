@@ -1,19 +1,19 @@
 # Stock coverage — 100xPortfolio universe
 
-Generated from `app/universe.json` (built 2026-06-11). Each cell is the
+Generated from `app/universe.json` (built 2026-08-18). Each cell is the
 number of pickable stocks for that category × era.
 
 | Category | 1990-1995 | 1995-2000 | 2000-2005 | 2005-2010 | 2010-2015 | 2015-2020 | 2020-2025 | **Total** |
 |---|---|---|---|---|---|---|---|---|
-| Technology | 19 | 19 | 29 | 32 | 41 | 47 | 63 | **250** |
-| Healthcare | 13 | 15 | 19 | 27 | 30 | 36 | 45 | **185** |
-| Financials | 14 | 18 | 31 | 48 | 60 | 62 | 87 | **320** |
+| Technology | 19 | 19 | 29 | 32 | 41 | 48 | 63 | **251** |
+| Healthcare | 15 | 15 | 20 | 27 | 30 | 36 | 46 | **189** |
+| Financials | 18 | 19 | 31 | 48 | 60 | 62 | 88 | **326** |
 | Consumer Discretionary | 9 | 12 | 17 | 20 | 29 | 35 | 41 | **163** |
-| Consumer Staples | 18 | 18 | 18 | 19 | 27 | 30 | 32 | **162** |
-| Industrials | 30 | 29 | 32 | 35 | 40 | 45 | 62 | **273** |
-| Utilities | 15 | 15 | 21 | 22 | 25 | 25 | 28 | **151** |
-| Materials | 18 | 19 | 22 | 23 | 25 | 34 | 39 | **180** |
-| **Total** | **136** | **145** | **189** | **226** | **277** | **314** | **397** | **1684** |
+| Consumer Staples | 18 | 18 | 18 | 20 | 27 | 30 | 32 | **163** |
+| Industrials | 30 | 29 | 32 | 36 | 40 | 46 | 62 | **275** |
+| Utilities | 15 | 17 | 21 | 22 | 25 | 25 | 28 | **153** |
+| Materials | 18 | 19 | 22 | 23 | 25 | 35 | 39 | **181** |
+| **Total** | **142** | **148** | **190** | **228** | **277** | **317** | **399** | **1701** |
 
 ## Why the per-era totals are ~130–390, not ~500
 
@@ -25,13 +25,13 @@ has no current sector and is excluded — **survivorship bias**, worst in the ol
 
 | Era | In S&P that era | Kept in game | Dropped: no longer in index | Dropped: no return data |
 |---|---|---|---|---|
-| 1990-1995 | 487 | 133 | 335 | 19 |
-| 1995-2000 | 487 | 142 | 335 | 10 |
-| 2000-2005 | 492 | 183 | 300 | 9 |
-| 2005-2010 | 495 | 215 | 269 | 11 |
+| 1990-1995 | 487 | 139 | 335 | 13 |
+| 1995-2000 | 487 | 145 | 335 | 7 |
+| 2000-2005 | 492 | 184 | 300 | 8 |
+| 2005-2010 | 495 | 217 | 269 | 9 |
 | 2010-2015 | 499 | 271 | 222 | 6 |
-| 2015-2020 | 499 | 307 | 188 | 4 |
-| 2020-2025 | 505 | 390 | 113 | 2 |
+| 2015-2020 | 499 | 310 | 188 | 1 |
+| 2020-2025 | 505 | 392 | 113 | 0 |
 
 "Kept in game" is survivors-with-data (the era totals above, minus a few curated
 landmines). The dominant loss is **"no longer in index"** — historical members we have

@@ -1,0 +1,6543 @@
+{
+ "A": {
+  "name": "Agilent Technologies",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Life Sciences Tools & Services",
+  "hq": {
+   "city": "Santa Clara",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1090872
+ },
+ "AAPL": {
+  "name": "Apple Inc.",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Technology Hardware, Storage & Peripherals",
+  "hq": {
+   "city": "Cupertino",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 320193
+ },
+ "ABBV": {
+  "name": "AbbVie",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Biotechnology",
+  "hq": {
+   "city": "North Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 1551152
+ },
+ "ABNB": {
+  "name": "Airbnb",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Hotels, Resorts & Cruise Lines",
+  "hq": {
+   "city": "San Francisco",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1559720
+ },
+ "ABT": {
+  "name": "Abbott Laboratories",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "North Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 1800
+ },
+ "ACGL": {
+  "name": "Arch Capital Group",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Property & Casualty Insurance",
+  "hq": {
+   "city": "Hamilton",
+   "state": "Bermuda",
+   "region": "International"
+  },
+  "cik": 947484
+ },
+ "ACN": {
+  "name": "Accenture",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "IT Consulting & Other Services",
+  "hq": {
+   "city": "Dublin",
+   "state": "Ireland",
+   "region": "International"
+  },
+  "cik": 1467373
+ },
+ "ADBE": {
+  "name": "Adobe Inc.",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Application Software",
+  "hq": {
+   "city": "San Jose",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 796343
+ },
+ "ADI": {
+  "name": "Analog Devices",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductors",
+  "hq": {
+   "city": "Wilmington",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 6281
+ },
+ "ADM": {
+  "name": "Archer Daniels Midland",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Agricultural Products & Services",
+  "hq": {
+   "city": "Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 7084
+ },
+ "ADP": {
+  "name": "Automatic Data Processing",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Human Resource & Employment Services",
+  "hq": {
+   "city": "Roseland",
+   "state": "New Jersey",
+   "region": "Northeast"
+  },
+  "cik": 8670
+ },
+ "ADSK": {
+  "name": "Autodesk",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Application Software",
+  "hq": {
+   "city": "San Francisco",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 769397
+ },
+ "AEE": {
+  "name": "Ameren",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Multi-Utilities",
+  "hq": {
+   "city": "St. Louis",
+   "state": "Missouri",
+   "region": "Midwest"
+  },
+  "cik": 1002910
+ },
+ "AEP": {
+  "name": "American Electric Power",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Electric Utilities",
+  "hq": {
+   "city": "Columbus",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 4904
+ },
+ "AES": {
+  "name": "AES Corporation",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Independent Power Producers & Energy Traders",
+  "hq": {
+   "city": "Arlington",
+   "state": "Virginia",
+   "region": "South"
+  },
+  "cik": 874761
+ },
+ "AFL": {
+  "name": "Aflac",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Life & Health Insurance",
+  "hq": {
+   "city": "Columbus",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 4977
+ },
+ "AIG": {
+  "name": "American International Group",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Multi-line Insurance",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 5272
+ },
+ "AIZ": {
+  "name": "Assurant",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Multi-line Insurance",
+  "hq": {
+   "city": "Atlanta",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 1267238
+ },
+ "AJG": {
+  "name": "Arthur J. Gallagher & Co.",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Insurance Brokers",
+  "hq": {
+   "city": "Rolling Meadows",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 354190
+ },
+ "AKAM": {
+  "name": "Akamai Technologies",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Internet Services & Infrastructure",
+  "hq": {
+   "city": "Cambridge",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 1086222
+ },
+ "ALB": {
+  "name": "Albemarle Corporation",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Specialty Chemicals",
+  "hq": {
+   "city": "Charlotte",
+   "state": "North Carolina",
+   "region": "South"
+  },
+  "cik": 915913
+ },
+ "ALGN": {
+  "name": "Align Technology",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Supplies",
+  "hq": {
+   "city": "Tempe",
+   "state": "Arizona",
+   "region": "West"
+  },
+  "cik": 1097149
+ },
+ "ALL": {
+  "name": "Allstate",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Property & Casualty Insurance",
+  "hq": {
+   "city": "Northbrook",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 899051
+ },
+ "ALLE": {
+  "name": "Allegion",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Building Products",
+  "hq": {
+   "city": "Dublin",
+   "state": "Ireland",
+   "region": "International"
+  },
+  "cik": 1579241
+ },
+ "AMAT": {
+  "name": "Applied Materials",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductor Materials & Equipment",
+  "hq": {
+   "city": "Santa Clara",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 6951
+ },
+ "AMCR": {
+  "name": "Amcor",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Paper & Plastic Packaging Products & Materials",
+  "hq": {
+   "city": "Warmley",
+   "state": "United Kingdom",
+   "region": "International"
+  },
+  "cik": 1748790
+ },
+ "AMD": {
+  "name": "Advanced Micro Devices",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductors",
+  "hq": {
+   "city": "Santa Clara",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 2488
+ },
+ "AME": {
+  "name": "Ametek",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Electrical Components & Equipment",
+  "hq": {
+   "city": "Berwyn",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 1037868
+ },
+ "AMGN": {
+  "name": "Amgen",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Biotechnology",
+  "hq": {
+   "city": "Thousand Oaks",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 318154
+ },
+ "AMP": {
+  "name": "Ameriprise Financial",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Asset Management & Custody Banks",
+  "hq": {
+   "city": "Minneapolis",
+   "state": "Minnesota",
+   "region": "Midwest"
+  },
+  "cik": 820027
+ },
+ "AMT": {
+  "name": "American Tower",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Telecom Tower REITs",
+  "hq": {
+   "city": "Boston",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 1053507
+ },
+ "AMZN": {
+  "name": "Amazon",
+  "industries": [
+   "Consumer Discretionary",
+   "Technology"
+  ],
+  "sub": "Broadline Retail",
+  "hq": {
+   "city": "Seattle",
+   "state": "Washington",
+   "region": "West"
+  },
+  "cik": 1018724
+ },
+ "ANET": {
+  "name": "Arista Networks",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Communications Equipment",
+  "hq": {
+   "city": "Santa Clara",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1596532
+ },
+ "AON": {
+  "name": "Aon plc",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Insurance Brokers",
+  "hq": {
+   "city": "London",
+   "state": "United Kingdom",
+   "region": "International"
+  },
+  "cik": 315293
+ },
+ "AOS": {
+  "name": "A. O. Smith",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Building Products",
+  "hq": {
+   "city": "Milwaukee",
+   "state": "Wisconsin",
+   "region": "Midwest"
+  },
+  "cik": 91142
+ },
+ "APA": {
+  "name": "APA Corporation",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Exploration & Production",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1841666
+ },
+ "APD": {
+  "name": "Air Products",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Industrial Gases",
+  "hq": {
+   "city": "Upper Macungie Township",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 2969
+ },
+ "APH": {
+  "name": "Amphenol",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Electronic Components",
+  "hq": {
+   "city": "Wallingford",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 820313
+ },
+ "APO": {
+  "name": "Apollo Global Management",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Asset Management & Custody Banks",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1858681
+ },
+ "APP": {
+  "name": "AppLovin",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Application Software",
+  "hq": {
+   "city": "Palo Alto",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1751008
+ },
+ "APTV": {
+  "name": "Aptiv",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Automotive Parts & Equipment",
+  "hq": {
+   "city": "Schaffhausen",
+   "state": "Switzerland",
+   "region": "International"
+  },
+  "cik": 1521332
+ },
+ "ARE": {
+  "name": "Alexandria Real Estate Equities",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Office REITs",
+  "hq": {
+   "city": "Pasadena",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1035443
+ },
+ "ARES": {
+  "name": "Ares Management",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Asset Management & Custody Banks",
+  "hq": {
+   "city": "Los Angeles",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1176948
+ },
+ "ATO": {
+  "name": "Atmos Energy",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Gas Utilities",
+  "hq": {
+   "city": "Dallas",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 731802
+ },
+ "AVB": {
+  "name": "AvalonBay Communities",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Multi-Family Residential REITs",
+  "hq": {
+   "city": "Arlington",
+   "state": "Virginia",
+   "region": "South"
+  },
+  "cik": 915912
+ },
+ "AVGO": {
+  "name": "Broadcom",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductors",
+  "hq": {
+   "city": "Palo Alto",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1730168
+ },
+ "AVY": {
+  "name": "Avery Dennison",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Paper & Plastic Packaging Products & Materials",
+  "hq": {
+   "city": "Mentor",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 8818
+ },
+ "AWK": {
+  "name": "American Water Works",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Water Utilities",
+  "hq": {
+   "city": "Camden",
+   "state": "New Jersey",
+   "region": "Northeast"
+  },
+  "cik": 1410636
+ },
+ "AXON": {
+  "name": "Axon Enterprise",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Aerospace & Defense",
+  "hq": {
+   "city": "Scottsdale",
+   "state": "Arizona",
+   "region": "West"
+  },
+  "cik": 1069183
+ },
+ "AXP": {
+  "name": "American Express",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Consumer Finance",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 4962
+ },
+ "AZO": {
+  "name": "AutoZone",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Automotive Retail",
+  "hq": {
+   "city": "Memphis",
+   "state": "Tennessee",
+   "region": "South"
+  },
+  "cik": 866787
+ },
+ "BA": {
+  "name": "Boeing",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Aerospace & Defense",
+  "hq": {
+   "city": "Arlington",
+   "state": "Virginia",
+   "region": "South"
+  },
+  "cik": 12927
+ },
+ "BAC": {
+  "name": "Bank of America",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Diversified Banks",
+  "hq": {
+   "city": "Charlotte",
+   "state": "North Carolina",
+   "region": "South"
+  },
+  "cik": 70858
+ },
+ "BALL": {
+  "name": "Ball Corporation",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Metal, Glass & Plastic Containers",
+  "hq": {
+   "city": "Broomfield",
+   "state": "Colorado",
+   "region": "West"
+  },
+  "cik": 9389
+ },
+ "BAX": {
+  "name": "Baxter International",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "Deerfield",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 10456
+ },
+ "BBY": {
+  "name": "Best Buy",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Computer & Electronics Retail",
+  "hq": {
+   "city": "Richfield",
+   "state": "Minnesota",
+   "region": "Midwest"
+  },
+  "cik": 764478
+ },
+ "BDX": {
+  "name": "Becton Dickinson",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "Franklin Lakes",
+   "state": "New Jersey",
+   "region": "Northeast"
+  },
+  "cik": 10795
+ },
+ "BEN": {
+  "name": "Franklin Resources",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Asset Management & Custody Banks",
+  "hq": {
+   "city": "San Mateo",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 38777
+ },
+ "BF-B": {
+  "name": "Brown\u2013Forman",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Distillers & Vintners",
+  "hq": {
+   "city": "Louisville",
+   "state": "Kentucky",
+   "region": "South"
+  },
+  "cik": 14693
+ },
+ "BG": {
+  "name": "Bunge Global",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Agricultural Products & Services",
+  "hq": {
+   "city": "Chesterfield",
+   "state": "Missouri",
+   "region": "Midwest"
+  },
+  "cik": 1996862
+ },
+ "BIIB": {
+  "name": "Biogen",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Biotechnology",
+  "hq": {
+   "city": "Cambridge",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 875045
+ },
+ "BKNG": {
+  "name": "Booking Holdings",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Hotels, Resorts & Cruise Lines",
+  "hq": {
+   "city": "Norwalk",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 1075531
+ },
+ "BKR": {
+  "name": "Baker Hughes",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Equipment & Services",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1701605
+ },
+ "BLDR": {
+  "name": "Builders FirstSource",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Building Products",
+  "hq": {
+   "city": "Irving",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1316835
+ },
+ "BLK": {
+  "name": "BlackRock",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Asset Management & Custody Banks",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 2012383
+ },
+ "BMY": {
+  "name": "Bristol Myers Squibb",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Pharmaceuticals",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 14272
+ },
+ "BNY": {
+  "name": "BNY Mellon",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Asset Management & Custody Banks",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1390777
+ },
+ "BR": {
+  "name": "Broadridge Financial Solutions",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Data Processing & Outsourced Services",
+  "hq": {
+   "city": "Lake Success",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1383312
+ },
+ "BRK-B": {
+  "name": "Berkshire Hathaway",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Multi-Sector Holdings",
+  "hq": {
+   "city": "Omaha",
+   "state": "Nebraska",
+   "region": "Midwest"
+  },
+  "cik": 1067983
+ },
+ "BRO": {
+  "name": "Brown & Brown",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Insurance Brokers",
+  "hq": {
+   "city": "Daytona Beach",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 79282
+ },
+ "BSX": {
+  "name": "Boston Scientific",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "Marlborough",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 885725
+ },
+ "BX": {
+  "name": "Blackstone Inc.",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Asset Management & Custody Banks",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1393818
+ },
+ "BXP": {
+  "name": "BXP, Inc.",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Office REITs",
+  "hq": {
+   "city": "Boston",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 1037540
+ },
+ "C": {
+  "name": "Citigroup",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Diversified Banks",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 831001
+ },
+ "CAG": {
+  "name": "Conagra Brands",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Packaged Foods & Meats",
+  "hq": {
+   "city": "Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 23217
+ },
+ "CAH": {
+  "name": "Cardinal Health",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Distributors",
+  "hq": {
+   "city": "Dublin",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 721371
+ },
+ "CARR": {
+  "name": "Carrier Global",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Building Products",
+  "hq": {
+   "city": "Palm Beach Gardens",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 1783180
+ },
+ "CASY": {
+  "name": "Casey's",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Food Retail",
+  "hq": {
+   "city": "Ankeny",
+   "state": "Iowa",
+   "region": "Midwest"
+  },
+  "cik": 726958
+ },
+ "CAT": {
+  "name": "Caterpillar Inc.",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Construction Machinery & Heavy Transportation Equipment",
+  "hq": {
+   "city": "Irving",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 18230
+ },
+ "CB": {
+  "name": "Chubb Limited",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Property & Casualty Insurance",
+  "hq": {
+   "city": "Zurich",
+   "state": "Switzerland",
+   "region": "International"
+  },
+  "cik": 896159
+ },
+ "CBOE": {
+  "name": "Cboe Global Markets",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Financial Exchanges & Data",
+  "hq": {
+   "city": "Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 1374310
+ },
+ "CBRE": {
+  "name": "CBRE Group",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Real Estate Services",
+  "hq": {
+   "city": "Dallas",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1138118
+ },
+ "CCI": {
+  "name": "Crown Castle",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Telecom Tower REITs",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1051470
+ },
+ "CCL": {
+  "name": "Carnival Corporation",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Hotels, Resorts & Cruise Lines",
+  "hq": {
+   "city": "Miami",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 815097
+ },
+ "CDNS": {
+  "name": "Cadence Design Systems",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Application Software",
+  "hq": {
+   "city": "San Jose",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 813672
+ },
+ "CDW": {
+  "name": "CDW Corporation",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Technology Distributors",
+  "hq": {
+   "city": "Vernon Hills",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 1402057
+ },
+ "CEG": {
+  "name": "Constellation Energy",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Electric Utilities",
+  "hq": {
+   "city": "Baltimore",
+   "state": "Maryland",
+   "region": "South"
+  },
+  "cik": 1868275
+ },
+ "CF": {
+  "name": "CF Industries",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Fertilizers & Agricultural Chemicals",
+  "hq": {
+   "city": "Deerfield",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 1324404
+ },
+ "CFG": {
+  "name": "Citizens Financial Group",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Regional Banks",
+  "hq": {
+   "city": "Providence",
+   "state": "Rhode Island",
+   "region": "Northeast"
+  },
+  "cik": 759944
+ },
+ "CHD": {
+  "name": "Church & Dwight",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Household Products",
+  "hq": {
+   "city": "Ewing",
+   "state": "New Jersey",
+   "region": "Northeast"
+  },
+  "cik": 313927
+ },
+ "CHRW": {
+  "name": "C.H. Robinson",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Air Freight & Logistics",
+  "hq": {
+   "city": "Eden Prairie",
+   "state": "Minnesota",
+   "region": "Midwest"
+  },
+  "cik": 1043277
+ },
+ "CHTR": {
+  "name": "Charter Communications",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Cable & Satellite",
+  "hq": {
+   "city": "Stamford",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 1091667
+ },
+ "CI": {
+  "name": "Cigna",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Services",
+  "hq": {
+   "city": "Bloomfield",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 1739940
+ },
+ "CIEN": {
+  "name": "Ciena",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Communications Equipment",
+  "hq": {
+   "city": "Hanover",
+   "state": "Maryland",
+   "region": "South"
+  },
+  "cik": 936395
+ },
+ "CINF": {
+  "name": "Cincinnati Financial",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Property & Casualty Insurance",
+  "hq": {
+   "city": "Fairfield",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 20286
+ },
+ "CL": {
+  "name": "Colgate-Palmolive",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Household Products",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 21665
+ },
+ "CLX": {
+  "name": "Clorox",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Household Products",
+  "hq": {
+   "city": "Oakland",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 21076
+ },
+ "CMCSA": {
+  "name": "Comcast",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Cable & Satellite",
+  "hq": {
+   "city": "Philadelphia",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 1166691
+ },
+ "CME": {
+  "name": "CME Group",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Financial Exchanges & Data",
+  "hq": {
+   "city": "Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 1156375
+ },
+ "CMG": {
+  "name": "Chipotle Mexican Grill",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Restaurants",
+  "hq": {
+   "city": "Newport Beach",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1058090
+ },
+ "CMI": {
+  "name": "Cummins",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Construction Machinery & Heavy Transportation Equipment",
+  "hq": {
+   "city": "Columbus",
+   "state": "Indiana",
+   "region": "Midwest"
+  },
+  "cik": 26172
+ },
+ "CMS": {
+  "name": "CMS Energy",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Multi-Utilities",
+  "hq": {
+   "city": "Jackson",
+   "state": "Michigan",
+   "region": "Midwest"
+  },
+  "cik": 811156
+ },
+ "CNC": {
+  "name": "Centene Corporation",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Managed Health Care",
+  "hq": {
+   "city": "St. Louis",
+   "state": "Missouri",
+   "region": "Midwest"
+  },
+  "cik": 1071739
+ },
+ "CNP": {
+  "name": "CenterPoint Energy",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Multi-Utilities",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1130310
+ },
+ "COF": {
+  "name": "Capital One",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Consumer Finance",
+  "hq": {
+   "city": "Tysons Corner",
+   "state": "Virginia",
+   "region": "South"
+  },
+  "cik": 927628
+ },
+ "COHR": {
+  "name": "Coherent Corp.",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Electronic Components",
+  "hq": {
+   "city": "Saxonburg",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 820318
+ },
+ "COIN": {
+  "name": "Coinbase",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Financial Exchanges & Data",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1679788
+ },
+ "COO": {
+  "name": "Cooper Companies (The)",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Supplies",
+  "hq": {
+   "city": "San Ramon",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 711404
+ },
+ "COP": {
+  "name": "ConocoPhillips",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Exploration & Production",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1163165
+ },
+ "COR": {
+  "name": "Cencora",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Distributors",
+  "hq": {
+   "city": "Conshohocken",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 1140859
+ },
+ "COST": {
+  "name": "Costco",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Consumer Staples Merchandise Retail",
+  "hq": {
+   "city": "Issaquah",
+   "state": "Washington",
+   "region": "West"
+  },
+  "cik": 909832
+ },
+ "CPAY": {
+  "name": "Corpay",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Transaction & Payment Processing Services",
+  "hq": {
+   "city": "Atlanta",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 1175454
+ },
+ "CPB": {
+  "name": "Campbell's Company (The)",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Packaged Foods & Meats",
+  "hq": {
+   "city": "Camden",
+   "state": "New Jersey",
+   "region": "Northeast"
+  },
+  "cik": 16732
+ },
+ "CPRT": {
+  "name": "Copart",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Diversified Support Services",
+  "hq": {
+   "city": "Dallas",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 900075
+ },
+ "CPT": {
+  "name": "Camden Property Trust",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Multi-Family Residential REITs",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 906345
+ },
+ "CRH": {
+  "name": "CRH plc",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Construction Materials",
+  "hq": {
+   "city": "Dublin",
+   "state": "Ireland",
+   "region": "International"
+  },
+  "cik": 849395
+ },
+ "CRL": {
+  "name": "Charles River Laboratories",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Life Sciences Tools & Services",
+  "hq": {
+   "city": "Wilmington",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 1100682
+ },
+ "CRM": {
+  "name": "Salesforce",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Application Software",
+  "hq": {
+   "city": "San Francisco",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1108524
+ },
+ "CRWD": {
+  "name": "CrowdStrike",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Systems Software",
+  "hq": {
+   "city": "Austin",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1535527
+ },
+ "CSCO": {
+  "name": "Cisco",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Communications Equipment",
+  "hq": {
+   "city": "San Jose",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 858877
+ },
+ "CSGP": {
+  "name": "CoStar Group",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Real Estate Services",
+  "hq": {
+   "city": "Washington",
+   "state": "D.C.",
+   "region": "International"
+  },
+  "cik": 1057352
+ },
+ "CSX": {
+  "name": "CSX Corporation",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Rail Transportation",
+  "hq": {
+   "city": "Jacksonville",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 277948
+ },
+ "CTAS": {
+  "name": "Cintas",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Diversified Support Services",
+  "hq": {
+   "city": "Mason",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 723254
+ },
+ "CTSH": {
+  "name": "Cognizant",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "IT Consulting & Other Services",
+  "hq": {
+   "city": "Teaneck",
+   "state": "New Jersey",
+   "region": "Northeast"
+  },
+  "cik": 1058290
+ },
+ "CTVA": {
+  "name": "Corteva",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Fertilizers & Agricultural Chemicals",
+  "hq": {
+   "city": "Indianapolis",
+   "state": "Indiana",
+   "region": "Midwest"
+  },
+  "cik": 1755672
+ },
+ "CVNA": {
+  "name": "Carvana",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Automotive Retail",
+  "hq": {
+   "city": "Tempe",
+   "state": "Arizona",
+   "region": "West"
+  },
+  "cik": 1690820
+ },
+ "CVS": {
+  "name": "CVS Health",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Services",
+  "hq": {
+   "city": "Woonsocket",
+   "state": "Rhode Island",
+   "region": "Northeast"
+  },
+  "cik": 64803
+ },
+ "CVX": {
+  "name": "Chevron Corporation",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Integrated Oil & Gas",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 93410
+ },
+ "D": {
+  "name": "Dominion Energy",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Multi-Utilities",
+  "hq": {
+   "city": "Richmond",
+   "state": "Virginia",
+   "region": "South"
+  },
+  "cik": 715957
+ },
+ "DAL": {
+  "name": "Delta Air Lines",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Passenger Airlines",
+  "hq": {
+   "city": "Atlanta",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 27904
+ },
+ "DASH": {
+  "name": "DoorDash",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Specialized Consumer Services",
+  "hq": {
+   "city": "San Francisco",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1792789
+ },
+ "DD": {
+  "name": "DuPont",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Specialty Chemicals",
+  "hq": {
+   "city": "Wilmington",
+   "state": "Delaware",
+   "region": "South"
+  },
+  "cik": 1666700
+ },
+ "DDOG": {
+  "name": "Datadog",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Application Software",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1561550
+ },
+ "DE": {
+  "name": "Deere & Company",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Agricultural & Farm Machinery",
+  "hq": {
+   "city": "Moline",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 315189
+ },
+ "DECK": {
+  "name": "Deckers Brands",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Footwear",
+  "hq": {
+   "city": "Goleta",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 910521
+ },
+ "DELL": {
+  "name": "Dell Technologies",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Technology Hardware, Storage & Peripherals",
+  "hq": {
+   "city": "Round Rock",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1571996
+ },
+ "DG": {
+  "name": "Dollar General",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Consumer Staples Merchandise Retail",
+  "hq": {
+   "city": "Goodlettsville",
+   "state": "Tennessee",
+   "region": "South"
+  },
+  "cik": 29534
+ },
+ "DGX": {
+  "name": "Quest Diagnostics",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Services",
+  "hq": {
+   "city": "Secaucus",
+   "state": "New Jersey",
+   "region": "Northeast"
+  },
+  "cik": 1022079
+ },
+ "DHI": {
+  "name": "D. R. Horton",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Homebuilding",
+  "hq": {
+   "city": "Arlington",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 882184
+ },
+ "DHR": {
+  "name": "Danaher Corporation",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Life Sciences Tools & Services",
+  "hq": {
+   "city": "Washington",
+   "state": "D.C.",
+   "region": "International"
+  },
+  "cik": 313616
+ },
+ "DIS": {
+  "name": "Walt Disney Company (The)",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Movies & Entertainment",
+  "hq": {
+   "city": "Burbank",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1744489
+ },
+ "DLR": {
+  "name": "Digital Realty",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Data Center REITs",
+  "hq": {
+   "city": "Austin",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1297996
+ },
+ "DLTR": {
+  "name": "Dollar Tree",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Consumer Staples Merchandise Retail",
+  "hq": {
+   "city": "Chesapeake",
+   "state": "Virginia",
+   "region": "South"
+  },
+  "cik": 935703
+ },
+ "DOC": {
+  "name": "Healthpeak Properties",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Health Care REITs",
+  "hq": {
+   "city": "Denver",
+   "state": "Colorado",
+   "region": "West"
+  },
+  "cik": 765880
+ },
+ "DOV": {
+  "name": "Dover Corporation",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Machinery & Supplies & Components",
+  "hq": {
+   "city": "Downers Grove",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 29905
+ },
+ "DOW": {
+  "name": "Dow Inc.",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Commodity Chemicals",
+  "hq": {
+   "city": "Midland",
+   "state": "Michigan",
+   "region": "Midwest"
+  },
+  "cik": 1751788
+ },
+ "DPZ": {
+  "name": "Domino's",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Restaurants",
+  "hq": {
+   "city": "Ann Arbor",
+   "state": "Michigan",
+   "region": "Midwest"
+  },
+  "cik": 1286681
+ },
+ "DRI": {
+  "name": "Darden Restaurants",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Restaurants",
+  "hq": {
+   "city": "Orlando",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 940944
+ },
+ "DTE": {
+  "name": "DTE Energy",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Multi-Utilities",
+  "hq": {
+   "city": "Detroit",
+   "state": "Michigan",
+   "region": "Midwest"
+  },
+  "cik": 936340
+ },
+ "DUK": {
+  "name": "Duke Energy",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Electric Utilities",
+  "hq": {
+   "city": "Charlotte",
+   "state": "North Carolina",
+   "region": "South"
+  },
+  "cik": 1326160
+ },
+ "DVA": {
+  "name": "DaVita",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Services",
+  "hq": {
+   "city": "Denver",
+   "state": "Colorado",
+   "region": "West"
+  },
+  "cik": 927066
+ },
+ "DVN": {
+  "name": "Devon Energy",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Exploration & Production",
+  "hq": {
+   "city": "Oklahoma City",
+   "state": "Oklahoma",
+   "region": "South"
+  },
+  "cik": 1090012
+ },
+ "DXCM": {
+  "name": "Dexcom",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "San Diego",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1093557
+ },
+ "EA": {
+  "name": "Electronic Arts",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Interactive Home Entertainment",
+  "hq": {
+   "city": "Redwood City",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 712515
+ },
+ "EBAY": {
+  "name": "eBay Inc.",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Broadline Retail",
+  "hq": {
+   "city": "San Jose",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1065088
+ },
+ "ECL": {
+  "name": "Ecolab",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Specialty Chemicals",
+  "hq": {
+   "city": "Saint Paul",
+   "state": "Minnesota",
+   "region": "Midwest"
+  },
+  "cik": 31462
+ },
+ "ED": {
+  "name": "Consolidated Edison",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Multi-Utilities",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1047862
+ },
+ "EFX": {
+  "name": "Equifax",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Research & Consulting Services",
+  "hq": {
+   "city": "Atlanta",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 33185
+ },
+ "EG": {
+  "name": "Everest Group",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Reinsurance",
+  "hq": {
+   "city": "Hamilton",
+   "state": "Bermuda",
+   "region": "International"
+  },
+  "cik": 1095073
+ },
+ "EIX": {
+  "name": "Edison International",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Electric Utilities",
+  "hq": {
+   "city": "Rosemead",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 827052
+ },
+ "EL": {
+  "name": "Est\u00e9e Lauder Companies (The)",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Personal Care Products",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1001250
+ },
+ "ELV": {
+  "name": "Elevance Health",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Managed Health Care",
+  "hq": {
+   "city": "Indianapolis",
+   "state": "Indiana",
+   "region": "Midwest"
+  },
+  "cik": 1156039
+ },
+ "EME": {
+  "name": "Emcor",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Construction & Engineering",
+  "hq": {
+   "city": "Norwalk",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 105634
+ },
+ "EMR": {
+  "name": "Emerson Electric",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Electrical Components & Equipment",
+  "hq": {
+   "city": "Ferguson",
+   "state": "Missouri",
+   "region": "Midwest"
+  },
+  "cik": 32604
+ },
+ "EOG": {
+  "name": "EOG Resources",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Exploration & Production",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 821189
+ },
+ "EQIX": {
+  "name": "Equinix",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Data Center REITs",
+  "hq": {
+   "city": "Redwood City",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1101239
+ },
+ "EQR": {
+  "name": "Equity Residential",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Multi-Family Residential REITs",
+  "hq": {
+   "city": "Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 906107
+ },
+ "EQT": {
+  "name": "EQT Corporation",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Exploration & Production",
+  "hq": {
+   "city": "Pittsburgh",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 33213
+ },
+ "ERIE": {
+  "name": "Erie Indemnity",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Insurance Brokers",
+  "hq": {
+   "city": "Erie",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 922621
+ },
+ "ES": {
+  "name": "Eversource Energy",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Electric Utilities",
+  "hq": {
+   "city": "Hartford",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 72741
+ },
+ "ESS": {
+  "name": "Essex Property Trust",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Multi-Family Residential REITs",
+  "hq": {
+   "city": "San Mateo",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 920522
+ },
+ "ETN": {
+  "name": "Eaton Corporation",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Electrical Components & Equipment",
+  "hq": {
+   "city": "Dublin",
+   "state": "Ireland",
+   "region": "International"
+  },
+  "cik": 1551182
+ },
+ "ETR": {
+  "name": "Entergy",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Electric Utilities",
+  "hq": {
+   "city": "New Orleans",
+   "state": "Louisiana",
+   "region": "South"
+  },
+  "cik": 65984
+ },
+ "EVRG": {
+  "name": "Evergy",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Electric Utilities",
+  "hq": {
+   "city": "Kansas City",
+   "state": "Missouri",
+   "region": "Midwest"
+  },
+  "cik": 1711269
+ },
+ "EW": {
+  "name": "Edwards Lifesciences",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "Irvine",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1099800
+ },
+ "EXC": {
+  "name": "Exelon",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Electric Utilities",
+  "hq": {
+   "city": "Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 1109357
+ },
+ "EXE": {
+  "name": "Expand Energy",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Exploration & Production",
+  "hq": {
+   "city": "Oklahoma City",
+   "state": "Oklahoma",
+   "region": "South"
+  },
+  "cik": 895126
+ },
+ "EXPD": {
+  "name": "Expeditors International",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Air Freight & Logistics",
+  "hq": {
+   "city": "Seattle",
+   "state": "Washington",
+   "region": "West"
+  },
+  "cik": 746515
+ },
+ "EXPE": {
+  "name": "Expedia Group",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Hotels, Resorts & Cruise Lines",
+  "hq": {
+   "city": "Seattle",
+   "state": "Washington",
+   "region": "West"
+  },
+  "cik": 1324424
+ },
+ "EXR": {
+  "name": "Extra Space Storage",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Self-Storage REITs",
+  "hq": {
+   "city": "Salt Lake City",
+   "state": "Utah",
+   "region": "West"
+  },
+  "cik": 1289490
+ },
+ "F": {
+  "name": "Ford Motor Company",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Automobile Manufacturers",
+  "hq": {
+   "city": "Dearborn",
+   "state": "Michigan",
+   "region": "Midwest"
+  },
+  "cik": 37996
+ },
+ "FANG": {
+  "name": "Diamondback Energy",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Exploration & Production",
+  "hq": {
+   "city": "Midland",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1539838
+ },
+ "FAST": {
+  "name": "Fastenal",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Trading Companies & Distributors",
+  "hq": {
+   "city": "Winona",
+   "state": "Minnesota",
+   "region": "Midwest"
+  },
+  "cik": 815556
+ },
+ "FCX": {
+  "name": "Freeport-McMoRan",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Copper",
+  "hq": {
+   "city": "Phoenix",
+   "state": "Arizona",
+   "region": "West"
+  },
+  "cik": 831259
+ },
+ "FDS": {
+  "name": "FactSet",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Financial Exchanges & Data",
+  "hq": {
+   "city": "Norwalk",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 1013237
+ },
+ "FDX": {
+  "name": "FedEx",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Air Freight & Logistics",
+  "hq": {
+   "city": "Memphis",
+   "state": "Tennessee",
+   "region": "South"
+  },
+  "cik": 1048911
+ },
+ "FDXF": {
+  "name": "FedEx Freight",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Cargo Ground Transportation",
+  "hq": {
+   "city": "Memphis",
+   "state": "Tennessee",
+   "region": "South"
+  },
+  "cik": 2082247
+ },
+ "FE": {
+  "name": "FirstEnergy",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Electric Utilities",
+  "hq": {
+   "city": "Akron",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 1031296
+ },
+ "FFIV": {
+  "name": "F5, Inc.",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Communications Equipment",
+  "hq": {
+   "city": "Seattle",
+   "state": "Washington",
+   "region": "West"
+  },
+  "cik": 1048695
+ },
+ "FICO": {
+  "name": "Fair Isaac",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Application Software",
+  "hq": {
+   "city": "Bozeman",
+   "state": "Montana",
+   "region": "West"
+  },
+  "cik": 814547
+ },
+ "FIS": {
+  "name": "Fidelity National Information Services",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Transaction & Payment Processing Services",
+  "hq": {
+   "city": "Jacksonville",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 1136893
+ },
+ "FISV": {
+  "name": "Fiserv",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Transaction & Payment Processing Services",
+  "hq": {
+   "city": "Brookfield",
+   "state": "Wisconsin",
+   "region": "Midwest"
+  },
+  "cik": 798354
+ },
+ "FITB": {
+  "name": "Fifth Third Bancorp",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Regional Banks",
+  "hq": {
+   "city": "Cincinnati",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 35527
+ },
+ "FIX": {
+  "name": "Comfort Systems USA",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Construction & Engineering",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1035983
+ },
+ "FOX": {
+  "name": "Fox Corporation (Class B)",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Broadcasting",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1754301
+ },
+ "FOXA": {
+  "name": "Fox Corporation (Class A)",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Broadcasting",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1754301
+ },
+ "FRT": {
+  "name": "Federal Realty Investment Trust",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Retail REITs",
+  "hq": {
+   "city": "Rockville",
+   "state": "Maryland",
+   "region": "South"
+  },
+  "cik": 34903
+ },
+ "FSLR": {
+  "name": "First Solar",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductors",
+  "hq": {
+   "city": "Tempe",
+   "state": "Arizona",
+   "region": "West"
+  },
+  "cik": 1274494
+ },
+ "FTNT": {
+  "name": "Fortinet",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Systems Software",
+  "hq": {
+   "city": "Sunnyvale",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1262039
+ },
+ "FTV": {
+  "name": "Fortive",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Machinery & Supplies & Components",
+  "hq": {
+   "city": "Everett",
+   "state": "Washington",
+   "region": "West"
+  },
+  "cik": 1659166
+ },
+ "GD": {
+  "name": "General Dynamics",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Aerospace & Defense",
+  "hq": {
+   "city": "Reston",
+   "state": "Virginia",
+   "region": "South"
+  },
+  "cik": 40533
+ },
+ "GDDY": {
+  "name": "GoDaddy",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Internet Services & Infrastructure",
+  "hq": {
+   "city": "Tempe",
+   "state": "Arizona",
+   "region": "West"
+  },
+  "cik": 1609711
+ },
+ "GE": {
+  "name": "GE Aerospace",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Aerospace & Defense",
+  "hq": {
+   "city": "Evendale",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 40545
+ },
+ "GEHC": {
+  "name": "GE HealthCare",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 1932393
+ },
+ "GEN": {
+  "name": "Gen Digital",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Systems Software",
+  "hq": {
+   "city": "Tempe",
+   "state": "Arizona",
+   "region": "West"
+  },
+  "cik": 849399
+ },
+ "GEV": {
+  "name": "GE Vernova",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Heavy Electrical Equipment",
+  "hq": {
+   "city": "Cambridge",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 1996810
+ },
+ "GILD": {
+  "name": "Gilead Sciences",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Biotechnology",
+  "hq": {
+   "city": "Foster City",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 882095
+ },
+ "GIS": {
+  "name": "General Mills",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Packaged Foods & Meats",
+  "hq": {
+   "city": "Golden Valley",
+   "state": "Minnesota",
+   "region": "Midwest"
+  },
+  "cik": 40704
+ },
+ "GL": {
+  "name": "Globe Life",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Life & Health Insurance",
+  "hq": {
+   "city": "McKinney",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 320335
+ },
+ "GLW": {
+  "name": "Corning Inc.",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Electronic Components",
+  "hq": {
+   "city": "Corning",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 24741
+ },
+ "GM": {
+  "name": "General Motors",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Automobile Manufacturers",
+  "hq": {
+   "city": "Detroit",
+   "state": "Michigan",
+   "region": "Midwest"
+  },
+  "cik": 1467858
+ },
+ "GNRC": {
+  "name": "Generac",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Electrical Components & Equipment",
+  "hq": {
+   "city": "Waukesha",
+   "state": "Wisconsin",
+   "region": "Midwest"
+  },
+  "cik": 1474735
+ },
+ "GOOG": {
+  "name": "Alphabet Inc. (Class C)",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Interactive Media & Services",
+  "hq": {
+   "city": "Mountain View",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1652044
+ },
+ "GOOGL": {
+  "name": "Alphabet Inc. (Class A)",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Interactive Media & Services",
+  "hq": {
+   "city": "Mountain View",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1652044
+ },
+ "GPC": {
+  "name": "Genuine Parts Company",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Distributors",
+  "hq": {
+   "city": "Atlanta",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 40987
+ },
+ "GPN": {
+  "name": "Global Payments",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Transaction & Payment Processing Services",
+  "hq": {
+   "city": "Atlanta",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 1123360
+ },
+ "GRMN": {
+  "name": "Garmin",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Consumer Electronics",
+  "hq": {
+   "city": "Schaffhausen",
+   "state": "Switzerland",
+   "region": "International"
+  },
+  "cik": 1121788
+ },
+ "GS": {
+  "name": "Goldman Sachs",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Investment Banking & Brokerage",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 886982
+ },
+ "GWW": {
+  "name": "W. W. Grainger",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Machinery & Supplies & Components",
+  "hq": {
+   "city": "Lake Forest",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 277135
+ },
+ "HAL": {
+  "name": "Halliburton",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Equipment & Services",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 45012
+ },
+ "HAS": {
+  "name": "Hasbro",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Leisure Products",
+  "hq": {
+   "city": "Pawtucket",
+   "state": "Rhode Island",
+   "region": "Northeast"
+  },
+  "cik": 46080
+ },
+ "HBAN": {
+  "name": "Huntington Bancshares",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Regional Banks",
+  "hq": {
+   "city": "Columbus",
+   "state": "Michigan",
+   "region": "Midwest"
+  },
+  "cik": 49196
+ },
+ "HCA": {
+  "name": "HCA Healthcare",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Facilities",
+  "hq": {
+   "city": "Nashville",
+   "state": "Tennessee",
+   "region": "South"
+  },
+  "cik": 860730
+ },
+ "HD": {
+  "name": "Home Depot (The)",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Home Improvement Retail",
+  "hq": {
+   "city": "Atlanta",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 354950
+ },
+ "HIG": {
+  "name": "Hartford (The)",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Property & Casualty Insurance",
+  "hq": {
+   "city": "Hartford",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 874766
+ },
+ "HII": {
+  "name": "Huntington Ingalls Industries",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Aerospace & Defense",
+  "hq": {
+   "city": "Newport News",
+   "state": "Virginia",
+   "region": "South"
+  },
+  "cik": 1501585
+ },
+ "HLT": {
+  "name": "Hilton Worldwide",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Hotels, Resorts & Cruise Lines",
+  "hq": {
+   "city": "Tysons Corner",
+   "state": "Virginia",
+   "region": "South"
+  },
+  "cik": 1585689
+ },
+ "HON": {
+  "name": "Honeywell",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Conglomerates",
+  "hq": {
+   "city": "Charlotte",
+   "state": "North Carolina",
+   "region": "South"
+  },
+  "cik": 773840
+ },
+ "HOOD": {
+  "name": "Robinhood Markets",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Investment Banking & Brokerage",
+  "hq": {
+   "city": "Menlo Park",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1783879
+ },
+ "HPE": {
+  "name": "Hewlett Packard Enterprise",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Technology Hardware, Storage & Peripherals",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1645590
+ },
+ "HPQ": {
+  "name": "HP Inc.",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Technology Hardware, Storage & Peripherals",
+  "hq": {
+   "city": "Palo Alto",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 47217
+ },
+ "HRL": {
+  "name": "Hormel Foods",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Packaged Foods & Meats",
+  "hq": {
+   "city": "Austin",
+   "state": "Minnesota",
+   "region": "Midwest"
+  },
+  "cik": 48465
+ },
+ "HSIC": {
+  "name": "Henry Schein",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Distributors",
+  "hq": {
+   "city": "Melville",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1000228
+ },
+ "HST": {
+  "name": "Host Hotels & Resorts",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Hotel & Resort REITs",
+  "hq": {
+   "city": "Bethesda",
+   "state": "Maryland",
+   "region": "South"
+  },
+  "cik": 1070750
+ },
+ "HSY": {
+  "name": "Hershey Company (The)",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Packaged Foods & Meats",
+  "hq": {
+   "city": "Hershey",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 47111
+ },
+ "HUBB": {
+  "name": "Hubbell Incorporated",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Machinery & Supplies & Components",
+  "hq": {
+   "city": "Shelton",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 48898
+ },
+ "HUM": {
+  "name": "Humana",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Managed Health Care",
+  "hq": {
+   "city": "Louisville",
+   "state": "Kentucky",
+   "region": "South"
+  },
+  "cik": 49071
+ },
+ "HWM": {
+  "name": "Howmet Aerospace",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Aerospace & Defense",
+  "hq": {
+   "city": "Pittsburgh",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 4281
+ },
+ "IBKR": {
+  "name": "Interactive Brokers",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Investment Banking & Brokerage",
+  "hq": {
+   "city": "Greenwich",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 1381197
+ },
+ "IBM": {
+  "name": "IBM",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "IT Consulting & Other Services",
+  "hq": {
+   "city": "Armonk",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 51143
+ },
+ "ICE": {
+  "name": "Intercontinental Exchange",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Financial Exchanges & Data",
+  "hq": {
+   "city": "Atlanta",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 1571949
+ },
+ "IDXX": {
+  "name": "Idexx Laboratories",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "Westbrook",
+   "state": "Maine",
+   "region": "Northeast"
+  },
+  "cik": 874716
+ },
+ "IEX": {
+  "name": "IDEX Corporation",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Machinery & Supplies & Components",
+  "hq": {
+   "city": "Northbrook",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 832101
+ },
+ "IFF": {
+  "name": "International Flavors & Fragrances",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Specialty Chemicals",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 51253
+ },
+ "INCY": {
+  "name": "Incyte",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Biotechnology",
+  "hq": {
+   "city": "Wilmington",
+   "state": "Delaware",
+   "region": "South"
+  },
+  "cik": 879169
+ },
+ "INTC": {
+  "name": "Intel",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductors",
+  "hq": {
+   "city": "Santa Clara",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 50863
+ },
+ "INTU": {
+  "name": "Intuit",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Application Software",
+  "hq": {
+   "city": "Mountain View",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 896878
+ },
+ "INVH": {
+  "name": "Invitation Homes",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Single-Family Residential REITs",
+  "hq": {
+   "city": "Dallas",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1687229
+ },
+ "IP": {
+  "name": "International Paper",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Paper & Plastic Packaging Products & Materials",
+  "hq": {
+   "city": "Memphis",
+   "state": "Tennessee",
+   "region": "South"
+  },
+  "cik": 51434
+ },
+ "IQV": {
+  "name": "IQVIA",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Life Sciences Tools & Services",
+  "hq": {
+   "city": "Durham",
+   "state": "North Carolina",
+   "region": "South"
+  },
+  "cik": 1478242
+ },
+ "IR": {
+  "name": "Ingersoll Rand",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Machinery & Supplies & Components",
+  "hq": {
+   "city": "Davidson",
+   "state": "North Carolina",
+   "region": "South"
+  },
+  "cik": 1699150
+ },
+ "IRM": {
+  "name": "Iron Mountain",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Other Specialized REITs",
+  "hq": {
+   "city": "Portsmouth",
+   "state": "New Hampshire",
+   "region": "Northeast"
+  },
+  "cik": 1020569
+ },
+ "ISRG": {
+  "name": "Intuitive Surgical",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "Sunnyvale",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1035267
+ },
+ "IT": {
+  "name": "Gartner",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "IT Consulting & Other Services",
+  "hq": {
+   "city": "Stamford",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 749251
+ },
+ "ITW": {
+  "name": "Illinois Tool Works",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Machinery & Supplies & Components",
+  "hq": {
+   "city": "Glenview",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 49826
+ },
+ "IVZ": {
+  "name": "Invesco",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Asset Management & Custody Banks",
+  "hq": {
+   "city": "Atlanta",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 914208
+ },
+ "J": {
+  "name": "Jacobs Solutions",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Construction & Engineering",
+  "hq": {
+   "city": "Dallas",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 52988
+ },
+ "JBHT": {
+  "name": "J.B. Hunt",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Cargo Ground Transportation",
+  "hq": {
+   "city": "Lowell",
+   "state": "Arkansas",
+   "region": "South"
+  },
+  "cik": 728535
+ },
+ "JBL": {
+  "name": "Jabil",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Electronic Manufacturing Services",
+  "hq": {
+   "city": "St. Petersburg",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 898293
+ },
+ "JCI": {
+  "name": "Johnson Controls",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Building Products",
+  "hq": {
+   "city": "Cork",
+   "state": "Ireland",
+   "region": "International"
+  },
+  "cik": 833444
+ },
+ "JKHY": {
+  "name": "Jack Henry & Associates",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Transaction & Payment Processing Services",
+  "hq": {
+   "city": "Monett",
+   "state": "Missouri",
+   "region": "Midwest"
+  },
+  "cik": 779152
+ },
+ "JNJ": {
+  "name": "Johnson & Johnson",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Pharmaceuticals",
+  "hq": {
+   "city": "New Brunswick",
+   "state": "New Jersey",
+   "region": "Northeast"
+  },
+  "cik": 200406
+ },
+ "JPM": {
+  "name": "JPMorgan Chase",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Diversified Banks",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 19617
+ },
+ "KDP": {
+  "name": "Keurig Dr Pepper",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Soft Drinks & Non-alcoholic Beverages",
+  "hq": {
+   "city": "Burlington",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 1418135
+ },
+ "KEY": {
+  "name": "KeyCorp",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Regional Banks",
+  "hq": {
+   "city": "Cleveland",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 91576
+ },
+ "KEYS": {
+  "name": "Keysight Technologies",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Electronic Equipment & Instruments",
+  "hq": {
+   "city": "Santa Rosa",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1601046
+ },
+ "KHC": {
+  "name": "Kraft Heinz",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Packaged Foods & Meats",
+  "hq": {
+   "city": "Chicago",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 1637459
+ },
+ "KIM": {
+  "name": "Kimco Realty",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Retail REITs",
+  "hq": {
+   "city": "Jericho",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 879101
+ },
+ "KKR": {
+  "name": "KKR & Co.",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Asset Management & Custody Banks",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1404912
+ },
+ "KLAC": {
+  "name": "KLA Corporation",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductor Materials & Equipment",
+  "hq": {
+   "city": "Milpitas",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 319201
+ },
+ "KMB": {
+  "name": "Kimberly-Clark",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Household Products",
+  "hq": {
+   "city": "Irving",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 55785
+ },
+ "KMI": {
+  "name": "Kinder Morgan",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Storage & Transportation",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1506307
+ },
+ "KO": {
+  "name": "Coca-Cola Company (The)",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Soft Drinks & Non-alcoholic Beverages",
+  "hq": {
+   "city": "Atlanta",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 21344
+ },
+ "KR": {
+  "name": "Kroger",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Food Retail",
+  "hq": {
+   "city": "Cincinnati",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 56873
+ },
+ "KVUE": {
+  "name": "Kenvue",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Personal Care Products",
+  "hq": {
+   "city": "Skillman",
+   "state": "New Jersey",
+   "region": "Northeast"
+  },
+  "cik": 1944048
+ },
+ "L": {
+  "name": "Loews Corporation",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Multi-line Insurance",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 60086
+ },
+ "LDOS": {
+  "name": "Leidos",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Diversified Support Services",
+  "hq": {
+   "city": "Reston",
+   "state": "Virginia",
+   "region": "South"
+  },
+  "cik": 1336920
+ },
+ "LEN": {
+  "name": "Lennar",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Homebuilding",
+  "hq": {
+   "city": "Miami",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 920760
+ },
+ "LH": {
+  "name": "Labcorp",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Services",
+  "hq": {
+   "city": "Burlington",
+   "state": "North Carolina",
+   "region": "South"
+  },
+  "cik": 920148
+ },
+ "LHX": {
+  "name": "L3Harris",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Aerospace & Defense",
+  "hq": {
+   "city": "Melbourne",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 202058
+ },
+ "LII": {
+  "name": "Lennox International",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Building Products",
+  "hq": {
+   "city": "Richardson",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1069202
+ },
+ "LIN": {
+  "name": "Linde plc",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Industrial Gases",
+  "hq": {
+   "city": "Guildford",
+   "state": "United Kingdom",
+   "region": "International"
+  },
+  "cik": 1707925
+ },
+ "LITE": {
+  "name": "Lumentum",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Communications Equipment",
+  "hq": {
+   "city": "San Jose",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1633978
+ },
+ "LLY": {
+  "name": "Lilly (Eli)",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Pharmaceuticals",
+  "hq": {
+   "city": "Indianapolis",
+   "state": "Indiana",
+   "region": "Midwest"
+  },
+  "cik": 59478
+ },
+ "LMT": {
+  "name": "Lockheed Martin",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Aerospace & Defense",
+  "hq": {
+   "city": "Bethesda",
+   "state": "Maryland",
+   "region": "South"
+  },
+  "cik": 936468
+ },
+ "LNT": {
+  "name": "Alliant Energy",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Electric Utilities",
+  "hq": {
+   "city": "Madison",
+   "state": "Wisconsin",
+   "region": "Midwest"
+  },
+  "cik": 352541
+ },
+ "LOW": {
+  "name": "Lowe's",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Home Improvement Retail",
+  "hq": {
+   "city": "Mooresville",
+   "state": "North Carolina",
+   "region": "South"
+  },
+  "cik": 60667
+ },
+ "LRCX": {
+  "name": "Lam Research",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductor Materials & Equipment",
+  "hq": {
+   "city": "Fremont",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 707549
+ },
+ "LULU": {
+  "name": "Lululemon Athletica",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Apparel, Accessories & Luxury Goods",
+  "hq": {
+   "city": "Vancouver",
+   "state": "Canada",
+   "region": "International"
+  },
+  "cik": 1397187
+ },
+ "LUV": {
+  "name": "Southwest Airlines",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Passenger Airlines",
+  "hq": {
+   "city": "Dallas",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 92380
+ },
+ "LVS": {
+  "name": "Las Vegas Sands",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Casinos & Gaming",
+  "hq": {
+   "city": "Las Vegas",
+   "state": "Nevada",
+   "region": "West"
+  },
+  "cik": 1300514
+ },
+ "LYB": {
+  "name": "LyondellBasell",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Specialty Chemicals",
+  "hq": {
+   "city": "Rotterdam",
+   "state": "Netherlands",
+   "region": "International"
+  },
+  "cik": 1489393
+ },
+ "LYV": {
+  "name": "Live Nation Entertainment",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Movies & Entertainment",
+  "hq": {
+   "city": "Beverly Hills",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1335258
+ },
+ "MA": {
+  "name": "Mastercard",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Transaction & Payment Processing Services",
+  "hq": {
+   "city": "Harrison",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1141391
+ },
+ "MAA": {
+  "name": "Mid-America Apartment Communities",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Multi-Family Residential REITs",
+  "hq": {
+   "city": "Memphis",
+   "state": "Tennessee",
+   "region": "South"
+  },
+  "cik": 912595
+ },
+ "MAR": {
+  "name": "Marriott International",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Hotels, Resorts & Cruise Lines",
+  "hq": {
+   "city": "Bethesda",
+   "state": "Maryland",
+   "region": "South"
+  },
+  "cik": 1048286
+ },
+ "MAS": {
+  "name": "Masco",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Building Products",
+  "hq": {
+   "city": "Livonia",
+   "state": "Michigan",
+   "region": "Midwest"
+  },
+  "cik": 62996
+ },
+ "MCD": {
+  "name": "McDonald's",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Restaurants",
+  "hq": {
+   "city": "Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 63908
+ },
+ "MCHP": {
+  "name": "Microchip Technology",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductors",
+  "hq": {
+   "city": "Chandler",
+   "state": "Arizona",
+   "region": "West"
+  },
+  "cik": 827054
+ },
+ "MCK": {
+  "name": "McKesson Corporation",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Distributors",
+  "hq": {
+   "city": "Irving",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 927653
+ },
+ "MCO": {
+  "name": "Moody's Corporation",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Financial Exchanges & Data",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1059556
+ },
+ "MDLZ": {
+  "name": "Mondelez International",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Packaged Foods & Meats",
+  "hq": {
+   "city": "Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 1103982
+ },
+ "MDT": {
+  "name": "Medtronic",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "Galway",
+   "state": "Ireland",
+   "region": "International"
+  },
+  "cik": 1613103
+ },
+ "MET": {
+  "name": "MetLife",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Life & Health Insurance",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1099219
+ },
+ "META": {
+  "name": "Meta Platforms",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Interactive Media & Services",
+  "hq": {
+   "city": "Menlo Park",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1326801
+ },
+ "MGM": {
+  "name": "MGM Resorts",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Casinos & Gaming",
+  "hq": {
+   "city": "Paradise",
+   "state": "Nevada",
+   "region": "West"
+  },
+  "cik": 789570
+ },
+ "MKC": {
+  "name": "McCormick & Company",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Packaged Foods & Meats",
+  "hq": {
+   "city": "Hunt Valley",
+   "state": "Maryland",
+   "region": "South"
+  },
+  "cik": 63754
+ },
+ "MLM": {
+  "name": "Martin Marietta Materials",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Construction Materials",
+  "hq": {
+   "city": "Raleigh",
+   "state": "North Carolina",
+   "region": "South"
+  },
+  "cik": 916076
+ },
+ "MMM": {
+  "name": "3M",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Conglomerates",
+  "hq": {
+   "city": "Saint Paul",
+   "state": "Minnesota",
+   "region": "Midwest"
+  },
+  "cik": 66740
+ },
+ "MNST": {
+  "name": "Monster Beverage",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Soft Drinks & Non-alcoholic Beverages",
+  "hq": {
+   "city": "Corona",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 865752
+ },
+ "MO": {
+  "name": "Altria",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Tobacco",
+  "hq": {
+   "city": "Richmond",
+   "state": "Virginia",
+   "region": "South"
+  },
+  "cik": 764180
+ },
+ "MOS": {
+  "name": "Mosaic Company (The)",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Fertilizers & Agricultural Chemicals",
+  "hq": {
+   "city": "Tampa",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 1285785
+ },
+ "MPC": {
+  "name": "Marathon Petroleum",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Refining & Marketing",
+  "hq": {
+   "city": "Findlay",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 1510295
+ },
+ "MPWR": {
+  "name": "Monolithic Power Systems",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductors",
+  "hq": {
+   "city": "Kirkland",
+   "state": "Washington",
+   "region": "West"
+  },
+  "cik": 1280452
+ },
+ "MRK": {
+  "name": "Merck & Co.",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Pharmaceuticals",
+  "hq": {
+   "city": "Kenilworth",
+   "state": "New Jersey",
+   "region": "Northeast"
+  },
+  "cik": 310158
+ },
+ "MRNA": {
+  "name": "Moderna",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Biotechnology",
+  "hq": {
+   "city": "Cambridge",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 1682852
+ },
+ "MRSH": {
+  "name": "Marsh McLennan",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Insurance Brokers",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 62709
+ },
+ "MS": {
+  "name": "Morgan Stanley",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Investment Banking & Brokerage",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 895421
+ },
+ "MSCI": {
+  "name": "MSCI Inc.",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Financial Exchanges & Data",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1408198
+ },
+ "MSFT": {
+  "name": "Microsoft",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Systems Software",
+  "hq": {
+   "city": "Redmond",
+   "state": "Washington",
+   "region": "West"
+  },
+  "cik": 789019
+ },
+ "MSI": {
+  "name": "Motorola Solutions",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Communications Equipment",
+  "hq": {
+   "city": "Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 68505
+ },
+ "MTB": {
+  "name": "M&T Bank",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Regional Banks",
+  "hq": {
+   "city": "Buffalo",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 36270
+ },
+ "MTD": {
+  "name": "Mettler Toledo",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Life Sciences Tools & Services",
+  "hq": {
+   "city": "Columbus",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 1037646
+ },
+ "MU": {
+  "name": "Micron Technology",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductors",
+  "hq": {
+   "city": "Boise",
+   "state": "Idaho",
+   "region": "West"
+  },
+  "cik": 723125
+ },
+ "NCLH": {
+  "name": "Norwegian Cruise Line Holdings",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Hotels, Resorts & Cruise Lines",
+  "hq": {
+   "city": "Miami-Dade County",
+   "state": "Florida[4]",
+   "region": "International"
+  },
+  "cik": 1513761
+ },
+ "NDAQ": {
+  "name": "Nasdaq, Inc.",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Financial Exchanges & Data",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1120193
+ },
+ "NDSN": {
+  "name": "Nordson Corporation",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Machinery & Supplies & Components",
+  "hq": {
+   "city": "Westlake",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 72331
+ },
+ "NEE": {
+  "name": "NextEra Energy",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Multi-Utilities",
+  "hq": {
+   "city": "Juno Beach",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 753308
+ },
+ "NEM": {
+  "name": "Newmont",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Gold",
+  "hq": {
+   "city": "Denver",
+   "state": "Colorado",
+   "region": "West"
+  },
+  "cik": 1164727
+ },
+ "NFLX": {
+  "name": "Netflix",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Movies & Entertainment",
+  "hq": {
+   "city": "Los Gatos",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1065280
+ },
+ "NI": {
+  "name": "NiSource",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Multi-Utilities",
+  "hq": {
+   "city": "Merrillville",
+   "state": "Indiana",
+   "region": "Midwest"
+  },
+  "cik": 1111711
+ },
+ "NKE": {
+  "name": "Nike, Inc.",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Apparel, Accessories & Luxury Goods",
+  "hq": {
+   "city": "Washington County",
+   "state": "Oregon",
+   "region": "West"
+  },
+  "cik": 320187
+ },
+ "NOC": {
+  "name": "Northrop Grumman",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Aerospace & Defense",
+  "hq": {
+   "city": "West Falls Church",
+   "state": "Virginia[3]",
+   "region": "International"
+  },
+  "cik": 1133421
+ },
+ "NOW": {
+  "name": "ServiceNow",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Systems Software",
+  "hq": {
+   "city": "Santa Clara",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1373715
+ },
+ "NRG": {
+  "name": "NRG Energy",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Independent Power Producers & Energy Traders",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1013871
+ },
+ "NSC": {
+  "name": "Norfolk Southern",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Rail Transportation",
+  "hq": {
+   "city": "Atlanta",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 702165
+ },
+ "NTAP": {
+  "name": "NetApp",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Technology Hardware, Storage & Peripherals",
+  "hq": {
+   "city": "San Jose",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1002047
+ },
+ "NTRS": {
+  "name": "Northern Trust",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Asset Management & Custody Banks",
+  "hq": {
+   "city": "Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 73124
+ },
+ "NUE": {
+  "name": "Nucor",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Steel",
+  "hq": {
+   "city": "Charlotte",
+   "state": "North Carolina",
+   "region": "South"
+  },
+  "cik": 73309
+ },
+ "NVDA": {
+  "name": "Nvidia",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductors",
+  "hq": {
+   "city": "Santa Clara",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1045810
+ },
+ "NVR": {
+  "name": "NVR, Inc.",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Homebuilding",
+  "hq": {
+   "city": "Reston",
+   "state": "Virginia",
+   "region": "South"
+  },
+  "cik": 906163
+ },
+ "NWS": {
+  "name": "News Corp (Class B)",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Publishing",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1564708
+ },
+ "NWSA": {
+  "name": "News Corp (Class A)",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Publishing",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1564708
+ },
+ "NXPI": {
+  "name": "NXP Semiconductors",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductors",
+  "hq": {
+   "city": "Eindhoven",
+   "state": "Netherlands",
+   "region": "International"
+  },
+  "cik": 1413447
+ },
+ "O": {
+  "name": "Realty Income",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Retail REITs",
+  "hq": {
+   "city": "San Diego",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 726728
+ },
+ "ODFL": {
+  "name": "Old Dominion",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Cargo Ground Transportation",
+  "hq": {
+   "city": "Thomasville",
+   "state": "North Carolina",
+   "region": "South"
+  },
+  "cik": 878927
+ },
+ "OKE": {
+  "name": "Oneok",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Storage & Transportation",
+  "hq": {
+   "city": "Tulsa",
+   "state": "Oklahoma",
+   "region": "South"
+  },
+  "cik": 1039684
+ },
+ "OMC": {
+  "name": "Omnicom Group",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Advertising",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 29989
+ },
+ "ON": {
+  "name": "ON Semiconductor",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductors",
+  "hq": {
+   "city": "Phoenix",
+   "state": "Arizona",
+   "region": "West"
+  },
+  "cik": 1097864
+ },
+ "ORCL": {
+  "name": "Oracle Corporation",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Application Software",
+  "hq": {
+   "city": "Austin",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1341439
+ },
+ "ORLY": {
+  "name": "O\u2019Reilly Automotive",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Automotive Retail",
+  "hq": {
+   "city": "Springfield",
+   "state": "Missouri",
+   "region": "Midwest"
+  },
+  "cik": 898173
+ },
+ "OTIS": {
+  "name": "Otis Worldwide",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Machinery & Supplies & Components",
+  "hq": {
+   "city": "Farmington",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 1781335
+ },
+ "OXY": {
+  "name": "Occidental Petroleum",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Exploration & Production",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 797468
+ },
+ "PANW": {
+  "name": "Palo Alto Networks",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Systems Software",
+  "hq": {
+   "city": "Santa Clara",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1327567
+ },
+ "PAYX": {
+  "name": "Paychex",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Human Resource & Employment Services",
+  "hq": {
+   "city": "Penfield",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 723531
+ },
+ "PCAR": {
+  "name": "Paccar",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Construction Machinery & Heavy Transportation Equipment",
+  "hq": {
+   "city": "Bellevue",
+   "state": "Washington",
+   "region": "West"
+  },
+  "cik": 75362
+ },
+ "PCG": {
+  "name": "PG&E Corporation",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Multi-Utilities",
+  "hq": {
+   "city": "Oakland",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1004980
+ },
+ "PEG": {
+  "name": "Public Service Enterprise Group",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Electric Utilities",
+  "hq": {
+   "city": "Newark",
+   "state": "New Jersey",
+   "region": "Northeast"
+  },
+  "cik": 788784
+ },
+ "PEP": {
+  "name": "PepsiCo",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Soft Drinks & Non-alcoholic Beverages",
+  "hq": {
+   "city": "Purchase",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 77476
+ },
+ "PFE": {
+  "name": "Pfizer",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Pharmaceuticals",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 78003
+ },
+ "PFG": {
+  "name": "Principal Financial Group",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Life & Health Insurance",
+  "hq": {
+   "city": "Des Moines",
+   "state": "Iowa",
+   "region": "Midwest"
+  },
+  "cik": 1126328
+ },
+ "PG": {
+  "name": "Procter & Gamble",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Personal Care Products",
+  "hq": {
+   "city": "Cincinnati",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 80424
+ },
+ "PGR": {
+  "name": "Progressive Corporation",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Property & Casualty Insurance",
+  "hq": {
+   "city": "Mayfield Village",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 80661
+ },
+ "PH": {
+  "name": "Parker Hannifin",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Machinery & Supplies & Components",
+  "hq": {
+   "city": "Cleveland",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 76334
+ },
+ "PHM": {
+  "name": "PulteGroup",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Homebuilding",
+  "hq": {
+   "city": "Atlanta",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 822416
+ },
+ "PKG": {
+  "name": "Packaging Corporation of America",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Paper & Plastic Packaging Products & Materials",
+  "hq": {
+   "city": "Lake Forest",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 75677
+ },
+ "PLD": {
+  "name": "Prologis",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Industrial REITs",
+  "hq": {
+   "city": "San Francisco",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1045609
+ },
+ "PLTR": {
+  "name": "Palantir Technologies",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Application Software",
+  "hq": {
+   "city": "Aventura",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 1321655
+ },
+ "PM": {
+  "name": "Philip Morris International",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Tobacco",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1413329
+ },
+ "PNC": {
+  "name": "PNC Financial Services",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Diversified Banks",
+  "hq": {
+   "city": "Pittsburgh",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 713676
+ },
+ "PNR": {
+  "name": "Pentair",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Machinery & Supplies & Components",
+  "hq": {
+   "city": "Worsley",
+   "state": "United Kingdom",
+   "region": "International"
+  },
+  "cik": 77360
+ },
+ "PNW": {
+  "name": "Pinnacle West Capital",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Multi-Utilities",
+  "hq": {
+   "city": "Phoenix",
+   "state": "Arizona",
+   "region": "West"
+  },
+  "cik": 764622
+ },
+ "PODD": {
+  "name": "Insulet Corporation",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "Acton",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 1145197
+ },
+ "POOL": {
+  "name": "Pool Corporation",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Distributors",
+  "hq": {
+   "city": "Covington",
+   "state": "Louisiana",
+   "region": "South"
+  },
+  "cik": 945841
+ },
+ "PPG": {
+  "name": "PPG Industries",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Specialty Chemicals",
+  "hq": {
+   "city": "Pittsburgh",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 79879
+ },
+ "PPL": {
+  "name": "PPL Corporation",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Electric Utilities",
+  "hq": {
+   "city": "Allentown",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 922224
+ },
+ "PRU": {
+  "name": "Prudential Financial",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Life & Health Insurance",
+  "hq": {
+   "city": "Newark",
+   "state": "New Jersey",
+   "region": "Northeast"
+  },
+  "cik": 1137774
+ },
+ "PSA": {
+  "name": "Public Storage",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Self-Storage REITs",
+  "hq": {
+   "city": "Glendale",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1393311
+ },
+ "PSKY": {
+  "name": "Paramount Skydance Corporation",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Movies & Entertainment",
+  "hq": {
+   "city": "Los Angeles",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 2041610
+ },
+ "PSX": {
+  "name": "Phillips 66",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Refining & Marketing",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1534701
+ },
+ "PTC": {
+  "name": "PTC Inc.",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Application Software",
+  "hq": {
+   "city": "Boston",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 857005
+ },
+ "PWR": {
+  "name": "Quanta Services",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Construction & Engineering",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1050915
+ },
+ "PYPL": {
+  "name": "PayPal",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Transaction & Payment Processing Services",
+  "hq": {
+   "city": "San Jose",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1633917
+ },
+ "Q": {
+  "name": "Qnity Electronics",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductor Materials & Equipment",
+  "hq": {
+   "city": "Wilmington",
+   "state": "Delaware",
+   "region": "South"
+  },
+  "cik": 2058873
+ },
+ "QCOM": {
+  "name": "Qualcomm",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductors",
+  "hq": {
+   "city": "San Diego",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 804328
+ },
+ "RCL": {
+  "name": "Royal Caribbean Group",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Hotels, Resorts & Cruise Lines",
+  "hq": {
+   "city": "Miami",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 884887
+ },
+ "REG": {
+  "name": "Regency Centers",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Retail REITs",
+  "hq": {
+   "city": "Jacksonville",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 910606
+ },
+ "REGN": {
+  "name": "Regeneron Pharmaceuticals",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Biotechnology",
+  "hq": {
+   "city": "Tarrytown",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 872589
+ },
+ "RF": {
+  "name": "Regions Financial Corporation",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Regional Banks",
+  "hq": {
+   "city": "Birmingham",
+   "state": "Alabama",
+   "region": "South"
+  },
+  "cik": 1281761
+ },
+ "RJF": {
+  "name": "Raymond James Financial",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Investment Banking & Brokerage",
+  "hq": {
+   "city": "St. Petersburg",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 720005
+ },
+ "RL": {
+  "name": "Ralph Lauren Corporation",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Apparel, Accessories & Luxury Goods",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1037038
+ },
+ "RMD": {
+  "name": "ResMed",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "San Diego",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 943819
+ },
+ "ROK": {
+  "name": "Rockwell Automation",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Electrical Components & Equipment",
+  "hq": {
+   "city": "Milwaukee",
+   "state": "Wisconsin",
+   "region": "Midwest"
+  },
+  "cik": 1024478
+ },
+ "ROL": {
+  "name": "Rollins, Inc.",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Environmental & Facilities Services",
+  "hq": {
+   "city": "Atlanta",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 84839
+ },
+ "ROP": {
+  "name": "Roper Technologies",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Electronic Equipment & Instruments",
+  "hq": {
+   "city": "Sarasota",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 882835
+ },
+ "ROST": {
+  "name": "Ross Stores",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Apparel Retail",
+  "hq": {
+   "city": "Dublin",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 745732
+ },
+ "RSG": {
+  "name": "Republic Services",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Environmental & Facilities Services",
+  "hq": {
+   "city": "Phoenix",
+   "state": "Arizona",
+   "region": "West"
+  },
+  "cik": 1060391
+ },
+ "RTX": {
+  "name": "RTX Corporation",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Aerospace & Defense",
+  "hq": {
+   "city": "Waltham",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 101829
+ },
+ "RVTY": {
+  "name": "Revvity",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "Waltham",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 31791
+ },
+ "SATS": {
+  "name": "EchoStar",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Wireless Telecommunication Services",
+  "hq": {
+   "city": "Englewood",
+   "state": "Colorado",
+   "region": "West"
+  },
+  "cik": 1415404
+ },
+ "SBAC": {
+  "name": "SBA Communications",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Telecom Tower REITs",
+  "hq": {
+   "city": "Boca Raton",
+   "state": "Florida",
+   "region": "South"
+  },
+  "cik": 1034054
+ },
+ "SBUX": {
+  "name": "Starbucks",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Restaurants",
+  "hq": {
+   "city": "Seattle",
+   "state": "Washington",
+   "region": "West"
+  },
+  "cik": 829224
+ },
+ "SCHW": {
+  "name": "Charles Schwab Corporation",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Investment Banking & Brokerage",
+  "hq": {
+   "city": "Westlake",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 316709
+ },
+ "SHW": {
+  "name": "Sherwin-Williams",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Specialty Chemicals",
+  "hq": {
+   "city": "Cleveland",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 89800
+ },
+ "SJM": {
+  "name": "J.M. Smucker Company (The)",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Packaged Foods & Meats",
+  "hq": {
+   "city": "Orrville",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 91419
+ },
+ "SLB": {
+  "name": "Schlumberger",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Equipment & Services",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 87347
+ },
+ "SMCI": {
+  "name": "Supermicro",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Technology Hardware, Storage & Peripherals",
+  "hq": {
+   "city": "San Jose",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1375365
+ },
+ "SNA": {
+  "name": "Snap-on",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Machinery & Supplies & Components",
+  "hq": {
+   "city": "Kenosha",
+   "state": "Wisconsin",
+   "region": "Midwest"
+  },
+  "cik": 91440
+ },
+ "SNDK": {
+  "name": "Sandisk",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Technology Hardware, Storage & Peripherals",
+  "hq": {
+   "city": "Milpitas",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 2023554
+ },
+ "SNPS": {
+  "name": "Synopsys",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Application Software",
+  "hq": {
+   "city": "Sunnyvale",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 883241
+ },
+ "SO": {
+  "name": "Southern Company",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Electric Utilities",
+  "hq": {
+   "city": "Atlanta",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 92122
+ },
+ "SOLV": {
+  "name": "Solventum",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Technology",
+  "hq": {
+   "city": "Saint Paul",
+   "state": "Minnesota",
+   "region": "Midwest"
+  },
+  "cik": 1964738
+ },
+ "SPG": {
+  "name": "Simon Property Group",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Retail REITs",
+  "hq": {
+   "city": "Indianapolis",
+   "state": "Indiana",
+   "region": "Midwest"
+  },
+  "cik": 1063761
+ },
+ "SPGI": {
+  "name": "S&P Global",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Financial Exchanges & Data",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 64040
+ },
+ "SRE": {
+  "name": "Sempra",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Multi-Utilities",
+  "hq": {
+   "city": "San Diego",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1032208
+ },
+ "STE": {
+  "name": "Steris",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "Dublin",
+   "state": "Ireland",
+   "region": "International"
+  },
+  "cik": 1757898
+ },
+ "STLD": {
+  "name": "Steel Dynamics",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Steel",
+  "hq": {
+   "city": "Fort Wayne",
+   "state": "Indiana",
+   "region": "Midwest"
+  },
+  "cik": 1022671
+ },
+ "STT": {
+  "name": "State Street Corporation",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Asset Management & Custody Banks",
+  "hq": {
+   "city": "Boston",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 93751
+ },
+ "STX": {
+  "name": "Seagate Technology",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Technology Hardware, Storage & Peripherals",
+  "hq": {
+   "city": "Dublin",
+   "state": "Ireland",
+   "region": "International"
+  },
+  "cik": 1137789
+ },
+ "STZ": {
+  "name": "Constellation Brands",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Distillers & Vintners",
+  "hq": {
+   "city": "Rochester",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 16918
+ },
+ "SW": {
+  "name": "Smurfit Westrock",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Paper & Plastic Packaging Products & Materials",
+  "hq": {
+   "city": "Dublin",
+   "state": "Ireland",
+   "region": "International"
+  },
+  "cik": 2005951
+ },
+ "SWK": {
+  "name": "Stanley Black & Decker",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Machinery & Supplies & Components",
+  "hq": {
+   "city": "New Britain",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 93556
+ },
+ "SWKS": {
+  "name": "Skyworks Solutions",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductors",
+  "hq": {
+   "city": "Irvine",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 4127
+ },
+ "SYF": {
+  "name": "Synchrony Financial",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Consumer Finance",
+  "hq": {
+   "city": "Stamford",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 1601712
+ },
+ "SYK": {
+  "name": "Stryker Corporation",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "Kalamazoo",
+   "state": "Michigan",
+   "region": "Midwest"
+  },
+  "cik": 310764
+ },
+ "SYY": {
+  "name": "Sysco",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Food Distributors",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 96021
+ },
+ "T": {
+  "name": "AT&T",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Integrated Telecommunication Services",
+  "hq": {
+   "city": "Dallas",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 732717
+ },
+ "TAP": {
+  "name": "Molson Coors Beverage Company",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Brewers",
+  "hq": {
+   "city": "Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 24545
+ },
+ "TDG": {
+  "name": "TransDigm Group",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Aerospace & Defense",
+  "hq": {
+   "city": "Cleveland",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 1260221
+ },
+ "TDY": {
+  "name": "Teledyne Technologies",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Electronic Equipment & Instruments",
+  "hq": {
+   "city": "Thousand Oaks",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1094285
+ },
+ "TECH": {
+  "name": "Bio-Techne",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Life Sciences Tools & Services",
+  "hq": {
+   "city": "Minneapolis",
+   "state": "Minnesota",
+   "region": "Midwest"
+  },
+  "cik": 842023
+ },
+ "TEL": {
+  "name": "TE Connectivity",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Electronic Manufacturing Services",
+  "hq": {
+   "city": "Galway",
+   "state": "Ireland",
+   "region": "International"
+  },
+  "cik": 1385157
+ },
+ "TER": {
+  "name": "Teradyne",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductor Materials & Equipment",
+  "hq": {
+   "city": "North Reading",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 97210
+ },
+ "TFC": {
+  "name": "Truist Financial",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Diversified Banks",
+  "hq": {
+   "city": "Charlotte",
+   "state": "North Carolina",
+   "region": "South"
+  },
+  "cik": 92230
+ },
+ "TGT": {
+  "name": "Target Corporation",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Consumer Staples Merchandise Retail",
+  "hq": {
+   "city": "Minneapolis",
+   "state": "Minnesota",
+   "region": "Midwest"
+  },
+  "cik": 27419
+ },
+ "TJX": {
+  "name": "TJX Companies",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Apparel Retail",
+  "hq": {
+   "city": "Framingham",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 109198
+ },
+ "TKO": {
+  "name": "TKO Group Holdings",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Movies & Entertainment",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1973266
+ },
+ "TMO": {
+  "name": "Thermo Fisher Scientific",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Life Sciences Tools & Services",
+  "hq": {
+   "city": "Waltham",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 97745
+ },
+ "TMUS": {
+  "name": "T-Mobile US",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Wireless Telecommunication Services",
+  "hq": {
+   "city": "Bellevue",
+   "state": "Washington",
+   "region": "West"
+  },
+  "cik": 1283699
+ },
+ "TPL": {
+  "name": "Texas Pacific Land Corporation",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Exploration & Production",
+  "hq": {
+   "city": "Dallas",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1811074
+ },
+ "TPR": {
+  "name": "Tapestry, Inc.",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Apparel, Accessories & Luxury Goods",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1116132
+ },
+ "TRGP": {
+  "name": "Targa Resources",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Storage & Transportation",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1389170
+ },
+ "TRMB": {
+  "name": "Trimble Inc.",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Application Software",
+  "hq": {
+   "city": "Westminster",
+   "state": "Colorado",
+   "region": "West"
+  },
+  "cik": 864749
+ },
+ "TROW": {
+  "name": "T. Rowe Price",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Asset Management & Custody Banks",
+  "hq": {
+   "city": "Baltimore",
+   "state": "Maryland",
+   "region": "South"
+  },
+  "cik": 1113169
+ },
+ "TRV": {
+  "name": "Travelers Companies (The)",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Property & Casualty Insurance",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 86312
+ },
+ "TSCO": {
+  "name": "Tractor Supply",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Other Specialty Retail",
+  "hq": {
+   "city": "Brentwood",
+   "state": "Tennessee",
+   "region": "South"
+  },
+  "cik": 916365
+ },
+ "TSLA": {
+  "name": "Tesla, Inc.",
+  "industries": [
+   "Consumer Discretionary",
+   "Technology"
+  ],
+  "sub": "Automobile Manufacturers",
+  "hq": {
+   "city": "Austin",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1318605
+ },
+ "TSN": {
+  "name": "Tyson Foods",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Packaged Foods & Meats",
+  "hq": {
+   "city": "Springdale",
+   "state": "Arkansas",
+   "region": "South"
+  },
+  "cik": 100493
+ },
+ "TT": {
+  "name": "Trane Technologies",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Building Products",
+  "hq": {
+   "city": "Dublin",
+   "state": "Ireland",
+   "region": "International"
+  },
+  "cik": 1466258
+ },
+ "TTD": {
+  "name": "Trade Desk (The)",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Advertising",
+  "hq": {
+   "city": "Ventura",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1671933
+ },
+ "TTWO": {
+  "name": "Take-Two Interactive",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Interactive Home Entertainment",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 946581
+ },
+ "TXN": {
+  "name": "Texas Instruments",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductors",
+  "hq": {
+   "city": "Dallas",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 97476
+ },
+ "TXT": {
+  "name": "Textron",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Aerospace & Defense",
+  "hq": {
+   "city": "Providence",
+   "state": "Rhode Island",
+   "region": "Northeast"
+  },
+  "cik": 217346
+ },
+ "TYL": {
+  "name": "Tyler Technologies",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Application Software",
+  "hq": {
+   "city": "Plano",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 860731
+ },
+ "UAL": {
+  "name": "United Airlines Holdings",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Passenger Airlines",
+  "hq": {
+   "city": "Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 100517
+ },
+ "UBER": {
+  "name": "Uber",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Passenger Ground Transportation",
+  "hq": {
+   "city": "San Francisco",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1543151
+ },
+ "UDR": {
+  "name": "UDR, Inc.",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Multi-Family Residential REITs",
+  "hq": {
+   "city": "Highlands Ranch",
+   "state": "Colorado",
+   "region": "West"
+  },
+  "cik": 74208
+ },
+ "UHS": {
+  "name": "Universal Health Services",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Facilities",
+  "hq": {
+   "city": "King of Prussia",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 352915
+ },
+ "ULTA": {
+  "name": "Ulta Beauty",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Other Specialty Retail",
+  "hq": {
+   "city": "Bolingbrook",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 1403568
+ },
+ "UNH": {
+  "name": "UnitedHealth Group",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Managed Health Care",
+  "hq": {
+   "city": "Eden Prairie",
+   "state": "Minnesota",
+   "region": "Midwest"
+  },
+  "cik": 731766
+ },
+ "UNP": {
+  "name": "Union Pacific Corporation",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Rail Transportation",
+  "hq": {
+   "city": "Omaha",
+   "state": "Nebraska",
+   "region": "Midwest"
+  },
+  "cik": 100885
+ },
+ "UPS": {
+  "name": "United Parcel Service",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Air Freight & Logistics",
+  "hq": {
+   "city": "Sandy Springs",
+   "state": "Georgia",
+   "region": "South"
+  },
+  "cik": 1090727
+ },
+ "URI": {
+  "name": "United Rentals",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Trading Companies & Distributors",
+  "hq": {
+   "city": "Stamford",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 1067701
+ },
+ "USB": {
+  "name": "U.S. Bancorp",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Diversified Banks",
+  "hq": {
+   "city": "Minneapolis",
+   "state": "Minnesota",
+   "region": "Midwest"
+  },
+  "cik": 36104
+ },
+ "V": {
+  "name": "Visa Inc.",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Transaction & Payment Processing Services",
+  "hq": {
+   "city": "San Francisco",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1403161
+ },
+ "VEEV": {
+  "name": "Veeva Systems",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Technology",
+  "hq": {
+   "city": "Pleasanton",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1393052
+ },
+ "VICI": {
+  "name": "Vici Properties",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Hotel & Resort REITs",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1705696
+ },
+ "VLO": {
+  "name": "Valero Energy",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Refining & Marketing",
+  "hq": {
+   "city": "San Antonio",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1035002
+ },
+ "VLTO": {
+  "name": "Veralto",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Environmental & Facilities Services",
+  "hq": {
+   "city": "Waltham",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 1967680
+ },
+ "VMC": {
+  "name": "Vulcan Materials Company",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Construction Materials",
+  "hq": {
+   "city": "Birmingham",
+   "state": "Alabama",
+   "region": "South"
+  },
+  "cik": 1396009
+ },
+ "VRSK": {
+  "name": "Verisk Analytics",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Research & Consulting Services",
+  "hq": {
+   "city": "Jersey City",
+   "state": "New Jersey",
+   "region": "Northeast"
+  },
+  "cik": 1442145
+ },
+ "VRSN": {
+  "name": "Verisign",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Internet Services & Infrastructure",
+  "hq": {
+   "city": "Reston",
+   "state": "Virginia",
+   "region": "South"
+  },
+  "cik": 1014473
+ },
+ "VRT": {
+  "name": "Vertiv",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Electrical Components & Equipment",
+  "hq": {
+   "city": "Westerville",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 1674101
+ },
+ "VRTX": {
+  "name": "Vertex Pharmaceuticals",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Biotechnology",
+  "hq": {
+   "city": "Boston",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 875320
+ },
+ "VST": {
+  "name": "Vistra Corp.",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Electric Utilities",
+  "hq": {
+   "city": "Irving",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 1692819
+ },
+ "VTR": {
+  "name": "Ventas",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Health Care REITs",
+  "hq": {
+   "city": "Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 740260
+ },
+ "VTRS": {
+  "name": "Viatris",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Pharmaceuticals",
+  "hq": {
+   "city": "Pittsburgh",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 1792044
+ },
+ "VZ": {
+  "name": "Verizon",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Integrated Telecommunication Services",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 732712
+ },
+ "WAB": {
+  "name": "Wabtec",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Construction Machinery & Heavy Transportation Equipment",
+  "hq": {
+   "city": "Pittsburgh",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 943452
+ },
+ "WAT": {
+  "name": "Waters Corporation",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Life Sciences Tools & Services",
+  "hq": {
+   "city": "Milford",
+   "state": "Massachusetts",
+   "region": "Northeast"
+  },
+  "cik": 1000697
+ },
+ "WBD": {
+  "name": "Warner Bros. Discovery",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Broadcasting",
+  "hq": {
+   "city": "New York City",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1437107
+ },
+ "WDAY": {
+  "name": "Workday, Inc.",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Application Software",
+  "hq": {
+   "city": "Pleasanton",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1327811
+ },
+ "WDC": {
+  "name": "Western Digital",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Technology Hardware, Storage & Peripherals",
+  "hq": {
+   "city": "San Jose",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 106040
+ },
+ "WEC": {
+  "name": "WEC Energy Group",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Electric Utilities",
+  "hq": {
+   "city": "Milwaukee",
+   "state": "Wisconsin",
+   "region": "Midwest"
+  },
+  "cik": 783325
+ },
+ "WELL": {
+  "name": "Welltower",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Health Care REITs",
+  "hq": {
+   "city": "Toledo",
+   "state": "Ohio",
+   "region": "Midwest"
+  },
+  "cik": 766704
+ },
+ "WFC": {
+  "name": "Wells Fargo",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Diversified Banks",
+  "hq": {
+   "city": "San Francisco",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 72971
+ },
+ "WM": {
+  "name": "Waste Management",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Environmental & Facilities Services",
+  "hq": {
+   "city": "Houston",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 823768
+ },
+ "WMB": {
+  "name": "Williams Companies",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Oil & Gas Storage & Transportation",
+  "hq": {
+   "city": "Tulsa",
+   "state": "Oklahoma",
+   "region": "South"
+  },
+  "cik": 107263
+ },
+ "WMT": {
+  "name": "Walmart",
+  "industries": [
+   "Consumer Staples"
+  ],
+  "sub": "Consumer Staples Merchandise Retail",
+  "hq": {
+   "city": "Bentonville",
+   "state": "Arkansas",
+   "region": "South"
+  },
+  "cik": 104169
+ },
+ "WRB": {
+  "name": "W. R. Berkley Corporation",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Property & Casualty Insurance",
+  "hq": {
+   "city": "Greenwich",
+   "state": "Connecticut",
+   "region": "Northeast"
+  },
+  "cik": 11544
+ },
+ "WSM": {
+  "name": "Williams-Sonoma, Inc.",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Homefurnishing Retail",
+  "hq": {
+   "city": "San Francisco",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 719955
+ },
+ "WST": {
+  "name": "West Pharmaceutical Services",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Supplies",
+  "hq": {
+   "city": "Exton",
+   "state": "Pennsylvania",
+   "region": "Northeast"
+  },
+  "cik": 105770
+ },
+ "WTW": {
+  "name": "Willis Towers Watson",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Insurance Brokers",
+  "hq": {
+   "city": "London",
+   "state": "United Kingdom",
+   "region": "International"
+  },
+  "cik": 1140536
+ },
+ "WY": {
+  "name": "Weyerhaeuser",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Timber REITs",
+  "hq": {
+   "city": "Seattle",
+   "state": "Washington",
+   "region": "West"
+  },
+  "cik": 106535
+ },
+ "WYNN": {
+  "name": "Wynn Resorts",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Casinos & Gaming",
+  "hq": {
+   "city": "Paradise",
+   "state": "Nevada",
+   "region": "West"
+  },
+  "cik": 1174922
+ },
+ "XEL": {
+  "name": "Xcel Energy",
+  "industries": [
+   "Utilities"
+  ],
+  "sub": "Multi-Utilities",
+  "hq": {
+   "city": "Minneapolis",
+   "state": "Minnesota",
+   "region": "Midwest"
+  },
+  "cik": 72903
+ },
+ "XOM": {
+  "name": "ExxonMobil",
+  "industries": [
+   "Materials"
+  ],
+  "sub": "Integrated Oil & Gas",
+  "hq": {
+   "city": "Irving",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 34088
+ },
+ "XYL": {
+  "name": "Xylem Inc.",
+  "industries": [
+   "Industrials"
+  ],
+  "sub": "Industrial Machinery & Supplies & Components",
+  "hq": {
+   "city": "White Plains",
+   "state": "New York",
+   "region": "Northeast"
+  },
+  "cik": 1524472
+ },
+ "XYZ": {
+  "name": "Block, Inc.",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Transaction & Payment Processing Services",
+  "hq": {
+   "city": "none",
+   "state": "",
+   "region": "International"
+  },
+  "cik": 1512673
+ },
+ "YUM": {
+  "name": "Yum! Brands",
+  "industries": [
+   "Consumer Discretionary"
+  ],
+  "sub": "Restaurants",
+  "hq": {
+   "city": "Louisville",
+   "state": "Kentucky",
+   "region": "South"
+  },
+  "cik": 1041061
+ },
+ "ZBH": {
+  "name": "Zimmer Biomet",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Health Care Equipment",
+  "hq": {
+   "city": "Warsaw",
+   "state": "Indiana",
+   "region": "Midwest"
+  },
+  "cik": 1136869
+ },
+ "ZBRA": {
+  "name": "Zebra Technologies",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Electronic Equipment & Instruments",
+  "hq": {
+   "city": "Lincolnshire",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 877212
+ },
+ "ZTS": {
+  "name": "Zoetis",
+  "industries": [
+   "Healthcare"
+  ],
+  "sub": "Pharmaceuticals",
+  "hq": {
+   "city": "Parsippany",
+   "state": "New Jersey",
+   "region": "Northeast"
+  },
+  "cik": 1555280
+ }
+}

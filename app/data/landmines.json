@@ -1,0 +1,346 @@
+[
+ {
+  "ticker": "PN",
+  "name": "Pan Am",
+  "era": "1990-1994",
+  "multiple": 0.0,
+  "category": "Industrials",
+  "region": "Northeast"
+ },
+ {
+  "ticker": "WANG",
+  "name": "Wang Laboratories",
+  "era": "1990-1994",
+  "multiple": 0.0,
+  "category": "Technology",
+  "region": "Northeast"
+ },
+ {
+  "ticker": "NEB",
+  "name": "Bank of New England",
+  "era": "1990-1994",
+  "multiple": 0.0,
+  "category": "Financials",
+  "region": "Northeast"
+ },
+ {
+  "ticker": "FTL",
+  "name": "Fruit of the Loom",
+  "era": "1995-1999",
+  "multiple": 0.0,
+  "category": "Consumer Discretionary",
+  "region": "South"
+ },
+ {
+  "ticker": "SOC",
+  "name": "Sunbeam",
+  "era": "1995-1999",
+  "multiple": 0.2,
+  "category": "Consumer Discretionary",
+  "region": "South"
+ },
+ {
+  "ticker": "IRID",
+  "name": "Iridium",
+  "era": "1995-1999",
+  "multiple": 0.0,
+  "category": "Technology",
+  "region": "South"
+ },
+ {
+  "ticker": "ENE",
+  "name": "Enron",
+  "era": "2000-2004",
+  "multiple": 0.0,
+  "category": "Materials",
+  "region": "South"
+ },
+ {
+  "ticker": "WCOM",
+  "name": "WorldCom",
+  "era": "2000-2004",
+  "multiple": 0.0,
+  "category": "Technology",
+  "region": "South"
+ },
+ {
+  "ticker": "GBLX",
+  "name": "Global Crossing",
+  "era": "2000-2004",
+  "multiple": 0.0,
+  "category": "Technology",
+  "region": "Northeast"
+ },
+ {
+  "ticker": "PETS",
+  "name": "Pets.com",
+  "era": "2000-2004",
+  "multiple": 0.0,
+  "category": "Consumer Discretionary",
+  "region": "West"
+ },
+ {
+  "ticker": "LU",
+  "name": "Lucent Technologies",
+  "era": "2000-2004",
+  "multiple": 0.07,
+  "category": "Technology",
+  "region": "Northeast"
+ },
+ {
+  "ticker": "KM",
+  "name": "Kmart",
+  "era": "2000-2004",
+  "multiple": 0.0,
+  "category": "Consumer Discretionary",
+  "region": "Midwest"
+ },
+ {
+  "ticker": "NT",
+  "name": "Nortel Networks",
+  "era": "2005-2009",
+  "multiple": 0.0,
+  "category": "Technology",
+  "region": "Northeast"
+ },
+ {
+  "ticker": "LEH",
+  "name": "Lehman Brothers",
+  "era": "2005-2009",
+  "multiple": 0.0,
+  "category": "Financials",
+  "region": "Northeast"
+ },
+ {
+  "ticker": "BSC",
+  "name": "Bear Stearns",
+  "era": "2005-2009",
+  "multiple": 0.06,
+  "category": "Financials",
+  "region": "Northeast"
+ },
+ {
+  "ticker": "WM",
+  "name": "Washington Mutual",
+  "era": "2005-2009",
+  "multiple": 0.0,
+  "category": "Financials",
+  "region": "West"
+ },
+ {
+  "ticker": "CFC",
+  "name": "Countrywide Financial",
+  "era": "2005-2009",
+  "multiple": 0.07,
+  "category": "Financials",
+  "region": "West"
+ },
+ {
+  "ticker": "FNM",
+  "name": "Fannie Mae",
+  "era": "2005-2009",
+  "multiple": 0.02,
+  "category": "Financials",
+  "region": "South"
+ },
+ {
+  "ticker": "FRE",
+  "name": "Freddie Mac",
+  "era": "2005-2009",
+  "multiple": 0.02,
+  "category": "Financials",
+  "region": "South"
+ },
+ {
+  "ticker": "WB",
+  "name": "Wachovia",
+  "era": "2005-2009",
+  "multiple": 0.08,
+  "category": "Financials",
+  "region": "South"
+ },
+ {
+  "ticker": "GGP",
+  "name": "General Growth Properties",
+  "era": "2005-2009",
+  "multiple": 0.05,
+  "category": "Financials",
+  "region": "Midwest"
+ },
+ {
+  "ticker": "CC",
+  "name": "Circuit City",
+  "era": "2005-2009",
+  "multiple": 0.0,
+  "category": "Consumer Discretionary",
+  "region": "South"
+ },
+ {
+  "ticker": "GM",
+  "name": "General Motors",
+  "era": "2005-2009",
+  "multiple": 0.0,
+  "category": "Consumer Discretionary",
+  "region": "Midwest"
+ },
+ {
+  "ticker": "EK",
+  "name": "Eastman Kodak",
+  "era": "2010-2014",
+  "multiple": 0.02,
+  "category": "Technology",
+  "region": "Northeast"
+ },
+ {
+  "ticker": "BBI",
+  "name": "Blockbuster",
+  "era": "2010-2014",
+  "multiple": 0.0,
+  "category": "Consumer Discretionary",
+  "region": "South"
+ },
+ {
+  "ticker": "MF",
+  "name": "MF Global",
+  "era": "2010-2014",
+  "multiple": 0.0,
+  "category": "Financials",
+  "region": "Northeast"
+ },
+ {
+  "ticker": "BGP",
+  "name": "Borders Group",
+  "era": "2010-2014",
+  "multiple": 0.0,
+  "category": "Consumer Discretionary",
+  "region": "Midwest"
+ },
+ {
+  "ticker": "DYN",
+  "name": "Dynegy",
+  "era": "2010-2014",
+  "multiple": 0.0,
+  "category": "Utilities",
+  "region": "South"
+ },
+ {
+  "ticker": "DNDN",
+  "name": "Dendreon",
+  "era": "2010-2014",
+  "multiple": 0.0,
+  "category": "Healthcare",
+  "region": "West"
+ },
+ {
+  "ticker": "SUNE",
+  "name": "SunEdison",
+  "era": "2015-2019",
+  "multiple": 0.0,
+  "category": "Technology",
+  "region": "Midwest"
+ },
+ {
+  "ticker": "SHLD",
+  "name": "Sears",
+  "era": "2015-2019",
+  "multiple": 0.02,
+  "category": "Consumer Discretionary",
+  "region": "Midwest"
+ },
+ {
+  "ticker": "RSH",
+  "name": "RadioShack",
+  "era": "2015-2019",
+  "multiple": 0.0,
+  "category": "Consumer Discretionary",
+  "region": "South"
+ },
+ {
+  "ticker": "VRX",
+  "name": "Valeant Pharmaceuticals",
+  "era": "2015-2019",
+  "multiple": 0.1,
+  "category": "Healthcare",
+  "region": "Northeast"
+ },
+ {
+  "ticker": "WFT",
+  "name": "Weatherford",
+  "era": "2015-2019",
+  "multiple": 0.0,
+  "category": "Materials",
+  "region": "South"
+ },
+ {
+  "ticker": "CHK",
+  "name": "Chesapeake Energy",
+  "era": "2015-2019",
+  "multiple": 0.12,
+  "category": "Materials",
+  "region": "South"
+ },
+ {
+  "ticker": "FTR",
+  "name": "Frontier Communications",
+  "era": "2015-2019",
+  "multiple": 0.05,
+  "category": "Technology",
+  "region": "Northeast"
+ },
+ {
+  "ticker": "BBBY",
+  "name": "Bed Bath & Beyond",
+  "era": "2020-2024",
+  "multiple": 0.0,
+  "category": "Consumer Discretionary",
+  "region": "Northeast"
+ },
+ {
+  "ticker": "JCP",
+  "name": "JCPenney",
+  "era": "2020-2024",
+  "multiple": 0.0,
+  "category": "Consumer Discretionary",
+  "region": "South"
+ },
+ {
+  "ticker": "SIVB",
+  "name": "SVB Financial",
+  "era": "2020-2024",
+  "multiple": 0.0,
+  "category": "Financials",
+  "region": "West"
+ },
+ {
+  "ticker": "SBNY",
+  "name": "Signature Bank",
+  "era": "2020-2024",
+  "multiple": 0.0,
+  "category": "Financials",
+  "region": "Northeast"
+ },
+ {
+  "ticker": "FRC",
+  "name": "First Republic Bank",
+  "era": "2020-2024",
+  "multiple": 0.0,
+  "category": "Financials",
+  "region": "West"
+ },
+ {
+  "ticker": "WE",
+  "name": "WeWork",
+  "era": "2020-2024",
+  "multiple": 0.0,
+  "category": "Financials",
+  "region": "Northeast"
+ },
+ {
+  "ticker": "RAD",
+  "name": "Rite Aid",
+  "era": "2020-2024",
+  "multiple": 0.0,
+  "category": "Consumer Staples",
+  "region": "Northeast"
+ }
+]

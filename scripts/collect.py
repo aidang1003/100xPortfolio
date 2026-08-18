@@ -1,118 +1,160 @@
 #!/usr/bin/env python3
-"""Cache-first historical-returns collector for 100xPortfolio.
+"""Monthly price-series collector for 100xPortfolio.
 
-A 5-year era's total return is immutable once the window has closed, so we fetch
-each ``(era, ticker)`` multiple exactly once and keep it forever in a tracked
-cache (``scripts/data/returns_cache.json``). Only genuine cache misses touch the
-network, and the only provider is **Yahoo's public chart JSON** — split +
-dividend adjusted, no API key, no extra dependencies.
+We store the full monthly adjusted-close **series** per ticker in
+``scripts/data/prices.json`` and compute any window's multiple on the fly
+(``multiple(ticker, "2010-2014")`` = close at 2014-12 / close at 2010-01). A
+closed era's prices never change, so each ticker is fetched once from Yahoo's
+public chart JSON (split+dividend adjusted, no key) and kept forever.
 
-This replaces the old multi-provider strategy: Stooq 404s from many networks and
-yfinance isn't always installed, so both were dropped. Yahoo is the one that
-reliably works, and because results are cached durably we essentially never
-re-pull a completed era.
-
-    from collect import multiple, collect
-    multiple("AAPL", "2010-2014")          # cache hit, or one Yahoo call then cached
-    collect([("NVDA", "2020-2024"), ...])  # bulk, resumable, flushes as it goes
+    from collect import multiple, series
+    multiple("AAPL", "2010-2014")      # on-the-fly from the stored series
+    series("NVDA")                     # {"start": "1999-01", "closes": [...]}
 """
 
 import json
 import os
-import time
 import urllib.request
 from datetime import datetime, timezone
 
-CACHE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "returns_cache.json")
-USER_AGENT = "Mozilla/5.0 (100xPortfolio collector)"
+from common import SYMBOL, USER_AGENT
 
-# Display ticker -> Yahoo symbol when they differ.
-SYMBOL = {"BRK": "BRK-B", "FB": "META"}
-
-_cache = None
+DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+PRICES_PATH = os.path.join(DATA_DIR, "prices.json")
 
 
-def _load():
-    global _cache
-    if _cache is None:
+# --- year-month index helpers --------------------------------------------
+def _ym_to_i(ym):
+    """'YYYY-MM' -> absolute month index (year*12 + month-1)."""
+    y, m = ym.split("-")
+    return int(y) * 12 + int(m) - 1
+
+
+def _i_to_ym(i):
+    return f"{i // 12:04d}-{i % 12 + 1:02d}"
+
+
+def _era_bounds(era):
+    """'YYYY-YYYY' -> ('startYYYY-01', 'endYYYY-12')."""
+    start, end = era.split("-")
+    return f"{start}-01", f"{end}-12"
+
+
+# --- monthly price-series store -------------------------------------------
+_prices = None
+
+
+def _load_prices():
+    global _prices
+    if _prices is None:
         try:
-            with open(CACHE_PATH, encoding="utf-8") as f:
-                _cache = json.load(f)
+            with open(PRICES_PATH, encoding="utf-8") as f:
+                _prices = json.load(f)
         except (OSError, json.JSONDecodeError):
-            _cache = {}
-    return _cache
+            _prices = {}
+    return _prices
 
 
-def save():
-    """Persist the cache, sorted, for stable diffs."""
-    c = _load()
-    os.makedirs(os.path.dirname(CACHE_PATH), exist_ok=True)
-    with open(CACHE_PATH, "w", encoding="utf-8") as f:
-        json.dump(dict(sorted(c.items())), f, indent=0)
+def save_prices():
+    """Persist the price store, sorted by ticker, for stable diffs."""
+    p = _load_prices()
+    os.makedirs(DATA_DIR, exist_ok=True)
+    with open(PRICES_PATH, "w", encoding="utf-8") as f:
+        json.dump(dict(sorted(p.items())), f, separators=(",", ":"))
         f.write("\n")
 
 
-def yahoo_multiple(ticker, era):
-    """One Yahoo chart call -> split/dividend-adjusted 5y multiple, or None."""
+def fetch_series(ticker):
+    """One Yahoo call -> full monthly adj-close series, or None.
+
+    Returns {"start": "YYYY-MM", "closes": [float|None, ...]} where ``closes``
+    is dense monthly from ``start`` (None fills any missing month).
+    """
     sym = SYMBOL.get(ticker, ticker)
-    start, end = era.split("-")
-    p1 = int(datetime(int(start), 1, 1, tzinfo=timezone.utc).timestamp())
-    p2 = int(datetime(int(end), 12, 31, tzinfo=timezone.utc).timestamp())
+    p1 = int(datetime(1970, 1, 1, tzinfo=timezone.utc).timestamp())
+    p2 = int(datetime.now(timezone.utc).timestamp())
     url = (
         f"https://query1.finance.yahoo.com/v8/finance/chart/{sym}"
         f"?period1={p1}&period2={p2}&interval=1mo&events=div%2Csplit"
     )
     try:
         req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=20) as resp:
+        with urllib.request.urlopen(req, timeout=30) as resp:
             data = json.load(resp)
-        ind = data["chart"]["result"][0]["indicators"]
-        series = ind.get("adjclose", [{}])[0].get("adjclose") or ind["quote"][0]["close"]
-        closes = [float(x) for x in series if x and float(x) > 0]
+        result = data["chart"]["result"][0]
+        ts = result.get("timestamp") or []
+        ind = result["indicators"]
+        adj = ind.get("adjclose", [{}])[0].get("adjclose") or ind["quote"][0]["close"]
     except Exception:  # noqa: BLE001 - network is best-effort
         return None
-    if len(closes) < 2:
-        return None
-    return round(closes[-1] / closes[0], 2)
 
-
-def multiple(ticker, era, refetch=False):
-    """Cache-first 5y multiple for (ticker, era). Network only on a miss.
-
-    Returns the multiple, or None for delisted/no-data names (which is itself
-    cached so we don't keep retrying them).
-    """
-    c = _load()
-    key = f"{era}|{ticker}"
-    if not refetch and key in c:
-        return c[key]
-    c[key] = yahoo_multiple(ticker, era)
-    return c[key]
-
-
-def collect(pairs, sleep=0.15, flush_every=40):
-    """Bulk-collect (ticker, era) pairs, caching + flushing as we go.
-
-    Resumable: anything already cached is skipped, so a re-run after an
-    interruption costs nothing for what's done. Returns (fetched, cache_hits).
-    """
-    c = _load()
-    fetched = hits = 0
-    for ticker, era in pairs:
-        key = f"{era}|{ticker}"
-        if key in c:
-            hits += 1
+    by_month = {}
+    for t, c in zip(ts, adj):
+        if c is None or float(c) <= 0:
             continue
-        c[key] = yahoo_multiple(ticker, era)
-        fetched += 1
-        if fetched % flush_every == 0:
-            save()
-        time.sleep(sleep)
-    save()
-    return fetched, hits
+        ym = datetime.fromtimestamp(t, tz=timezone.utc).strftime("%Y-%m")
+        by_month[ym] = round(float(c), 4)
+    if len(by_month) < 2:
+        return None
+
+    lo, hi = _ym_to_i(min(by_month)), _ym_to_i(max(by_month))
+    closes = [by_month.get(_i_to_ym(i)) for i in range(lo, hi + 1)]
+    return {"start": _i_to_ym(lo), "closes": closes}
+
+
+def series(ticker, refetch=False):
+    """Cache-first monthly series for a ticker. Network only on a miss.
+
+    A None result (delisted / no data) is cached so we don't keep retrying.
+    """
+    p = _load_prices()
+    if not refetch and ticker in p:
+        return p[ticker]
+    p[ticker] = fetch_series(ticker)
+    return p[ticker]
+
+
+def price_at(ticker, ym, direction="at"):
+    """Adjusted close for `ticker` near month `ym`.
+
+    direction: 'after' = first available at/after ym, 'before' = last available
+    at/before ym, 'at' = nearest either way. Returns None if unavailable.
+    """
+    s = _load_prices().get(ticker)
+    if not s:
+        return None
+    closes = s["closes"]
+    n = len(closes)
+    idx = _ym_to_i(ym) - _ym_to_i(s["start"])
+    if direction == "after":
+        rng = range(max(0, idx), n)
+    elif direction == "before":
+        rng = range(min(n - 1, idx), -1, -1)
+    else:
+        order = sorted(range(n), key=lambda i: abs(i - idx))
+        rng = order
+    for i in rng:
+        if 0 <= i < n and closes[i] is not None:
+            return closes[i]
+    return None
+
+
+def multiple(ticker, era=None, start=None, end=None):
+    """Window total-return multiple for a ticker, computed from the series.
+
+    Call as multiple(t, "2010-2014") or multiple(t, start="2010-01", end="2014-12").
+    Returns None when the series doesn't cover the window.
+    """
+    if era is not None:
+        start, end = _era_bounds(era)
+    if ticker not in _load_prices():
+        series(ticker)
+    a = price_at(ticker, start, "after")
+    b = price_at(ticker, end, "before")
+    return round(b / a, 2) if a and b else None
 
 
 if __name__ == "__main__":
-    c = _load()
-    have = sum(1 for v in c.values() if v is not None)
-    print(f"{CACHE_PATH}: {len(c)} keys cached ({have} with data, {len(c) - have} dead/no-data)")
+    p = _load_prices()
+    have = sum(1 for v in p.values() if v)
+    print(f"{PRICES_PATH}: {len(p)} tickers ({have} with series, {len(p) - have} dead/no-data)")

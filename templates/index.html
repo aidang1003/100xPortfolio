@@ -8,7 +8,7 @@
     <title>Play 100x — Can you 100x your portfolio?</title>
     <meta
       name="description"
-      content="A daily stock-picking game. Random eras, random industries, five picks. Can your portfolio 100x?"
+      content="A daily stock-picking game. Each round deals an era and a US region — pick a company headquartered there, one per industry. Can your portfolio 100x?"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
@@ -28,26 +28,25 @@
       <div class="brand">
         <span class="brand-rest">Play </span><span class="brand-mark">100x</span>
       </div>
-      <div class="tagline">Pick 5 stocks across 5 random eras. Can you 100× and retire early?</div>
+      <div class="tagline">Pick five stocks, one per industry. Can you 100× and retire early?</div>
     </header>
 
     <main id="app">
       <!-- INTRO -->
       <section id="intro" class="screen card">
-        <h1 class="hero-title">Can your portfolio go <span class="gradient">100x?</span></h1>
+        <h1 class="hero-title">Can you <span class="gradient">100x</span> your portfolio?</h1>
         <p class="hero-sub">
-          The slot machine deals you a random <strong>5-year period</strong> and a random
-          <strong>industry</strong>. Pick the one stock you think crushed it. Do it five times.
-          Your money <strong>rolls from each pick into the next</strong> — then we grade your run.
+          Each round deals a 5-year era and a US region. Pick a
+          company headquartered there that you think crushed it. Draft five but one per industry.
         </p>
         <ul class="rules">
-          <li><span class="dot">①</span><span>Start with $10,000 and let it <em>compound</em>: your whole pot rides on pick #1, then those earnings ride on pick #2, and so on. Go 100× and you're a millionaire.</span></li>
-          <li><span class="dot">②</span><span>Stats are hidden. This is a test of market history.</span></li>
-          <li><span class="dot">③</span><span>One <em>era skip</em> + one <em>industry skip</em> for the whole game.</span></li>
-          <li><span class="dot">④</span><span>Everyone gets the same spins each day. Replay as much as you like.</span></li>
+          <li><span class="dot">①</span><span>Start with $10,000</span></li>
+          <li><span class="dot">②</span><span>Select One stock per industry.</span></li>
+          <li><span class="dot">③</span><span>Watch historical returns compound.</span></li>
+          <li><span class="dot">④</span><span>Everyone gets the same board each day.</span></li>
         </ul>
-        <button id="start-btn" class="btn btn-primary btn-lg">Build the portfolio →</button>
-        <button id="learn-btn" class="btn btn-ghost learn-link hidden">Learning mode — play with the returns shown →</button>
+        <button id="start-btn" class="btn btn-primary btn-lg">Select your portfolio →</button>
+        <button id="learn-btn" class="btn btn-ghost learn-link hidden">Easy mode →</button>
       </section>
 
       <!-- GAME -->
@@ -61,23 +60,22 @@
           </div>
           <div class="slot-x">×</div>
           <div class="slot-row">
-            <div class="slot-label">INDUSTRY</div>
-            <div class="slot-reel" id="reel-industry">––––</div>
+            <div class="slot-label">HQ REGION</div>
+            <div class="slot-reel" id="reel-location">––––</div>
           </div>
         </div>
 
-        <div class="skip-bar">
-          <button id="skip-era" class="btn btn-ghost btn-sm">↻ Era skip</button>
-          <span class="round-counter" id="round-counter">Round 1 / 5</span>
-          <button id="skip-industry" class="btn btn-ghost btn-sm">↻ Industry skip</button>
+        <div class="round-bar">
+          <span class="round-counter" id="round-counter">Pick 1 / 5</span>
         </div>
+        <div class="lineup-bar" id="lineup-bar"></div>
 
         <div class="stock-grid" id="stock-grid"></div>
       </section>
 
       <!-- RESULT -->
       <section id="result" class="screen hidden">
-        <div id="learn-result-tag" class="learn-result-tag hidden">📘 Learning mode — practice run, returns were shown</div>
+        <div id="learn-result-tag" class="learn-result-tag hidden">📘 Learning mode returns are shown</div>
         <div class="result-head card">
           <div class="grade-badge" id="grade-badge">–</div>
           <div class="result-headline">
@@ -131,10 +129,11 @@
     </main>
 
     <footer class="site-footer">
-      To the moon or zero — diamond hands only. 💎🙌 &nbsp;Educational game; historical
-      approximations, not investment advice.
+      💎🙌 Educational game with historical approximations.
     </footer>
 
-    <script src="{{ url_for('static', filename='game.js') }}"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <!-- Vercel Web Analytics (page views); a no-op off the Vercel platform. -->
+    <script defer src="/_vercel/insights/script.js"></script>
   </body>
 </html>

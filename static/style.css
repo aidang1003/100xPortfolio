@@ -180,11 +180,6 @@ main {
   padding: 14px 28px;
   font-size: 17px;
 }
-.btn-sm {
-  padding: 7px 14px;
-  font-size: 13px;
-}
-
 /* Intro */
 .hero-title {
   font-family: "Playfair Display", Georgia, serif;
@@ -303,23 +298,32 @@ main {
   font-weight: 700;
 }
 
-.skip-bar {
+.round-bar {
   display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+/* Lineup strip — the industry slots you've already filled (one per industry). */
+.lineup-bar {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
+  gap: 6px;
+  margin-bottom: 14px;
+  min-height: 22px;
 }
-/* Filled skip buttons — more visible than the bare ghost style. */
-.skip-bar .btn-ghost {
-  background: var(--surface-2);
-  border-color: #4a6b3c;
-  color: var(--text);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+.lineup-bar .lineup-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-right: 4px;
 }
-.skip-bar .btn-ghost:hover:not(:disabled) {
-  background: #21301a;
-  border-color: var(--green);
-  color: var(--green);
+.lineup-bar .ind-chip {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 .round-counter {
   font-family: "JetBrains Mono", monospace;
@@ -401,6 +405,50 @@ main {
 }
 .stock-row .stock-pct.down {
   color: var(--red);
+}
+/* Industry color swatch (gradient for multi-industry names like Amazon). */
+.stock-chip {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  align-self: center;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+/* HQ city/state under the company name. */
+.stock-row .stock-hq {
+  display: block;
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 1px;
+}
+/* Entry metrics (price · P/E · yield) — replaces the old blurb. */
+.stock-row .stock-metrics {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: right;
+  flex-shrink: 0;
+  max-width: 46%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* A company whose industries are all used this game — can't be drafted. */
+.stock-row.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.stock-row.disabled:hover {
+  border-color: var(--border);
+  background: var(--surface);
+}
+/* The little industry chip inside a result leg tag. */
+.leg-tag .stock-chip {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
 }
 
 /* Learning-mode banner on the result screen. */
@@ -567,7 +615,7 @@ main {
   .stock-row .stock-name {
     font-size: 14px;
   }
-  .stock-row .stock-meta {
+  .stock-row .stock-metrics {
     font-size: 11px;
   }
   .stock-row .stock-pct {

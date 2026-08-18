@@ -8,8 +8,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import find_candidates as fc  # noqa: E402  (roster history)
-import collect  # noqa: E402  (returns cache)
-import build_universe as bu  # noqa: E402  (sector map + fold)
+import collect  # noqa: E402  (price series -> multiples)
+import common  # noqa: E402  (sector map)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "COVERAGE.md")
@@ -23,9 +23,9 @@ def lbl(era):
 def main():
     uni = json.load(open(os.path.join(ROOT, "app", "universe.json"), encoding="utf-8"))
     cats, eras, S = uni["industries"], uni["eras"], uni["stocks"]
-    sect = bu.load_sector_map()  # ticker -> (name, GICS sector, sub-industry)
+    sect = common.load_sector_map()  # ticker -> (name, GICS sector, sub-industry)
     comp = fc.load_components()
-    cache = collect._load()
+    collect._load_prices()
 
     out = []
     w = out.append
@@ -61,7 +61,7 @@ def main():
     for e in eras:
         roster = fc.roster_at(comp, e.split("-")[0] + "-01-01")[0]
         in_sect = [t for t in roster if t in sect]
-        has = [t for t in in_sect if cache.get(e + "|" + t) is not None]
+        has = [t for t in in_sect if collect.multiple(t, e) is not None]
         w(f"| {lbl(e)} | {len(roster)} | {len(has)} | {len(roster) - len(in_sect)} | {len(in_sect) - len(has)} |")
     w("")
     w('"Kept in game" is survivors-with-data (the era totals above, minus a few curated')

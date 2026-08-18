@@ -1,0 +1,13 @@
+{
+ "Information Technology": "Technology",
+ "Communication Services": "Technology",
+ "Health Care": "Healthcare",
+ "Financials": "Financials",
+ "Real Estate": "Financials",
+ "Consumer Discretionary": "Consumer Discretionary",
+ "Consumer Staples": "Consumer Staples",
+ "Industrials": "Industrials",
+ "Utilities": "Utilities",
+ "Materials": "Materials",
+ "Energy": "Materials"
+}
