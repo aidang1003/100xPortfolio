@@ -11,6 +11,7 @@ the engine grades the run. Can you go **100×** and turn it into a million?
 - **5 picks, one per industry.** Multi-industry names (Amazon = Tech *or* Consumer) are flexible.
 - Each round is an **(era × HQ region)** spin — pick a company based there.
 - Returns are **hidden**; the **entry price, P/E and dividend yield** are shown.
+- **One skip per game.** Re-roll a single round's era *or* its region, then it's spent.
 - The day's board is **the same for everyone** (seeded by date).
 
 Eras are shown as clean 5-year spans (e.g. **2020–2025**); the underlying return
@@ -95,7 +96,7 @@ vercel --prod
 .
 ├── api/index.py            # Vercel entrypoint (exposes Flask `app`)
 ├── app/
-│   ├── __init__.py         # Flask factory + routes (/api/daily, /score, /learn, /config)
+│   ├── __init__.py         # Flask factory + routes (/api/daily, /cell, /score, /learn, /config)
 │   ├── config.py           # single source: stake, rounds, industry colors, era labels
 │   ├── data.py             # runtime loader for universe.json
 │   ├── game.py             # (era, HQ-location) spins + one-per-industry scoring

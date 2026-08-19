@@ -6,7 +6,7 @@ from flask import Flask, jsonify, render_template, request, send_from_directory
 
 from . import config
 from .data import ERAS, INDUSTRIES
-from .game import LOCATIONS, daily_rounds, era_label, learn_data, score
+from .game import LOCATIONS, cell_stocks, daily_rounds, era_label, learn_data, score
 
 # templates/ and static/ live one level up from this package.
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,6 +32,15 @@ def create_app():
     def api_daily():
         # No seed -> today's shared daily spin; a random seed -> a fresh replay.
         return jsonify(daily_rounds(request.args.get("seed")))
+
+    @app.route("/api/cell")
+    def api_cell():
+        # One (era, location) cell, fetched when a skip re-rolls into it.
+        era, loc = request.args.get("era"), request.args.get("location")
+        stocks = cell_stocks(era, loc)
+        if not stocks:
+            return jsonify({"error": "unknown cell"}), 404
+        return jsonify({"era": era, "eraLabel": era_label(era), "location": loc, "stocks": stocks})
 
     @app.route("/api/learn")
     def api_learn():

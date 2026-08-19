@@ -43,7 +43,8 @@
           <li><span class="dot">①</span><span>Start with $10,000</span></li>
           <li><span class="dot">②</span><span>One pick per industry, five in all.</span></li>
           <li><span class="dot">③</span><span>Watch historical returns compound.</span></li>
-          <li><span class="dot">④</span><span>Everyone gets the same board each day.</span></li>
+          <li><span class="dot">④</span><span>One skip per game: re-roll the era or the region.</span></li>
+          <li><span class="dot">⑤</span><span>Everyone gets the same board each day.</span></li>
         </ul>
         <div class="legend-head">The five industries, one pick each</div>
         <ul class="legend" id="industry-legend"></ul>
@@ -68,8 +69,10 @@
           </div>
         </div>
 
-        <div class="round-bar">
+        <div class="skip-bar">
+          <button id="skip-era" class="btn btn-ghost btn-sm">↻ Era skip</button>
           <span class="round-counter" id="round-counter">Pick 1 / 5</span>
+          <button id="skip-location" class="btn btn-ghost btn-sm">↻ Region skip</button>
         </div>
         <div class="lineup-bar" id="lineup-bar"></div>
 
