@@ -122,10 +122,11 @@ def cell_stocks(era, location):
 
 
 def _legal_cells(rnd):
-    """The cells a pick may come from: the primary plus the round's two alternates."""
-    return {(rnd["era"], rnd["location"]),
-            (rnd["altEra"], rnd["location"]),
-            (rnd["era"], rnd["altLocation"])}
+    """The cells a pick may come from. Each reel has its own skip, so a round can be
+    primary, era-skipped, region-skipped, or (if both are spent here) both."""
+    return {(era, loc)
+            for era in (rnd["era"], rnd["altEra"])
+            for loc in (rnd["location"], rnd["altLocation"])}
 
 
 def _stock_payload(s):
@@ -220,20 +221,23 @@ def _best_lineup(cells):
 
 
 def _best_possible(rounds):
-    """Best legal run on these spins, played under the same rules as the player:
-    one stock per round, five distinct industries, and one skip to re-roll a single
-    round's era or region. So it covers the no-skip lineup plus every one-skip variant."""
+    """Best legal run on these spins, played under the same rules as the player: one
+    stock per round, five distinct industries, one era skip and one region skip. So it
+    searches every way of spending those two charges, including both on one round."""
     base = [(r["era"], r["location"]) for r in rounds]
-    variants = [base]
-    for i, r in enumerate(rounds):
-        for alt in ((r["altEra"], r["location"]), (r["era"], r["altLocation"])):
-            variants.append(base[:i] + [alt] + base[i + 1:])
+    spends = range(-1, len(rounds))  # -1 = never spend this skip
 
     best_prod, best_assign, best_cells = -1.0, [], base
-    for cells in variants:
-        prod, assign = _best_lineup(cells)
-        if prod > best_prod:
-            best_prod, best_assign, best_cells = prod, assign, cells
+    for era_at in spends:
+        for loc_at in spends:
+            cells = list(base)
+            if era_at >= 0:
+                cells[era_at] = (rounds[era_at]["altEra"], cells[era_at][1])
+            if loc_at >= 0:
+                cells[loc_at] = (cells[loc_at][0], rounds[loc_at]["altLocation"])
+            prod, assign = _best_lineup(cells)
+            if prod > best_prod:
+                best_prod, best_assign, best_cells = prod, assign, cells
 
     balance, legs = STARTING_STAKE, []
     for (ind, s), (era, _loc) in zip(best_assign, best_cells):

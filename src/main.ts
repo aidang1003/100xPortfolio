@@ -83,7 +83,8 @@ const state = {
   data: null as Daily | null,
   round: 0,
   active: null as Cell | null,    // the cell in play; a skip swaps it for an alternate
-  skipUsed: false,                // one re-roll per game, era or region
+  skips: { era: false, location: false },  // one era skip + one region skip per game
+  swapped: { era: false, location: false }, // which reels this round has re-rolled
   picks: [] as PickChoice[],
   used: new Set<string>(),        // industries already filled (one per industry)
   learn: null as LearnData | null,
@@ -97,7 +98,7 @@ function snapshot() {
   return {
     screen: state.screen, seed: state.data?.seed, learnMode: state.learnMode,
     round: state.round, picks: state.picks, used: [...state.used], result: state.lastResult,
-    skipUsed: state.skipUsed,
+    skips: state.skips,
     active: state.active && { era: state.active.era, location: state.active.location },
   };
 }
@@ -165,11 +166,12 @@ async function restoreSession(s: any) {
   state.round = s.round || 0;
   state.picks = Array.isArray(s.picks) ? s.picks : [];
   state.used = new Set<string>(s.used || []);
-  state.skipUsed = !!s.skipUsed;
+  state.skips = { era: !!s.skips?.era, location: !!s.skips?.location };
   const rnd = state.data!.rounds[state.round];
   const a = s.active;  // resume on the skipped-into cell, not the primary
   state.active = a && (a.era !== rnd.era || a.location !== rnd.location)
     ? await loadCell(a.era, a.location) : rnd;
+  state.swapped = { era: state.active.era !== rnd.era, location: state.active.location !== rnd.location };
   show("game");
   drawRound(false);
 }
@@ -192,7 +194,7 @@ async function loadRounds(seed?: string) {
 
 function startGame() {
   state.round = 0;
-  state.skipUsed = false;
+  state.skips = { era: false, location: false };
   state.picks = [];
   state.used = new Set();
   state.lastResult = null;
@@ -249,6 +251,7 @@ function renderLineup() {
 
 function renderRound(animate: boolean) {
   state.active = state.data!.rounds[state.round];
+  state.swapped = { era: false, location: false };
   drawRound(animate);
 }
 
@@ -269,22 +272,26 @@ const setReels = (cell: Cell) => {
   $("reel-location").textContent = cell.location;
 };
 
-// One re-roll per game, spent on either reel; learning mode re-rolls freely.
+// One era skip and one region skip per game, each spent on its own reel;
+// learning mode re-rolls freely.
 function setSkipButtons() {
-  const spent = state.skipUsed && !state.learnMode;
-  for (const id of ["skip-era", "skip-location"]) ($(id) as HTMLButtonElement).disabled = spent;
+  for (const kind of ["era", "location"] as const) {
+    ($(`skip-${kind}`) as HTMLButtonElement).disabled = state.skips[kind] && !state.learnMode;
+  }
 }
 
 async function useSkip(kind: "era" | "location") {
-  if (state.skipUsed && !state.learnMode) return;
+  if (state.skips[kind] && !state.learnMode) return;
   const rnd = state.data!.rounds[state.round];
-  const btn = $(kind === "era" ? "skip-era" : "skip-location");
-  if (!state.learnMode) { state.skipUsed = true; setSkipButtons(); }
+  const btn = $(`skip-${kind}`);
+  if (!state.learnMode) { state.skips[kind] = true; setSkipButtons(); }
 
   $("stock-grid").innerHTML = "";  // hide the list while the reel re-rolls
-  state.active = kind === "era"
-    ? await loadCell(rnd.altEra, rnd.location)
-    : await loadCell(rnd.era, rnd.altLocation);
+  // Each reel re-rolls on its own, so spending both here lands on the alternate of each.
+  state.swapped[kind] = !state.swapped[kind];
+  state.active = await loadCell(
+    state.swapped.era ? rnd.altEra : rnd.era,
+    state.swapped.location ? rnd.altLocation : rnd.location);
   saveSession();
 
   const cell = state.active;

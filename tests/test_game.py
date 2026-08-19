@@ -63,6 +63,28 @@ class LineupEngineTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             game.score(picks, seed="test-seed")
 
+    def test_accepts_each_skipped_cell(self):
+        """A pick may come from the primary cell or from either reel's alternate."""
+        rnd = self.data["rounds"][0]
+        for era, loc in [(rnd["altEra"], rnd["location"]),        # era skip
+                         (rnd["era"], rnd["altLocation"]),        # region skip
+                         (rnd["altEra"], rnd["altLocation"])]:    # both, same round
+            stock = next(s for s in game.cell_stocks(era, loc)
+                         if self.picks[0]["industry"] in s["industries"])
+            picks = [dict(p) for p in self.picks]
+            picks[0] = {"era": era, "location": loc, "ticker": stock["ticker"],
+                        "industry": self.picks[0]["industry"]}
+            self.assertEqual(len(game.score(picks, seed="test-seed")["legs"]), 5)
+
+    def test_rejects_unskipped_cell(self):
+        """A cell neither reel could have re-rolled into is not pickable."""
+        rnd = self.data["rounds"][0]
+        other = next(e for e in game.ERAS if e not in (rnd["era"], rnd["altEra"]))
+        picks = [dict(p) for p in self.picks]
+        picks[0]["era"] = other
+        with self.assertRaises(ValueError):
+            game.score(picks, seed="test-seed")
+
     def test_rejects_unknown_ticker(self):
         picks = [dict(p) for p in self.picks]
         picks[0]["ticker"] = "ZZZZ"
