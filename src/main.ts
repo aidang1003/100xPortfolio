@@ -61,12 +61,12 @@ const ordinal = (n: number) => {
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
 };
 
-// Format the entry-metric row (price · P/E · yield); omit whatever's missing.
+// Format the entry-metric row (price · P/E · dividend); omit whatever's missing.
 function metricLine(m: Metrics): string {
   const bits: string[] = [];
   if (m.price != null) bits.push(usd(m.price));
   if (m.pe != null) bits.push(`${m.pe}× P/E`);
-  if (m.divYield != null) bits.push(`${m.divYield}% yield`);
+  if (m.divYield != null) bits.push(`${m.divYield}% dividend`);
   return bits.join(" · ");
 }
 

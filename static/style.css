@@ -478,7 +478,7 @@ main {
   color: var(--muted);
   margin-top: 1px;
 }
-/* Entry metrics (price · P/E · yield) — replaces the old blurb. */
+/* Entry metrics (price · P/E · dividend) — replaces the old blurb. */
 .stock-row .stock-metrics {
   font-family: "JetBrains Mono", monospace;
   color: var(--muted);
