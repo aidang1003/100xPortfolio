@@ -96,17 +96,37 @@ def daily_rounds(seed=None):
     if chosen is None:  # extraordinarily unlikely with region-sized pools
         chosen = rng.sample(cells, NUM_ROUNDS)
 
-    rounds = [
-        {
+    rounds = []
+    for i, (era, loc) in enumerate(chosen):
+        # The two cells this round's single skip can re-roll into. Their stock
+        # lists are fetched on demand (/api/cell) so the daily payload stays
+        # one cell per round instead of three.
+        alt_era = rng.choice([e for e in ERAS if e != era])
+        alt_loc = rng.choice([l for l in LOCATIONS if l != loc])
+        rounds.append({
             "index": i,
             "era": era,
             "eraLabel": era_label(era),
             "location": loc,
-            "stocks": [_stock_payload(s) for s in _POOL[(era, loc)]],
-        }
-        for i, (era, loc) in enumerate(chosen)
-    ]
+            "altEra": alt_era,
+            "altEraLabel": era_label(alt_era),
+            "altLocation": alt_loc,
+            "stocks": cell_stocks(era, loc),
+        })
     return {"seed": seed, "day": today_str(), "rounds": rounds}
+
+
+def cell_stocks(era, location):
+    """Pick-time payload for one (era, location) cell; what a skip re-rolls into."""
+    return [_stock_payload(s) for s in _POOL.get((era, location), [])]
+
+
+def _legal_cells(rnd):
+    """The cells a pick may come from. Each reel has its own skip, so a round can be
+    primary, era-skipped, region-skipped, or (if both are spent here) both."""
+    return {(era, loc)
+            for era in (rnd["era"], rnd["altEra"])
+            for loc in (rnd["location"], rnd["altLocation"])}
 
 
 def _stock_payload(s):
@@ -169,15 +189,13 @@ def _perf_class(rank, n):
     return "down"
 
 
-def _best_possible(rounds):
-    """Best legal lineup on these spins: one stock per round, distinct industries,
-    maximizing the parlay product. Reduces each round to its best stock per
-    industry, then searches distinct-industry assignments."""
-    # per round: industry -> (multiple, stock)
+def _best_lineup(cells):
+    """(product, [(industry, stock)]) for the best distinct-industry lineup over these
+    cells. Reduces each cell to its best stock per industry, then searches assignments."""
     opts = []
-    for r in rounds:
+    for era, loc in cells:
         best = {}
-        for s in _POOL.get((r["era"], r["location"]), []):
+        for s in _POOL.get((era, loc), []):
             for ind in s.get("industries", []):
                 if ind not in best or s["multiple"] > best[ind][0]:
                     best[ind] = (s["multiple"], s)
@@ -187,7 +205,7 @@ def _best_possible(rounds):
 
     def dfs(i, used, prod, path):
         nonlocal best_prod, best_assign
-        if i == len(rounds):
+        if i == len(cells):
             if prod > best_prod:
                 best_prod, best_assign = prod, list(path)
             return
@@ -199,13 +217,34 @@ def _best_possible(rounds):
             path.pop()
 
     dfs(0, frozenset(), 1.0, [])
+    return best_prod, best_assign or []
+
+
+def _best_possible(rounds):
+    """Best legal run on these spins, played under the same rules as the player: one
+    stock per round, five distinct industries, one era skip and one region skip. So it
+    searches every way of spending those two charges, including both on one round."""
+    base = [(r["era"], r["location"]) for r in rounds]
+    spends = range(-1, len(rounds))  # -1 = never spend this skip
+
+    best_prod, best_assign, best_cells = -1.0, [], base
+    for era_at in spends:
+        for loc_at in spends:
+            cells = list(base)
+            if era_at >= 0:
+                cells[era_at] = (rounds[era_at]["altEra"], cells[era_at][1])
+            if loc_at >= 0:
+                cells[loc_at] = (cells[loc_at][0], rounds[loc_at]["altLocation"])
+            prod, assign = _best_lineup(cells)
+            if prod > best_prod:
+                best_prod, best_assign, best_cells = prod, assign, cells
 
     balance, legs = STARTING_STAKE, []
-    for (ind, s), r in zip(best_assign or [], rounds):
+    for (ind, s), (era, _loc) in zip(best_assign, best_cells):
         balance *= s["multiple"]
         legs.append({
             "ticker": s["ticker"], "name": s["name"], "industry": ind,
-            "eraLabel": era_label(r["era"]), "multiple": round(s["multiple"], 2),
+            "eraLabel": era_label(era), "multiple": round(s["multiple"], 2),
         })
     return {"multiple": round(max(best_prod, 0.0), 2), "finalValue": round(balance, 2), "legs": legs}
 
@@ -228,8 +267,8 @@ def score(picks, seed=None):
     for i, pick in enumerate(picks):
         rnd = rounds[i]
         era, loc = pick.get("era"), pick.get("location")
-        if (era, loc) != (rnd["era"], rnd["location"]):
-            raise ValueError(f"Round {i}: illegal location {loc} / {era}")
+        if (era, loc) not in _legal_cells(rnd):  # primary or a skipped-into alternate
+            raise ValueError(f"Round {i}: illegal cell {era} / {loc}")
 
         stock = _pool_lookup(era, loc, pick.get("ticker"))
         if not stock:

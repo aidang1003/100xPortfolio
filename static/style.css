@@ -331,10 +331,17 @@ main {
   font-weight: 700;
 }
 
-.round-bar {
+/* Skip bar: the one era/region re-roll, flanking the round counter. */
+.skip-bar {
   display: flex;
-  justify-content: center;
-  margin-bottom: 8px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.btn-sm {
+  padding: 7px 14px;
+  font-size: 13px;
 }
 /* Lineup: the five industry slots, dim until a pick fills one. */
 .lineup-bar {
@@ -471,7 +478,7 @@ main {
   color: var(--muted);
   margin-top: 1px;
 }
-/* Entry metrics (price · P/E · yield) — replaces the old blurb. */
+/* Entry metrics (price · P/E · dividend) — replaces the old blurb. */
 .stock-row .stock-metrics {
   font-family: "JetBrains Mono", monospace;
   color: var(--muted);

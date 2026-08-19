@@ -16,12 +16,13 @@ interface Stock {
   industries: string[];
   metrics: Metrics;
 }
-interface Round {
+// One (era, region) cell of the board: what the reels show and what you pick from.
+interface Cell { era: string; eraLabel: string; location: string; stocks: Stock[]; }
+interface Round extends Cell {
   index: number;
-  era: string;
-  eraLabel: string;
-  location: string;
-  stocks: Stock[];
+  altEra: string;       // the cell an era skip re-rolls into (same region)
+  altEraLabel: string;
+  altLocation: string;  // the cell a region skip re-rolls into (same era)
 }
 interface Daily { seed: string; day: string; rounds: Round[]; }
 
@@ -60,12 +61,12 @@ const ordinal = (n: number) => {
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
 };
 
-// Format the entry-metric row (price · P/E · yield); omit whatever's missing.
+// Format the entry-metric row (price · P/E · dividend); omit whatever's missing.
 function metricLine(m: Metrics): string {
   const bits: string[] = [];
   if (m.price != null) bits.push(usd(m.price));
   if (m.pe != null) bits.push(`${m.pe}× P/E`);
-  if (m.divYield != null) bits.push(`${m.divYield}% yield`);
+  if (m.divYield != null) bits.push(`${m.divYield}% dividend`);
   return bits.join(" · ");
 }
 
@@ -81,6 +82,9 @@ const state = {
   config: null as unknown as Config,
   data: null as Daily | null,
   round: 0,
+  active: null as Cell | null,    // the cell in play; a skip swaps it for an alternate
+  skips: { era: false, location: false },  // one era skip + one region skip per game
+  swapped: { era: false, location: false }, // which reels this round has re-rolled
   picks: [] as PickChoice[],
   used: new Set<string>(),        // industries already filled (one per industry)
   learn: null as LearnData | null,
@@ -94,6 +98,8 @@ function snapshot() {
   return {
     screen: state.screen, seed: state.data?.seed, learnMode: state.learnMode,
     round: state.round, picks: state.picks, used: [...state.used], result: state.lastResult,
+    skips: state.skips,
+    active: state.active && { era: state.active.era, location: state.active.location },
   };
 }
 function saveSession() {
@@ -116,6 +122,8 @@ async function boot() {
   renderLegend();
 
   $("start-btn").onclick = () => { state.learnMode = false; startGame(); };
+  $("skip-era").onclick = () => useSkip("era");
+  $("skip-location").onclick = () => useSkip("location");
   $("copy-btn").onclick = copyResults;
   $("replay-btn").onclick = replay;
   $("learn-btn").onclick = startLearnGame;
@@ -158,11 +166,27 @@ async function restoreSession(s: any) {
   state.round = s.round || 0;
   state.picks = Array.isArray(s.picks) ? s.picks : [];
   state.used = new Set<string>(s.used || []);
+  state.skips = { era: !!s.skips?.era, location: !!s.skips?.location };
+  const rnd = state.data!.rounds[state.round];
+  const a = s.active;  // resume on the skipped-into cell, not the primary
+  state.active = a && (a.era !== rnd.era || a.location !== rnd.location)
+    ? await loadCell(a.era, a.location) : rnd;
+  state.swapped = { era: state.active.era !== rnd.era, location: state.active.location !== rnd.location };
   show("game");
-  renderRound(false);
+  drawRound(false);
 }
 
 // ---- data ----------------------------------------------------------------
+const cells = new Map<string, Cell>();
+async function loadCell(era: string, location: string): Promise<Cell> {
+  const key = `${era}|${location}`;
+  if (!cells.has(key)) {
+    const q = `era=${encodeURIComponent(era)}&location=${encodeURIComponent(location)}`;
+    cells.set(key, await fetch(`/api/cell?${q}`).then((r) => r.json()));
+  }
+  return cells.get(key)!;
+}
+
 async function loadRounds(seed?: string) {
   const url = seed ? `/api/daily?seed=${encodeURIComponent(seed)}` : "/api/daily";
   state.data = await fetch(url).then((r) => r.json());
@@ -170,6 +194,7 @@ async function loadRounds(seed?: string) {
 
 function startGame() {
   state.round = 0;
+  state.skips = { era: false, location: false };
   state.picks = [];
   state.used = new Set();
   state.lastResult = null;
@@ -225,20 +250,58 @@ function renderLineup() {
 }
 
 function renderRound(animate: boolean) {
-  const rnd = state.data!.rounds[state.round];
+  state.active = state.data!.rounds[state.round];
+  state.swapped = { era: false, location: false };
+  drawRound(animate);
+}
+
+function drawRound(animate: boolean) {
+  const cell = state.active!;
   saveSession();
   renderProgress();
   renderLineup();
+  setSkipButtons();
   $("round-counter").textContent = `Pick ${state.round + 1} / ${state.data!.rounds.length}`;
   $("stock-grid").innerHTML = "";
-  if (animate) spinReels(rnd, () => renderStocks());
-  else { setReels(rnd); renderStocks(); }
+  if (animate) spinReels(cell, () => renderStocks());
+  else { setReels(cell); renderStocks(); }
 }
 
-const setReels = (rnd: Round) => {
-  $("reel-era").textContent = rnd.eraLabel;
-  $("reel-location").textContent = rnd.location;
+const setReels = (cell: Cell) => {
+  $("reel-era").textContent = cell.eraLabel;
+  $("reel-location").textContent = cell.location;
 };
+
+// One era skip and one region skip per game, each spent on its own reel;
+// learning mode re-rolls freely.
+function setSkipButtons() {
+  for (const kind of ["era", "location"] as const) {
+    ($(`skip-${kind}`) as HTMLButtonElement).disabled = state.skips[kind] && !state.learnMode;
+  }
+}
+
+async function useSkip(kind: "era" | "location") {
+  if (state.skips[kind] && !state.learnMode) return;
+  const rnd = state.data!.rounds[state.round];
+  const btn = $(`skip-${kind}`);
+  if (!state.learnMode) { state.skips[kind] = true; setSkipButtons(); }
+
+  $("stock-grid").innerHTML = "";  // hide the list while the reel re-rolls
+  // Each reel re-rolls on its own, so spending both here lands on the alternate of each.
+  state.swapped[kind] = !state.swapped[kind];
+  state.active = await loadCell(
+    state.swapped.era ? rnd.altEra : rnd.era,
+    state.swapped.location ? rnd.altLocation : rnd.location);
+  saveSession();
+
+  const cell = state.active;
+  const reel = kind === "era" ? $("reel-era") : $("reel-location");
+  const frames = kind === "era" ? state.config.eras.map((e) => state.config.eraLabels[e]) : state.config.locations;
+  spinReel(reel, frames, kind === "era" ? cell.eraLabel : cell.location, () => {
+    renderStocks();
+    btn.blur();  // drop the lingering activation highlight on the button
+  });
+}
 
 function spinReel(reel: HTMLElement, frames: string[], finalText: string, done?: () => void) {
   reel.classList.add("spinning");
@@ -254,31 +317,31 @@ function spinReel(reel: HTMLElement, frames: string[], finalText: string, done?:
   }, 70);
 }
 
-function spinReels(rnd: Round, done: () => void) {
+function spinReels(cell: Cell, done: () => void) {
   const eraFrames = state.config.eras.map((e) => state.config.eraLabels[e]);
-  spinReel($("reel-era"), eraFrames, rnd.eraLabel);
-  spinReel($("reel-location"), state.config.locations, rnd.location, done);
+  spinReel($("reel-era"), eraFrames, cell.eraLabel);
+  spinReel($("reel-location"), state.config.locations, cell.location, done);
 }
 
 function renderStocks() {
   const grid = $("stock-grid");
   grid.innerHTML = "";
-  const rnd = state.data!.rounds[state.round];
-  setReels(rnd);
+  const cell = state.active!;
+  setReels(cell);
 
-  const returns = state.learnMode ? learnReturns(rnd.era) : null;
+  const returns = state.learnMode ? learnReturns(cell.era) : null;
   // Still-pickable companies first, then by dividend yield (learning mode ranks
   // by return instead, since that's the column it reveals). Non-payers sort last.
   const isOpen = (s: Stock) => s.industries.some((i) => !state.used.has(i));
   const rank = (s: Stock) => (returns ? returns[s.ticker] : s.metrics.divYield) ?? -Infinity;
-  const stocks = [...rnd.stocks].sort((a, b) =>
+  const stocks = [...cell.stocks].sort((a, b) =>
     Number(isOpen(b)) - Number(isOpen(a)) || rank(b) - rank(a) || a.name.localeCompare(b.name));
 
   const head = document.createElement("div");
   head.className = "stock-list-head";
   head.textContent = returns
-    ? `${stocks.length} companies in ${rnd.location} · returns shown`
-    : `${stocks.length} companies in ${rnd.location} · pick one to fill an industry`;
+    ? `${stocks.length} companies in ${cell.location} · returns shown`
+    : `${stocks.length} companies in ${cell.location} · pick one to fill an industry`;
   grid.appendChild(head);
 
   for (const s of stocks) {
@@ -311,8 +374,8 @@ const revealCol = (g?: number) =>
 function pick(s: Stock) {
   const industry = s.industries.find((i) => !state.used.has(i));
   if (!industry) return; // no open slot (row is disabled anyway)
-  const rnd = state.data!.rounds[state.round];
-  state.picks.push({ era: rnd.era, location: rnd.location, ticker: s.ticker, industry });
+  const cell = state.active!;
+  state.picks.push({ era: cell.era, location: cell.location, ticker: s.ticker, industry });
   state.used.add(industry);
 
   if (state.round + 1 >= state.data!.rounds.length) submit();
