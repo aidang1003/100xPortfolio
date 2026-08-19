@@ -43,6 +43,7 @@ interface Result {
 interface Config {
   startingStake: number; numRounds: number; industryColors: Record<string, string>;
   eras: string[]; eraLabels: Record<string, string>; industries: string[]; locations: string[];
+  industryBlurbs: Record<string, string>;
 }
 interface PickChoice { era: string; location: string; ticker: string; industry: string; }
 interface LearnData { stocks: Record<string, Record<string, { ticker: string; gainPct: number }[]>>; }
@@ -112,6 +113,7 @@ function loadSaved(): any {
 async function boot() {
   state.config = await fetch("/api/config").then((r) => r.json());
   applyIndustryColors();
+  renderLegend();
 
   $("start-btn").onclick = () => { state.learnMode = false; startGame(); };
   $("copy-btn").onclick = copyResults;
@@ -137,6 +139,14 @@ function applyIndustryColors() {
   }
 }
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z]+/g, "-");
+
+// Intro screen: the five industries a lineup must cover, with what's in each.
+function renderLegend() {
+  $("industry-legend").innerHTML = state.config.industries.map((ind) => `
+    <li><span class="legend-dot" style="background:${industryStyle([ind])}"></span>
+      <span class="legend-name">${ind}</span>
+      <span class="legend-blurb">${state.config.industryBlurbs[ind] || ""}</span></li>`).join("");
+}
 
 async function restoreSession(s: any) {
   state.learnMode = !!s.learnMode;
@@ -201,12 +211,17 @@ function renderProgress() {
   });
 }
 
-// The lineup strip: one chip per industry already filled + a "one per industry" note.
+// The lineup: one slot per industry, dim until a pick fills it with a ticker.
 function renderLineup() {
-  const bar = $("lineup-bar");
-  const chips = [...state.used].map((ind) =>
-    `<span class="ind-chip" style="background:${industryStyle([ind])}">${ind}</span>`).join("");
-  bar.innerHTML = `<span class="lineup-label">Your lineup — one per industry</span>${chips}`;
+  const filled: Record<string, string> = {};
+  for (const p of state.picks) filled[p.industry] = p.ticker;
+  $("lineup-bar").innerHTML = state.config.industries.map((ind) => {
+    const color = state.config.industryColors[ind] || "#888";
+    const ticker = filled[ind];
+    const style = ticker ? `background:${color}` : `border-color:${color}55;color:${color}`;
+    return `<div class="slot-chip${ticker ? " filled" : ""}" style="${style}">
+      <span class="slot-ind">${ind}</span><span class="slot-pick">${ticker || ""}</span></div>`;
+  }).join("");
 }
 
 function renderRound(animate: boolean) {
@@ -259,8 +274,8 @@ function renderStocks() {
   const head = document.createElement("div");
   head.className = "stock-list-head";
   head.textContent = returns
-    ? `${stocks.length} companies in ${rnd.location} — returns shown`
-    : `${stocks.length} companies in ${rnd.location} — pick one (fills a new industry)`;
+    ? `${stocks.length} companies in ${rnd.location} · returns shown`
+    : `${stocks.length} companies in ${rnd.location} · pick one to fill an industry`;
   grid.appendChild(head);
 
   for (const s of stocks) {
@@ -349,8 +364,8 @@ function showResult(res: Result) {
     legs.appendChild(row);
   });
 
-  $("best-pick").textContent = `${res.bestPick.name} (${res.bestPick.ticker}) — ${res.bestPick.multiple}×`;
-  $("weak-pick").textContent = `${res.weakness.name} (${res.weakness.ticker}) — ${res.weakness.multiple}×`;
+  $("best-pick").textContent = `${res.bestPick.name} (${res.bestPick.ticker}) · ${res.bestPick.multiple}×`;
+  $("weak-pick").textContent = `${res.weakness.name} (${res.weakness.ticker}) · ${res.weakness.multiple}×`;
   renderBest(res);
 }
 

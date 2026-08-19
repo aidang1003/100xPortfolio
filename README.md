@@ -33,7 +33,7 @@ The app reads a few normalized files under `app/`, joined into the runtime
 | `app/companies.json` | Per-company: name, **industries** (multi-tag), **HQ** (city/state/region), GICS sub-industry, CIK. |
 | `app/membership.json` | Point-in-time S&P 500 **rosters** per year (who was in the index when). |
 | `app/fundamentals.json` | **Entry metrics** per (ticker, era): price, P/E, dividend yield. |
-| `app/universe.json` | The built runtime dataset — 8 categories × 7 eras, with HQ + metrics on each entry. |
+| `app/universe.json` | The built runtime dataset: 5 categories × 7 eras, with HQ + metrics on each entry. |
 | `app/data/{landmines,gics_fold}.json` | Bankruptcy gotchas and the GICS→category fold. |
 
 ## Data pipeline
@@ -55,9 +55,9 @@ That runs, in order:
 3. **`build_fundamentals.py`** — entry price/yield from Yahoo + P/E from
    **SEC EDGAR** EPS (split-reconciled; P/E only where EDGAR reaches, ~2010+) → `fundamentals.json`.
 4. **`build_universe.py`** — joins the above with on-the-fly multiples from
-   **`collect.py`** (Yahoo monthly series), folds GICS → 8 categories, layers in the
+   **`collect.py`** (Yahoo monthly series), folds GICS → 5 categories, layers in the
    bankruptcy landmines → `universe.json`.
-5. **`coverage.py`** — regenerates `COVERAGE.md`.
+5. **`coverage.py`** — regenerates `docs/COVERAGE.md`.
 
 `scripts/find_candidates.py` is a curation aid (identity-checked S&P membership diff,
 for extending the delisted/historical universe). Sources: Yahoo public chart JSON
@@ -107,7 +107,7 @@ vercel --prod
 │   ├── collect.py          # monthly price-series store + on-the-fly multiples
 │   ├── build_{membership,companies,fundamentals,universe}.py
 │   ├── find_candidates.py  # membership diff / curation aid + shared roster lib
-│   ├── coverage.py         # → COVERAGE.md
+│   ├── coverage.py         # → docs/COVERAGE.md
 │   └── common.py           # shared constants + source-CSV loader (remaps, UA, eras, categories, GICS fold)
 ├── src/main.ts             # TypeScript frontend (built → static/app.js)
 ├── templates/index.html · static/{style.css,app.js}

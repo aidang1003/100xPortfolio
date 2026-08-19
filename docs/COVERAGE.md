@@ -1,18 +1,15 @@
 # Stock coverage — 100xPortfolio universe
 
-Generated from `app/universe.json` (built 2026-08-18). Each cell is the
+Generated from `app/universe.json` (built 2026-08-19). Each cell is the
 number of pickable stocks for that category × era.
 
 | Category | 1990-1995 | 1995-2000 | 2000-2005 | 2005-2010 | 2010-2015 | 2015-2020 | 2020-2025 | **Total** |
 |---|---|---|---|---|---|---|---|---|
 | Technology | 19 | 19 | 29 | 32 | 41 | 48 | 63 | **251** |
-| Healthcare | 15 | 15 | 20 | 27 | 30 | 36 | 46 | **189** |
 | Financials | 18 | 19 | 31 | 48 | 60 | 62 | 88 | **326** |
-| Consumer Discretionary | 9 | 12 | 17 | 20 | 29 | 35 | 41 | **163** |
-| Consumer Staples | 18 | 18 | 18 | 20 | 27 | 30 | 32 | **163** |
-| Industrials | 30 | 29 | 32 | 36 | 40 | 46 | 62 | **275** |
-| Utilities | 15 | 17 | 21 | 22 | 25 | 25 | 28 | **153** |
-| Materials | 18 | 19 | 22 | 23 | 25 | 35 | 39 | **181** |
+| Consumer | 27 | 30 | 35 | 40 | 56 | 65 | 73 | **326** |
+| Health & Utilities | 30 | 32 | 41 | 49 | 55 | 61 | 74 | **342** |
+| Industry & Energy | 48 | 48 | 54 | 59 | 65 | 81 | 101 | **456** |
 | **Total** | **142** | **148** | **190** | **228** | **277** | **317** | **399** | **1701** |
 
 ## Why the per-era totals are ~130–390, not ~500

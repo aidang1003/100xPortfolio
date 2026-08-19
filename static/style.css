@@ -215,6 +215,39 @@ main {
   color: var(--purple-1);
   font-weight: 700;
 }
+.legend-head {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.legend {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px;
+  display: grid;
+  gap: 8px;
+}
+.legend li {
+  display: grid;
+  grid-template-columns: 10px auto 1fr;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 14px;
+}
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  align-self: center;
+}
+.legend-name {
+  font-weight: 700;
+}
+.legend-blurb {
+  color: var(--muted);
+  font-size: 13px;
+}
 .hint {
   color: var(--muted);
   font-size: 13px;
@@ -303,28 +336,43 @@ main {
   justify-content: center;
   margin-bottom: 8px;
 }
-/* Lineup strip — the industry slots you've already filled (one per industry). */
+/* Lineup: the five industry slots, dim until a pick fills one. */
 .lineup-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 6px;
   margin-bottom: 14px;
-  min-height: 22px;
 }
-.lineup-bar .lineup-label {
-  font-size: 12px;
-  color: var(--muted);
-  margin-right: 4px;
+.slot-chip {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-height: 46px;
+  padding: 6px 3px;
+  border: 1px solid;
+  border-radius: 10px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.02);
 }
-.lineup-bar .ind-chip {
-  font-size: 11px;
+.slot-chip .slot-ind {
+  /* Scales down on narrow phones so "Health & Utilities" never spills the slot. */
+  font-size: clamp(9px, 2.7vw, 10px);
   font-weight: 700;
+  line-height: 1.15;
+  overflow-wrap: break-word;
+}
+.slot-chip .slot-pick {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  min-height: 13px;
+}
+.slot-chip.filled {
+  border-color: transparent;
   color: #fff;
-  padding: 2px 8px;
-  border-radius: 999px;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
+
 .round-counter {
   font-family: "JetBrains Mono", monospace;
   font-size: 13px;

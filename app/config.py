@@ -10,14 +10,21 @@ NUM_ROUNDS = 5
 # Industry -> accent color. The front end builds CSS variables from this and
 # blends the two colors into a gradient for multi-industry stocks (e.g. Amazon).
 INDUSTRY_COLORS = {
-    "Technology": "#3b82f6",             # blue
-    "Healthcare": "#ef4444",             # red
-    "Financials": "#22c55e",             # green
-    "Consumer Discretionary": "#f59e0b", # amber
-    "Consumer Staples": "#8b5cf6",       # violet
-    "Industrials": "#64748b",            # slate
-    "Utilities": "#06b6d4",              # cyan
-    "Materials": "#b45309",              # brown
+    "Technology": "#3b82f6",          # blue
+    "Financials": "#22c55e",          # green
+    "Consumer": "#f59e0b",            # amber
+    "Health & Utilities": "#ef4444",  # red
+    "Industry & Energy": "#8b5cf6",   # violet
+}
+
+# One line per industry, shown on the intro screen so players know the board
+# before they enter. Keyed to INDUSTRY_COLORS.
+INDUSTRY_BLURBS = {
+    "Technology": "Software, chips, telecom, media",
+    "Financials": "Banks, insurers, payments, real estate",
+    "Consumer": "Retail, food, cars, restaurants, brands",
+    "Health & Utilities": "Drugs, hospitals, power, water",
+    "Industry & Energy": "Machines, defense, chemicals, oil, transport",
 }
 
 

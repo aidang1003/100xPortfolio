@@ -28,23 +28,20 @@ ERAS = [
     "2020-2024",
 ]
 
-# The 8 game categories (11 GICS sectors fold into these; see app/data/gics_fold.json).
+# The 5 game categories (11 GICS sectors fold into these; see app/data/gics_fold.json).
 CATEGORIES = [
     "Technology",
-    "Healthcare",
     "Financials",
-    "Consumer Discretionary",
-    "Consumer Staples",
-    "Industrials",
-    "Utilities",
-    "Materials",
+    "Consumer",
+    "Health & Utilities",
+    "Industry & Energy",
 ]
 
 SP500_CACHE = os.path.join(HERE, ".cache", "sp500.csv")
 SP500_URL = "https://raw.githubusercontent.com/fja05680/sp500/master/sp500.csv"
 
-# 11 GICS sectors -> the 8 game categories (Comm Svcs -> Tech, Real Estate ->
-# Financials, Energy -> Materials). Editable data, not code.
+# 11 GICS sectors -> the 5 game categories, sized so no category dominates the
+# board (77-107 companies each). Editable data, not code.
 with open(os.path.join(os.path.dirname(HERE), "app", "data", "gics_fold.json"), encoding="utf-8") as _f:
     FOLD = json.load(_f)
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate COVERAGE.md: the stock-coverage chart plus a gap analysis against the
+"""Generate docs/COVERAGE.md: the stock-coverage chart plus a gap analysis against the
 current S&P 500 (survivorship bias + current members missing from every era)."""
 
 import json
@@ -12,7 +12,7 @@ import collect  # noqa: E402  (price series -> multiples)
 import common  # noqa: E402  (sector map)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, "COVERAGE.md")
+OUT = os.path.join(ROOT, "docs", "COVERAGE.md")
 
 
 def lbl(era):

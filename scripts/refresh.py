@@ -7,10 +7,10 @@
 The pipeline is cache-first and immutable: closed eras never change, so this only
 does real work for new index members (new price series + fundamentals) and a
 fresh membership snapshot. Everything it writes is deterministic — review the
-`git diff` and commit the regenerated `app/*.json` + `COVERAGE.md`.
+`git diff` and commit the regenerated `app/*.json` + `docs/COVERAGE.md`.
 
 Order (each step feeds the next):
-    membership.json -> companies.json -> fundamentals.json -> universe.json -> COVERAGE.md
+    membership.json -> companies.json -> fundamentals.json -> universe.json -> docs/COVERAGE.md
 """
 
 import argparse
@@ -48,10 +48,10 @@ def main():
     build_fundamentals.main()
     print("\n[4/5] universe.json — assembled game universe (fills any missing price series)")
     build_universe.main()
-    print("\n[5/5] COVERAGE.md — coverage report")
+    print("\n[5/5] docs/COVERAGE.md — coverage report")
     coverage.main()
 
-    print("\n✓ refresh complete. Review `git diff`, then commit the regenerated app/*.json + COVERAGE.md.")
+    print("\n✓ refresh complete. Review `git diff`, then commit the regenerated app/*.json + docs/COVERAGE.md.")
 
 
 if __name__ == "__main__":

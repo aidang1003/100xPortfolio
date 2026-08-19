@@ -2,7 +2,7 @@
  "A": {
   "name": "Agilent Technologies",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Life Sciences Tools & Services",
   "hq": {
@@ -28,7 +28,7 @@
  "ABBV": {
   "name": "AbbVie",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Biotechnology",
   "hq": {
@@ -41,7 +41,7 @@
  "ABNB": {
   "name": "Airbnb",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Hotels, Resorts & Cruise Lines",
   "hq": {
@@ -54,7 +54,7 @@
  "ABT": {
   "name": "Abbott Laboratories",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -119,7 +119,7 @@
  "ADM": {
   "name": "Archer Daniels Midland",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Agricultural Products & Services",
   "hq": {
@@ -132,7 +132,7 @@
  "ADP": {
   "name": "Automatic Data Processing",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Human Resource & Employment Services",
   "hq": {
@@ -158,7 +158,7 @@
  "AEE": {
   "name": "Ameren",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Multi-Utilities",
   "hq": {
@@ -171,7 +171,7 @@
  "AEP": {
   "name": "American Electric Power",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Electric Utilities",
   "hq": {
@@ -184,7 +184,7 @@
  "AES": {
   "name": "AES Corporation",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Independent Power Producers & Energy Traders",
   "hq": {
@@ -262,7 +262,7 @@
  "ALB": {
   "name": "Albemarle Corporation",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Specialty Chemicals",
   "hq": {
@@ -275,7 +275,7 @@
  "ALGN": {
   "name": "Align Technology",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Supplies",
   "hq": {
@@ -301,7 +301,7 @@
  "ALLE": {
   "name": "Allegion",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Building Products",
   "hq": {
@@ -327,7 +327,7 @@
  "AMCR": {
   "name": "Amcor",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Paper & Plastic Packaging Products & Materials",
   "hq": {
@@ -353,7 +353,7 @@
  "AME": {
   "name": "Ametek",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Electrical Components & Equipment",
   "hq": {
@@ -366,7 +366,7 @@
  "AMGN": {
   "name": "Amgen",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Biotechnology",
   "hq": {
@@ -405,7 +405,7 @@
  "AMZN": {
   "name": "Amazon",
   "industries": [
-   "Consumer Discretionary",
+   "Consumer",
    "Technology"
   ],
   "sub": "Broadline Retail",
@@ -445,7 +445,7 @@
  "AOS": {
   "name": "A. O. Smith",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Building Products",
   "hq": {
@@ -458,7 +458,7 @@
  "APA": {
   "name": "APA Corporation",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Exploration & Production",
   "hq": {
@@ -471,7 +471,7 @@
  "APD": {
   "name": "Air Products",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Gases",
   "hq": {
@@ -523,7 +523,7 @@
  "APTV": {
   "name": "Aptiv",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Automotive Parts & Equipment",
   "hq": {
@@ -562,7 +562,7 @@
  "ATO": {
   "name": "Atmos Energy",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Gas Utilities",
   "hq": {
@@ -601,7 +601,7 @@
  "AVY": {
   "name": "Avery Dennison",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Paper & Plastic Packaging Products & Materials",
   "hq": {
@@ -614,7 +614,7 @@
  "AWK": {
   "name": "American Water Works",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Water Utilities",
   "hq": {
@@ -627,7 +627,7 @@
  "AXON": {
   "name": "Axon Enterprise",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Aerospace & Defense",
   "hq": {
@@ -653,7 +653,7 @@
  "AZO": {
   "name": "AutoZone",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Automotive Retail",
   "hq": {
@@ -666,7 +666,7 @@
  "BA": {
   "name": "Boeing",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Aerospace & Defense",
   "hq": {
@@ -692,7 +692,7 @@
  "BALL": {
   "name": "Ball Corporation",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Metal, Glass & Plastic Containers",
   "hq": {
@@ -705,7 +705,7 @@
  "BAX": {
   "name": "Baxter International",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -718,7 +718,7 @@
  "BBY": {
   "name": "Best Buy",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Computer & Electronics Retail",
   "hq": {
@@ -731,7 +731,7 @@
  "BDX": {
   "name": "Becton Dickinson",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -757,7 +757,7 @@
  "BF-B": {
   "name": "Brown\u2013Forman",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Distillers & Vintners",
   "hq": {
@@ -770,7 +770,7 @@
  "BG": {
   "name": "Bunge Global",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Agricultural Products & Services",
   "hq": {
@@ -783,7 +783,7 @@
  "BIIB": {
   "name": "Biogen",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Biotechnology",
   "hq": {
@@ -796,7 +796,7 @@
  "BKNG": {
   "name": "Booking Holdings",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Hotels, Resorts & Cruise Lines",
   "hq": {
@@ -809,7 +809,7 @@
  "BKR": {
   "name": "Baker Hughes",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Equipment & Services",
   "hq": {
@@ -822,7 +822,7 @@
  "BLDR": {
   "name": "Builders FirstSource",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Building Products",
   "hq": {
@@ -848,7 +848,7 @@
  "BMY": {
   "name": "Bristol Myers Squibb",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Pharmaceuticals",
   "hq": {
@@ -874,7 +874,7 @@
  "BR": {
   "name": "Broadridge Financial Solutions",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Data Processing & Outsourced Services",
   "hq": {
@@ -913,7 +913,7 @@
  "BSX": {
   "name": "Boston Scientific",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -965,7 +965,7 @@
  "CAG": {
   "name": "Conagra Brands",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Packaged Foods & Meats",
   "hq": {
@@ -978,7 +978,7 @@
  "CAH": {
   "name": "Cardinal Health",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Distributors",
   "hq": {
@@ -991,7 +991,7 @@
  "CARR": {
   "name": "Carrier Global",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Building Products",
   "hq": {
@@ -1004,7 +1004,7 @@
  "CASY": {
   "name": "Casey's",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Food Retail",
   "hq": {
@@ -1017,7 +1017,7 @@
  "CAT": {
   "name": "Caterpillar Inc.",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Construction Machinery & Heavy Transportation Equipment",
   "hq": {
@@ -1082,7 +1082,7 @@
  "CCL": {
   "name": "Carnival Corporation",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Hotels, Resorts & Cruise Lines",
   "hq": {
@@ -1121,7 +1121,7 @@
  "CEG": {
   "name": "Constellation Energy",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Electric Utilities",
   "hq": {
@@ -1134,7 +1134,7 @@
  "CF": {
   "name": "CF Industries",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Fertilizers & Agricultural Chemicals",
   "hq": {
@@ -1160,7 +1160,7 @@
  "CHD": {
   "name": "Church & Dwight",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Household Products",
   "hq": {
@@ -1173,7 +1173,7 @@
  "CHRW": {
   "name": "C.H. Robinson",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Air Freight & Logistics",
   "hq": {
@@ -1199,7 +1199,7 @@
  "CI": {
   "name": "Cigna",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Services",
   "hq": {
@@ -1238,7 +1238,7 @@
  "CL": {
   "name": "Colgate-Palmolive",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Household Products",
   "hq": {
@@ -1251,7 +1251,7 @@
  "CLX": {
   "name": "Clorox",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Household Products",
   "hq": {
@@ -1290,7 +1290,7 @@
  "CMG": {
   "name": "Chipotle Mexican Grill",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Restaurants",
   "hq": {
@@ -1303,7 +1303,7 @@
  "CMI": {
   "name": "Cummins",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Construction Machinery & Heavy Transportation Equipment",
   "hq": {
@@ -1316,7 +1316,7 @@
  "CMS": {
   "name": "CMS Energy",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Multi-Utilities",
   "hq": {
@@ -1329,7 +1329,7 @@
  "CNC": {
   "name": "Centene Corporation",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Managed Health Care",
   "hq": {
@@ -1342,7 +1342,7 @@
  "CNP": {
   "name": "CenterPoint Energy",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Multi-Utilities",
   "hq": {
@@ -1394,7 +1394,7 @@
  "COO": {
   "name": "Cooper Companies (The)",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Supplies",
   "hq": {
@@ -1407,7 +1407,7 @@
  "COP": {
   "name": "ConocoPhillips",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Exploration & Production",
   "hq": {
@@ -1420,7 +1420,7 @@
  "COR": {
   "name": "Cencora",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Distributors",
   "hq": {
@@ -1433,7 +1433,7 @@
  "COST": {
   "name": "Costco",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Consumer Staples Merchandise Retail",
   "hq": {
@@ -1459,7 +1459,7 @@
  "CPB": {
   "name": "Campbell's Company (The)",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Packaged Foods & Meats",
   "hq": {
@@ -1472,7 +1472,7 @@
  "CPRT": {
   "name": "Copart",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Diversified Support Services",
   "hq": {
@@ -1498,7 +1498,7 @@
  "CRH": {
   "name": "CRH plc",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Construction Materials",
   "hq": {
@@ -1511,7 +1511,7 @@
  "CRL": {
   "name": "Charles River Laboratories",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Life Sciences Tools & Services",
   "hq": {
@@ -1576,7 +1576,7 @@
  "CSX": {
   "name": "CSX Corporation",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Rail Transportation",
   "hq": {
@@ -1589,7 +1589,7 @@
  "CTAS": {
   "name": "Cintas",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Diversified Support Services",
   "hq": {
@@ -1615,7 +1615,7 @@
  "CTVA": {
   "name": "Corteva",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Fertilizers & Agricultural Chemicals",
   "hq": {
@@ -1628,7 +1628,7 @@
  "CVNA": {
   "name": "Carvana",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Automotive Retail",
   "hq": {
@@ -1641,7 +1641,7 @@
  "CVS": {
   "name": "CVS Health",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Services",
   "hq": {
@@ -1654,7 +1654,7 @@
  "CVX": {
   "name": "Chevron Corporation",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Integrated Oil & Gas",
   "hq": {
@@ -1667,7 +1667,7 @@
  "D": {
   "name": "Dominion Energy",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Multi-Utilities",
   "hq": {
@@ -1680,7 +1680,7 @@
  "DAL": {
   "name": "Delta Air Lines",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Passenger Airlines",
   "hq": {
@@ -1693,7 +1693,7 @@
  "DASH": {
   "name": "DoorDash",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Specialized Consumer Services",
   "hq": {
@@ -1706,7 +1706,7 @@
  "DD": {
   "name": "DuPont",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Specialty Chemicals",
   "hq": {
@@ -1732,7 +1732,7 @@
  "DE": {
   "name": "Deere & Company",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Agricultural & Farm Machinery",
   "hq": {
@@ -1745,7 +1745,7 @@
  "DECK": {
   "name": "Deckers Brands",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Footwear",
   "hq": {
@@ -1771,7 +1771,7 @@
  "DG": {
   "name": "Dollar General",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Consumer Staples Merchandise Retail",
   "hq": {
@@ -1784,7 +1784,7 @@
  "DGX": {
   "name": "Quest Diagnostics",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Services",
   "hq": {
@@ -1797,7 +1797,7 @@
  "DHI": {
   "name": "D. R. Horton",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Homebuilding",
   "hq": {
@@ -1810,7 +1810,7 @@
  "DHR": {
   "name": "Danaher Corporation",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Life Sciences Tools & Services",
   "hq": {
@@ -1849,7 +1849,7 @@
  "DLTR": {
   "name": "Dollar Tree",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Consumer Staples Merchandise Retail",
   "hq": {
@@ -1875,7 +1875,7 @@
  "DOV": {
   "name": "Dover Corporation",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Machinery & Supplies & Components",
   "hq": {
@@ -1888,7 +1888,7 @@
  "DOW": {
   "name": "Dow Inc.",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Commodity Chemicals",
   "hq": {
@@ -1901,7 +1901,7 @@
  "DPZ": {
   "name": "Domino's",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Restaurants",
   "hq": {
@@ -1914,7 +1914,7 @@
  "DRI": {
   "name": "Darden Restaurants",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Restaurants",
   "hq": {
@@ -1927,7 +1927,7 @@
  "DTE": {
   "name": "DTE Energy",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Multi-Utilities",
   "hq": {
@@ -1940,7 +1940,7 @@
  "DUK": {
   "name": "Duke Energy",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Electric Utilities",
   "hq": {
@@ -1953,7 +1953,7 @@
  "DVA": {
   "name": "DaVita",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Services",
   "hq": {
@@ -1966,7 +1966,7 @@
  "DVN": {
   "name": "Devon Energy",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Exploration & Production",
   "hq": {
@@ -1979,7 +1979,7 @@
  "DXCM": {
   "name": "Dexcom",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -2005,7 +2005,7 @@
  "EBAY": {
   "name": "eBay Inc.",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Broadline Retail",
   "hq": {
@@ -2018,7 +2018,7 @@
  "ECL": {
   "name": "Ecolab",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Specialty Chemicals",
   "hq": {
@@ -2031,7 +2031,7 @@
  "ED": {
   "name": "Consolidated Edison",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Multi-Utilities",
   "hq": {
@@ -2044,7 +2044,7 @@
  "EFX": {
   "name": "Equifax",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Research & Consulting Services",
   "hq": {
@@ -2070,7 +2070,7 @@
  "EIX": {
   "name": "Edison International",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Electric Utilities",
   "hq": {
@@ -2083,7 +2083,7 @@
  "EL": {
   "name": "Est\u00e9e Lauder Companies (The)",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Personal Care Products",
   "hq": {
@@ -2096,7 +2096,7 @@
  "ELV": {
   "name": "Elevance Health",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Managed Health Care",
   "hq": {
@@ -2109,7 +2109,7 @@
  "EME": {
   "name": "Emcor",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Construction & Engineering",
   "hq": {
@@ -2122,7 +2122,7 @@
  "EMR": {
   "name": "Emerson Electric",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Electrical Components & Equipment",
   "hq": {
@@ -2135,7 +2135,7 @@
  "EOG": {
   "name": "EOG Resources",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Exploration & Production",
   "hq": {
@@ -2174,7 +2174,7 @@
  "EQT": {
   "name": "EQT Corporation",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Exploration & Production",
   "hq": {
@@ -2200,7 +2200,7 @@
  "ES": {
   "name": "Eversource Energy",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Electric Utilities",
   "hq": {
@@ -2226,7 +2226,7 @@
  "ETN": {
   "name": "Eaton Corporation",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Electrical Components & Equipment",
   "hq": {
@@ -2239,7 +2239,7 @@
  "ETR": {
   "name": "Entergy",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Electric Utilities",
   "hq": {
@@ -2252,7 +2252,7 @@
  "EVRG": {
   "name": "Evergy",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Electric Utilities",
   "hq": {
@@ -2265,7 +2265,7 @@
  "EW": {
   "name": "Edwards Lifesciences",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -2278,7 +2278,7 @@
  "EXC": {
   "name": "Exelon",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Electric Utilities",
   "hq": {
@@ -2291,7 +2291,7 @@
  "EXE": {
   "name": "Expand Energy",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Exploration & Production",
   "hq": {
@@ -2304,7 +2304,7 @@
  "EXPD": {
   "name": "Expeditors International",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Air Freight & Logistics",
   "hq": {
@@ -2317,7 +2317,7 @@
  "EXPE": {
   "name": "Expedia Group",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Hotels, Resorts & Cruise Lines",
   "hq": {
@@ -2343,7 +2343,7 @@
  "F": {
   "name": "Ford Motor Company",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Automobile Manufacturers",
   "hq": {
@@ -2356,7 +2356,7 @@
  "FANG": {
   "name": "Diamondback Energy",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Exploration & Production",
   "hq": {
@@ -2369,7 +2369,7 @@
  "FAST": {
   "name": "Fastenal",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Trading Companies & Distributors",
   "hq": {
@@ -2382,7 +2382,7 @@
  "FCX": {
   "name": "Freeport-McMoRan",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Copper",
   "hq": {
@@ -2408,7 +2408,7 @@
  "FDX": {
   "name": "FedEx",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Air Freight & Logistics",
   "hq": {
@@ -2421,7 +2421,7 @@
  "FDXF": {
   "name": "FedEx Freight",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Cargo Ground Transportation",
   "hq": {
@@ -2434,7 +2434,7 @@
  "FE": {
   "name": "FirstEnergy",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Electric Utilities",
   "hq": {
@@ -2512,7 +2512,7 @@
  "FIX": {
   "name": "Comfort Systems USA",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Construction & Engineering",
   "hq": {
@@ -2590,7 +2590,7 @@
  "FTV": {
   "name": "Fortive",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Machinery & Supplies & Components",
   "hq": {
@@ -2603,7 +2603,7 @@
  "GD": {
   "name": "General Dynamics",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Aerospace & Defense",
   "hq": {
@@ -2629,7 +2629,7 @@
  "GE": {
   "name": "GE Aerospace",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Aerospace & Defense",
   "hq": {
@@ -2642,7 +2642,7 @@
  "GEHC": {
   "name": "GE HealthCare",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -2668,7 +2668,7 @@
  "GEV": {
   "name": "GE Vernova",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Heavy Electrical Equipment",
   "hq": {
@@ -2681,7 +2681,7 @@
  "GILD": {
   "name": "Gilead Sciences",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Biotechnology",
   "hq": {
@@ -2694,7 +2694,7 @@
  "GIS": {
   "name": "General Mills",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Packaged Foods & Meats",
   "hq": {
@@ -2733,7 +2733,7 @@
  "GM": {
   "name": "General Motors",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Automobile Manufacturers",
   "hq": {
@@ -2746,7 +2746,7 @@
  "GNRC": {
   "name": "Generac",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Electrical Components & Equipment",
   "hq": {
@@ -2785,7 +2785,7 @@
  "GPC": {
   "name": "Genuine Parts Company",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Distributors",
   "hq": {
@@ -2811,7 +2811,7 @@
  "GRMN": {
   "name": "Garmin",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Consumer Electronics",
   "hq": {
@@ -2837,7 +2837,7 @@
  "GWW": {
   "name": "W. W. Grainger",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Machinery & Supplies & Components",
   "hq": {
@@ -2850,7 +2850,7 @@
  "HAL": {
   "name": "Halliburton",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Equipment & Services",
   "hq": {
@@ -2863,7 +2863,7 @@
  "HAS": {
   "name": "Hasbro",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Leisure Products",
   "hq": {
@@ -2889,7 +2889,7 @@
  "HCA": {
   "name": "HCA Healthcare",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Facilities",
   "hq": {
@@ -2902,7 +2902,7 @@
  "HD": {
   "name": "Home Depot (The)",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Home Improvement Retail",
   "hq": {
@@ -2928,7 +2928,7 @@
  "HII": {
   "name": "Huntington Ingalls Industries",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Aerospace & Defense",
   "hq": {
@@ -2941,7 +2941,7 @@
  "HLT": {
   "name": "Hilton Worldwide",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Hotels, Resorts & Cruise Lines",
   "hq": {
@@ -2954,7 +2954,7 @@
  "HON": {
   "name": "Honeywell",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Conglomerates",
   "hq": {
@@ -3006,7 +3006,7 @@
  "HRL": {
   "name": "Hormel Foods",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Packaged Foods & Meats",
   "hq": {
@@ -3019,7 +3019,7 @@
  "HSIC": {
   "name": "Henry Schein",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Distributors",
   "hq": {
@@ -3045,7 +3045,7 @@
  "HSY": {
   "name": "Hershey Company (The)",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Packaged Foods & Meats",
   "hq": {
@@ -3058,7 +3058,7 @@
  "HUBB": {
   "name": "Hubbell Incorporated",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Machinery & Supplies & Components",
   "hq": {
@@ -3071,7 +3071,7 @@
  "HUM": {
   "name": "Humana",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Managed Health Care",
   "hq": {
@@ -3084,7 +3084,7 @@
  "HWM": {
   "name": "Howmet Aerospace",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Aerospace & Defense",
   "hq": {
@@ -3136,7 +3136,7 @@
  "IDXX": {
   "name": "Idexx Laboratories",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -3149,7 +3149,7 @@
  "IEX": {
   "name": "IDEX Corporation",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Machinery & Supplies & Components",
   "hq": {
@@ -3162,7 +3162,7 @@
  "IFF": {
   "name": "International Flavors & Fragrances",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Specialty Chemicals",
   "hq": {
@@ -3175,7 +3175,7 @@
  "INCY": {
   "name": "Incyte",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Biotechnology",
   "hq": {
@@ -3227,7 +3227,7 @@
  "IP": {
   "name": "International Paper",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Paper & Plastic Packaging Products & Materials",
   "hq": {
@@ -3240,7 +3240,7 @@
  "IQV": {
   "name": "IQVIA",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Life Sciences Tools & Services",
   "hq": {
@@ -3253,7 +3253,7 @@
  "IR": {
   "name": "Ingersoll Rand",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Machinery & Supplies & Components",
   "hq": {
@@ -3279,7 +3279,7 @@
  "ISRG": {
   "name": "Intuitive Surgical",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -3305,7 +3305,7 @@
  "ITW": {
   "name": "Illinois Tool Works",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Machinery & Supplies & Components",
   "hq": {
@@ -3331,7 +3331,7 @@
  "J": {
   "name": "Jacobs Solutions",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Construction & Engineering",
   "hq": {
@@ -3344,7 +3344,7 @@
  "JBHT": {
   "name": "J.B. Hunt",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Cargo Ground Transportation",
   "hq": {
@@ -3370,7 +3370,7 @@
  "JCI": {
   "name": "Johnson Controls",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Building Products",
   "hq": {
@@ -3396,7 +3396,7 @@
  "JNJ": {
   "name": "Johnson & Johnson",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Pharmaceuticals",
   "hq": {
@@ -3422,7 +3422,7 @@
  "KDP": {
   "name": "Keurig Dr Pepper",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Soft Drinks & Non-alcoholic Beverages",
   "hq": {
@@ -3461,7 +3461,7 @@
  "KHC": {
   "name": "Kraft Heinz",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Packaged Foods & Meats",
   "hq": {
@@ -3513,7 +3513,7 @@
  "KMB": {
   "name": "Kimberly-Clark",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Household Products",
   "hq": {
@@ -3526,7 +3526,7 @@
  "KMI": {
   "name": "Kinder Morgan",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Storage & Transportation",
   "hq": {
@@ -3539,7 +3539,7 @@
  "KO": {
   "name": "Coca-Cola Company (The)",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Soft Drinks & Non-alcoholic Beverages",
   "hq": {
@@ -3552,7 +3552,7 @@
  "KR": {
   "name": "Kroger",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Food Retail",
   "hq": {
@@ -3565,7 +3565,7 @@
  "KVUE": {
   "name": "Kenvue",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Personal Care Products",
   "hq": {
@@ -3591,7 +3591,7 @@
  "LDOS": {
   "name": "Leidos",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Diversified Support Services",
   "hq": {
@@ -3604,7 +3604,7 @@
  "LEN": {
   "name": "Lennar",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Homebuilding",
   "hq": {
@@ -3617,7 +3617,7 @@
  "LH": {
   "name": "Labcorp",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Services",
   "hq": {
@@ -3630,7 +3630,7 @@
  "LHX": {
   "name": "L3Harris",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Aerospace & Defense",
   "hq": {
@@ -3643,7 +3643,7 @@
  "LII": {
   "name": "Lennox International",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Building Products",
   "hq": {
@@ -3656,7 +3656,7 @@
  "LIN": {
   "name": "Linde plc",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Gases",
   "hq": {
@@ -3682,7 +3682,7 @@
  "LLY": {
   "name": "Lilly (Eli)",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Pharmaceuticals",
   "hq": {
@@ -3695,7 +3695,7 @@
  "LMT": {
   "name": "Lockheed Martin",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Aerospace & Defense",
   "hq": {
@@ -3708,7 +3708,7 @@
  "LNT": {
   "name": "Alliant Energy",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Electric Utilities",
   "hq": {
@@ -3721,7 +3721,7 @@
  "LOW": {
   "name": "Lowe's",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Home Improvement Retail",
   "hq": {
@@ -3747,7 +3747,7 @@
  "LULU": {
   "name": "Lululemon Athletica",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Apparel, Accessories & Luxury Goods",
   "hq": {
@@ -3760,7 +3760,7 @@
  "LUV": {
   "name": "Southwest Airlines",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Passenger Airlines",
   "hq": {
@@ -3773,7 +3773,7 @@
  "LVS": {
   "name": "Las Vegas Sands",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Casinos & Gaming",
   "hq": {
@@ -3786,7 +3786,7 @@
  "LYB": {
   "name": "LyondellBasell",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Specialty Chemicals",
   "hq": {
@@ -3838,7 +3838,7 @@
  "MAR": {
   "name": "Marriott International",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Hotels, Resorts & Cruise Lines",
   "hq": {
@@ -3851,7 +3851,7 @@
  "MAS": {
   "name": "Masco",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Building Products",
   "hq": {
@@ -3864,7 +3864,7 @@
  "MCD": {
   "name": "McDonald's",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Restaurants",
   "hq": {
@@ -3890,7 +3890,7 @@
  "MCK": {
   "name": "McKesson Corporation",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Distributors",
   "hq": {
@@ -3916,7 +3916,7 @@
  "MDLZ": {
   "name": "Mondelez International",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Packaged Foods & Meats",
   "hq": {
@@ -3929,7 +3929,7 @@
  "MDT": {
   "name": "Medtronic",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -3968,7 +3968,7 @@
  "MGM": {
   "name": "MGM Resorts",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Casinos & Gaming",
   "hq": {
@@ -3981,7 +3981,7 @@
  "MKC": {
   "name": "McCormick & Company",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Packaged Foods & Meats",
   "hq": {
@@ -3994,7 +3994,7 @@
  "MLM": {
   "name": "Martin Marietta Materials",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Construction Materials",
   "hq": {
@@ -4007,7 +4007,7 @@
  "MMM": {
   "name": "3M",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Conglomerates",
   "hq": {
@@ -4020,7 +4020,7 @@
  "MNST": {
   "name": "Monster Beverage",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Soft Drinks & Non-alcoholic Beverages",
   "hq": {
@@ -4033,7 +4033,7 @@
  "MO": {
   "name": "Altria",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Tobacco",
   "hq": {
@@ -4046,7 +4046,7 @@
  "MOS": {
   "name": "Mosaic Company (The)",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Fertilizers & Agricultural Chemicals",
   "hq": {
@@ -4059,7 +4059,7 @@
  "MPC": {
   "name": "Marathon Petroleum",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Refining & Marketing",
   "hq": {
@@ -4085,7 +4085,7 @@
  "MRK": {
   "name": "Merck & Co.",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Pharmaceuticals",
   "hq": {
@@ -4098,7 +4098,7 @@
  "MRNA": {
   "name": "Moderna",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Biotechnology",
   "hq": {
@@ -4189,7 +4189,7 @@
  "MTD": {
   "name": "Mettler Toledo",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Life Sciences Tools & Services",
   "hq": {
@@ -4215,7 +4215,7 @@
  "NCLH": {
   "name": "Norwegian Cruise Line Holdings",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Hotels, Resorts & Cruise Lines",
   "hq": {
@@ -4241,7 +4241,7 @@
  "NDSN": {
   "name": "Nordson Corporation",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Machinery & Supplies & Components",
   "hq": {
@@ -4254,7 +4254,7 @@
  "NEE": {
   "name": "NextEra Energy",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Multi-Utilities",
   "hq": {
@@ -4267,7 +4267,7 @@
  "NEM": {
   "name": "Newmont",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Gold",
   "hq": {
@@ -4293,7 +4293,7 @@
  "NI": {
   "name": "NiSource",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Multi-Utilities",
   "hq": {
@@ -4306,7 +4306,7 @@
  "NKE": {
   "name": "Nike, Inc.",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Apparel, Accessories & Luxury Goods",
   "hq": {
@@ -4319,7 +4319,7 @@
  "NOC": {
   "name": "Northrop Grumman",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Aerospace & Defense",
   "hq": {
@@ -4345,7 +4345,7 @@
  "NRG": {
   "name": "NRG Energy",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Independent Power Producers & Energy Traders",
   "hq": {
@@ -4358,7 +4358,7 @@
  "NSC": {
   "name": "Norfolk Southern",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Rail Transportation",
   "hq": {
@@ -4397,7 +4397,7 @@
  "NUE": {
   "name": "Nucor",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Steel",
   "hq": {
@@ -4423,7 +4423,7 @@
  "NVR": {
   "name": "NVR, Inc.",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Homebuilding",
   "hq": {
@@ -4488,7 +4488,7 @@
  "ODFL": {
   "name": "Old Dominion",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Cargo Ground Transportation",
   "hq": {
@@ -4501,7 +4501,7 @@
  "OKE": {
   "name": "Oneok",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Storage & Transportation",
   "hq": {
@@ -4553,7 +4553,7 @@
  "ORLY": {
   "name": "O\u2019Reilly Automotive",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Automotive Retail",
   "hq": {
@@ -4566,7 +4566,7 @@
  "OTIS": {
   "name": "Otis Worldwide",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Machinery & Supplies & Components",
   "hq": {
@@ -4579,7 +4579,7 @@
  "OXY": {
   "name": "Occidental Petroleum",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Exploration & Production",
   "hq": {
@@ -4605,7 +4605,7 @@
  "PAYX": {
   "name": "Paychex",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Human Resource & Employment Services",
   "hq": {
@@ -4618,7 +4618,7 @@
  "PCAR": {
   "name": "Paccar",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Construction Machinery & Heavy Transportation Equipment",
   "hq": {
@@ -4631,7 +4631,7 @@
  "PCG": {
   "name": "PG&E Corporation",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Multi-Utilities",
   "hq": {
@@ -4644,7 +4644,7 @@
  "PEG": {
   "name": "Public Service Enterprise Group",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Electric Utilities",
   "hq": {
@@ -4657,7 +4657,7 @@
  "PEP": {
   "name": "PepsiCo",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Soft Drinks & Non-alcoholic Beverages",
   "hq": {
@@ -4670,7 +4670,7 @@
  "PFE": {
   "name": "Pfizer",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Pharmaceuticals",
   "hq": {
@@ -4696,7 +4696,7 @@
  "PG": {
   "name": "Procter & Gamble",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Personal Care Products",
   "hq": {
@@ -4722,7 +4722,7 @@
  "PH": {
   "name": "Parker Hannifin",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Machinery & Supplies & Components",
   "hq": {
@@ -4735,7 +4735,7 @@
  "PHM": {
   "name": "PulteGroup",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Homebuilding",
   "hq": {
@@ -4748,7 +4748,7 @@
  "PKG": {
   "name": "Packaging Corporation of America",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Paper & Plastic Packaging Products & Materials",
   "hq": {
@@ -4787,7 +4787,7 @@
  "PM": {
   "name": "Philip Morris International",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Tobacco",
   "hq": {
@@ -4813,7 +4813,7 @@
  "PNR": {
   "name": "Pentair",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Machinery & Supplies & Components",
   "hq": {
@@ -4826,7 +4826,7 @@
  "PNW": {
   "name": "Pinnacle West Capital",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Multi-Utilities",
   "hq": {
@@ -4839,7 +4839,7 @@
  "PODD": {
   "name": "Insulet Corporation",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -4852,7 +4852,7 @@
  "POOL": {
   "name": "Pool Corporation",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Distributors",
   "hq": {
@@ -4865,7 +4865,7 @@
  "PPG": {
   "name": "PPG Industries",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Specialty Chemicals",
   "hq": {
@@ -4878,7 +4878,7 @@
  "PPL": {
   "name": "PPL Corporation",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Electric Utilities",
   "hq": {
@@ -4930,7 +4930,7 @@
  "PSX": {
   "name": "Phillips 66",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Refining & Marketing",
   "hq": {
@@ -4956,7 +4956,7 @@
  "PWR": {
   "name": "Quanta Services",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Construction & Engineering",
   "hq": {
@@ -5008,7 +5008,7 @@
  "RCL": {
   "name": "Royal Caribbean Group",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Hotels, Resorts & Cruise Lines",
   "hq": {
@@ -5034,7 +5034,7 @@
  "REGN": {
   "name": "Regeneron Pharmaceuticals",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Biotechnology",
   "hq": {
@@ -5073,7 +5073,7 @@
  "RL": {
   "name": "Ralph Lauren Corporation",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Apparel, Accessories & Luxury Goods",
   "hq": {
@@ -5086,7 +5086,7 @@
  "RMD": {
   "name": "ResMed",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -5099,7 +5099,7 @@
  "ROK": {
   "name": "Rockwell Automation",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Electrical Components & Equipment",
   "hq": {
@@ -5112,7 +5112,7 @@
  "ROL": {
   "name": "Rollins, Inc.",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Environmental & Facilities Services",
   "hq": {
@@ -5138,7 +5138,7 @@
  "ROST": {
   "name": "Ross Stores",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Apparel Retail",
   "hq": {
@@ -5151,7 +5151,7 @@
  "RSG": {
   "name": "Republic Services",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Environmental & Facilities Services",
   "hq": {
@@ -5164,7 +5164,7 @@
  "RTX": {
   "name": "RTX Corporation",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Aerospace & Defense",
   "hq": {
@@ -5177,7 +5177,7 @@
  "RVTY": {
   "name": "Revvity",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -5216,7 +5216,7 @@
  "SBUX": {
   "name": "Starbucks",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Restaurants",
   "hq": {
@@ -5242,7 +5242,7 @@
  "SHW": {
   "name": "Sherwin-Williams",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Specialty Chemicals",
   "hq": {
@@ -5255,7 +5255,7 @@
  "SJM": {
   "name": "J.M. Smucker Company (The)",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Packaged Foods & Meats",
   "hq": {
@@ -5268,7 +5268,7 @@
  "SLB": {
   "name": "Schlumberger",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Equipment & Services",
   "hq": {
@@ -5294,7 +5294,7 @@
  "SNA": {
   "name": "Snap-on",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Machinery & Supplies & Components",
   "hq": {
@@ -5333,7 +5333,7 @@
  "SO": {
   "name": "Southern Company",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Electric Utilities",
   "hq": {
@@ -5346,7 +5346,7 @@
  "SOLV": {
   "name": "Solventum",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Technology",
   "hq": {
@@ -5385,7 +5385,7 @@
  "SRE": {
   "name": "Sempra",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Multi-Utilities",
   "hq": {
@@ -5398,7 +5398,7 @@
  "STE": {
   "name": "Steris",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -5411,7 +5411,7 @@
  "STLD": {
   "name": "Steel Dynamics",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Steel",
   "hq": {
@@ -5450,7 +5450,7 @@
  "STZ": {
   "name": "Constellation Brands",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Distillers & Vintners",
   "hq": {
@@ -5463,7 +5463,7 @@
  "SW": {
   "name": "Smurfit Westrock",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Paper & Plastic Packaging Products & Materials",
   "hq": {
@@ -5476,7 +5476,7 @@
  "SWK": {
   "name": "Stanley Black & Decker",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Machinery & Supplies & Components",
   "hq": {
@@ -5515,7 +5515,7 @@
  "SYK": {
   "name": "Stryker Corporation",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -5528,7 +5528,7 @@
  "SYY": {
   "name": "Sysco",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Food Distributors",
   "hq": {
@@ -5554,7 +5554,7 @@
  "TAP": {
   "name": "Molson Coors Beverage Company",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Brewers",
   "hq": {
@@ -5567,7 +5567,7 @@
  "TDG": {
   "name": "TransDigm Group",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Aerospace & Defense",
   "hq": {
@@ -5593,7 +5593,7 @@
  "TECH": {
   "name": "Bio-Techne",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Life Sciences Tools & Services",
   "hq": {
@@ -5645,7 +5645,7 @@
  "TGT": {
   "name": "Target Corporation",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Consumer Staples Merchandise Retail",
   "hq": {
@@ -5658,7 +5658,7 @@
  "TJX": {
   "name": "TJX Companies",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Apparel Retail",
   "hq": {
@@ -5684,7 +5684,7 @@
  "TMO": {
   "name": "Thermo Fisher Scientific",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Life Sciences Tools & Services",
   "hq": {
@@ -5710,7 +5710,7 @@
  "TPL": {
   "name": "Texas Pacific Land Corporation",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Exploration & Production",
   "hq": {
@@ -5723,7 +5723,7 @@
  "TPR": {
   "name": "Tapestry, Inc.",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Apparel, Accessories & Luxury Goods",
   "hq": {
@@ -5736,7 +5736,7 @@
  "TRGP": {
   "name": "Targa Resources",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Storage & Transportation",
   "hq": {
@@ -5788,7 +5788,7 @@
  "TSCO": {
   "name": "Tractor Supply",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Other Specialty Retail",
   "hq": {
@@ -5801,7 +5801,7 @@
  "TSLA": {
   "name": "Tesla, Inc.",
   "industries": [
-   "Consumer Discretionary",
+   "Consumer",
    "Technology"
   ],
   "sub": "Automobile Manufacturers",
@@ -5815,7 +5815,7 @@
  "TSN": {
   "name": "Tyson Foods",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Packaged Foods & Meats",
   "hq": {
@@ -5828,7 +5828,7 @@
  "TT": {
   "name": "Trane Technologies",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Building Products",
   "hq": {
@@ -5880,7 +5880,7 @@
  "TXT": {
   "name": "Textron",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Aerospace & Defense",
   "hq": {
@@ -5906,7 +5906,7 @@
  "UAL": {
   "name": "United Airlines Holdings",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Passenger Airlines",
   "hq": {
@@ -5919,7 +5919,7 @@
  "UBER": {
   "name": "Uber",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Passenger Ground Transportation",
   "hq": {
@@ -5945,7 +5945,7 @@
  "UHS": {
   "name": "Universal Health Services",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Facilities",
   "hq": {
@@ -5958,7 +5958,7 @@
  "ULTA": {
   "name": "Ulta Beauty",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Other Specialty Retail",
   "hq": {
@@ -5971,7 +5971,7 @@
  "UNH": {
   "name": "UnitedHealth Group",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Managed Health Care",
   "hq": {
@@ -5984,7 +5984,7 @@
  "UNP": {
   "name": "Union Pacific Corporation",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Rail Transportation",
   "hq": {
@@ -5997,7 +5997,7 @@
  "UPS": {
   "name": "United Parcel Service",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Air Freight & Logistics",
   "hq": {
@@ -6010,7 +6010,7 @@
  "URI": {
   "name": "United Rentals",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Trading Companies & Distributors",
   "hq": {
@@ -6049,7 +6049,7 @@
  "VEEV": {
   "name": "Veeva Systems",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Technology",
   "hq": {
@@ -6075,7 +6075,7 @@
  "VLO": {
   "name": "Valero Energy",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Refining & Marketing",
   "hq": {
@@ -6088,7 +6088,7 @@
  "VLTO": {
   "name": "Veralto",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Environmental & Facilities Services",
   "hq": {
@@ -6101,7 +6101,7 @@
  "VMC": {
   "name": "Vulcan Materials Company",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Construction Materials",
   "hq": {
@@ -6114,7 +6114,7 @@
  "VRSK": {
   "name": "Verisk Analytics",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Research & Consulting Services",
   "hq": {
@@ -6140,7 +6140,7 @@
  "VRT": {
   "name": "Vertiv",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Electrical Components & Equipment",
   "hq": {
@@ -6153,7 +6153,7 @@
  "VRTX": {
   "name": "Vertex Pharmaceuticals",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Biotechnology",
   "hq": {
@@ -6166,7 +6166,7 @@
  "VST": {
   "name": "Vistra Corp.",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Electric Utilities",
   "hq": {
@@ -6192,7 +6192,7 @@
  "VTRS": {
   "name": "Viatris",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Pharmaceuticals",
   "hq": {
@@ -6218,7 +6218,7 @@
  "WAB": {
   "name": "Wabtec",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Construction Machinery & Heavy Transportation Equipment",
   "hq": {
@@ -6231,7 +6231,7 @@
  "WAT": {
   "name": "Waters Corporation",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Life Sciences Tools & Services",
   "hq": {
@@ -6283,7 +6283,7 @@
  "WEC": {
   "name": "WEC Energy Group",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Electric Utilities",
   "hq": {
@@ -6322,7 +6322,7 @@
  "WM": {
   "name": "Waste Management",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Environmental & Facilities Services",
   "hq": {
@@ -6335,7 +6335,7 @@
  "WMB": {
   "name": "Williams Companies",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Oil & Gas Storage & Transportation",
   "hq": {
@@ -6348,7 +6348,7 @@
  "WMT": {
   "name": "Walmart",
   "industries": [
-   "Consumer Staples"
+   "Consumer"
   ],
   "sub": "Consumer Staples Merchandise Retail",
   "hq": {
@@ -6374,7 +6374,7 @@
  "WSM": {
   "name": "Williams-Sonoma, Inc.",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Homefurnishing Retail",
   "hq": {
@@ -6387,7 +6387,7 @@
  "WST": {
   "name": "West Pharmaceutical Services",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Supplies",
   "hq": {
@@ -6426,7 +6426,7 @@
  "WYNN": {
   "name": "Wynn Resorts",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Casinos & Gaming",
   "hq": {
@@ -6439,7 +6439,7 @@
  "XEL": {
   "name": "Xcel Energy",
   "industries": [
-   "Utilities"
+   "Health & Utilities"
   ],
   "sub": "Multi-Utilities",
   "hq": {
@@ -6452,7 +6452,7 @@
  "XOM": {
   "name": "ExxonMobil",
   "industries": [
-   "Materials"
+   "Industry & Energy"
   ],
   "sub": "Integrated Oil & Gas",
   "hq": {
@@ -6465,7 +6465,7 @@
  "XYL": {
   "name": "Xylem Inc.",
   "industries": [
-   "Industrials"
+   "Industry & Energy"
   ],
   "sub": "Industrial Machinery & Supplies & Components",
   "hq": {
@@ -6491,7 +6491,7 @@
  "YUM": {
   "name": "Yum! Brands",
   "industries": [
-   "Consumer Discretionary"
+   "Consumer"
   ],
   "sub": "Restaurants",
   "hq": {
@@ -6504,7 +6504,7 @@
  "ZBH": {
   "name": "Zimmer Biomet",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Health Care Equipment",
   "hq": {
@@ -6530,7 +6530,7 @@
  "ZTS": {
   "name": "Zoetis",
   "industries": [
-   "Healthcare"
+   "Health & Utilities"
   ],
   "sub": "Pharmaceuticals",
   "hq": {

@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Process collected price series into the 8-category S&P 500 universe -> app/universe.json.
+"""Process collected price series into the 5-category S&P 500 universe -> app/universe.json.
 
 Pure assembly from already-collected data: the monthly price-series store
 (scripts/data/prices.json) + per-company metadata (app/companies.json) + the
 per-era index roster (app/membership.json). No network unless a roster ticker's
 series is missing from the store, in which case it's fetched once and saved.
 
-Each era's S&P 500 members are bucketed into 8 game categories (the 11 GICS
-sectors with Real Estate, Energy and Communication Services folded in), and
+Each era's S&P 500 members are bucketed into 5 game categories (the 11 GICS
+sectors folded down, sized so no category dominates the board), and
 famous bankruptcies are layered on as 0x "landmine" picks (the data is
 survivor-only, so they'd otherwise vanish).
 """

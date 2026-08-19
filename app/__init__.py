@@ -44,6 +44,7 @@ def create_app():
             "startingStake": config.STARTING_STAKE,
             "numRounds": config.NUM_ROUNDS,
             "industryColors": config.INDUSTRY_COLORS,
+            "industryBlurbs": config.INDUSTRY_BLURBS,
             "eras": ERAS,
             "eraLabels": {e: era_label(e) for e in ERAS},
             "industries": INDUSTRIES,
