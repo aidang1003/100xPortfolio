@@ -1,1 +1,4 @@
 Flask==3.0.3
+# zoneinfo's fallback tz database — the daily rolls on America/Denver, and the
+# serverless image isn't guaranteed to ship one.
+tzdata==2024.1

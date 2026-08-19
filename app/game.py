@@ -10,9 +10,10 @@ the next (parlay); scoring is unchanged.
 
 import hashlib
 import random
-from datetime import date
+import secrets
+from datetime import date, datetime
 
-from .config import NUM_ROUNDS, STARTING_STAKE, era_label
+from .config import DAY_ONE, GAME_TZ, NUM_ROUNDS, STARTING_STAKE, era_label
 from .data import ERAS, INDUSTRIES, STOCKS, cell
 
 # HQ locations a round can land on. Regions keep every (era, location) pool
@@ -44,7 +45,18 @@ def _seed_for(day):
 
 
 def today_str():
-    return date.today().isoformat()
+    """Today's date in Mountain time — the board rolls at midnight Denver, not UTC."""
+    return datetime.now(GAME_TZ).date().isoformat()
+
+
+def day_number(day):
+    """1-based daily number for a day string, counting from DAY_ONE."""
+    return (date.fromisoformat(day) - DAY_ONE).days + 1
+
+
+def practice_seed():
+    """A fresh random seed for a practice board. Never collides with a day string."""
+    return "p-" + secrets.token_hex(6)
 
 
 # --- lineup feasibility (a system of distinct industry representatives) --------
@@ -79,7 +91,9 @@ def _max_matching(round_industries):
 def daily_rounds(seed=None):
     """Five (era, location) rounds from a seed, guaranteed to admit a legal lineup.
 
-    No seed -> today's shared daily spin; a random seed -> a fresh replay. Each
+    No seed -> today's shared daily spin; a random seed -> a practice roll. Both
+    the rounds and each round's two skip alternates come off this one seeded RNG,
+    so the daily board — skips included — is identical for every player. Each
     round bundles its full pool of pickable companies (returns stripped) so the
     client never re-fetches.
     """
@@ -113,7 +127,11 @@ def daily_rounds(seed=None):
             "altLocation": alt_loc,
             "stocks": cell_stocks(era, loc),
         })
-    return {"seed": seed, "day": today_str(), "rounds": rounds}
+    day = today_str()
+    # A seed equal to today's date is the daily; anything else (including a
+    # yesterday resume that crossed midnight) plays on as practice.
+    return {"seed": seed, "day": day, "dayNumber": day_number(day),
+            "mode": "daily" if seed == day else "practice", "rounds": rounds}
 
 
 def cell_stocks(era, location):
@@ -137,7 +155,7 @@ def _stock_payload(s):
         "sub": s.get("sub", ""),
         "hq": s.get("hq"),
         "industries": s.get("industries", []),
-        "metrics": s.get("metrics", {}),  # entry P/E · price · yield (known at pick time)
+        "metrics": s.get("metrics", {}),  # entry P/E · price · dividend (known at pick time)
     }
 
 
@@ -316,6 +334,8 @@ def score(picks, seed=None):
 
     return {
         "day": data["day"],
+        "dayNumber": data["dayNumber"],
+        "mode": data["mode"],
         "seed": data["seed"],
         "legs": legs,
         "invested": STARTING_STAKE,

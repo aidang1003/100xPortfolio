@@ -6,9 +6,10 @@ Run: .venv/bin/python -m unittest tests.test_game
 import os
 import sys
 import unittest
+from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from app import game  # noqa: E402
+from app import config, game  # noqa: E402
 
 
 def _legal_lineup(rounds):
@@ -97,11 +98,42 @@ class LineupEngineTests(unittest.TestCase):
         self.assertEqual([(r["era"], r["location"]) for r in a],
                          [(r["era"], r["location"]) for r in b])
 
+    def test_skip_alternates_are_deterministic(self):
+        # An era skip on round 2 of the daily must land everyone on the same cell.
+        a = game.daily_rounds("same-seed")["rounds"]
+        b = game.daily_rounds("same-seed")["rounds"]
+        alts = lambda rs: [(r["altEra"], r["altLocation"]) for r in rs]  # noqa: E731
+        self.assertEqual(alts(a), alts(b))
+        for r in a:  # and each alternate is a real re-roll, not the cell you're on
+            self.assertNotEqual(r["altEra"], r["era"])
+            self.assertNotEqual(r["altLocation"], r["location"])
+
     def test_many_seeds_are_solvable(self):
         # The matching guard must always yield a lineup-able board.
         for i in range(60):
             rounds = game.daily_rounds(f"seed-{i}")["rounds"]
             self.assertEqual(len(_legal_lineup(rounds)), game.NUM_ROUNDS, f"seed-{i} unsolvable")
+
+
+class DayTests(unittest.TestCase):
+    def test_day_rolls_at_denver_midnight(self):
+        # 05:30 UTC is still the previous day in Denver (23:30 MDT).
+        moment = datetime(2026, 8, 20, 5, 30, tzinfo=timezone.utc)
+        self.assertEqual(moment.astimezone(config.GAME_TZ).date().isoformat(), "2026-08-19")
+
+    def test_day_number_counts_from_day_one(self):
+        self.assertEqual(game.day_number(config.DAY_ONE.isoformat()), 1)
+        self.assertEqual(game.day_number("2026-06-20"), 11)
+
+    def test_practice_seed_is_never_a_day(self):
+        seeds = {game.practice_seed() for _ in range(50)}
+        self.assertEqual(len(seeds), 50)
+        self.assertNotIn(game.today_str(), seeds)
+
+    def test_mode_tracks_the_seed(self):
+        self.assertEqual(game.daily_rounds()["mode"], "daily")
+        self.assertEqual(game.daily_rounds(game.today_str())["mode"], "daily")
+        self.assertEqual(game.daily_rounds(game.practice_seed())["mode"], "practice")
 
 
 if __name__ == "__main__":

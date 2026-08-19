@@ -6,10 +6,17 @@ from flask import Flask, jsonify, render_template, request, send_from_directory
 
 from . import config
 from .data import ERAS, INDUSTRIES
-from .game import LOCATIONS, cell_stocks, daily_rounds, era_label, learn_data, score
+from .game import (
+    LOCATIONS, cell_stocks, daily_rounds, era_label, learn_data, practice_seed, score, today_str,
+)
 
 # templates/ and static/ live one level up from this package.
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Holds the last day this browser scored the daily. One daily per day per
+# browser; clearing it just means being dealt the daily again.
+DAILY_COOKIE = "100x_daily"
+_COOKIE_MAX_AGE = 400 * 24 * 60 * 60  # 400 days, the ceiling browsers allow
 
 
 def create_app():
@@ -30,8 +37,15 @@ def create_app():
 
     @app.route("/api/daily")
     def api_daily():
-        # No seed -> today's shared daily spin; a random seed -> a fresh replay.
-        return jsonify(daily_rounds(request.args.get("seed")))
+        # An explicit seed replays that exact board (resume, or a practice roll).
+        # Otherwise the day's shared board, until this browser has scored it.
+        seed = request.args.get("seed")
+        if not seed:
+            played_today = request.cookies.get(DAILY_COOKIE) == today_str()
+            seed = practice_seed() if played_today else today_str()
+        resp = jsonify(daily_rounds(seed))
+        resp.headers["Cache-Control"] = "private, no-store"  # the answer depends on the cookie
+        return resp
 
     @app.route("/api/cell")
     def api_cell():
@@ -67,9 +81,17 @@ def create_app():
         if not isinstance(picks, list):
             return jsonify({"error": "picks must be a list"}), 400
         try:
-            return jsonify(score(picks, body.get("seed") or body.get("day")))
+            result = score(picks, body.get("seed") or body.get("day"))
         except (ValueError, KeyError, TypeError) as e:
             return jsonify({"error": str(e)}), 400
+
+        resp = jsonify(result)
+        if result["mode"] == "daily":
+            # The daily is spent on scoring, not on being dealt, so an abandoned
+            # run is still there when they come back.
+            resp.set_cookie(DAILY_COOKIE, result["day"], max_age=_COOKIE_MAX_AGE,
+                            httponly=True, samesite="Lax", secure=request.is_secure)
+        return resp
 
     return app
 

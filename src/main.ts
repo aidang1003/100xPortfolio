@@ -24,7 +24,9 @@ interface Round extends Cell {
   altEraLabel: string;
   altLocation: string;  // the cell a region skip re-rolls into (same era)
 }
-interface Daily { seed: string; day: string; rounds: Round[]; }
+// mode: "daily" is the day's shared board (one per browser, per day);
+// everything after it is a random "practice" roll.
+interface Daily { seed: string; day: string; dayNumber: number; mode: string; rounds: Round[]; }
 
 interface Leg {
   ticker: string; name: string; industry: string; era: string; eraLabel: string;
@@ -33,7 +35,7 @@ interface Leg {
 }
 interface BestLeg { ticker: string; name: string; industry: string; eraLabel: string; multiple: number; }
 interface Result {
-  day: string; seed: string; legs: Leg[]; invested: number; finalValue: number;
+  day: string; dayNumber: number; mode: string; seed: string; legs: Leg[]; invested: number; finalValue: number;
   multiple: number; gainPct: number; grade: string; verdict: string; gradeColor: string;
   bestPick: { ticker: string; name: string; multiple: number };
   weakness: { ticker: string; name: string; multiple: number };
@@ -68,6 +70,15 @@ function metricLine(m: Metrics): string {
   if (m.pe != null) bits.push(`${m.pe}× P/E`);
   if (m.divYield != null) bits.push(`${m.divYield}% dividend`);
   return bits.join(" · ");
+}
+
+// Board label, shown on screen and at the top of a shared result.
+const dayTag = (mode: string, dayNumber: number) =>
+  mode === "daily" ? `100x #${dayNumber}` : "100x practice";
+
+function renderDayTag(el: HTMLElement, mode: string, dayNumber: number) {
+  el.textContent = dayTag(mode, dayNumber);
+  el.classList.toggle("daily", mode === "daily");
 }
 
 // Solid industry color, or a gradient for a multi-industry stock.
@@ -136,6 +147,13 @@ async function boot() {
     try { await restoreSession(sess); return; } catch { /* fall through */ }
   }
   await loadRounds();
+  // Daily already scored in this browser: lead with that result, and let
+  // "Play again" roll practice boards from there.
+  const saved = loadSaved();
+  if (state.data!.mode === "practice" && saved?.day === state.data!.day) {
+    showResult(saved.result);
+    return;
+  }
   renderProgress();
 }
 
@@ -202,16 +220,18 @@ function startGame() {
   renderRound(true);
 }
 
+// Both re-deal from the server, which hands back a random practice board once
+// this browser has scored the daily — and the daily itself until then.
 async function replay() {
   state.learnMode = false;
-  await loadRounds("r-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8));
+  await loadRounds();
   startGame();
 }
 
 async function startLearnGame() {
   if (!state.learn) state.learn = await fetch("/api/learn").then((r) => r.json());
   state.learnMode = true;
-  await loadRounds("learn-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8));
+  await loadRounds();
   startGame();
 }
 
@@ -258,6 +278,7 @@ function renderRound(animate: boolean) {
 function drawRound(animate: boolean) {
   const cell = state.active!;
   saveSession();
+  renderDayTag($("day-tag"), state.data!.mode, state.data!.dayNumber);
   renderProgress();
   renderLineup();
   setSkipButtons();
@@ -390,7 +411,8 @@ async function submit() {
   }).then((r) => r.json());
 
   if (res.error) { alert("Scoring error: " + res.error); return; }
-  if (!state.learnMode) save({ day: state.data!.day, result: res });
+  // Only the daily is kept; practice runs must not overwrite the day's score.
+  if (res.mode === "daily" && !state.learnMode) save({ day: res.day, result: res });
   $("learn-btn").classList.remove("hidden");
   showResult(res);
 }
@@ -399,6 +421,7 @@ async function submit() {
 function showResult(res: Result) {
   state.lastResult = res;
   show("result");
+  renderDayTag($("day-tag-result"), res.mode, res.dayNumber);
   $("copy-btn").classList.toggle("hidden", state.learnMode);
   $("learn-result-tag").classList.toggle("hidden", !state.learnMode);
   $("replay-btn").textContent = state.learnMode ? "Play regular" : "Play again";
@@ -473,7 +496,7 @@ function shareText(res: Result): string {
   const headline = res.multiple >= 100
     ? `I retired with ${pct}% gains, can you beat me? play100x.com`
     : `I returned ${pct}%, can you beat me? play100x.com`;
-  return `${headline}\n\n${grid}`;
+  return `${dayTag(res.mode, res.dayNumber)}\n${headline}\n\n${grid}`;
 }
 
 function flashToast() {

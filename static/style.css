@@ -255,6 +255,20 @@ main {
   margin-top: 12px;
 }
 
+/* Board label: "100x #71" on the daily, "100x practice" after it. */
+.day-tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 14px;
+}
+.day-tag.daily {
+  color: var(--green);
+}
+
 /* Progress rail */
 .progress-rail {
   display: flex;

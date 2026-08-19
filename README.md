@@ -12,10 +12,23 @@ the engine grades the run. Can you go **100×** and turn it into a million?
 - Each round is an **(era × HQ region)** spin — pick a company based there.
 - Returns are **hidden**; the **entry price, P/E and dividend yield** are shown.
 - **One era skip + one region skip** per game. Each re-rolls its own reel, once.
-- The day's board is **the same for everyone** (seeded by date).
+- The **daily board** is the same for everyone, skip alternates included, and it
+  rolls over at **midnight Mountain time**.
+- Your first game each day is that daily. Once you score it, every game after is a
+  **random practice board** — same rules, no number, doesn't touch your daily score.
 
 Eras are shown as clean 5-year spans (e.g. **2020–2025**); the underlying return
 window is unchanged (`2020-2024` = Jan 2020 → Dec 2024).
+
+## Daily mode
+
+`today_str()` is the date in `America/Denver` (`config.GAME_TZ`), so the board turns
+over at midnight Mountain wherever the code runs — no cron, no stored counter. That
+date *is* the daily's seed, so the five rounds and each round's two skip alternates
+all come off one seeded RNG and match for every player. `/api/daily` serves the daily
+until the browser's `100x_daily` cookie reads today's date; the cookie is set when the
+daily is **scored**, so an abandoned run is still there later. Every board after it is
+a `practice_seed()` roll. Dailies are numbered from `config.DAY_ONE` (`100x #71`).
 
 ## Stack
 

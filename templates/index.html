@@ -44,7 +44,7 @@
           <li><span class="dot">②</span><span>One pick per industry, five in all.</span></li>
           <li><span class="dot">③</span><span>Watch historical returns compound.</span></li>
           <li><span class="dot">④</span><span>One era skip and one region skip per game.</span></li>
-          <li><span class="dot">⑤</span><span>Everyone gets the same board each day.</span></li>
+          <li><span class="dot">⑤</span><span>One daily board for everyone. Practice freely after.</span></li>
         </ul>
         <div class="legend-head">The five industries, one pick each</div>
         <ul class="legend" id="industry-legend"></ul>
@@ -55,6 +55,7 @@
 
       <!-- GAME -->
       <section id="game" class="screen hidden">
+        <div class="day-tag" id="day-tag"></div>
         <div class="progress-rail" id="progress-rail"></div>
 
         <div class="slot card" id="slot">
@@ -81,6 +82,7 @@
 
       <!-- RESULT -->
       <section id="result" class="screen hidden">
+        <div class="day-tag" id="day-tag-result"></div>
         <div id="learn-result-tag" class="learn-result-tag hidden">📘 Learning mode returns are shown</div>
         <div class="result-head card">
           <div class="grade-badge" id="grade-badge">–</div>

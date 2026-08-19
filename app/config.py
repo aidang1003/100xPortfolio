@@ -4,6 +4,14 @@ Flask-free so it can be imported anywhere. Served to the front end via
 /api/config so the client stops hard-coding stakes, round counts, and colors.
 """
 
+from datetime import date
+from zoneinfo import ZoneInfo
+
+# The board rolls over at midnight Mountain time, so "today" is a Denver date,
+# not the server's UTC one. DAY_ONE is the launch day: daily #1.
+GAME_TZ = ZoneInfo("America/Denver")
+DAY_ONE = date(2026, 6, 10)
+
 STARTING_STAKE = 10_000  # dollars you start with; 100x = $1M
 NUM_ROUNDS = 5
 
