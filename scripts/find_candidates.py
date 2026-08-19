@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
-"""Find candidate S&P 500 stocks per era that aren't already in the catalog.
+"""Find candidate S&P 500 stocks per era we don't yet have metadata for.
 
 Pulls the survivorship-bias-free S&P 500 historical membership list from
 fja05680/sp500, takes the index roster as of each era's *start*, drops the names
-already in `app/catalog.py` for that era, then (optionally) fetches each
-candidate's 5-year return from Yahoo with an **identity check** — so a reused or
-renamed ticker (PETS = PetMed today, not Pets.com; CC = Chemours, not Circuit
-City) isn't silently scored as the wrong company.
+already in `app/companies.json`, then (optionally) fetches each candidate's 5-year
+return from Yahoo with an **identity check** — so a reused or renamed ticker
+(PETS = PetMed today, not Pets.com; CC = Chemours, not Circuit City) isn't
+silently scored as the wrong company.
 
-The output is a ranked menu per era to drive manual curation into `catalog.py`.
-Bucketing candidates into the game's six industries stays a human call: the
-membership list carries no sector, and the game's industries are a custom subset
-of GICS.
+The output is a ranked menu per era — mostly delisted names — to drive curation
+of the historical/delisted universe. It also serves as the shared library
+(load_components / roster_at) that build_membership.py and coverage.py use.
 
     python scripts/find_candidates.py                  # all covered eras, with fetch
     python scripts/find_candidates.py --era 2010-2014  # just one era
@@ -31,18 +30,19 @@ import urllib.request
 from datetime import datetime, timezone
 from urllib.parse import quote
 
-# Reuse catalog + Yahoo plumbing from the sibling fetcher (both are standalone).
+# Shared constants (ticker remaps, UA, era list) live in common.py.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import fetch_prices as fp  # noqa: E402
+import common  # noqa: E402
 
-catalog = fp.catalog
-ERAS = catalog.ERAS
+SYMBOL = common.SYMBOL
+USER_AGENT = common.USER_AGENT
+ERAS = common.ERAS
+_APP = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "app")
 
 _CONST_NAME = "S&P 500 Historical Components & Changes (Updated).csv"
 CONSTITUENTS_URL = "https://raw.githubusercontent.com/fja05680/sp500/master/" + quote(_CONST_NAME)
 CACHE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".cache", "sp500_components.csv")
 
-FIRST_SNAPSHOT = "1996-01-02"  # earliest date the membership list covers
 MIN_MONTHS = 50  # of ~60 monthly closes in a 5y window -> "full" coverage
 IDENT_MONTHS = 15  # first close must land within this many months of era start
 
@@ -52,7 +52,7 @@ def load_components(refresh=False):
     """Return [(date_str, [tickers])] sorted ascending, caching the CSV locally."""
     if refresh or not os.path.exists(CACHE_PATH):
         os.makedirs(os.path.dirname(CACHE_PATH), exist_ok=True)
-        req = urllib.request.Request(CONSTITUENTS_URL, headers={"User-Agent": fp.USER_AGENT})
+        req = urllib.request.Request(CONSTITUENTS_URL, headers={"User-Agent": USER_AGENT})
         with urllib.request.urlopen(req, timeout=60) as resp:
             text = resp.read().decode("utf-8", "replace")
         with open(CACHE_PATH, "w", encoding="utf-8") as f:
@@ -101,7 +101,7 @@ def _months_between(start_iso, other_iso):
 
 def probe(ticker, era):
     """Fetch a candidate's 5y return + the metadata needed to vet its identity."""
-    sym = fp.SYMBOL.get(ticker, ticker)
+    sym = SYMBOL.get(ticker, ticker)
     start, end = era.split("-")
     p1 = int(datetime(int(start), 1, 1, tzinfo=timezone.utc).timestamp())
     p2 = int(datetime(int(end), 12, 31, tzinfo=timezone.utc).timestamp())
@@ -110,7 +110,7 @@ def probe(ticker, era):
         f"?period1={p1}&period2={p2}&interval=1mo&events=div%2Csplit"
     )
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": fp.USER_AGENT})
+        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
         with urllib.request.urlopen(req, timeout=20) as resp:
             data = json.load(resp)
         result = data["chart"]["result"][0]
@@ -141,24 +141,30 @@ def classify(era, info):
 
 
 # ---- driver --------------------------------------------------------------
-def catalog_tickers(era):
-    """Every ticker already in the catalog for this era, across all industries."""
-    out = set()
-    for eras in catalog.CATALOG.values():
-        for s in eras.get(era, []):
-            out.add(s["ticker"])
-    return out
+_known = None
+
+
+def catalog_tickers():
+    """Tickers we already have metadata for (app/companies.json). New candidates
+    are the era's roster names not in this set — i.e. mostly delisted names."""
+    global _known
+    if _known is None:
+        try:
+            with open(os.path.join(_APP, "companies.json"), encoding="utf-8") as f:
+                _known = set(json.load(f))
+        except (OSError, json.JSONDecodeError):
+            _known = set()
+    return _known
 
 
 def run_era(components, era, fetch, limit, top):
     era_start = f"{era.split('-')[0]}-01-01"
     roster, proxied = roster_at(components, era_start)
-    have = catalog_tickers(era)
+    have = catalog_tickers()
     candidates = sorted(t for t in roster if t not in have)
 
     proxy_note = "  [proxy: list starts 1996, approximating]" if proxied else ""
-    pre_note = "  [NO DATA: era predates the 1996 membership list]" if era_start < FIRST_SNAPSHOT and not roster else ""
-    print(f"\n=== {era}  (window {era_start} → {era.split('-')[1]}-12-31){proxy_note}{pre_note}")
+    print(f"\n=== {era}  (window {era_start} → {era.split('-')[1]}-12-31){proxy_note}")
     print(f"    roster {len(roster)}  ·  already in catalog {len(have)}  ·  new candidates {len(candidates)}")
 
     if not fetch:

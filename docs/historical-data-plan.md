@@ -24,11 +24,11 @@ Grounding the plan in the current pipeline (`scripts/`):
 
 | Piece | File | What it does | Limitation for this work |
 |---|---|---|---|
-| Returns cache | `collect.py` → `data/returns_cache.json` | One immutable `(ticker, era)` → multiple, fetched once from Yahoo chart JSON, kept forever | Yahoo silently drops most **delisted** tickers; no key, but no delisted coverage |
+| Returns cache | `collect.py` → `data/prices.json` | Monthly adj-close **series** per ticker, fetched once from Yahoo chart JSON, kept forever; any window's multiple computed on the fly | Yahoo silently drops most **delisted** tickers; no key, but no delisted coverage |
 | Roster history | `find_candidates.py` (`fja05680/sp500`) | Point-in-time S&P 500 membership, with a ticker **identity check** to catch reuse (PETS, CC, …) | Membership list **begins 1996-01-02** → nothing for the 1970s–80s, and 1990-1994 is already a known gap |
 | Universe build | `build_universe.py` → `app/universe.json` | Buckets each era's roster into 8 game categories via **today's** GICS map; overlays curated blurbs + hand-coded 0× "landmine" bankruptcies | Needs a *current* GICS sector, which delisted names don't have |
 | Coverage report | `coverage.py` → `COVERAGE.md` | Quantifies survivorship gap per era | Reporting only |
-| Eras | `app/catalog.py` `ERAS` | 7 eras, 1990-1994 → 2020-2024 | Hard stop at 1990 |
+| Eras | `scripts/common.py` `ERAS` | 7 eras, 1990-1994 → 2020-2024 | Hard stop at 1990 |
 
 The key architectural fact: the pipeline is **cache-first and provider-pluggable**
 already. Extending it is mostly about (a) sourcing point-in-time membership and
@@ -101,10 +101,10 @@ GICS only exists from 1999. For older names and delisted names:
 | Tiingo / EOD Historical Data | ✓ | ✓ | free-ish tier + key | good mid-tier |
 | Sharadar (Nasdaq Data Link) | ✓ | ✓ | paid | strong |
 | **CRSP / Norgate** | ✓ (with delisting return) | ✓ | paid | best, pairs with §3.1 |
-| Manual seed multiple | n/a | n/a | none | last resort, already supported in `catalog.py` |
+| Manual seed multiple | n/a | n/a | none | last resort, already supported in `collect.py` |
 
 **Recommendation:** add **one** delisted-capable provider behind the existing
-provider-fallback chain in `fetch_prices.py` (yfinance → Stooq → seed today). The
+provider-fallback chain in `collect.py` (Yahoo chart JSON → seed today). The
 chain becomes: live-name provider → delisted-capable provider → curated seed.
 Whichever paid/keyed source we pick in §3.1 should also cover prices so we don't
 manage two vendors.
@@ -115,12 +115,12 @@ manage two vendors.
 
 Keep the cache-first philosophy; extend, don't replace.
 
-1. **Eras** — add to `app/catalog.py`:
+1. **Eras** — add to `scripts/common.py`:
    ```
    "1970-1974", "1975-1979", "1980-1984", "1985-1989"
    ```
    The display-label helper (`eraLabel`) already generalizes, so the UI and slot
-   reels need only their hardcoded era list widened (`static/game.js` `spinReels`).
+   reels need only their hardcoded era list widened (`src/main.ts` `spinReels`).
 
 2. **Cache record shape** — today a record is just a multiple. Extend each
    `(ticker, era)` entry to carry the fields a delisted/old name needs and which
@@ -147,7 +147,7 @@ Keep the cache-first philosophy; extend, don't replace.
    Bankruptcies remain 0× landmines as they are today.
 
 5. **New optional script** — `scripts/fetch_delisted.py` (or a flag on
-   `fetch_prices.py`) that pulls the chosen delisted-capable provider and writes
+   `collect.py`) that pulls the chosen delisted-capable provider and writes
    into the same durable cache, so reruns are network-free.
 
 6. **Coverage report** — extend `coverage.py` to show the four new eras and a

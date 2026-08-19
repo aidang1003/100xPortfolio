@@ -180,11 +180,6 @@ main {
   padding: 14px 28px;
   font-size: 17px;
 }
-.btn-sm {
-  padding: 7px 14px;
-  font-size: 13px;
-}
-
 /* Intro */
 .hero-title {
   font-family: "Playfair Display", Georgia, serif;
@@ -219,6 +214,39 @@ main {
 .rules .dot {
   color: var(--purple-1);
   font-weight: 700;
+}
+.legend-head {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.legend {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px;
+  display: grid;
+  gap: 8px;
+}
+.legend li {
+  display: grid;
+  grid-template-columns: 10px auto 1fr;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 14px;
+}
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  align-self: center;
+}
+.legend-name {
+  font-weight: 700;
+}
+.legend-blurb {
+  color: var(--muted);
+  font-size: 13px;
 }
 .hint {
   color: var(--muted);
@@ -303,24 +331,48 @@ main {
   font-weight: 700;
 }
 
-.skip-bar {
+.round-bar {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
+  justify-content: center;
+  margin-bottom: 8px;
 }
-/* Filled skip buttons — more visible than the bare ghost style. */
-.skip-bar .btn-ghost {
-  background: var(--surface-2);
-  border-color: #4a6b3c;
-  color: var(--text);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+/* Lineup: the five industry slots, dim until a pick fills one. */
+.lineup-bar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-bottom: 14px;
 }
-.skip-bar .btn-ghost:hover:not(:disabled) {
-  background: #21301a;
-  border-color: var(--green);
-  color: var(--green);
+.slot-chip {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-height: 46px;
+  padding: 6px 3px;
+  border: 1px solid;
+  border-radius: 10px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.02);
 }
+.slot-chip .slot-ind {
+  /* Scales down on narrow phones so "Health & Utilities" never spills the slot. */
+  font-size: clamp(9px, 2.7vw, 10px);
+  font-weight: 700;
+  line-height: 1.15;
+  overflow-wrap: break-word;
+}
+.slot-chip .slot-pick {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  min-height: 13px;
+}
+.slot-chip.filled {
+  border-color: transparent;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
 .round-counter {
   font-family: "JetBrains Mono", monospace;
   font-size: 13px;
@@ -401,6 +453,50 @@ main {
 }
 .stock-row .stock-pct.down {
   color: var(--red);
+}
+/* Industry color swatch (gradient for multi-industry names like Amazon). */
+.stock-chip {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  align-self: center;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+/* HQ city/state under the company name. */
+.stock-row .stock-hq {
+  display: block;
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 1px;
+}
+/* Entry metrics (price · P/E · yield) — replaces the old blurb. */
+.stock-row .stock-metrics {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: right;
+  flex-shrink: 0;
+  max-width: 46%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* A company whose industries are all used this game — can't be drafted. */
+.stock-row.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.stock-row.disabled:hover {
+  border-color: var(--border);
+  background: var(--surface);
+}
+/* The little industry chip inside a result leg tag. */
+.leg-tag .stock-chip {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
 }
 
 /* Learning-mode banner on the result screen. */
@@ -567,7 +663,7 @@ main {
   .stock-row .stock-name {
     font-size: 14px;
   }
-  .stock-row .stock-meta {
+  .stock-row .stock-metrics {
     font-size: 11px;
   }
   .stock-row .stock-pct {
@@ -720,8 +816,18 @@ main {
 
 .result-actions {
   display: flex;
-  gap: 12px;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin-top: 28px;
+}
+/* Primary Share gets its own prominent full-width row... */
+.result-actions .btn-primary {
+  flex: 1 1 100%;
+}
+/* ...while the secondary actions split the row below and wrap when cramped. */
+.result-actions .btn-ghost {
+  flex: 1 1 0;
+  min-width: 140px;
 }
 
 /* Learning mode — the intro/result entry button. */

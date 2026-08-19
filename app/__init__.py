@@ -4,7 +4,9 @@ import os
 
 from flask import Flask, jsonify, render_template, request, send_from_directory
 
-from .game import daily_rounds, learn_data, score
+from . import config
+from .data import ERAS, INDUSTRIES
+from .game import LOCATIONS, daily_rounds, era_label, learn_data, score
 
 # templates/ and static/ live one level up from this package.
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -34,6 +36,20 @@ def create_app():
     @app.route("/api/learn")
     def api_learn():
         return jsonify(learn_data())
+
+    @app.route("/api/config")
+    def api_config():
+        # Single source of truth the front end reads instead of hard-coding.
+        return jsonify({
+            "startingStake": config.STARTING_STAKE,
+            "numRounds": config.NUM_ROUNDS,
+            "industryColors": config.INDUSTRY_COLORS,
+            "industryBlurbs": config.INDUSTRY_BLURBS,
+            "eras": ERAS,
+            "eraLabels": {e: era_label(e) for e in ERAS},
+            "industries": INDUSTRIES,
+            "locations": LOCATIONS,
+        })
 
     @app.route("/api/score", methods=["POST"])
     def api_score():
