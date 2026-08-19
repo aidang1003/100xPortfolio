@@ -267,9 +267,12 @@ function renderStocks() {
   setReels(rnd);
 
   const returns = state.learnMode ? learnReturns(rnd.era) : null;
-  const stocks = [...rnd.stocks];
-  if (returns) stocks.sort((a, b) => (returns[b.ticker] ?? -Infinity) - (returns[a.ticker] ?? -Infinity));
-  else stocks.sort((a, b) => a.name.localeCompare(b.name));
+  // Still-pickable companies first, then by dividend yield (learning mode ranks
+  // by return instead, since that's the column it reveals). Non-payers sort last.
+  const isOpen = (s: Stock) => s.industries.some((i) => !state.used.has(i));
+  const rank = (s: Stock) => (returns ? returns[s.ticker] : s.metrics.divYield) ?? -Infinity;
+  const stocks = [...rnd.stocks].sort((a, b) =>
+    Number(isOpen(b)) - Number(isOpen(a)) || rank(b) - rank(a) || a.name.localeCompare(b.name));
 
   const head = document.createElement("div");
   head.className = "stock-list-head";
@@ -279,7 +282,7 @@ function renderStocks() {
   grid.appendChild(head);
 
   for (const s of stocks) {
-    const open = s.industries.some((i) => !state.used.has(i));
+    const open = isOpen(s);
     const row = document.createElement("div");
     row.className = "stock-row" + (open ? "" : " disabled");
 
