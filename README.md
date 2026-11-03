@@ -77,9 +77,6 @@ That runs, in order:
 for extending the delisted/historical universe). Sources: Yahoo public chart JSON
 (prices, no key), fja05680 (membership + GICS + HQ), SEC EDGAR (fundamentals).
 
-> A future/shelved redesign (weighted one-decade basket) lives in
-> `docs/portfolio-redesign.md`; the current game keeps sequential-parlay scoring.
-
 ## Run locally
 
 ```bash
