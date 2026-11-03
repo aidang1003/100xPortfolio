@@ -1,36 +1,36 @@
 # Stock coverage — 100xPortfolio universe
 
-Pickable stocks per category × era, from `app/universe.json` (built 2026-08-19).
+Pickable stocks per category × era, from `app/universe.json` (built 2026-11-03).
 
 | Category | 1990-1995 | 1995-2000 | 2000-2005 | 2005-2010 | 2010-2015 | 2015-2020 | 2020-2025 | **Total** |
 |---|---|---|---|---|---|---|---|---|
-| Technology | 19 | 19 | 29 | 32 | 41 | 48 | 63 | **251** |
-| Financials | 18 | 19 | 31 | 48 | 60 | 62 | 88 | **326** |
-| Consumer | 27 | 30 | 35 | 40 | 56 | 65 | 73 | **326** |
+| Technology | 19 | 19 | 29 | 31 | 40 | 47 | 62 | **247** |
+| Financials | 18 | 19 | 31 | 47 | 58 | 60 | 86 | **319** |
+| Consumer | 25 | 28 | 33 | 38 | 54 | 63 | 71 | **312** |
 | Health & Utilities | 30 | 32 | 41 | 49 | 55 | 61 | 74 | **342** |
 | Industry & Energy | 48 | 48 | 54 | 59 | 65 | 81 | 101 | **456** |
-| **Total** | **142** | **148** | **190** | **228** | **277** | **317** | **399** | **1701** |
+| **Total** | **140** | **146** | **188** | **224** | **272** | **312** | **394** | **1676** |
 
 ## Survivorship: era-start roster vs. what the game keeps
 
 | Era | In S&P that era | Kept in game | Dropped: no longer in index | Dropped: no return data |
 |---|---|---|---|---|
-| 1990-1995 | 487 | 139 | 335 | 13 |
-| 1995-2000 | 487 | 145 | 335 | 7 |
-| 2000-2005 | 492 | 184 | 300 | 8 |
-| 2005-2010 | 495 | 217 | 269 | 9 |
-| 2010-2015 | 499 | 271 | 222 | 6 |
-| 2015-2020 | 499 | 310 | 188 | 1 |
-| 2020-2025 | 505 | 392 | 113 | 0 |
+| 1990-1995 | 487 | 137 | 337 | 13 |
+| 1995-2000 | 487 | 143 | 337 | 7 |
+| 2000-2005 | 492 | 182 | 302 | 8 |
+| 2005-2010 | 495 | 213 | 273 | 9 |
+| 2010-2015 | 499 | 266 | 227 | 6 |
+| 2015-2020 | 499 | 305 | 193 | 1 |
+| 2020-2025 | 505 | 387 | 118 | 0 |
 
-## 102 current S&P 500 members missing from every era
+## 107 current S&P 500 members missing from every era
 
 <details><summary>Joined the index after every era start</summary>
 
 - `ABNB` — Airbnb (Consumer Discretionary)
 - `ACGL` — Arch Capital Group (Financials)
 - `APO` — Apollo Global Management (Financials)
-- `APP` — AppLovin (Information Technology)
+- `APP` — AppLovin (Communication Services)
 - `ARES` — Ares Management (Financials)
 - `AXON` — Axon Enterprise (Industrials)
 - `BALL` — Ball Corporation (Materials)
@@ -61,6 +61,7 @@ Pickable stocks per category × era, from `app/universe.json` (built 2026-08-19)
 - `DOC` — Healthpeak Properties (Real Estate)
 - `DPZ` — Domino's (Consumer Discretionary)
 - `DXCM` — Dexcom (Health Care)
+- `ECHO` — EchoStar (Communication Services)
 - `EG` — Everest Group (Financials)
 - `ELV` — Elevance Health (Health Care)
 - `EME` — Emcor (Industrials)
@@ -68,13 +69,16 @@ Pickable stocks per category × era, from `app/universe.json` (built 2026-08-19)
 - `EXE` — Expand Energy (Energy)
 - `FDS` — FactSet (Financials)
 - `FDXF` — FedEx Freight (Industrials)
+- `FERG` — Ferguson Enterprises (Industrials)
 - `FICO` — Fair Isaac (Information Technology)
 - `FIX` — Comfort Systems USA (Industrials)
+- `FLEX` — Flex Ltd. (Information Technology)
 - `GDDY` — GoDaddy (Information Technology)
 - `GEHC` — GE HealthCare (Health Care)
 - `GEN` — Gen Digital (Information Technology)
 - `GEV` — GE Vernova (Industrials)
 - `GNRC` — Generac (Industrials)
+- `HONA` — Honeywell Aerospace (Industrials)
 - `HOOD` — Robinhood Markets (Financials)
 - `HUBB` — Hubbell Incorporated (Industrials)
 - `HWM` — Howmet Aerospace (Industrials)
@@ -89,6 +93,7 @@ Pickable stocks per category × era, from `app/universe.json` (built 2026-08-19)
 - `MPWR` — Monolithic Power Systems (Information Technology)
 - `MRNA` — Moderna (Health Care)
 - `MRSH` — Marsh McLennan (Financials)
+- `MRVL` — Marvell Technology (Information Technology)
 - `NDSN` — Nordson Corporation (Industrials)
 - `NXPI` — NXP Semiconductors (Information Technology)
 - `ON` — ON Semiconductor (Information Technology)
@@ -96,12 +101,11 @@ Pickable stocks per category × era, from `app/universe.json` (built 2026-08-19)
 - `PANW` — Palo Alto Networks (Information Technology)
 - `PLTR` — Palantir Technologies (Information Technology)
 - `PODD` — Insulet Corporation (Health Care)
-- `POOL` — Pool Corporation (Consumer Discretionary)
 - `PSKY` — Paramount Skydance Corporation (Communication Services)
 - `Q` — Qnity Electronics (Information Technology)
+- `RDDT` — Reddit (Communication Services)
 - `RTX` — RTX Corporation (Industrials)
 - `RVTY` — Revvity (Health Care)
-- `SATS` — EchoStar (Communication Services)
 - `SMCI` — Supermicro (Information Technology)
 - `SNDK` — Sandisk (Information Technology)
 - `SOLV` — Solventum (Health Care)
@@ -120,6 +124,7 @@ Pickable stocks per category × era, from `app/universe.json` (built 2026-08-19)
 - `VEEV` — Veeva Systems (Health Care)
 - `VICI` — Vici Properties (Real Estate)
 - `VLTO` — Veralto (Industrials)
+- `VMRK` — Vivmark Residential (Real Estate)
 - `VRT` — Vertiv (Industrials)
 - `VST` — Vistra Corp. (Utilities)
 - `VTRS` — Viatris (Health Care)

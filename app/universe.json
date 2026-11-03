@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-19T01:44:40.148990+00:00",
+ "generatedAt": "2026-11-03T15:03:29.920180+00:00",
  "source": "companies.json (name/industries/sub/hq) + membership.json (rosters) + Yahoo monthly adj-close series (on-the-fly multiples)",
  "eras": [
   "1990-1994",
@@ -109,7 +109,7 @@
     {
      "ticker": "ORCL",
      "name": "Oracle Corporation",
-     "multiple": 4.1,
+     "multiple": 4.11,
      "sub": "Application Software",
      "hq": {
       "city": "Austin",
@@ -584,6 +584,24 @@
      }
     },
     {
+     "ticker": "AAPL",
+     "name": "Apple Inc.",
+     "multiple": 2.58,
+     "sub": "Technology Hardware, Storage & Peripherals",
+     "hq": {
+      "city": "Cupertino",
+      "state": "California",
+      "region": "West"
+     },
+     "industries": [
+      "Technology"
+     ],
+     "metrics": {
+      "price": 40.37,
+      "divYield": 1.19
+     }
+    },
+    {
      "ticker": "MSI",
      "name": "Motorola Solutions",
      "multiple": 2.58,
@@ -599,24 +617,6 @@
      "metrics": {
       "price": 59.25,
       "divYield": 0.52
-     }
-    },
-    {
-     "ticker": "AAPL",
-     "name": "Apple Inc.",
-     "multiple": 2.57,
-     "sub": "Technology Hardware, Storage & Peripherals",
-     "hq": {
-      "city": "Cupertino",
-      "state": "California",
-      "region": "West"
-     },
-     "industries": [
-      "Technology"
-     ],
-     "metrics": {
-      "price": 40.37,
-      "divYield": 1.19
      }
     },
     {
@@ -1225,7 +1225,7 @@
     {
      "ticker": "NVDA",
      "name": "Nvidia",
-     "multiple": 2.44,
+     "multiple": 2.45,
      "sub": "Semiconductors",
      "hq": {
       "city": "Santa Clara",
@@ -1712,23 +1712,6 @@
      }
     },
     {
-     "ticker": "EA",
-     "name": "Electronic Arts",
-     "multiple": 0.28,
-     "sub": "Interactive Home Entertainment",
-     "hq": {
-      "city": "Redwood City",
-      "state": "California",
-      "region": "West"
-     },
-     "industries": [
-      "Technology"
-     ],
-     "metrics": {
-      "price": 64.34
-     }
-    },
-    {
      "ticker": "NT",
      "name": "Nortel Networks",
      "multiple": 0.0,
@@ -1923,23 +1906,6 @@
      "metrics": {
       "price": 22.91,
       "pe": 17.9
-     }
-    },
-    {
-     "ticker": "EA",
-     "name": "Electronic Arts",
-     "multiple": 2.89,
-     "sub": "Interactive Home Entertainment",
-     "hq": {
-      "city": "Redwood City",
-      "state": "California",
-      "region": "West"
-     },
-     "industries": [
-      "Technology"
-     ],
-     "metrics": {
-      "price": 16.28
      }
     },
     {
@@ -2938,24 +2904,6 @@
      }
     },
     {
-     "ticker": "EA",
-     "name": "Electronic Arts",
-     "multiple": 1.96,
-     "sub": "Interactive Home Entertainment",
-     "hq": {
-      "city": "Redwood City",
-      "state": "California",
-      "region": "West"
-     },
-     "industries": [
-      "Technology"
-     ],
-     "metrics": {
-      "price": 54.86,
-      "pe": 1828.7
-     }
-    },
-    {
      "ticker": "CMCSA",
      "name": "Comcast",
      "multiple": 1.85,
@@ -3378,7 +3326,7 @@
     {
      "ticker": "NVDA",
      "name": "Nvidia",
-     "multiple": 22.82,
+     "multiple": 22.81,
      "sub": "Semiconductors",
      "hq": {
       "city": "Santa Clara",
@@ -4245,24 +4193,6 @@
       "price": 381.66,
       "divYield": 0.49,
       "pe": 22.7
-     }
-    },
-    {
-     "ticker": "EA",
-     "name": "Electronic Arts",
-     "multiple": 1.39,
-     "sub": "Interactive Home Entertainment",
-     "hq": {
-      "city": "Redwood City",
-      "state": "California",
-      "region": "West"
-     },
-     "industries": [
-      "Technology"
-     ],
-     "metrics": {
-      "price": 107.92,
-      "pe": 32.4
      }
     },
     {
@@ -5912,24 +5842,6 @@
      }
     },
     {
-     "ticker": "EQR",
-     "name": "Equity Residential",
-     "multiple": 1.37,
-     "sub": "Multi-Family Residential REITs",
-     "hq": {
-      "city": "Chicago",
-      "state": "Illinois",
-      "region": "Midwest"
-     },
-     "industries": [
-      "Financials"
-     ],
-     "metrics": {
-      "price": 31.54,
-      "divYield": 5.49
-     }
-    },
-    {
      "ticker": "NTRS",
      "name": "Northern Trust",
      "multiple": 1.31,
@@ -6897,25 +6809,6 @@
      }
     },
     {
-     "ticker": "EQR",
-     "name": "Equity Residential",
-     "multiple": 2.62,
-     "sub": "Multi-Family Residential REITs",
-     "hq": {
-      "city": "Chicago",
-      "state": "Illinois",
-      "region": "Midwest"
-     },
-     "industries": [
-      "Financials"
-     ],
-     "metrics": {
-      "price": 32.05,
-      "divYield": 5.12,
-      "pe": 25.2
-     }
-    },
-    {
      "ticker": "AON",
      "name": "Aon plc",
      "multiple": 2.58,
@@ -6951,25 +6844,6 @@
       "price": 23.05,
       "divYield": 2.17,
       "pe": 11.7
-     }
-    },
-    {
-     "ticker": "AVB",
-     "name": "AvalonBay Communities",
-     "multiple": 2.5,
-     "sub": "Multi-Family Residential REITs",
-     "hq": {
-      "city": "Arlington",
-      "state": "Virginia",
-      "region": "South"
-     },
-     "industries": [
-      "Financials"
-     ],
-     "metrics": {
-      "price": 76.61,
-      "divYield": 4.66,
-      "pe": 39.7
      }
     },
     {
@@ -8544,44 +8418,6 @@
      }
     },
     {
-     "ticker": "EQR",
-     "name": "Equity Residential",
-     "multiple": 1.43,
-     "sub": "Multi-Family Residential REITs",
-     "hq": {
-      "city": "Chicago",
-      "state": "Illinois",
-      "region": "Midwest"
-     },
-     "industries": [
-      "Financials"
-     ],
-     "metrics": {
-      "price": 77.61,
-      "divYield": 2.58,
-      "pe": 45.0
-     }
-    },
-    {
-     "ticker": "AVB",
-     "name": "AvalonBay Communities",
-     "multiple": 1.41,
-     "sub": "Multi-Family Residential REITs",
-     "hq": {
-      "city": "Arlington",
-      "state": "Virginia",
-      "region": "South"
-     },
-     "industries": [
-      "Financials"
-     ],
-     "metrics": {
-      "price": 172.99,
-      "divYield": 2.68,
-      "pe": 33.2
-     }
-    },
-    {
      "ticker": "L",
      "name": "Loews Corporation",
      "multiple": 1.41,
@@ -9097,7 +8933,7 @@
     },
     {
      "ticker": "MSCI",
-     "name": "MSCI Inc.",
+     "name": "MSCI",
      "multiple": 2.2,
      "sub": "Financial Exchanges & Data",
      "hq": {
@@ -10061,25 +9897,6 @@
      }
     },
     {
-     "ticker": "AVB",
-     "name": "AvalonBay Communities",
-     "multiple": 1.21,
-     "sub": "Multi-Family Residential REITs",
-     "hq": {
-      "city": "Arlington",
-      "state": "Virginia",
-      "region": "South"
-     },
-     "industries": [
-      "Financials"
-     ],
-     "metrics": {
-      "price": 216.69,
-      "divYield": 2.81,
-      "pe": 38.5
-     }
-    },
-    {
      "ticker": "KEY",
      "name": "KeyCorp",
      "multiple": 1.17,
@@ -10247,25 +10064,6 @@
       "price": 51.57,
       "divYield": 3.32,
       "pe": 13.9
-     }
-    },
-    {
-     "ticker": "EQR",
-     "name": "Equity Residential",
-     "multiple": 1.03,
-     "sub": "Multi-Family Residential REITs",
-     "hq": {
-      "city": "Chicago",
-      "state": "Illinois",
-      "region": "Midwest"
-     },
-     "industries": [
-      "Financials"
-     ],
-     "metrics": {
-      "price": 83.08,
-      "divYield": 2.73,
-      "pe": 32.0
      }
     },
     {
@@ -10678,42 +10476,6 @@
      "metrics": {
       "price": 64.0,
       "divYield": 5.33
-     }
-    },
-    {
-     "ticker": "CAG",
-     "name": "Conagra Brands",
-     "multiple": 2.14,
-     "sub": "Packaged Foods & Meats",
-     "hq": {
-      "city": "Chicago",
-      "state": "Illinois",
-      "region": "Midwest"
-     },
-     "industries": [
-      "Consumer"
-     ],
-     "metrics": {
-      "price": 24.25,
-      "divYield": 2.0
-     }
-    },
-    {
-     "ticker": "CPB",
-     "name": "Campbell's Company (The)",
-     "multiple": 2.06,
-     "sub": "Packaged Foods & Meats",
-     "hq": {
-      "city": "Camden",
-      "state": "New Jersey",
-      "region": "Northeast"
-     },
-     "industries": [
-      "Consumer"
-     ],
-     "metrics": {
-      "price": 47.62,
-      "divYield": 1.45
      }
     },
     {
@@ -11382,24 +11144,6 @@
      }
     },
     {
-     "ticker": "CPB",
-     "name": "Campbell's Company (The)",
-     "multiple": 2.05,
-     "sub": "Packaged Foods & Meats",
-     "hq": {
-      "city": "Camden",
-      "state": "New Jersey",
-      "region": "Northeast"
-     },
-     "industries": [
-      "Consumer"
-     ],
-     "metrics": {
-      "price": 43.25,
-      "divYield": 2.98
-     }
-    },
-    {
      "ticker": "GIS",
      "name": "General Mills",
      "multiple": 1.77,
@@ -11432,24 +11176,6 @@
      ],
      "metrics": {
       "price": 11.0
-     }
-    },
-    {
-     "ticker": "CAG",
-     "name": "Conagra Brands",
-     "multiple": 1.65,
-     "sub": "Packaged Foods & Meats",
-     "hq": {
-      "city": "Chicago",
-      "state": "Illinois",
-      "region": "Midwest"
-     },
-     "industries": [
-      "Consumer"
-     ],
-     "metrics": {
-      "price": 30.88,
-      "divYield": 2.42
      }
     },
     {
@@ -11822,24 +11548,6 @@
      }
     },
     {
-     "ticker": "CAG",
-     "name": "Conagra Brands",
-     "multiple": 1.67,
-     "sub": "Packaged Foods & Meats",
-     "hq": {
-      "city": "Chicago",
-      "state": "Illinois",
-      "region": "Midwest"
-     },
-     "industries": [
-      "Consumer"
-     ],
-     "metrics": {
-      "price": 21.44,
-      "divYield": 3.44
-     }
-    },
-    {
      "ticker": "TAP",
      "name": "Molson Coors Beverage Company",
      "multiple": 1.67,
@@ -11981,24 +11689,6 @@
      "metrics": {
       "price": 62.13,
       "divYield": 1.67
-     }
-    },
-    {
-     "ticker": "CPB",
-     "name": "Campbell's Company (The)",
-     "multiple": 1.08,
-     "sub": "Packaged Foods & Meats",
-     "hq": {
-      "city": "Camden",
-      "state": "New Jersey",
-      "region": "Northeast"
-     },
-     "industries": [
-      "Consumer"
-     ],
-     "metrics": {
-      "price": 31.44,
-      "divYield": 2.87
      }
     },
     {
@@ -12407,24 +12097,6 @@
      }
     },
     {
-     "ticker": "CPB",
-     "name": "Campbell's Company (The)",
-     "multiple": 1.31,
-     "sub": "Packaged Foods & Meats",
-     "hq": {
-      "city": "Camden",
-      "state": "New Jersey",
-      "region": "Northeast"
-     },
-     "industries": [
-      "Consumer"
-     ],
-     "metrics": {
-      "price": 29.32,
-      "divYield": 2.24
-     }
-    },
-    {
      "ticker": "TPR",
      "name": "Tapestry, Inc.",
      "multiple": 1.31,
@@ -12653,24 +12325,6 @@
      ],
      "metrics": {
       "price": 23.0
-     }
-    },
-    {
-     "ticker": "CAG",
-     "name": "Conagra Brands",
-     "multiple": 0.93,
-     "sub": "Packaged Foods & Meats",
-     "hq": {
-      "city": "Chicago",
-      "state": "Illinois",
-      "region": "Midwest"
-     },
-     "industries": [
-      "Consumer"
-     ],
-     "metrics": {
-      "price": 29.5,
-      "divYield": 2.69
      }
     },
     {
@@ -12918,7 +12572,7 @@
     },
     {
      "ticker": "ORLY",
-     "name": "O\u2019Reilly Automotive",
+     "name": "O'Reilly Automotive",
      "multiple": 5.1,
      "sub": "Automotive Retail",
      "hq": {
@@ -13628,25 +13282,6 @@
      }
     },
     {
-     "ticker": "CAG",
-     "name": "Conagra Brands",
-     "multiple": 1.88,
-     "sub": "Packaged Foods & Meats",
-     "hq": {
-      "city": "Chicago",
-      "state": "Illinois",
-      "region": "Midwest"
-     },
-     "industries": [
-      "Consumer"
-     ],
-     "metrics": {
-      "price": 22.74,
-      "divYield": 3.39,
-      "pe": 10.6
-     }
-    },
-    {
      "ticker": "PEP",
      "name": "PepsiCo",
      "multiple": 1.84,
@@ -13814,25 +13449,6 @@
      "metrics": {
       "price": 33.33,
       "pe": 14.9
-     }
-    },
-    {
-     "ticker": "CPB",
-     "name": "Campbell's Company (The)",
-     "multiple": 1.54,
-     "sub": "Packaged Foods & Meats",
-     "hq": {
-      "city": "Camden",
-      "state": "New Jersey",
-      "region": "Northeast"
-     },
-     "industries": [
-      "Consumer"
-     ],
-     "metrics": {
-      "price": 33.11,
-      "divYield": 3.1,
-      "pe": 16.2
      }
     },
     {
@@ -14130,7 +13746,7 @@
     },
     {
      "ticker": "ORLY",
-     "name": "O\u2019Reilly Automotive",
+     "name": "O'Reilly Automotive",
      "multiple": 2.34,
      "sub": "Automotive Retail",
      "hq": {
@@ -14691,25 +14307,6 @@
      }
     },
     {
-     "ticker": "CAG",
-     "name": "Conagra Brands",
-     "multiple": 1.4,
-     "sub": "Packaged Foods & Meats",
-     "hq": {
-      "city": "Chicago",
-      "state": "Illinois",
-      "region": "Midwest"
-     },
-     "industries": [
-      "Consumer"
-     ],
-     "metrics": {
-      "price": 35.43,
-      "divYield": 2.82,
-      "pe": 50.6
-     }
-    },
-    {
      "ticker": "GM",
      "name": "General Motors",
      "multiple": 1.39,
@@ -14839,25 +14436,6 @@
       "price": 44.91,
       "divYield": 0.36,
       "pe": 16.0
-     }
-    },
-    {
-     "ticker": "CPB",
-     "name": "Campbell's Company (The)",
-     "multiple": 1.24,
-     "sub": "Packaged Foods & Meats",
-     "hq": {
-      "city": "Camden",
-      "state": "New Jersey",
-      "region": "Northeast"
-     },
-     "industries": [
-      "Consumer"
-     ],
-     "metrics": {
-      "price": 45.74,
-      "divYield": 2.73,
-      "pe": 17.7
      }
     },
     {
@@ -15212,7 +14790,7 @@
     },
     {
      "ticker": "ORLY",
-     "name": "O\u2019Reilly Automotive",
+     "name": "O'Reilly Automotive",
      "multiple": 2.92,
      "sub": "Automotive Retail",
      "hq": {
@@ -16191,44 +15769,6 @@
      }
     },
     {
-     "ticker": "CAG",
-     "name": "Conagra Brands",
-     "multiple": 1.01,
-     "sub": "Packaged Foods & Meats",
-     "hq": {
-      "city": "Chicago",
-      "state": "Illinois",
-      "region": "Midwest"
-     },
-     "industries": [
-      "Consumer"
-     ],
-     "metrics": {
-      "price": 32.92,
-      "divYield": 2.59,
-      "pe": 21.7
-     }
-    },
-    {
-     "ticker": "CPB",
-     "name": "Campbell's Company (The)",
-     "multiple": 1.0,
-     "sub": "Packaged Foods & Meats",
-     "hq": {
-      "city": "Camden",
-      "state": "New Jersey",
-      "region": "Northeast"
-     },
-     "industries": [
-      "Consumer"
-     ],
-     "metrics": {
-      "price": 48.39,
-      "divYield": 2.89,
-      "pe": 69.1
-     }
-    },
-    {
      "ticker": "DLTR",
      "name": "Dollar Tree",
      "multiple": 0.86,
@@ -16423,7 +15963,7 @@
      "sub": "Hotels, Resorts & Cruise Lines",
      "hq": {
       "city": "Miami-Dade County",
-      "state": "Florida[4]",
+      "state": "Florida[3]",
       "region": "International"
      },
      "industries": [
@@ -19342,8 +18882,7 @@
       "Health & Utilities"
      ],
      "metrics": {
-      "price": 48.62,
-      "pe": 7.9
+      "price": 48.62
      }
     },
     {
@@ -19828,8 +19367,7 @@
      ],
      "metrics": {
       "price": 52.94,
-      "divYield": 2.95,
-      "pe": 14.3
+      "divYield": 2.95
      }
     },
     {
@@ -20379,8 +19917,7 @@
      ],
      "metrics": {
       "price": 146.44,
-      "divYield": 0.76,
-      "pe": 19.9
+      "divYield": 0.76
      }
     },
     {
@@ -20474,8 +20011,7 @@
      ],
      "metrics": {
       "price": 44.76,
-      "divYield": 1.97,
-      "pe": 30.0
+      "divYield": 1.97
      }
     },
     {
@@ -21827,7 +21363,7 @@
     },
     {
      "ticker": "RMD",
-     "name": "ResMed",
+     "name": "ResMed|",
      "multiple": 1.5,
      "sub": "Health Care Equipment",
      "hq": {
@@ -21935,8 +21471,7 @@
      ],
      "metrics": {
       "price": 87.14,
-      "divYield": 1.47,
-      "pe": 42.3
+      "divYield": 1.47
      }
     },
     {
@@ -22651,8 +22186,7 @@
      ],
      "metrics": {
       "price": 336.24,
-      "divYield": 0.65,
-      "pe": 16.7
+      "divYield": 0.65
      }
     },
     {
@@ -22833,7 +22367,7 @@
      "sub": "Aerospace & Defense",
      "hq": {
       "city": "West Falls Church",
-      "state": "Virginia[3]",
+      "state": "Virginia[2]",
       "region": "International"
      },
      "industries": [
@@ -22918,7 +22452,7 @@
     },
     {
      "ticker": "HON",
-     "name": "Honeywell",
+     "name": "Honeywell Technologies",
      "multiple": 2.33,
      "sub": "Industrial Conglomerates",
      "hq": {
@@ -23441,7 +22975,7 @@
      "ticker": "DD",
      "name": "DuPont",
      "multiple": 1.33,
-     "sub": "Specialty Chemicals",
+     "sub": "Industrial Conglomerates",
      "hq": {
       "city": "Wilmington",
       "state": "Delaware",
@@ -23761,7 +23295,7 @@
     },
     {
      "ticker": "HON",
-     "name": "Honeywell",
+     "name": "Honeywell Technologies",
      "multiple": 3.47,
      "sub": "Industrial Conglomerates",
      "hq": {
@@ -23924,7 +23458,7 @@
      "ticker": "DD",
      "name": "DuPont",
      "multiple": 2.57,
-     "sub": "Specialty Chemicals",
+     "sub": "Industrial Conglomerates",
      "hq": {
       "city": "Wilmington",
       "state": "Delaware",
@@ -24269,7 +23803,7 @@
      "sub": "Aerospace & Defense",
      "hq": {
       "city": "West Falls Church",
-      "state": "Virginia[3]",
+      "state": "Virginia[2]",
       "region": "International"
      },
      "industries": [
@@ -24737,7 +24271,7 @@
      "sub": "Aerospace & Defense",
      "hq": {
       "city": "West Falls Church",
-      "state": "Virginia[3]",
+      "state": "Virginia[2]",
       "region": "International"
      },
      "industries": [
@@ -25021,7 +24555,7 @@
      "ticker": "DD",
      "name": "DuPont",
      "multiple": 1.54,
-     "sub": "Specialty Chemicals",
+     "sub": "Industrial Conglomerates",
      "hq": {
       "city": "Wilmington",
       "state": "Delaware",
@@ -25415,7 +24949,7 @@
     },
     {
      "ticker": "HON",
-     "name": "Honeywell",
+     "name": "Honeywell Technologies",
      "multiple": 0.82,
      "sub": "Industrial Conglomerates",
      "hq": {
@@ -26007,7 +25541,7 @@
     },
     {
      "ticker": "HON",
-     "name": "Honeywell",
+     "name": "Honeywell Technologies",
      "multiple": 1.23,
      "sub": "Industrial Conglomerates",
      "hq": {
@@ -26066,7 +25600,7 @@
      "sub": "Aerospace & Defense",
      "hq": {
       "city": "West Falls Church",
-      "state": "Virginia[3]",
+      "state": "Virginia[2]",
       "region": "International"
      },
      "industries": [
@@ -26422,7 +25956,7 @@
      "ticker": "DD",
      "name": "DuPont",
      "multiple": 0.68,
-     "sub": "Specialty Chemicals",
+     "sub": "Industrial Conglomerates",
      "hq": {
       "city": "Wilmington",
       "state": "Delaware",
@@ -26668,7 +26202,7 @@
      "sub": "Aerospace & Defense",
      "hq": {
       "city": "West Falls Church",
-      "state": "Virginia[3]",
+      "state": "Virginia[2]",
       "region": "International"
      },
      "industries": [
@@ -26757,7 +26291,7 @@
     },
     {
      "ticker": "HON",
-     "name": "Honeywell",
+     "name": "Honeywell Technologies",
      "multiple": 2.92,
      "sub": "Industrial Conglomerates",
      "hq": {
@@ -27326,7 +26860,7 @@
      "ticker": "DD",
      "name": "DuPont",
      "multiple": 1.96,
-     "sub": "Specialty Chemicals",
+     "sub": "Industrial Conglomerates",
      "hq": {
       "city": "Wilmington",
       "state": "Delaware",
@@ -27507,8 +27041,7 @@
      ],
      "metrics": {
       "price": 64.43,
-      "divYield": 2.58,
-      "pe": 16.2
+      "divYield": 2.58
      }
     },
     {
@@ -27932,7 +27465,7 @@
      "sub": "Aerospace & Defense",
      "hq": {
       "city": "West Falls Church",
-      "state": "Virginia[3]",
+      "state": "Virginia[2]",
       "region": "International"
      },
      "industries": [
@@ -28212,7 +27745,7 @@
     },
     {
      "ticker": "HON",
-     "name": "Honeywell",
+     "name": "Honeywell Technologies",
      "multiple": 2.11,
      "sub": "Industrial Conglomerates",
      "hq": {
@@ -28867,8 +28400,7 @@
      ],
      "metrics": {
       "price": 40.81,
-      "divYield": 1.72,
-      "pe": 22.7
+      "divYield": 1.72
      }
     },
     {
@@ -28894,7 +28426,7 @@
      "ticker": "DD",
      "name": "DuPont",
      "multiple": 1.15,
-     "sub": "Specialty Chemicals",
+     "sub": "Industrial Conglomerates",
      "hq": {
       "city": "Wilmington",
       "state": "Delaware",
@@ -28997,8 +28529,7 @@
      ],
      "metrics": {
       "price": 87.42,
-      "divYield": 3.09,
-      "pe": 11.5
+      "divYield": 3.09
      }
     },
     {
@@ -29781,8 +29312,7 @@
      ],
      "metrics": {
       "price": 39.45,
-      "divYield": 2.64,
-      "pe": 6.1
+      "divYield": 2.64
      }
     },
     {
@@ -29837,8 +29367,7 @@
      ],
      "metrics": {
       "price": 62.12,
-      "divYield": 5.52,
-      "pe": 18.5
+      "divYield": 5.52
      }
     },
     {
@@ -30290,8 +29819,7 @@
      ],
      "metrics": {
       "price": 162.47,
-      "divYield": 0.62,
-      "pe": 60.2
+      "divYield": 0.62
      }
     },
     {
@@ -30412,7 +29940,7 @@
      "ticker": "DD",
      "name": "DuPont",
      "multiple": 1.64,
-     "sub": "Specialty Chemicals",
+     "sub": "Industrial Conglomerates",
      "hq": {
       "city": "Wilmington",
       "state": "Delaware",
@@ -30581,7 +30109,7 @@
     },
     {
      "ticker": "HON",
-     "name": "Honeywell",
+     "name": "Honeywell Technologies",
      "multiple": 1.45,
      "sub": "Industrial Conglomerates",
      "hq": {
@@ -30662,7 +30190,7 @@
      "sub": "Aerospace & Defense",
      "hq": {
       "city": "West Falls Church",
-      "state": "Virginia[3]",
+      "state": "Virginia[2]",
       "region": "International"
      },
      "industries": [

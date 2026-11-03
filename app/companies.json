@@ -512,7 +512,7 @@
   "industries": [
    "Technology"
   ],
-  "sub": "Application Software",
+  "sub": "Advertising",
   "hq": {
    "city": "Palo Alto",
    "state": "California",
@@ -571,19 +571,6 @@
    "region": "South"
   },
   "cik": 731802
- },
- "AVB": {
-  "name": "AvalonBay Communities",
-  "industries": [
-   "Financials"
-  ],
-  "sub": "Multi-Family Residential REITs",
-  "hq": {
-   "city": "Arlington",
-   "state": "Virginia",
-   "region": "South"
-  },
-  "cik": 915912
  },
  "AVGO": {
   "name": "Broadcom",
@@ -961,19 +948,6 @@
    "region": "Northeast"
   },
   "cik": 831001
- },
- "CAG": {
-  "name": "Conagra Brands",
-  "industries": [
-   "Consumer"
-  ],
-  "sub": "Packaged Foods & Meats",
-  "hq": {
-   "city": "Chicago",
-   "state": "Illinois",
-   "region": "Midwest"
-  },
-  "cik": 23217
  },
  "CAH": {
   "name": "Cardinal Health",
@@ -1456,19 +1430,6 @@
   },
   "cik": 1175454
  },
- "CPB": {
-  "name": "Campbell's Company (The)",
-  "industries": [
-   "Consumer"
-  ],
-  "sub": "Packaged Foods & Meats",
-  "hq": {
-   "city": "Camden",
-   "state": "New Jersey",
-   "region": "Northeast"
-  },
-  "cik": 16732
- },
  "CPRT": {
   "name": "Copart",
   "industries": [
@@ -1708,7 +1669,7 @@
   "industries": [
    "Industry & Energy"
   ],
-  "sub": "Specialty Chemicals",
+  "sub": "Industrial Conglomerates",
   "hq": {
    "city": "Wilmington",
    "state": "Delaware",
@@ -1989,19 +1950,6 @@
   },
   "cik": 1093557
  },
- "EA": {
-  "name": "Electronic Arts",
-  "industries": [
-   "Technology"
-  ],
-  "sub": "Interactive Home Entertainment",
-  "hq": {
-   "city": "Redwood City",
-   "state": "California",
-   "region": "West"
-  },
-  "cik": 712515
- },
  "EBAY": {
   "name": "eBay Inc.",
   "industries": [
@@ -2014,6 +1962,19 @@
    "region": "West"
   },
   "cik": 1065088
+ },
+ "ECHO": {
+  "name": "EchoStar",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Wireless Telecommunication Services",
+  "hq": {
+   "city": "Englewood",
+   "state": "Colorado",
+   "region": "West"
+  },
+  "cik": 1415404
  },
  "ECL": {
   "name": "Ecolab",
@@ -2157,19 +2118,6 @@
    "region": "West"
   },
   "cik": 1101239
- },
- "EQR": {
-  "name": "Equity Residential",
-  "industries": [
-   "Financials"
-  ],
-  "sub": "Multi-Family Residential REITs",
-  "hq": {
-   "city": "Chicago",
-   "state": "Illinois",
-   "region": "Midwest"
-  },
-  "cik": 906107
  },
  "EQT": {
   "name": "EQT Corporation",
@@ -2444,6 +2392,19 @@
   },
   "cik": 1031296
  },
+ "FERG": {
+  "name": "Ferguson Enterprises",
+  "industries": [
+   "Industry & Energy"
+  ],
+  "sub": "Trading Companies & Distributors",
+  "hq": {
+   "city": "Newport News",
+   "state": "Virginia",
+   "region": "South"
+  },
+  "cik": 2011641
+ },
  "FFIV": {
   "name": "F5, Inc.",
   "industries": [
@@ -2521,6 +2482,19 @@
    "region": "South"
   },
   "cik": 1035983
+ },
+ "FLEX": {
+  "name": "Flex Ltd.",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Electronic Manufacturing Services",
+  "hq": {
+   "city": "Austin",
+   "state": "Texas",
+   "region": "South"
+  },
+  "cik": 866374
  },
  "FOX": {
   "name": "Fox Corporation (Class B)",
@@ -2748,7 +2722,7 @@
   "industries": [
    "Industry & Energy"
   ],
-  "sub": "Electrical Components & Equipment",
+  "sub": "Heavy Electrical Equipment",
   "hq": {
    "city": "Waukesha",
    "state": "Wisconsin",
@@ -2952,7 +2926,7 @@
   "cik": 1585689
  },
  "HON": {
-  "name": "Honeywell",
+  "name": "Honeywell Technologies",
   "industries": [
    "Industry & Energy"
   ],
@@ -2963,6 +2937,19 @@
    "region": "South"
   },
   "cik": 773840
+ },
+ "HONA": {
+  "name": "Honeywell Aerospace",
+  "industries": [
+   "Industry & Energy"
+  ],
+  "sub": "Aerospace & Defense",
+  "hq": {
+   "city": "Phoenix",
+   "state": "Arizona",
+   "region": "West"
+  },
+  "cik": 2089271
  },
  "HOOD": {
   "name": "Robinhood Markets",
@@ -4121,6 +4108,19 @@
   },
   "cik": 62709
  },
+ "MRVL": {
+  "name": "Marvell Technology",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Semiconductors",
+  "hq": {
+   "city": "Santa Clara",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1835632
+ },
  "MS": {
   "name": "Morgan Stanley",
   "industries": [
@@ -4135,7 +4135,7 @@
   "cik": 895421
  },
  "MSCI": {
-  "name": "MSCI Inc.",
+  "name": "MSCI",
   "industries": [
    "Financials"
   ],
@@ -4220,7 +4220,7 @@
   "sub": "Hotels, Resorts & Cruise Lines",
   "hq": {
    "city": "Miami-Dade County",
-   "state": "Florida[4]",
+   "state": "Florida[3]",
    "region": "International"
   },
   "cik": 1513761
@@ -4324,7 +4324,7 @@
   "sub": "Aerospace & Defense",
   "hq": {
    "city": "West Falls Church",
-   "state": "Virginia[3]",
+   "state": "Virginia[2]",
    "region": "International"
   },
   "cik": 1133421
@@ -4551,7 +4551,7 @@
   "cik": 1341439
  },
  "ORLY": {
-  "name": "O\u2019Reilly Automotive",
+  "name": "O'Reilly Automotive",
   "industries": [
    "Consumer"
   ],
@@ -4849,19 +4849,6 @@
   },
   "cik": 1145197
  },
- "POOL": {
-  "name": "Pool Corporation",
-  "industries": [
-   "Consumer"
-  ],
-  "sub": "Distributors",
-  "hq": {
-   "city": "Covington",
-   "state": "Louisiana",
-   "region": "South"
-  },
-  "cik": 945841
- },
  "PPG": {
   "name": "PPG Industries",
   "industries": [
@@ -5018,6 +5005,19 @@
   },
   "cik": 884887
  },
+ "RDDT": {
+  "name": "Reddit",
+  "industries": [
+   "Technology"
+  ],
+  "sub": "Interactive Media & Services",
+  "hq": {
+   "city": "San Francisco",
+   "state": "California",
+   "region": "West"
+  },
+  "cik": 1713445
+ },
  "REG": {
   "name": "Regency Centers",
   "industries": [
@@ -5084,7 +5084,7 @@
   "cik": 1037038
  },
  "RMD": {
-  "name": "ResMed",
+  "name": "ResMed|",
   "industries": [
    "Health & Utilities"
   ],
@@ -5186,19 +5186,6 @@
    "region": "Northeast"
   },
   "cik": 31791
- },
- "SATS": {
-  "name": "EchoStar",
-  "industries": [
-   "Technology"
-  ],
-  "sub": "Wireless Telecommunication Services",
-  "hq": {
-   "city": "Englewood",
-   "state": "Colorado",
-   "region": "West"
-  },
-  "cik": 1415404
  },
  "SBAC": {
   "name": "SBA Communications",
@@ -6111,6 +6098,19 @@
   },
   "cik": 1396009
  },
+ "VMRK": {
+  "name": "Vivmark Residential",
+  "industries": [
+   "Financials"
+  ],
+  "sub": "Multi-Family Residential REITs",
+  "hq": {
+   "city": "Chicago",
+   "state": "Illinois",
+   "region": "Midwest"
+  },
+  "cik": 906107
+ },
  "VRSK": {
   "name": "Verisk Analytics",
   "industries": [
@@ -6460,7 +6460,7 @@
    "state": "Texas",
    "region": "South"
   },
-  "cik": 34088
+  "cik": 2115436
  },
  "XYL": {
   "name": "Xylem Inc.",
