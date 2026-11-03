@@ -1,7 +1,6 @@
 # Stock coverage — 100xPortfolio universe
 
-Generated from `app/universe.json` (built 2026-08-19). Each cell is the
-number of pickable stocks for that category × era.
+Pickable stocks per category × era, from `app/universe.json` (built 2026-08-19).
 
 | Category | 1990-1995 | 1995-2000 | 2000-2005 | 2005-2010 | 2010-2015 | 2015-2020 | 2020-2025 | **Total** |
 |---|---|---|---|---|---|---|---|---|
@@ -12,13 +11,7 @@ number of pickable stocks for that category × era.
 | Industry & Energy | 48 | 48 | 54 | 59 | 65 | 81 | 101 | **456** |
 | **Total** | **142** | **148** | **190** | **228** | **277** | **317** | **399** | **1701** |
 
-## Why the per-era totals are ~130–390, not ~500
-
-The S&P 500 held ~500 names in every era, but each era cell is built by intersecting
-that era's index roster with **today's** sector map (`sp500.csv`, 503 names). Any
-company that was in the index then but has since been acquired, delisted, or dropped
-has no current sector and is excluded — **survivorship bias**, worst in the old eras
-(only ~39% of the 2000 index is still listed today).
+## Survivorship: era-start roster vs. what the game keeps
 
 | Era | In S&P that era | Kept in game | Dropped: no longer in index | Dropped: no return data |
 |---|---|---|---|---|
@@ -30,18 +23,9 @@ has no current sector and is excluded — **survivorship bias**, worst in the ol
 | 2015-2020 | 499 | 310 | 188 | 1 |
 | 2020-2025 | 505 | 392 | 113 | 0 |
 
-"Kept in game" is survivors-with-data (the era totals above, minus a few curated
-landmines). The dominant loss is **"no longer in index"** — historical members we have
-no current GICS sector for, so they can't be bucketed.
-
 ## 102 current S&P 500 members missing from every era
 
-A separate gap: the universe uses each era's **start-date** roster, so companies added
-to the index later never appear. Marquee omissions: **Tesla** (added Dec 2020),
-**Meta**, **Berkshire Hathaway**, **Uber**, **Palantir**, **Coinbase**, **Airbnb**,
-**KKR**, **Blackstone**, **CrowdStrike**.
-
-<details><summary>Full list of 102 missing current members</summary>
+<details><summary>Joined the index after every era start</summary>
 
 - `ABNB` — Airbnb (Consumer Discretionary)
 - `ACGL` — Arch Capital Group (Financials)
@@ -147,14 +131,4 @@ to the index later never appear. Marquee omissions: **Tesla** (added Dec 2020),
 - `XYZ` — Block, Inc. (Financials)
 
 </details>
-
-## Recommended fixes
-
-1. **Fuller eras (the big one):** fetch returns for the *full* historical roster, not
-   just current survivors, and source **point-in-time GICS sectors** for the now-delisted
-   names (e.g. Yahoo `quoteSummary` assetProfile, or a historical sector table) so they
-   can be bucketed. This is what moves eras toward ~500.
-2. **Missing current names:** bucket each era from a later/union roster (or current
-   membership for the live era) instead of only the era-start snapshot — captures Tesla,
-   Uber, Palantir, etc. (~100 of these are in the latest membership snapshot).
 

@@ -6,7 +6,7 @@ import os
 from datetime import date, datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-import find_candidates as fc  # noqa: E402
+import common  # noqa: E402
 
 OUT_PATH = os.path.join(os.path.dirname(HERE), "app", "membership.json")
 FIRST_YEAR = 1990
@@ -14,11 +14,11 @@ FIRST_SNAPSHOT_YEAR = 1996
 
 
 def build():
-    components = fc.load_components()
+    components = common.load_components()
     last_year = date.today().year
     years = {}
     for y in range(FIRST_YEAR, last_year + 1):
-        roster, proxied = fc.roster_at(components, f"{y}-01-01")
+        roster, proxied = common.roster_at(components, f"{y}-01-01")
         years[str(y)] = {"proxied": proxied, "tickers": sorted(roster)}
     payload = {
         "generatedAt": datetime.now(timezone.utc).isoformat(),

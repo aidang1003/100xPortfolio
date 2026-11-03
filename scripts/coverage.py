@@ -6,7 +6,6 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import find_candidates as fc  # noqa: E402
 import collect  # noqa: E402
 import common  # noqa: E402
 
@@ -23,7 +22,7 @@ def main():
     uni = json.load(open(os.path.join(ROOT, "app", "universe.json"), encoding="utf-8"))
     cats, eras, S = uni["industries"], uni["eras"], uni["stocks"]
     sect = common.load_sector_map()
-    comp = fc.load_components()
+    comp = common.load_components()
     collect._load_prices()
 
     out = []
@@ -31,8 +30,7 @@ def main():
 
     w("# Stock coverage — 100xPortfolio universe")
     w("")
-    w(f"Generated from `app/universe.json` (built {uni['generatedAt'][:10]}). Each cell is the")
-    w("number of pickable stocks for that category × era.")
+    w(f"Pickable stocks per category × era, from `app/universe.json` (built {uni['generatedAt'][:10]}).")
     w("")
     w("| Category | " + " | ".join(lbl(e) for e in eras) + " | **Total** |")
     w("|" + "---|" * (len(eras) + 2))
@@ -47,54 +45,28 @@ def main():
     w("| **Total** | " + " | ".join(f"**{coltot[e]}**" for e in eras) + f" | **{grand}** |")
     w("")
 
-    w("## Why the per-era totals are ~130–390, not ~500")
-    w("")
-    w("The S&P 500 held ~500 names in every era, but each era cell is built by intersecting")
-    w("that era's index roster with **today's** sector map (`sp500.csv`, 503 names). Any")
-    w("company that was in the index then but has since been acquired, delisted, or dropped")
-    w("has no current sector and is excluded — **survivorship bias**, worst in the old eras")
-    w("(only ~39% of the 2000 index is still listed today).")
+    w("## Survivorship: era-start roster vs. what the game keeps")
     w("")
     w("| Era | In S&P that era | Kept in game | Dropped: no longer in index | Dropped: no return data |")
     w("|---|---|---|---|---|")
     for e in eras:
-        roster = fc.roster_at(comp, e.split("-")[0] + "-01-01")[0]
+        roster = common.roster_at(comp, e.split("-")[0] + "-01-01")[0]
         in_sect = [t for t in roster if t in sect]
         has = [t for t in in_sect if collect.multiple(t, e) is not None]
         w(f"| {lbl(e)} | {len(roster)} | {len(has)} | {len(roster) - len(in_sect)} | {len(in_sect) - len(has)} |")
-    w("")
-    w('"Kept in game" is survivors-with-data (the era totals above, minus a few curated')
-    w('landmines). The dominant loss is **"no longer in index"** — historical members we have')
-    w("no current GICS sector for, so they can't be bucketed.")
     w("")
 
     uni_tk = {s["ticker"] for c in cats for e in eras for s in S[c][e]}
     missing = sorted(t for t in sect if t not in uni_tk)
     w(f"## {len(missing)} current S&P 500 members missing from every era")
     w("")
-    w("A separate gap: the universe uses each era's **start-date** roster, so companies added")
-    w("to the index later never appear. Marquee omissions: **Tesla** (added Dec 2020),")
-    w("**Meta**, **Berkshire Hathaway**, **Uber**, **Palantir**, **Coinbase**, **Airbnb**,")
-    w("**KKR**, **Blackstone**, **CrowdStrike**.")
-    w("")
-    w(f"<details><summary>Full list of {len(missing)} missing current members</summary>")
+    w("<details><summary>Joined the index after every era start</summary>")
     w("")
     for t in missing:
         name, gsec, _ = sect[t]
         w(f"- `{t}` — {name} ({gsec})")
     w("")
     w("</details>")
-    w("")
-
-    w("## Recommended fixes")
-    w("")
-    w("1. **Fuller eras (the big one):** fetch returns for the *full* historical roster, not")
-    w("   just current survivors, and source **point-in-time GICS sectors** for the now-delisted")
-    w("   names (e.g. Yahoo `quoteSummary` assetProfile, or a historical sector table) so they")
-    w("   can be bucketed. This is what moves eras toward ~500.")
-    w("2. **Missing current names:** bucket each era from a later/union roster (or current")
-    w("   membership for the live era) instead of only the era-start snapshot — captures Tesla,")
-    w("   Uber, Palantir, etc. (~100 of these are in the latest membership snapshot).")
     w("")
 
     with open(OUT, "w", encoding="utf-8") as f:

@@ -73,9 +73,7 @@ That runs, in order:
    bankruptcy landmines → `universe.json`.
 5. **`coverage.py`** — regenerates `docs/COVERAGE.md`.
 
-`scripts/find_candidates.py` is a curation aid (identity-checked S&P membership diff,
-for extending the delisted/historical universe). Sources: Yahoo public chart JSON
-(prices, no key), fja05680 (membership + GICS + HQ), SEC EDGAR (fundamentals).
+Sources: Yahoo public chart JSON (prices, no key), fja05680 (membership + GICS + HQ), SEC EDGAR (fundamentals).
 
 ## Run locally
 
@@ -93,7 +91,7 @@ The compiled `static/app.js` is committed, so **run `npm run build` after editin
 ## Deploy to Vercel
 
 `vercel.json` wires the Flask app (`api/index.py`) as a Python serverless function
-with all routes pointed at it; `templates/`, `static/`, and `app/` are bundled.
+with all routes pointed at it; `templates/`, `static/`, `app/*.py` and `app/universe.json` are bundled.
 Vercel Web Analytics (page views) loads from `/_vercel/insights/script.js`.
 
 ```bash
@@ -117,9 +115,8 @@ vercel --prod
 │   ├── refresh.py          # one-command rebuild orchestrator
 │   ├── collect.py          # monthly price-series store + on-the-fly multiples
 │   ├── build_{membership,companies,fundamentals,universe}.py
-│   ├── find_candidates.py  # membership diff / curation aid + shared roster lib
 │   ├── coverage.py         # → docs/COVERAGE.md
-│   └── common.py           # shared constants + source-CSV loader (remaps, UA, eras, categories, GICS fold)
+│   └── common.py           # shared constants + fja05680 CSV loaders + roster lookup
 ├── src/main.ts             # TypeScript frontend (built → static/app.js)
 ├── templates/index.html · static/{style.css,app.js}
 ├── tests/                  # pytest/unittest: prices, fundamentals, game rules
