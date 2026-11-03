@@ -1,12 +1,4 @@
-"""Game engine: daily-seeded (era, HQ-location) spins + one-per-industry scoring.
-
-Each round is a combination of an **era** and a **headquarters location** (a US
-region for now). You pick one company headquartered there, and across your five
-picks you must field five **distinct industries** — a lineup, one per position,
-like a starting five. Multi-industry names (Amazon = Tech or Consumer Disc.) are
-flexible and can fill either open slot. The stake still rolls from one pick into
-the next (parlay); scoring is unchanged.
-"""
+"""Game engine: seeded (era, HQ region) rounds, five distinct industries, stake parlays through picks."""
 
 import hashlib
 import random
@@ -16,19 +8,16 @@ from datetime import date, datetime
 from .config import DAY_ONE, GAME_TZ, NUM_ROUNDS, STARTING_STAKE, era_label
 from .data import ERAS, INDUSTRIES, STOCKS, cell
 
-# HQ locations a round can land on. Regions keep every (era, location) pool
-# populous; finer state-level buckets are a later distribution pass.
 LOCATIONS = ["Northeast", "Midwest", "South", "West"]
 
 
 def _location(hq):
-    """A stock's round-location, or None if it can't anchor a round (foreign HQ)."""
+    """None for a foreign HQ."""
     region = (hq or {}).get("region")
     return region if region in LOCATIONS else None
 
 
-# (era, location) -> [stock dicts], built once from the universe. Each stock keeps
-# its full `industries` list so the lineup can honor multi-industry names.
+# (era, location) -> stocks
 _POOL = {}
 for _industry in INDUSTRIES:
     for _era in ERAS:
@@ -39,27 +28,23 @@ for _industry in INDUSTRIES:
 
 
 def _seed_for(day):
-    """Stable integer seed so everyone in the world gets the same spins on a given day."""
     h = hashlib.sha256(day.encode()).hexdigest()
     return int(h[:16], 16)
 
 
 def today_str():
-    """Today's date in Mountain time — the board rolls at midnight Denver, not UTC."""
     return datetime.now(GAME_TZ).date().isoformat()
 
 
 def day_number(day):
-    """1-based daily number for a day string, counting from DAY_ONE."""
     return (date.fromisoformat(day) - DAY_ONE).days + 1
 
 
 def practice_seed():
-    """A fresh random seed for a practice board. Never collides with a day string."""
+    """Never collides with a day string."""
     return "p-" + secrets.token_hex(6)
 
 
-# --- lineup feasibility (a system of distinct industry representatives) --------
 def _industries_available(era, loc):
     out = set()
     for s in _POOL.get((era, loc), []):
@@ -68,7 +53,7 @@ def _industries_available(era, loc):
 
 
 def _max_matching(round_industries):
-    """Max bipartite matching rounds -> distinct industries (augmenting paths)."""
+    """Max bipartite matching: rounds -> distinct industries."""
     match = {}  # industry -> round index
 
     def augment(r, seen):
@@ -89,14 +74,8 @@ def _max_matching(round_industries):
 
 
 def daily_rounds(seed=None):
-    """Five (era, location) rounds from a seed, guaranteed to admit a legal lineup.
-
-    No seed -> today's shared daily spin; a random seed -> a practice roll. Both
-    the rounds and each round's two skip alternates come off this one seeded RNG,
-    so the daily board — skips included — is identical for every player. Each
-    round bundles its full pool of pickable companies (returns stripped) so the
-    client never re-fetches.
-    """
+    """Five rounds that admit a legal lineup. Rounds and skip alternates share one
+    seeded RNG, so the daily is identical for every player."""
     seed = seed or today_str()
     rng = random.Random(_seed_for(seed))
 
@@ -107,14 +86,12 @@ def daily_rounds(seed=None):
         if _max_matching([_industries_available(e, l) for e, l in cand]) == NUM_ROUNDS:
             chosen = cand
             break
-    if chosen is None:  # extraordinarily unlikely with region-sized pools
+    if chosen is None:
         chosen = rng.sample(cells, NUM_ROUNDS)
 
     rounds = []
     for i, (era, loc) in enumerate(chosen):
-        # The two cells this round's single skip can re-roll into. Their stock
-        # lists are fetched on demand (/api/cell) so the daily payload stays
-        # one cell per round instead of three.
+        # Skip targets; their stocks load on demand via /api/cell.
         alt_era = rng.choice([e for e in ERAS if e != era])
         alt_loc = rng.choice([l for l in LOCATIONS if l != loc])
         rounds.append({
@@ -128,34 +105,31 @@ def daily_rounds(seed=None):
             "stocks": cell_stocks(era, loc),
         })
     day = today_str()
-    # A seed equal to today's date is the daily; anything else (including a
-    # yesterday resume that crossed midnight) plays on as practice.
+    # A resume that crossed midnight plays on as practice.
     return {"seed": seed, "day": day, "dayNumber": day_number(day),
             "mode": "daily" if seed == day else "practice", "rounds": rounds}
 
 
 def cell_stocks(era, location):
-    """Pick-time payload for one (era, location) cell; what a skip re-rolls into."""
     return [_stock_payload(s) for s in _POOL.get((era, location), [])]
 
 
 def _legal_cells(rnd):
-    """The cells a pick may come from. Each reel has its own skip, so a round can be
-    primary, era-skipped, region-skipped, or (if both are spent here) both."""
+    """Primary, either reel's alternate, or both."""
     return {(era, loc)
             for era in (rnd["era"], rnd["altEra"])
             for loc in (rnd["location"], rnd["altLocation"])}
 
 
 def _stock_payload(s):
-    """Pick-time payload: the outcome multiple is hidden; entry metrics are shown."""
+    """Multiple hidden at pick time."""
     return {
         "ticker": s["ticker"],
         "name": s["name"],
         "sub": s.get("sub", ""),
         "hq": s.get("hq"),
         "industries": s.get("industries", []),
-        "metrics": s.get("metrics", {}),  # entry P/E · price · dividend (known at pick time)
+        "metrics": s.get("metrics", {}),
     }
 
 
@@ -167,7 +141,6 @@ def _pool_lookup(era, loc, ticker):
 
 
 def _grade(multiple):
-    # Tiers by total portfolio multiple. S is the 100x dream; F is the floor.
     if multiple >= 100:
         return ("S", "You 100×'d the pot. Legendary.", "gold")
     if multiple >= 56:
@@ -181,22 +154,21 @@ def _grade(multiple):
     return ("F", "You barely moved.", "gray")
 
 
-# Medal for a top-3 finish within an (era, location) pool.
 _MEDALS = {1: "gold", 2: "silver", 3: "bronze"}
 
 
 def _pool_rank(era, loc, ticker):
-    """1-based rank of `ticker` within its (era, location) pool by return + pool size."""
+    """(1-based rank by multiple, pool size)"""
     stocks = sorted(_POOL.get((era, loc), []), key=lambda s: s["multiple"], reverse=True)
     n = len(stocks)
     for idx, s in enumerate(stocks):
         if s["ticker"] == ticker:
             return idx + 1, n
-    return n, n  # shouldn't happen — the pick was validated against this pool
+    return n, n
 
 
 def _perf_class(rank, n):
-    """Tercile of a pick within its pool: top -> up (green), mid -> flat, worst -> down (red)."""
+    """Pool tercile."""
     if not n:
         return "flat"
     frac = (rank - 1) / n
@@ -208,8 +180,7 @@ def _perf_class(rank, n):
 
 
 def _best_lineup(cells):
-    """(product, [(industry, stock)]) for the best distinct-industry lineup over these
-    cells. Reduces each cell to its best stock per industry, then searches assignments."""
+    """Best distinct-industry lineup: (product, [(industry, stock)])."""
     opts = []
     for era, loc in cells:
         best = {}
@@ -239,11 +210,9 @@ def _best_lineup(cells):
 
 
 def _best_possible(rounds):
-    """Best legal run on these spins, played under the same rules as the player: one
-    stock per round, five distinct industries, one era skip and one region skip. So it
-    searches every way of spending those two charges, including both on one round."""
+    """Best legal run, trying every way to spend the era and region skip."""
     base = [(r["era"], r["location"]) for r in rounds]
-    spends = range(-1, len(rounds))  # -1 = never spend this skip
+    spends = range(-1, len(rounds))  # -1 = unspent
 
     best_prod, best_assign, best_cells = -1.0, [], base
     for era_at in spends:
@@ -268,12 +237,7 @@ def _best_possible(rounds):
 
 
 def score(picks, seed=None):
-    """Score a finished game.
-
-    `picks` is a list of {era, location, ticker, industry}. Validates each pick
-    was reachable in its round and that the five industries are distinct (the
-    one-per-industry lineup rule), then rolls the stake through them.
-    """
+    """picks: [{era, location, ticker, industry}]"""
     data = daily_rounds(seed)
     rounds = data["rounds"]
     if len(picks) != NUM_ROUNDS:
@@ -281,11 +245,11 @@ def score(picks, seed=None):
 
     used_industries = set()
     legs = []
-    balance = STARTING_STAKE  # rolls from one pick into the next
+    balance = STARTING_STAKE
     for i, pick in enumerate(picks):
         rnd = rounds[i]
         era, loc = pick.get("era"), pick.get("location")
-        if (era, loc) not in _legal_cells(rnd):  # primary or a skipped-into alternate
+        if (era, loc) not in _legal_cells(rnd):
             raise ValueError(f"Round {i}: illegal cell {era} / {loc}")
 
         stock = _pool_lookup(era, loc, pick.get("ticker"))
@@ -300,7 +264,7 @@ def score(picks, seed=None):
         used_industries.add(industry)
 
         invested = balance
-        balance = balance * stock["multiple"]  # whole pot rides on this pick
+        balance = balance * stock["multiple"]
         rank, pool_size = _pool_rank(era, loc, stock["ticker"])
         legs.append({
             "ticker": stock["ticker"],
@@ -315,15 +279,14 @@ def score(picks, seed=None):
             "invested": round(invested, 2),
             "finalValue": round(balance, 2),
             "gainPct": round((stock["multiple"] - 1) * 100, 1),
-            # Standing within the (era, location) pool the player was dealt.
             "rank": rank,
             "cellSize": pool_size,
-            "medal": _MEDALS.get(rank),  # gold/silver/bronze, else None
-            "perf": _perf_class(rank, pool_size),  # up/flat/down (green/yellow/red)
+            "medal": _MEDALS.get(rank),
+            "perf": _perf_class(rank, pool_size),
         })
 
     final_value = balance
-    multiple = final_value / STARTING_STAKE  # = product of every pick's multiple
+    multiple = final_value / STARTING_STAKE
     grade, verdict, color = _grade(multiple)
 
     best = max(legs, key=lambda l: l["multiple"])
@@ -353,11 +316,7 @@ def score(picks, seed=None):
 
 
 def learn_data():
-    """Full universe with returns revealed, for the (non-game) learning mode.
-
-    Every (industry, era) cell's stocks with their 5-year return %, sorted best
-    to worst — a study view, not a guessing game, so the numbers are shown.
-    """
+    """Learning mode: every cell with returns revealed, best first."""
     out = {}
     for industry in INDUSTRIES:
         out[industry] = {}

@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
-"""Generate docs/COVERAGE.md: the stock-coverage chart plus a gap analysis against the
-current S&P 500 (survivorship bias + current members missing from every era)."""
+"""Generate docs/COVERAGE.md."""
 
 import json
 import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import find_candidates as fc  # noqa: E402  (roster history)
-import collect  # noqa: E402  (price series -> multiples)
-import common  # noqa: E402  (sector map)
+import find_candidates as fc  # noqa: E402
+import collect  # noqa: E402
+import common  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "docs", "COVERAGE.md")
@@ -23,7 +22,7 @@ def lbl(era):
 def main():
     uni = json.load(open(os.path.join(ROOT, "app", "universe.json"), encoding="utf-8"))
     cats, eras, S = uni["industries"], uni["eras"], uni["stocks"]
-    sect = common.load_sector_map()  # ticker -> (name, GICS sector, sub-industry)
+    sect = common.load_sector_map()
     comp = fc.load_components()
     collect._load_prices()
 

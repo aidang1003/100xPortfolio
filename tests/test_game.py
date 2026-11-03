@@ -1,7 +1,4 @@
-"""Tests for the (era, location) one-per-industry lineup engine.
-
-Run: .venv/bin/python -m unittest tests.test_game
-"""
+"""Lineup engine tests."""
 
 import os
 import sys

@@ -1,25 +1,7 @@
 #!/usr/bin/env python3
-"""Find candidate S&P 500 stocks per era we don't yet have metadata for.
-
-Pulls the survivorship-bias-free S&P 500 historical membership list from
-fja05680/sp500, takes the index roster as of each era's *start*, drops the names
-already in `app/companies.json`, then (optionally) fetches each candidate's 5-year
-return from Yahoo with an **identity check** — so a reused or renamed ticker
-(PETS = PetMed today, not Pets.com; CC = Chemours, not Circuit City) isn't
-silently scored as the wrong company.
-
-The output is a ranked menu per era — mostly delisted names — to drive curation
-of the historical/delisted universe. It also serves as the shared library
-(load_components / roster_at) that build_membership.py and coverage.py use.
-
-    python scripts/find_candidates.py                  # all covered eras, with fetch
-    python scripts/find_candidates.py --era 2010-2014  # just one era
-    python scripts/find_candidates.py --no-fetch       # only the roster diff (fast)
-    python scripts/find_candidates.py --limit 60       # probe at most N candidates/era
-
-Coverage note: the membership list begins 1996-01-02, so 1990-1994 has no data
-and 1995-1999 is approximated from the earliest snapshot (flagged 'proxy').
-"""
+"""Per era, list roster names missing from companies.json (mostly delisted), optionally
+probing Yahoo with an identity check against reused tickers (PETS, CC).
+Also the shared roster lib (load_components, roster_at). Membership starts 1996-01-02."""
 
 import argparse
 import json
@@ -30,7 +12,6 @@ import urllib.request
 from datetime import datetime, timezone
 from urllib.parse import quote
 
-# Shared constants (ticker remaps, UA, era list) live in common.py.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common  # noqa: E402
 
@@ -43,13 +24,12 @@ _CONST_NAME = "S&P 500 Historical Components & Changes (Updated).csv"
 CONSTITUENTS_URL = "https://raw.githubusercontent.com/fja05680/sp500/master/" + quote(_CONST_NAME)
 CACHE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".cache", "sp500_components.csv")
 
-MIN_MONTHS = 50  # of ~60 monthly closes in a 5y window -> "full" coverage
-IDENT_MONTHS = 15  # first close must land within this many months of era start
+MIN_MONTHS = 50  # of ~60 -> "full"
+IDENT_MONTHS = 15  # max months from era start to first close
 
 
-# ---- membership list -----------------------------------------------------
 def load_components(refresh=False):
-    """Return [(date_str, [tickers])] sorted ascending, caching the CSV locally."""
+    """-> [(date, [tickers])] ascending."""
     if refresh or not os.path.exists(CACHE_PATH):
         os.makedirs(os.path.dirname(CACHE_PATH), exist_ok=True)
         req = urllib.request.Request(CONSTITUENTS_URL, headers={"User-Agent": USER_AGENT})
@@ -65,7 +45,7 @@ def load_components(refresh=False):
     import csv
 
     reader = csv.reader(text.splitlines())
-    next(reader, None)  # header: date,tickers
+    next(reader, None)
     for row in reader:
         if len(row) < 2:
             continue
@@ -76,11 +56,7 @@ def load_components(refresh=False):
 
 
 def roster_at(components, date_str):
-    """Index membership as of date_str: the latest snapshot on or before it.
-
-    Returns (tickers, proxied) where proxied=True means date_str predates the
-    list and we fell back to the earliest available snapshot.
-    """
+    """-> (tickers, proxied). proxied = date predates the list; earliest snapshot used."""
     pick = None
     for d, tickers in components:
         if d <= date_str:
@@ -92,7 +68,6 @@ def roster_at(components, date_str):
     return pick, False
 
 
-# ---- per-candidate identity-checked probe --------------------------------
 def _months_between(start_iso, other_iso):
     a = datetime.fromisoformat(start_iso)
     b = datetime.fromisoformat(other_iso)
@@ -100,7 +75,7 @@ def _months_between(start_iso, other_iso):
 
 
 def probe(ticker, era):
-    """Fetch a candidate's 5y return + the metadata needed to vet its identity."""
+    """5y multiple + first trade date for identity vetting."""
     sym = SYMBOL.get(ticker, ticker)
     start, end = era.split("-")
     p1 = int(datetime(int(start), 1, 1, tzinfo=timezone.utc).timestamp())
@@ -118,7 +93,7 @@ def probe(ticker, era):
         ind = result["indicators"]
         series = ind.get("adjclose", [{}])[0].get("adjclose") or ind["quote"][0]["close"]
         pairs = [(t, float(c)) for t, c in zip(ts, series) if c and float(c) > 0]
-    except Exception:  # noqa: BLE001 - network is best-effort
+    except Exception:  # noqa: BLE001
         return None
     if len(pairs) < 2:
         return None
@@ -131,22 +106,19 @@ def probe(ticker, era):
 
 
 def classify(era, info):
-    """Tag a probe result so curation can trust (or distrust) the number."""
     if info is None:
         return "dead/no-data"
     era_start = f"{era.split('-')[0]}-01-01"
     if _months_between(era_start, info["first_date"]) > IDENT_MONTHS:
-        return "LATE (ipo/reused?)"  # ticker didn't trade at era start under this symbol
+        return "LATE (ipo/reused?)"
     return "full" if info["n"] >= MIN_MONTHS else "partial"
 
 
-# ---- driver --------------------------------------------------------------
 _known = None
 
 
 def catalog_tickers():
-    """Tickers we already have metadata for (app/companies.json). New candidates
-    are the era's roster names not in this set — i.e. mostly delisted names."""
+    """Tickers in companies.json."""
     global _known
     if _known is None:
         try:
@@ -181,7 +153,7 @@ def run_era(components, era, fetch, limit, top):
         results.append((t, info, classify(era, info)))
         time.sleep(0.2)
 
-    # Rank: trustworthy + high multiple first; dead/late sink to the bottom.
+    # Trusted + high multiple first.
     def sort_key(r):
         _, info, flag = r
         trusted = flag in ("full", "partial")

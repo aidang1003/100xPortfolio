@@ -1,16 +1,6 @@
 #!/usr/bin/env python3
-"""Process collected price series into the 5-category S&P 500 universe -> app/universe.json.
-
-Pure assembly from already-collected data: the monthly price-series store
-(scripts/data/prices.json) + per-company metadata (app/companies.json) + the
-per-era index roster (app/membership.json). No network unless a roster ticker's
-series is missing from the store, in which case it's fetched once and saved.
-
-Each era's S&P 500 members are bucketed into 5 game categories (the 11 GICS
-sectors folded down, sized so no category dominates the board), and
-famous bankruptcies are layered on as 0x "landmine" picks (the data is
-survivor-only, so they'd otherwise vanish).
-"""
+"""Build app/universe.json. Survivor-only: roster names without metadata or prices
+are dropped; landmines.json adds back bankruptcies at 0x."""
 
 import json
 import os
@@ -35,11 +25,11 @@ def _load_json(*parts):
 
 
 def main():
-    companies = _load_json("companies.json")            # name, industries[], sub, hq
-    membership = _load_json("membership.json")["years"]  # {year: {tickers: [...]}}
-    landmines = _load_json("data", "landmines.json")     # curated bankruptcy 0x picks
+    companies = _load_json("companies.json")
+    membership = _load_json("membership.json")["years"]
+    landmines = _load_json("data", "landmines.json")
     try:
-        fundamentals = _load_json("fundamentals.json")   # {ticker: {era: {pe?, price, divYield?}}}
+        fundamentals = _load_json("fundamentals.json")
     except FileNotFoundError:
         fundamentals = {}
 
@@ -49,23 +39,21 @@ def main():
         roster = membership[era.split("-")[0]]["tickers"]
         for t in roster:
             co = companies.get(t)
-            if not co:  # no current metadata (delisted) -> excluded (survivor universe)
+            if not co:
                 continue
-            mult = collect.multiple(t, era)  # on-the-fly from the monthly series
-            if mult is None:  # delisted / no data -> excluded (survivor universe)
+            mult = collect.multiple(t, era)
+            if mult is None:
                 continue
-            # Bucket by primary category; carry the full industries list so the
-            # game can honor multi-industry stocks in the one-per-industry lineup.
+            # Bucket by primary industry.
             cat = co["industries"][0]
             entry = {"ticker": t, "name": co["name"], "multiple": mult, "sub": co["sub"],
                      "hq": co["hq"], "industries": co["industries"]}
             metrics = fundamentals.get(t, {}).get(era)
-            if metrics:  # entry P/E · price · div yield — shown at pick time
+            if metrics:
                 entry["metrics"] = metrics
             stocks[cat][era].append(entry)
             counts[era] += 1
 
-    # Layer in the bankruptcy landmines (from app/data/landmines.json).
     for lm in landmines:
         stocks[lm["category"]][lm["era"]].append({
             "ticker": lm["ticker"], "name": lm["name"], "multiple": lm["multiple"],
@@ -73,12 +61,11 @@ def main():
             "hq": {"city": "", "state": "", "region": lm["region"]},
         })
 
-    # Sort each cell by multiple, best first.
     for cat in CATEGORIES:
         for era in ERAS:
             stocks[cat][era].sort(key=lambda s: s["multiple"], reverse=True)
 
-    collect.save_prices()  # persist any series fetched on a cache miss above
+    collect.save_prices()  # persist series fetched on a cache miss
 
     payload = {
         "generatedAt": datetime.now(timezone.utc).isoformat(),

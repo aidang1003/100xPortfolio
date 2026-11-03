@@ -1,7 +1,4 @@
-"""Structural sanity checks on the committed app/fundamentals.json (no network).
-
-Run: .venv/bin/python -m unittest tests.test_fundamentals
-"""
+"""Sanity checks on app/fundamentals.json."""
 
 import json
 import os
@@ -29,7 +26,7 @@ class FundamentalsShapeTests(unittest.TestCase):
                     self.assertLess(m["pe"], 100000)
                 if "divYield" in m:
                     self.assertGreaterEqual(m["divYield"], 0)
-                    self.assertLess(m["divYield"], 50)  # % — no company yields 50%+
+                    self.assertLess(m["divYield"], 50)
 
     def test_pe_only_on_recent_eras(self):
         # EDGAR EPS starts ~2009, so no P/E should exist before the 2010 era.

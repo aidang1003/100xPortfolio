@@ -1,27 +1,16 @@
 #!/usr/bin/env python3
-"""Build app/membership.json — committed point-in-time S&P 500 membership.
-
-Derives a compact **per-year roster** (index membership as of Jan 1 each year)
-from the fja05680 historical-components list, so "who was in the index in year
-X" is one small auditable file instead of a 5.5 MB CSV parsed at build time.
-
-    python scripts/build_membership.py   # writes app/membership.json
-
-The components list begins 1996-01-02, so years before that are flagged
-`proxied` (they reuse the earliest snapshot) — the same caveat the pipeline has
-always carried, now made explicit in the data.
-"""
+"""Build app/membership.json: S&P 500 roster as of Jan 1 each year. Pre-1996 years are proxied."""
 
 import json
 import os
 from datetime import date, datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-import find_candidates as fc  # noqa: E402  (load_components / roster_at)
+import find_candidates as fc  # noqa: E402
 
 OUT_PATH = os.path.join(os.path.dirname(HERE), "app", "membership.json")
-FIRST_YEAR = 1990  # earliest year the game's eras reach back to
-FIRST_SNAPSHOT_YEAR = 1996  # list coverage begins 1996-01-02; earlier = proxied
+FIRST_YEAR = 1990
+FIRST_SNAPSHOT_YEAR = 1996
 
 
 def build():

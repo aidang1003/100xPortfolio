@@ -1,32 +1,24 @@
-"""Single source of truth for game constants + presentation config.
-
-Flask-free so it can be imported anywhere. Served to the front end via
-/api/config so the client stops hard-coding stakes, round counts, and colors.
-"""
+"""Game constants, served to the client via /api/config."""
 
 from datetime import date
 from zoneinfo import ZoneInfo
 
-# The board rolls over at midnight Mountain time, so "today" is a Denver date,
-# not the server's UTC one. DAY_ONE is the launch day: daily #1.
+# DAY_ONE is daily #1.
 GAME_TZ = ZoneInfo("America/Denver")
 DAY_ONE = date(2026, 6, 10)
 
-STARTING_STAKE = 10_000  # dollars you start with; 100x = $1M
+STARTING_STAKE = 10_000
 NUM_ROUNDS = 5
 
-# Industry -> accent color. The front end builds CSS variables from this and
-# blends the two colors into a gradient for multi-industry stocks (e.g. Amazon).
 INDUSTRY_COLORS = {
-    "Technology": "#3b82f6",          # blue
-    "Financials": "#22c55e",          # green
-    "Consumer": "#f59e0b",            # amber
-    "Health & Utilities": "#ef4444",  # red
-    "Industry & Energy": "#8b5cf6",   # violet
+    "Technology": "#3b82f6",
+    "Financials": "#22c55e",
+    "Consumer": "#f59e0b",
+    "Health & Utilities": "#ef4444",
+    "Industry & Energy": "#8b5cf6",
 }
 
-# One line per industry, shown on the intro screen so players know the board
-# before they enter. Keyed to INDUSTRY_COLORS.
+# Intro screen copy.
 INDUSTRY_BLURBS = {
     "Technology": "Software, chips, telecom, media",
     "Financials": "Banks, insurers, payments, real estate",
@@ -37,6 +29,6 @@ INDUSTRY_BLURBS = {
 
 
 def era_label(era):
-    """Display label for an era: a clean 5-year span ('2020-2024' -> '2020-2025')."""
+    """'2020-2024' -> '2020-2025'"""
     start = era.split("-")[0]
     return f"{start}-{int(start) + 5}"

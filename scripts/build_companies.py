@@ -1,17 +1,5 @@
 #!/usr/bin/env python3
-"""Build app/companies.json — normalized per-company metadata.
-
-One record per ticker: display name, game industries (multi-tag), and
-headquarters (city / state / region). Sourced from the fja05680 `sp500.csv`
-(Wikipedia-derived: Security, GICS Sector/Sub-Industry, **Headquarters
-Location**), folded into the game's categories, with a small curated
-multi-industry overlay (e.g. Amazon = Consumer Discretionary + Technology).
-
-    python scripts/build_companies.py   # writes app/companies.json
-
-Company facts are era-independent, so this is a company-level file the universe
-build joins against — that's what makes HQ + multi-industry possible.
-"""
+"""Build app/companies.json: name, industries, HQ, CIK per ticker from fja05680 sp500.csv."""
 
 import csv
 import io
@@ -21,12 +9,11 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import common  # noqa: E402  (FOLD, sp500_csv)
+import common  # noqa: E402
 
 OUT_PATH = os.path.join(os.path.dirname(HERE), "app", "companies.json")
 
-# State -> US Census region (the fallback grouping for low-presence states; the
-# game may still surface high-count states on their own — see the game model).
+# State -> US Census region
 _REGIONS = {
     "Northeast": ["Connecticut", "Maine", "Massachusetts", "New Hampshire", "Rhode Island",
                   "Vermont", "New Jersey", "New York", "Pennsylvania"],
@@ -41,11 +28,10 @@ _REGIONS = {
 STATE_REGION = {s: r for r, states in _REGIONS.items() for s in states}
 US_STATES = set(STATE_REGION)
 
-# Curated second industry for names that genuinely straddle two game categories.
-# GICS gives one sector; this adds the other the game should also accept.
+# Industries added beyond the GICS one.
 MULTI_INDUSTRY = {
-    "AMZN": ["Technology"],  # GICS Consumer Discretionary, but also a tech giant
-    "TSLA": ["Technology"],  # GICS Consumer Discretionary, but also a tech giant
+    "AMZN": ["Technology"],
+    "TSLA": ["Technology"],
 }
 
 
@@ -55,13 +41,12 @@ def _parse_hq(location):
     if len(parts) >= 2 and parts[-1] in US_STATES:
         state = parts[-1]
         return {"city": parts[0], "state": state, "region": STATE_REGION[state]}
-    # Foreign HQ (e.g. "Dublin, Ireland") or unparseable.
     return {"city": parts[0] if parts else "", "state": parts[-1] if len(parts) > 1 else "",
             "region": "International"}
 
 
 def build():
-    # Read the CSV directly: load_sector_map() drops the HQ column we need here.
+    # Not load_sector_map(): it drops HQ.
     companies = {}
     for r in csv.DictReader(io.StringIO(common.sp500_csv())):
         sym = r["Symbol"].replace(".", "-")
@@ -77,7 +62,7 @@ def build():
         }
         cik = (r.get("CIK") or "").strip()
         if cik:
-            entry["cik"] = int(cik)  # for SEC EDGAR fundamentals lookups
+            entry["cik"] = int(cik)
         companies[sym] = entry
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(dict(sorted(companies.items())), f, indent=1)

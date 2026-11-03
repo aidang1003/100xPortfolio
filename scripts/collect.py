@@ -1,16 +1,6 @@
 #!/usr/bin/env python3
-"""Monthly price-series collector for 100xPortfolio.
-
-We store the full monthly adjusted-close **series** per ticker in
-``scripts/data/prices.json`` and compute any window's multiple on the fly
-(``multiple(ticker, "2010-2014")`` = close at 2014-12 / close at 2010-01). A
-closed era's prices never change, so each ticker is fetched once from Yahoo's
-public chart JSON (split+dividend adjusted, no key) and kept forever.
-
-    from collect import multiple, series
-    multiple("AAPL", "2010-2014")      # on-the-fly from the stored series
-    series("NVDA")                     # {"start": "1999-01", "closes": [...]}
-"""
+"""Monthly adj-close series per ticker in scripts/data/prices.json, fetched once from
+Yahoo. multiple(t, "2010-2014") = close 2014-12 / close 2010-01."""
 
 import json
 import os
@@ -23,9 +13,8 @@ DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 PRICES_PATH = os.path.join(DATA_DIR, "prices.json")
 
 
-# --- year-month index helpers --------------------------------------------
 def _ym_to_i(ym):
-    """'YYYY-MM' -> absolute month index (year*12 + month-1)."""
+    """'YYYY-MM' -> year*12 + month-1"""
     y, m = ym.split("-")
     return int(y) * 12 + int(m) - 1
 
@@ -35,12 +24,11 @@ def _i_to_ym(i):
 
 
 def _era_bounds(era):
-    """'YYYY-YYYY' -> ('startYYYY-01', 'endYYYY-12')."""
+    """'YYYY-YYYY' -> ('YYYY-01', 'YYYY-12')"""
     start, end = era.split("-")
     return f"{start}-01", f"{end}-12"
 
 
-# --- monthly price-series store -------------------------------------------
 _prices = None
 
 
@@ -56,7 +44,7 @@ def _load_prices():
 
 
 def save_prices():
-    """Persist the price store, sorted by ticker, for stable diffs."""
+    """Sorted for stable diffs."""
     p = _load_prices()
     os.makedirs(DATA_DIR, exist_ok=True)
     with open(PRICES_PATH, "w", encoding="utf-8") as f:
@@ -65,11 +53,7 @@ def save_prices():
 
 
 def fetch_series(ticker):
-    """One Yahoo call -> full monthly adj-close series, or None.
-
-    Returns {"start": "YYYY-MM", "closes": [float|None, ...]} where ``closes``
-    is dense monthly from ``start`` (None fills any missing month).
-    """
+    """-> {start: 'YYYY-MM', closes: [float|None]} dense monthly, or None."""
     sym = SYMBOL.get(ticker, ticker)
     p1 = int(datetime(1970, 1, 1, tzinfo=timezone.utc).timestamp())
     p2 = int(datetime.now(timezone.utc).timestamp())
@@ -85,7 +69,7 @@ def fetch_series(ticker):
         ts = result.get("timestamp") or []
         ind = result["indicators"]
         adj = ind.get("adjclose", [{}])[0].get("adjclose") or ind["quote"][0]["close"]
-    except Exception:  # noqa: BLE001 - network is best-effort
+    except Exception:  # noqa: BLE001
         return None
 
     by_month = {}
@@ -103,10 +87,7 @@ def fetch_series(ticker):
 
 
 def series(ticker, refetch=False):
-    """Cache-first monthly series for a ticker. Network only on a miss.
-
-    A None result (delisted / no data) is cached so we don't keep retrying.
-    """
+    """Cache-first. A None result is cached too."""
     p = _load_prices()
     if not refetch and ticker in p:
         return p[ticker]
@@ -115,11 +96,7 @@ def series(ticker, refetch=False):
 
 
 def price_at(ticker, ym, direction="at"):
-    """Adjusted close for `ticker` near month `ym`.
-
-    direction: 'after' = first available at/after ym, 'before' = last available
-    at/before ym, 'at' = nearest either way. Returns None if unavailable.
-    """
+    """direction: 'after' = first at/after ym, 'before' = last at/before, 'at' = nearest."""
     s = _load_prices().get(ticker)
     if not s:
         return None
@@ -140,11 +117,7 @@ def price_at(ticker, ym, direction="at"):
 
 
 def multiple(ticker, era=None, start=None, end=None):
-    """Window total-return multiple for a ticker, computed from the series.
-
-    Call as multiple(t, "2010-2014") or multiple(t, start="2010-01", end="2014-12").
-    Returns None when the series doesn't cover the window.
-    """
+    """None when the series doesn't cover the window."""
     if era is not None:
         start, end = _era_bounds(era)
     if ticker not in _load_prices():

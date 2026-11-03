@@ -1,8 +1,4 @@
-"""Shared constants + source-CSV loader for the data pipeline.
-
-Stdlib-only, no app/Flask imports, and no dependency on any other pipeline
-script — so every build step can import this without creating a cycle.
-"""
+"""Shared pipeline constants. Must not import other pipeline scripts (cycles)."""
 
 import csv
 import io
@@ -12,12 +8,11 @@ import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-# Display ticker -> data-provider (Yahoo) symbol when they differ.
+# Display ticker -> Yahoo symbol.
 SYMBOL = {"BRK": "BRK-B", "FB": "META"}
 
 USER_AGENT = "Mozilla/5.0 (100xPortfolio collector)"
 
-# The 5-year eras the slot machine can land on (data windows).
 ERAS = [
     "1990-1994",
     "1995-1999",
@@ -28,7 +23,6 @@ ERAS = [
     "2020-2024",
 ]
 
-# The 5 game categories (11 GICS sectors fold into these; see app/data/gics_fold.json).
 CATEGORIES = [
     "Technology",
     "Financials",
@@ -40,14 +34,13 @@ CATEGORIES = [
 SP500_CACHE = os.path.join(HERE, ".cache", "sp500.csv")
 SP500_URL = "https://raw.githubusercontent.com/fja05680/sp500/master/sp500.csv"
 
-# 11 GICS sectors -> the 5 game categories, sized so no category dominates the
-# board (77-107 companies each). Editable data, not code.
+# GICS sector -> game category
 with open(os.path.join(os.path.dirname(HERE), "app", "data", "gics_fold.json"), encoding="utf-8") as _f:
     FOLD = json.load(_f)
 
 
 def sp500_csv():
-    """Raw text of the fja05680 sp500.csv (Security / GICS / HQ), cached locally."""
+    """fja05680 sp500.csv text, cached."""
     if not os.path.exists(SP500_CACHE):
         req = urllib.request.Request(SP500_URL, headers={"User-Agent": USER_AGENT})
         text = urllib.request.urlopen(req, timeout=60).read().decode("utf-8", "replace")
@@ -60,7 +53,7 @@ def sp500_csv():
 
 
 def load_sector_map():
-    """ticker -> (name, GICS sector, sub-industry)."""
+    """ticker -> (name, sector, sub-industry)"""
     return {
         r["Symbol"].replace(".", "-"): (r["Security"], r["GICS Sector"], r["GICS Sub-Industry"])
         for r in csv.DictReader(io.StringIO(sp500_csv()))

@@ -1,17 +1,5 @@
 #!/usr/bin/env python3
-"""One-command data refresh — rebuild every derived artifact, in order.
-
-    python scripts/refresh.py            # incremental: pick up new index members
-    python scripts/refresh.py --refresh  # also re-download the source CSVs
-
-The pipeline is cache-first and immutable: closed eras never change, so this only
-does real work for new index members (new price series + fundamentals) and a
-fresh membership snapshot. Everything it writes is deterministic — review the
-`git diff` and commit the regenerated `app/*.json` + `docs/COVERAGE.md`.
-
-Order (each step feeds the next):
-    membership.json -> companies.json -> fundamentals.json -> universe.json -> docs/COVERAGE.md
-"""
+"""Rebuild derived data: membership -> companies -> fundamentals -> universe -> COVERAGE.md."""
 
 import argparse
 import os

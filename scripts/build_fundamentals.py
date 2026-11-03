@@ -1,18 +1,9 @@
 #!/usr/bin/env python3
-"""Build app/fundamentals.json — point-in-time *entry* metrics per (ticker, era).
+"""Build app/fundamentals.json: {ticker: {era: {price, divYield?, pe?}}} at era start.
 
-For each company and era we record what the stock looked like at era start:
-
-    { ticker: { era: { "price": 34.1, "divYield": 1.8, "pe": 14.2 } } }
-
-- **price**    nominal share price at era start (Yahoo monthly close).
-- **divYield** trailing-12-month dividends / entry price, in %  (Yahoo dividends).
-- **pe**       entry price / most-recent annual diluted EPS (SEC EDGAR).
-               EDGAR XBRL only reaches ~2009, so pe is present on recent eras
-               (2010+) and gracefully omitted on older ones.
-
-Resumable: tickers already in the output are skipped. Run:
-    python scripts/build_fundamentals.py
+price: nominal Yahoo close. divYield: TTM dividends / price, %. pe: price / latest
+as-filed annual EPS from SEC EDGAR (~2009+, so absent before the 2010 era).
+Resumable: skips tickers already in the output.
 """
 
 import json
@@ -24,13 +15,13 @@ from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import common  # noqa: E402  (SYMBOL, USER_AGENT, ERAS)
+import common  # noqa: E402
 
 APP = os.path.join(os.path.dirname(HERE), "app")
 COMPANIES = os.path.join(APP, "companies.json")
 OUT_PATH = os.path.join(APP, "fundamentals.json")
 ERAS = common.ERAS
-SEC_UA = "100xPortfolio research aidang1003@gmail.com"  # SEC requires a descriptive UA
+SEC_UA = "100xPortfolio research aidang1003@gmail.com"  # SEC requires a contact UA
 
 
 def _era_start_ts(era):
@@ -39,11 +30,7 @@ def _era_start_ts(era):
 
 
 def yahoo_price_and_divs(ticker):
-    """Full-history monthly closes + dividend & split events for a ticker.
-
-    Yahoo `close` is split-adjusted to *today*; we also return split events so
-    we can recover the real historical (nominal) price a player would have paid.
-    """
+    """Monthly closes (split-adjusted to today) + dividend and split events."""
     sym = common.SYMBOL.get(ticker, ticker)
     p1 = int(datetime(1970, 1, 1, tzinfo=timezone.utc).timestamp())
     p2 = int(datetime.now(timezone.utc).timestamp())
@@ -57,12 +44,12 @@ def yahoo_price_and_divs(ticker):
             data = json.load(resp)
         res = data["chart"]["result"][0]
         ts = res.get("timestamp") or []
-        closes = res["indicators"]["quote"][0]["close"]  # split-adjusted-to-today close
+        closes = res["indicators"]["quote"][0]["close"]
         events = res.get("events", {})
         divs = [(int(k), float(v["amount"])) for k, v in events.get("dividends", {}).items()]
         splits = [(int(k), float(v["numerator"]) / float(v["denominator"]))
                   for k, v in events.get("splits", {}).items() if float(v.get("denominator", 0))]
-    except Exception:  # noqa: BLE001 - network is best-effort
+    except Exception:  # noqa: BLE001
         return None
     months = [(t, float(c)) for t, c in zip(ts, closes) if c and float(c) > 0]
     if len(months) < 2:
@@ -71,8 +58,7 @@ def yahoo_price_and_divs(ticker):
 
 
 def _cum_split_after(splits, ts):
-    """Product of split ratios dated after `ts` — multiply a split-adjusted price
-    by this to recover the nominal (historical) price at `ts`."""
+    """Split-adjusted price at `ts` x this = nominal price."""
     factor = 1.0
     for st, ratio in splits:
         if st > ts:
@@ -81,12 +67,7 @@ def _cum_split_after(splits, ts):
 
 
 def edgar_annual_eps(cik):
-    """{'YYYY-MM-DD end': original as-filed annual EPS} for a CIK, or {}.
-
-    Uses the *earliest-filed* 10-K value per fiscal-year end so we get the
-    original nominal EPS (not a later split-adjusted restatement), keeping it on
-    the same share basis as the nominal price.
-    """
+    """{fiscal-year end: EPS}, earliest 10-K filing per end so EPS stays nominal."""
     for concept in ("EarningsPerShareDiluted", "EarningsPerShareBasic"):
         url = f"https://data.sec.gov/api/xbrl/companyconcept/CIK{cik:010d}/us-gaap/{concept}.json"
         try:
@@ -95,11 +76,11 @@ def edgar_annual_eps(cik):
                 data = json.load(resp)
         except Exception:  # noqa: BLE001
             continue
-        by_end = {}  # end -> (filed, val); keep the earliest filing
+        by_end = {}  # end -> (filed, val)
         for u in data.get("units", {}).get("USD/shares", []):
             if not (u.get("form", "").startswith("10-K") and u.get("val") is not None and u.get("start")):
                 continue
-            # Keep only full-year periods: 10-Ks also tag Q4 EPS with fp="FY".
+            # 10-Ks also tag Q4 EPS as FY.
             span = (datetime.fromisoformat(u["end"]) - datetime.fromisoformat(u["start"])).days
             if span < 300:
                 continue
@@ -117,25 +98,22 @@ def fundamentals_for(ticker, cik):
         return {}
     months, divs, splits = yd["months"], yd["divs"], yd["splits"]
     eps = edgar_annual_eps(cik) if cik else {}
-    eps_ends = sorted(eps)  # ascending ISO dates
+    eps_ends = sorted(eps)
 
     out = {}
     for era in ERAS:
         start_ts, start_y = _era_start_ts(era)
-        # first monthly close at/after era start (Yahoo close = split-adjusted-to-today)
         entry = next(((t, c) for t, c in months if t >= start_ts), None)
         if entry is None:
             continue
         entry_ts, adj_close = entry
-        nominal = adj_close * _cum_split_after(splits, entry_ts)  # real historical price
+        nominal = adj_close * _cum_split_after(splits, entry_ts)
         row = {"price": round(nominal, 2)}
-        # Dividend yield: trailing-12mo dividends / price, both split-adjusted (basis
-        # cancels), so it's correct regardless of the nominal conversion above.
+        # Both split-adjusted, so the basis cancels.
         yr = 365 * 24 * 3600
         ttm = sum(a for t, a in divs if start_ts - yr <= t < start_ts)
         if ttm > 0:
             row["divYield"] = round(ttm / adj_close * 100, 2)
-        # P/E: nominal entry price / original as-filed annual EPS (same share basis).
         prior = [e for e in eps_ends if e < f"{start_y}-01-01"]
         if prior and eps[prior[-1]] > 0:
             row["pe"] = round(nominal / eps[prior[-1]], 1)

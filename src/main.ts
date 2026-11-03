@@ -1,10 +1,3 @@
-// 100xPortfolio — client game loop (TypeScript).
-//
-// The game: each round deals an ERA × HQ-LOCATION. You pick one company
-// headquartered there; across your five picks you must field five DISTINCT
-// industries (multi-industry names are flexible). Stake rolls pick to pick.
-
-// ---- API types -----------------------------------------------------------
 interface HQ { city: string; state: string; region: string; }
 interface Metrics { pe?: number; price?: number; divYield?: number; }
 
@@ -16,16 +9,14 @@ interface Stock {
   industries: string[];
   metrics: Metrics;
 }
-// One (era, region) cell of the board: what the reels show and what you pick from.
 interface Cell { era: string; eraLabel: string; location: string; stocks: Stock[]; }
 interface Round extends Cell {
   index: number;
-  altEra: string;       // the cell an era skip re-rolls into (same region)
+  altEra: string;       // era skip target
   altEraLabel: string;
-  altLocation: string;  // the cell a region skip re-rolls into (same era)
+  altLocation: string;  // region skip target
 }
-// mode: "daily" is the day's shared board (one per browser, per day);
-// everything after it is a random "practice" roll.
+// mode: "daily" (once per browser per day) | "practice"
 interface Daily { seed: string; day: string; dayNumber: number; mode: string; rounds: Round[]; }
 
 interface Leg {
@@ -51,7 +42,6 @@ interface Config {
 interface PickChoice { era: string; location: string; ticker: string; industry: string; }
 interface LearnData { stocks: Record<string, Record<string, { ticker: string; gainPct: number }[]>>; }
 
-// ---- helpers -------------------------------------------------------------
 const $ = (id: string) => document.getElementById(id) as HTMLElement;
 const STORAGE_KEY = "100x_result";
 const SESSION_KEY = "100x_session";
@@ -63,7 +53,6 @@ const ordinal = (n: number) => {
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
 };
 
-// Format the entry-metric row (price · P/E · dividend); omit whatever's missing.
 function metricLine(m: Metrics): string {
   const bits: string[] = [];
   if (m.price != null) bits.push(usd(m.price));
@@ -72,7 +61,6 @@ function metricLine(m: Metrics): string {
   return bits.join(" · ");
 }
 
-// Board label, shown on screen and at the top of a shared result.
 const dayTag = (mode: string, dayNumber: number) =>
   mode === "daily" ? `100x #${dayNumber}` : "100x practice";
 
@@ -81,30 +69,27 @@ function renderDayTag(el: HTMLElement, mode: string, dayNumber: number) {
   el.classList.toggle("daily", mode === "daily");
 }
 
-// Solid industry color, or a gradient for a multi-industry stock.
 function industryStyle(industries: string[]): string {
   const colors = state.config.industryColors;
   const cs = industries.map((i) => colors[i] || "#888");
   return cs.length > 1 ? `linear-gradient(135deg, ${cs[0]}, ${cs[1]})` : cs[0];
 }
 
-// ---- state ---------------------------------------------------------------
 const state = {
   config: null as unknown as Config,
   data: null as Daily | null,
   round: 0,
-  active: null as Cell | null,    // the cell in play; a skip swaps it for an alternate
-  skips: { era: false, location: false },  // one era skip + one region skip per game
-  swapped: { era: false, location: false }, // which reels this round has re-rolled
+  active: null as Cell | null,
+  skips: { era: false, location: false },  // spent this game
+  swapped: { era: false, location: false }, // re-rolled this round
   picks: [] as PickChoice[],
-  used: new Set<string>(),        // industries already filled (one per industry)
+  used: new Set<string>(),        // industries filled
   learn: null as LearnData | null,
   learnMode: false,
   screen: null as string | null,
   lastResult: null as Result | null,
 };
 
-// ---- session persistence (resume across a refresh) -----------------------
 function snapshot() {
   return {
     screen: state.screen, seed: state.data?.seed, learnMode: state.learnMode,
@@ -126,7 +111,6 @@ function loadSaved(): any {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "null"); } catch { return null; }
 }
 
-// ---- boot ----------------------------------------------------------------
 async function boot() {
   state.config = await fetch("/api/config").then((r) => r.json());
   applyIndustryColors();
@@ -147,8 +131,7 @@ async function boot() {
     try { await restoreSession(sess); return; } catch { /* fall through */ }
   }
   await loadRounds();
-  // Daily already scored in this browser: lead with that result, and let
-  // "Play again" roll practice boards from there.
+  // Daily already scored here: show it; Play again rolls practice.
   const saved = loadSaved();
   if (state.data!.mode === "practice" && saved?.day === state.data!.day) {
     showResult(saved.result);
@@ -157,7 +140,6 @@ async function boot() {
   renderProgress();
 }
 
-// Expose industry colors as CSS variables (--ind-<slug>) for chips/legends.
 function applyIndustryColors() {
   const root = document.documentElement;
   for (const [ind, hex] of Object.entries(state.config.industryColors)) {
@@ -166,7 +148,6 @@ function applyIndustryColors() {
 }
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z]+/g, "-");
 
-// Intro screen: the five industries a lineup must cover, with what's in each.
 function renderLegend() {
   $("industry-legend").innerHTML = state.config.industries.map((ind) => `
     <li><span class="legend-dot" style="background:${industryStyle([ind])}"></span>
@@ -186,7 +167,7 @@ async function restoreSession(s: any) {
   state.used = new Set<string>(s.used || []);
   state.skips = { era: !!s.skips?.era, location: !!s.skips?.location };
   const rnd = state.data!.rounds[state.round];
-  const a = s.active;  // resume on the skipped-into cell, not the primary
+  const a = s.active;  // may be a skipped-into cell
   state.active = a && (a.era !== rnd.era || a.location !== rnd.location)
     ? await loadCell(a.era, a.location) : rnd;
   state.swapped = { era: state.active.era !== rnd.era, location: state.active.location !== rnd.location };
@@ -194,7 +175,6 @@ async function restoreSession(s: any) {
   drawRound(false);
 }
 
-// ---- data ----------------------------------------------------------------
 const cells = new Map<string, Cell>();
 async function loadCell(era: string, location: string): Promise<Cell> {
   const key = `${era}|${location}`;
@@ -220,8 +200,7 @@ function startGame() {
   renderRound(true);
 }
 
-// Both re-deal from the server, which hands back a random practice board once
-// this browser has scored the daily — and the daily itself until then.
+// Server deals the daily until it's scored here, then practice.
 async function replay() {
   state.learnMode = false;
   await loadRounds();
@@ -235,7 +214,7 @@ async function startLearnGame() {
   startGame();
 }
 
-// ticker -> gainPct across every industry in an era (learning mode reveal).
+// ticker -> gainPct (learning mode)
 function learnReturns(era: string): Record<string, number> {
   const out: Record<string, number> = {};
   const byInd = state.learn!.stocks;
@@ -245,7 +224,6 @@ function learnReturns(era: string): Record<string, number> {
   return out;
 }
 
-// ---- rendering -----------------------------------------------------------
 function renderProgress() {
   const rail = $("progress-rail");
   rail.innerHTML = "";
@@ -256,7 +234,6 @@ function renderProgress() {
   });
 }
 
-// The lineup: one slot per industry, dim until a pick fills it with a ticker.
 function renderLineup() {
   const filled: Record<string, string> = {};
   for (const p of state.picks) filled[p.industry] = p.ticker;
@@ -293,8 +270,7 @@ const setReels = (cell: Cell) => {
   $("reel-location").textContent = cell.location;
 };
 
-// One era skip and one region skip per game, each spent on its own reel;
-// learning mode re-rolls freely.
+// Learning mode skips are unlimited.
 function setSkipButtons() {
   for (const kind of ["era", "location"] as const) {
     ($(`skip-${kind}`) as HTMLButtonElement).disabled = state.skips[kind] && !state.learnMode;
@@ -307,8 +283,7 @@ async function useSkip(kind: "era" | "location") {
   const btn = $(`skip-${kind}`);
   if (!state.learnMode) { state.skips[kind] = true; setSkipButtons(); }
 
-  $("stock-grid").innerHTML = "";  // hide the list while the reel re-rolls
-  // Each reel re-rolls on its own, so spending both here lands on the alternate of each.
+  $("stock-grid").innerHTML = "";
   state.swapped[kind] = !state.swapped[kind];
   state.active = await loadCell(
     state.swapped.era ? rnd.altEra : rnd.era,
@@ -320,7 +295,7 @@ async function useSkip(kind: "era" | "location") {
   const frames = kind === "era" ? state.config.eras.map((e) => state.config.eraLabels[e]) : state.config.locations;
   spinReel(reel, frames, kind === "era" ? cell.eraLabel : cell.location, () => {
     renderStocks();
-    btn.blur();  // drop the lingering activation highlight on the button
+    btn.blur();  // clear lingering focus highlight
   });
 }
 
@@ -351,8 +326,7 @@ function renderStocks() {
   setReels(cell);
 
   const returns = state.learnMode ? learnReturns(cell.era) : null;
-  // Still-pickable companies first, then by dividend yield (learning mode ranks
-  // by return instead, since that's the column it reveals). Non-payers sort last.
+  // Pickable first, then by dividend yield (learning mode: by return); missing last.
   const isOpen = (s: Stock) => s.industries.some((i) => !state.used.has(i));
   const rank = (s: Stock) => (returns ? returns[s.ticker] : s.metrics.divYield) ?? -Infinity;
   const stocks = [...cell.stocks].sort((a, b) =>
@@ -391,10 +365,9 @@ function renderStocks() {
 const revealCol = (g?: number) =>
   g === undefined ? "" : `<span class="stock-pct ${g >= 0 ? "up" : "down"}">${g >= 0 ? "+" : ""}${g}%</span>`;
 
-// ---- actions -------------------------------------------------------------
 function pick(s: Stock) {
   const industry = s.industries.find((i) => !state.used.has(i));
-  if (!industry) return; // no open slot (row is disabled anyway)
+  if (!industry) return;
   const cell = state.active!;
   state.picks.push({ era: cell.era, location: cell.location, ticker: s.ticker, industry });
   state.used.add(industry);
@@ -411,13 +384,12 @@ async function submit() {
   }).then((r) => r.json());
 
   if (res.error) { alert("Scoring error: " + res.error); return; }
-  // Only the daily is kept; practice runs must not overwrite the day's score.
+  // Only the daily is saved.
   if (res.mode === "daily" && !state.learnMode) save({ day: res.day, result: res });
   $("learn-btn").classList.remove("hidden");
   showResult(res);
 }
 
-// ---- result --------------------------------------------------------------
 function showResult(res: Result) {
   state.lastResult = res;
   show("result");
@@ -482,7 +454,6 @@ function renderBest(res: Result) {
   });
 }
 
-// ---- share ---------------------------------------------------------------
 function shareText(res: Result): string {
   const rows = res.legs.map((l) => ({
     emoji: l.multiple >= 2 ? "🟩" : l.multiple >= 1 ? "🟨" : "🟥",
@@ -536,7 +507,6 @@ async function copyResults() {
   window.prompt("Copy your result:", text);
 }
 
-// ---- screens -------------------------------------------------------------
 function show(id: string) {
   ["intro", "game", "result"].forEach((s) => $(s).classList.add("hidden"));
   $(id).classList.remove("hidden");

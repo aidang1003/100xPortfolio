@@ -1,7 +1,4 @@
-"""Tests for the daily-vs-practice rule at the HTTP layer.
-
-Run: .venv/bin/python -m unittest tests.test_daily
-"""
+"""Daily vs practice at the HTTP layer."""
 
 import os
 import sys

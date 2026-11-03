@@ -1,8 +1,4 @@
-"""Unit tests for the on-the-fly price/multiple math in scripts/collect.py.
-
-No network: a synthetic monthly series is injected into the module's price
-store. Run with:  .venv/bin/python -m unittest tests.test_prices
-"""
+"""scripts/collect.py multiple math, on a synthetic series."""
 
 import os
 import sys
