@@ -496,10 +496,6 @@ async function copyResults() {
   const res = state.lastResult || (loadSaved() && loadSaved().result);
   if (!res) return;
   const text = shareText(res);
-  if (navigator.share) {
-    try { await navigator.share({ text }); return; }
-    catch (e: any) { if (e && e.name === "AbortError") return; }
-  }
   try {
     if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(text); flashToast(); return; }
   } catch { /* fall through */ }
