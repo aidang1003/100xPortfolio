@@ -1,12 +1,11 @@
 """Game engine: seeded (era, HQ region) rounds, five distinct industries, stake parlays through picks."""
 
 import hashlib
-import math
 import random
 import secrets
 from datetime import date, datetime
 
-from .config import DAY_ONE, GAME_TZ, NUM_ROUNDS, STARTING_STAKE, era_label
+from .config import DAY_ONE, ERA_YEARS, GAME_TZ, NUM_ROUNDS, STARTING_STAKE, era_label
 from .data import ERAS, INDUSTRIES, STOCKS, cell
 
 LOCATIONS = ["Northeast", "Midwest", "South", "West"]
@@ -141,8 +140,14 @@ def _pool_lookup(era, loc, ticker):
     return None
 
 
+def _annual_pct(multiple):
+    """Compound yearly return over the full run (every round is one era)."""
+    return round((max(multiple, 0) ** (1 / (NUM_ROUNDS * ERA_YEARS)) - 1) * 100, 1)
+
+
 def _inv(name, photo, credit, weight=1):
-    return {"name": name, "photo": "/static/investors/" + photo, "credit": "Photo: " + credit, "weight": weight}
+    return {"name": name, "photo": "/static/investors/" + photo, "credit": "Photo: " + credit,
+            "wiki": "https://en.wikipedia.org/wiki/" + name.replace(" ", "_"), "weight": weight}
 
 
 # (min multiple, verdict, color, investors); one investor is drawn by weight.
@@ -165,7 +170,7 @@ _TIERS = [
 def _grade(multiple, rng):
     _, verdict, color, investors = next(t for t in _TIERS if multiple >= t[0])
     inv = rng.choices(investors, weights=[i["weight"] for i in investors])[0]
-    return {k: inv[k] for k in ("name", "photo", "credit")}, verdict, color
+    return {k: inv[k] for k in ("name", "photo", "credit", "wiki")}, verdict, color
 
 
 _MEDALS = {1: "gold", 2: "silver", 3: "bronze"}
@@ -240,15 +245,14 @@ def _best_possible(rounds):
             if prod > best_prod:
                 best_prod, best_assign, best_cells = prod, assign, cells
 
-    balance, legs = STARTING_STAKE, []
+    legs = []
     for (ind, s), (era, loc), r in zip(best_assign, best_cells, rounds):
-        balance *= s["multiple"]
         legs.append({
             "ticker": s["ticker"], "name": s["name"], "industry": ind,
             "eraLabel": era_label(era), "location": loc, "multiple": round(s["multiple"], 2),
             "skips": [k for k, used in (("era", era != r["era"]), ("region", loc != r["location"])) if used],
         })
-    return {"multiple": round(max(best_prod, 0.0), 2), "finalValue": round(balance, 2), "legs": legs}
+    return {"annualPct": _annual_pct(best_prod), "legs": legs}
 
 
 def score(picks, seed=None):
@@ -310,9 +314,9 @@ def score(picks, seed=None):
     worst = min(legs, key=lambda l: l["multiple"])
 
     best_possible = _best_possible(rounds)
-    # Log scale; losing runs floor at 0.
-    best_mult = best_possible["multiple"]
-    captured = round(math.log(multiple) / math.log(best_mult) * 100, 1) if multiple > 1 and best_mult > 1 else 0.0
+    # Ratio of the annual rates shown on screen; losing runs floor at 0.
+    annual, best_annual = _annual_pct(multiple), best_possible["annualPct"]
+    captured = round(max(annual, 0) / best_annual * 100, 1) if best_annual > 0 else 0.0
 
     return {
         "day": data["day"],
@@ -324,6 +328,7 @@ def score(picks, seed=None):
         "finalValue": round(final_value, 2),
         "multiple": round(multiple, 2),
         "gainPct": round((multiple - 1) * 100, 1),
+        "annualPct": annual,
         "investor": investor,
         "verdict": verdict,
         "gradeColor": color,

@@ -1,6 +1,5 @@
 """Lineup engine tests."""
 
-import math
 import os
 import sys
 import unittest
@@ -57,10 +56,9 @@ class LineupEngineTests(unittest.TestCase):
         for kind in ("era", "region"):
             self.assertLessEqual(sum(kind in l["skips"] for l in legs), 1)
 
-    def test_captured_is_log_scale(self):
+    def test_captured_is_annual_ratio(self):
         res = game.score(self.picks, seed="test-seed")
-        m, best = res["multiple"], res["best"]["multiple"]
-        expected = math.log(m) / math.log(best) * 100 if m > 1 else 0.0
+        expected = max(res["annualPct"], 0) / res["best"]["annualPct"] * 100
         self.assertAlmostEqual(res["capturedPct"], expected, delta=0.1)
 
     def test_rejects_duplicate_industry(self):

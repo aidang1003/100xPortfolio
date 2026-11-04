@@ -9,6 +9,7 @@ DAY_ONE = date(2026, 11, 3)
 
 STARTING_STAKE = 10_000
 NUM_ROUNDS = 5
+ERA_YEARS = 5
 
 INDUSTRY_COLORS = {
     "Technology": "#3b82f6",
@@ -31,4 +32,4 @@ INDUSTRY_BLURBS = {
 def era_label(era):
     """'2020-2024' -> '2020-2025'"""
     start = era.split("-")[0]
-    return f"{start}-{int(start) + 5}"
+    return f"{start}-{int(start) + ERA_YEARS}"

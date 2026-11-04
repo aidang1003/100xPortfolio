@@ -35,9 +35,9 @@
     <div class="glow glow-b"></div>
 
     <header class="site-header">
-      <div class="brand">
+      <a class="brand" id="brand" href="/">
         <span class="brand-rest">Play </span><span class="brand-mark">100x</span>
-      </div>
+      </a>
       <div class="tagline">Pick five stocks to make it rich!</div>
     </header>
 
@@ -95,7 +95,10 @@
         <div class="day-tag" id="day-tag-result"></div>
         <div id="learn-result-tag" class="learn-result-tag hidden">📘 Learning mode returns are shown</div>
         <div class="result-head card">
-          <img class="grade-badge" id="grade-badge" alt="">
+          <div class="investor-badge" id="investor-badge">
+            <img class="grade-badge" id="grade-badge" alt="">
+            <span class="reveal-hint">Click to Reveal</span>
+          </div>
           <div class="result-headline">
             <div class="result-investor" id="result-investor"></div>
             <div class="result-multiple" id="result-multiple">–×</div>
@@ -104,6 +107,7 @@
           <div class="result-money">
             <div><span class="muted">Invested</span> <b id="res-invested">$10,000</b></div>
             <div><span class="muted">Final value</span> <b id="res-final">–</b></div>
+            <div><span class="muted">Annual return</span> <b id="res-annual">–</b></div>
           </div>
         </div>
 
@@ -123,8 +127,8 @@
         <div class="best-compare card">
           <div class="best-compare-head">
             <div class="best-compare-title">Best possible run</div>
-            <div class="best-compare-figures">
-              <b id="best-final">–</b><span class="best-mult" id="best-multiple">–×</span>
+            <div class="result-money">
+              <div><span class="muted">Annual return</span> <b id="best-annual">–</b></div>
             </div>
           </div>
           <div class="captured">

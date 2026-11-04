@@ -30,10 +30,10 @@ interface BestLeg {
 }
 interface Result {
   day: string; dayNumber: number; mode: string; seed: string; legs: Leg[]; invested: number; finalValue: number;
-  multiple: number; gainPct: number; investor: { name: string; photo: string; credit: string }; verdict: string; gradeColor: string;
+  multiple: number; gainPct: number; annualPct: number; investor: { name: string; photo: string; credit: string; wiki: string }; verdict: string; gradeColor: string; revealed?: boolean;
   bestPick: { ticker: string; name: string; multiple: number };
   weakness: { ticker: string; name: string; multiple: number };
-  best: { multiple: number; finalValue: number; legs: BestLeg[] };
+  best: { annualPct: number; legs: BestLeg[] };
   capturedPct: number;
   error?: string;
 }
@@ -127,6 +127,11 @@ async function boot() {
   $("skip-location").onclick = () => useSkip("location");
   $("copy-btn").onclick = copyResults;
   $("replay-btn").onclick = replay;
+  $("brand").onclick = (e) => {
+    e.preventDefault();
+    const midGame = state.screen === "game" && state.picks.length > 0;
+    if (!midGame || confirm("Start over? You'll lose your picks from this game.")) replay();
+  };
   $("learn-btn").onclick = startLearnGame;
   $("learn-btn-result").onclick = startLearnGame;
 
@@ -396,6 +401,34 @@ async function submit() {
   showResult(res);
 }
 
+const annual = (pct: number) => (pct >= 0 ? "+" : "") + pct + "%/yr";
+
+// The investor stays hidden until clicked; the reveal is saved with the result.
+function renderInvestor(res: Result) {
+  const badge = $("grade-badge") as HTMLImageElement;
+  const label = $("result-investor");
+  const shown = !!res.revealed;
+  badge.src = shown ? res.investor.photo : "/static/investors/hidden.svg";
+  badge.alt = badge.title = shown ? res.investor.credit : "Click to reveal";
+  badge.className = "grade-badge " + (shown ? res.gradeColor : "unrevealed");
+  label.textContent = shown ? "You invested like " : "Which legendary investor did you emulate?";
+  if (shown) {
+    const link = Object.assign(document.createElement("a"), {
+      href: res.investor.wiki, target: "_blank", rel: "noopener", textContent: res.investor.name,
+    });
+    label.append(link);
+  }
+  label.classList.toggle("unrevealed", !shown);
+  $("investor-badge").classList.toggle("unrevealed", !shown);
+  badge.onclick = label.onclick = shown ? null : () => {
+    res.revealed = true;
+    saveSession();
+    const saved = loadSaved();
+    if (saved?.result?.seed === res.seed && !state.learnMode) save({ ...saved, result: res });
+    renderInvestor(res);
+  };
+}
+
 function showResult(res: Result) {
   state.lastResult = res;
   show("result");
@@ -405,29 +438,27 @@ function showResult(res: Result) {
   $("replay-btn").textContent = state.learnMode ? "Play regular" : "Play again";
   $("learn-btn-result").textContent = state.learnMode ? "Play again" : "Learning mode →";
 
-  const badge = $("grade-badge") as HTMLImageElement;
-  badge.src = res.investor.photo;
-  badge.alt = badge.title = res.investor.credit;
-  badge.className = "grade-badge " + res.gradeColor;
-  $("result-investor").textContent = res.investor.name;
+  renderInvestor(res);
   $("result-multiple").textContent = res.multiple + "×";
   $("result-verdict").textContent = res.verdict;
   $("res-invested").textContent = usd(res.invested);
   $("res-final").textContent = usd(res.finalValue);
+  $("res-annual").textContent = annual(res.annualPct);
 
   const legs = $("result-legs");
   legs.innerHTML = "";
-  res.legs.forEach((l, i) => {
+  res.legs.forEach((l) => {
     const cls = l.perf || (l.multiple >= 2 ? "up" : l.multiple >= 1 ? "flat" : "down");
     const sign = l.gainPct >= 0 ? "+" : "";
     const medal = l.medal
       ? `<span class="leg-medal" title="${ordinal(l.rank)} of ${l.cellSize} in ${l.location}">${MEDAL_EMOJI[l.medal]}</span>`
       : "";
     const chip = `<span class="stock-chip" style="background:${industryStyle([l.industry])}"></span>`;
+    const tag = `${l.industry} · ${l.eraLabel} · ${l.location}`;
     const row = document.createElement("div");
     row.className = "leg";
     row.innerHTML = `
-      <div class="leg-tag">${chip}#${i + 1} · ${l.eraLabel} · ${l.location} · ${l.industry}</div>
+      <div class="leg-tag" title="${tag}">${chip}${tag}</div>
       <div class="leg-name">${medal}${l.name} <small>${l.ticker}</small></div>
       <div class="leg-mult ${cls}">${l.multiple}× <small>${sign}${l.gainPct}%</small></div>`;
     legs.appendChild(row);
@@ -439,9 +470,7 @@ function showResult(res: Result) {
 }
 
 function renderBest(res: Result) {
-  const b = res.best;
-  $("best-final").textContent = usd(b.finalValue);
-  $("best-multiple").textContent = b.multiple + "×";
+  $("best-annual").textContent = annual(res.best.annualPct);
   const pct = res.capturedPct;
   $("captured-pct").textContent = pct + "%";
   ($("captured-bar") as HTMLElement).style.width = Math.max(0, Math.min(100, pct)) + "%";
@@ -451,11 +480,11 @@ function renderBest(res: Result) {
 
   const ideal = $("best-legs");
   ideal.innerHTML = "";
-  b.legs.forEach((l) => {
+  res.best.legs.forEach((l) => {
     const row = document.createElement("div");
     row.className = "ideal-leg";
     row.innerHTML = `
-      <span class="ideal-tag">${l.eraLabel} · ${l.location} · ${l.industry}${
+      <span class="ideal-tag">${l.industry} · ${l.eraLabel} · ${l.location}${
         l.skips.map((k) => ` <span class="skip-chip">↻ ${k} skip</span>`).join("")}</span>
       <span class="ideal-name">${l.name} <small>${l.ticker}</small></span>
       <span class="ideal-mult">${l.multiple}×</span>`;
