@@ -30,7 +30,7 @@ interface BestLeg {
 }
 interface Result {
   day: string; dayNumber: number; mode: string; seed: string; legs: Leg[]; invested: number; finalValue: number;
-  multiple: number; gainPct: number; grade: string; verdict: string; gradeColor: string;
+  multiple: number; gainPct: number; investor: { name: string; photo: string; credit: string }; verdict: string; gradeColor: string;
   bestPick: { ticker: string; name: string; multiple: number };
   weakness: { ticker: string; name: string; multiple: number };
   best: { multiple: number; finalValue: number; legs: BestLeg[] };
@@ -65,7 +65,7 @@ function metricLine(m: Metrics): string {
 }
 
 const dayTag = (mode: string, dayNumber: number) =>
-  mode === "daily" ? `100x #${dayNumber}` : "100x practice";
+  mode === "daily" ? `Daily Puzzle #${dayNumber}` : "Practice Mode";
 
 function renderDayTag(el: HTMLElement, mode: string, dayNumber: number) {
   el.textContent = dayTag(mode, dayNumber);
@@ -405,9 +405,11 @@ function showResult(res: Result) {
   $("replay-btn").textContent = state.learnMode ? "Play regular" : "Play again";
   $("learn-btn-result").textContent = state.learnMode ? "Play again" : "Learning mode →";
 
-  const badge = $("grade-badge");
-  badge.textContent = res.grade;
+  const badge = $("grade-badge") as HTMLImageElement;
+  badge.src = res.investor.photo;
+  badge.alt = badge.title = res.investor.credit;
   badge.className = "grade-badge " + res.gradeColor;
+  $("result-investor").textContent = res.investor.name;
   $("result-multiple").textContent = res.multiple + "×";
   $("result-verdict").textContent = res.verdict;
   $("res-invested").textContent = usd(res.invested);

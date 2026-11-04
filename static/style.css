@@ -533,15 +533,11 @@ main {
   flex-wrap: wrap;
 }
 .grade-badge {
-  font-family: "JetBrains Mono", monospace;
-  font-weight: 700;
-  font-size: 40px;
   width: 92px;
   height: 92px;
   border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  object-fit: cover;
+  object-position: top;
   background: var(--surface-2);
   border: 2px solid var(--border);
   flex-shrink: 0;
@@ -578,6 +574,11 @@ main {
 .result-headline {
   flex: 1;
   min-width: 160px;
+}
+.result-investor {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 4px;
 }
 .result-multiple {
   font-family: "JetBrains Mono", monospace;

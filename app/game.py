@@ -141,18 +141,31 @@ def _pool_lookup(era, loc, ticker):
     return None
 
 
-def _grade(multiple):
-    if multiple >= 100:
-        return ("S", "You 100×'d the pot. Legendary.", "gold")
-    if multiple >= 56:
-        return ("A", "Elite stock-picking.", "green")
-    if multiple >= 36:
-        return ("B", "A strong book.", "blue")
-    if multiple >= 16:
-        return ("C", "A respectable haul.", "yellow")
-    if multiple >= 2:
-        return ("D", "Barely beat the pack.", "red")
-    return ("F", "You barely moved.", "gray")
+def _inv(name, photo, credit, weight=1):
+    return {"name": name, "photo": "/static/investors/" + photo, "credit": "Photo: " + credit, "weight": weight}
+
+
+# (min multiple, verdict, color, investors); one investor is drawn by weight.
+_TIERS = [
+    (100, "You 100×'d the pot. Legendary.", "gold", [_inv("Jim Simons", "simons.jpg", "Gleuschk, CC BY-SA 3.0")]),
+    (56, "Elite stock-picking.", "green", [
+        _inv("Warren Buffett", "buffett.jpg", "U.S. International Trade Administration, public domain", 19),
+        _inv("Warren Buffett", "sanders.jpg", "Anderseidesvik, CC BY-SA 4.0"),
+    ]),
+    (36, "A strong book.", "blue", [_inv("Jack Bogle", "bogle.jpg", "Bill Cramer, CC BY-SA 4.0")]),
+    (16, "A respectable haul.", "yellow", [
+        _inv("Cathie Wood", "wood.jpg", "3948wmc, CC BY-SA 4.0"),
+        _inv("Nancy Pelosi", "pelosi.jpg", "John Harrington, public domain"),
+    ]),
+    (2, "Barely beat the pack.", "red", [_inv("Jim Cramer", "cramer.jpg", "Bear Bull Traders, CC BY 2.0")]),
+    (0, "You barely moved.", "gray", [_inv("Sam Bankman-Fried", "sbf.png", "Cointelegraph, CC BY 3.0")]),
+]
+
+
+def _grade(multiple, rng):
+    _, verdict, color, investors = next(t for t in _TIERS if multiple >= t[0])
+    inv = rng.choices(investors, weights=[i["weight"] for i in investors])[0]
+    return {k: inv[k] for k in ("name", "photo", "credit")}, verdict, color
 
 
 _MEDALS = {1: "gold", 2: "silver", 3: "bronze"}
@@ -289,7 +302,9 @@ def score(picks, seed=None):
 
     final_value = balance
     multiple = final_value / STARTING_STAKE
-    grade, verdict, color = _grade(multiple)
+    # Seeded by game and picks, so a result always shows the same investor.
+    tickers = ",".join(l["ticker"] for l in legs)
+    investor, verdict, color = _grade(multiple, random.Random(_seed_for(f"{data['seed']}|{tickers}")))
 
     best = max(legs, key=lambda l: l["multiple"])
     worst = min(legs, key=lambda l: l["multiple"])
@@ -309,7 +324,7 @@ def score(picks, seed=None):
         "finalValue": round(final_value, 2),
         "multiple": round(multiple, 2),
         "gainPct": round((multiple - 1) * 100, 1),
-        "grade": grade,
+        "investor": investor,
         "verdict": verdict,
         "gradeColor": color,
         "bestPick": {"ticker": best["ticker"], "name": best["name"], "multiple": best["multiple"]},
