@@ -636,15 +636,16 @@ main {
   margin-top: 6px;
   font-size: 15px;
 }
+/* label and value columns, both right-aligned */
 .result-money {
-  text-align: right;
   font-size: 14px;
   display: grid;
-  gap: 4px;
+  grid-template-columns: auto auto;
+  gap: 4px 10px;
+  justify-items: end;
 }
-.result-money .muted {
-  color: var(--muted);
-  margin-right: 6px;
+.result-money > div {
+  display: contents;
 }
 .muted {
   color: var(--muted);
@@ -652,13 +653,15 @@ main {
 
 .result-legs {
   display: grid;
-  gap: 8px;
+  grid-template-columns: max-content minmax(0, 1fr) auto;
+  gap: 8px 20px;
   margin-bottom: 16px;
 }
 .leg {
-  display: flex;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
   align-items: center;
-  gap: 12px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -668,13 +671,11 @@ main {
   font-family: "JetBrains Mono", monospace;
   font-size: 11px;
   color: var(--muted);
-  flex-shrink: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .leg .leg-name {
-  flex: 1;
   font-weight: 700;
 }
 .leg .leg-medal {
@@ -690,6 +691,8 @@ main {
   font-family: "JetBrains Mono", monospace;
   font-weight: 700;
   font-size: 16px;
+  text-align: right;
+  white-space: nowrap;
 }
 .leg .leg-mult.up {
   color: var(--green);
@@ -730,22 +733,21 @@ main {
     width: 70px;
     font-size: 13px;
   }
-  /* tags wrap to their own line in portrait */
-  .leg {
-    flex-wrap: wrap;
-    gap: 2px 10px;
+  /* tags take their own row in portrait */
+  .result-legs,
+  .ideal-legs {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .leg,
+  .ideal-leg {
+    row-gap: 2px;
+  }
+  .leg .leg-tag,
+  .ideal-leg .ideal-tag {
+    grid-column: 1 / -1;
   }
   .leg .leg-tag {
-    flex-basis: 100%;
     font-size: clamp(9px, 2.9vw, 11px);
-  }
-  .ideal-leg {
-    flex-wrap: wrap;
-    gap: 2px 10px;
-  }
-  .ideal-leg .ideal-tag {
-    width: 100%;
-    flex-basis: 100%;
   }
 }
 .callout {
@@ -835,13 +837,15 @@ main {
 }
 .ideal-legs {
   display: grid;
-  gap: 4px;
+  grid-template-columns: max-content minmax(0, 1fr) auto;
+  gap: 4px 18px;
   margin-top: 6px;
 }
 .ideal-leg {
-  display: flex;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
   align-items: baseline;
-  gap: 10px;
   font-size: 13px;
   padding: 4px 0;
   border-top: 1px solid var(--border);
@@ -850,8 +854,6 @@ main {
   font-family: "JetBrains Mono", monospace;
   font-size: 11px;
   color: var(--muted);
-  width: 300px;
-  flex-shrink: 0;
 }
 .skip-chip {
   color: var(--green);
@@ -859,7 +861,6 @@ main {
   white-space: nowrap;
 }
 .ideal-leg .ideal-name {
-  flex: 1;
   min-width: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -873,7 +874,7 @@ main {
   font-family: "JetBrains Mono", monospace;
   font-weight: 700;
   color: var(--green);
-  flex-shrink: 0;
+  text-align: right;
 }
 
 .result-actions {

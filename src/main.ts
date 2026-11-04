@@ -476,7 +476,7 @@ function renderBest(res: Result) {
   ($("captured-bar") as HTMLElement).style.width = Math.max(0, Math.min(100, pct)) + "%";
   $("captured-line").textContent = pct >= 100
     ? "🏆 You nailed the perfect lineup. Diamond hands."
-    : `You captured ${pct}% of the best possible lineup.`;
+    : `You captured ${pct}% of the best possible portfolio.`;
 
   const ideal = $("best-legs");
   ideal.innerHTML = "";
