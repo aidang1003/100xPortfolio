@@ -27,6 +27,19 @@ class DailyModeTests(unittest.TestCase):
         self.assertEqual(board["seed"], game.today_str())
         self.assertEqual(board["dayNumber"], game.day_number(game.today_str()))
 
+    def test_day_page_serves_today_with_its_preview(self):
+        n = game.day_number(game.today_str())
+        html = self.client.get(f"/d/{n}").get_data(as_text=True)
+        self.assertIn(f'content="100x #{n}: can you beat my board?"', html)
+        self.assertIn(f'content="https://www.play100x.com/d/{n}"', html)
+
+    def test_other_day_pages_redirect_to_today(self):
+        n = game.day_number(game.today_str())
+        for other in (n - 1, n + 1):
+            res = self.client.get(f"/d/{other}")
+            self.assertEqual(res.status_code, 302)
+            self.assertTrue(res.location.endswith(f"/d/{n}"))
+
     def test_daily_survives_an_abandoned_run(self):
         self._board()  # dealt but never scored
         self.assertEqual(self._board()["mode"], "daily")

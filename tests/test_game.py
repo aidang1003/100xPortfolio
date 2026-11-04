@@ -1,5 +1,6 @@
 """Lineup engine tests."""
 
+import math
 import os
 import sys
 import unittest
@@ -47,6 +48,20 @@ class LineupEngineTests(unittest.TestCase):
         res = game.score(self.picks, seed="test-seed")
         self.assertEqual(len(res["legs"]), game.NUM_ROUNDS)
         self.assertGreaterEqual(res["multiple"], 0)
+
+    def test_best_run_tags_its_skips(self):
+        legs = game.score(self.picks, seed="test-seed")["best"]["legs"]
+        for leg, r in zip(legs, self.rounds):
+            self.assertEqual("era" in leg["skips"], leg["eraLabel"] != r["eraLabel"])
+            self.assertEqual("region" in leg["skips"], leg["location"] != r["location"])
+        for kind in ("era", "region"):
+            self.assertLessEqual(sum(kind in l["skips"] for l in legs), 1)
+
+    def test_captured_is_log_scale(self):
+        res = game.score(self.picks, seed="test-seed")
+        m, best = res["multiple"], res["best"]["multiple"]
+        expected = math.log(m) / math.log(best) * 100 if m > 1 else 0.0
+        self.assertAlmostEqual(res["capturedPct"], expected, delta=0.1)
 
     def test_rejects_duplicate_industry(self):
         picks = [dict(p) for p in self.picks]
@@ -120,7 +135,7 @@ class DayTests(unittest.TestCase):
 
     def test_day_number_counts_from_day_one(self):
         self.assertEqual(game.day_number(config.DAY_ONE.isoformat()), 1)
-        self.assertEqual(game.day_number("2026-06-20"), 11)
+        self.assertEqual(game.day_number("2026-11-13"), 11)
 
     def test_practice_seed_is_never_a_day(self):
         seeds = {game.practice_seed() for _ in range(50)}

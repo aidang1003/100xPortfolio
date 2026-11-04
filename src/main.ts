@@ -24,7 +24,10 @@ interface Leg {
   location: string; hq: HQ | null; metrics: Metrics; multiple: number; gainPct: number;
   rank: number; cellSize: number; medal: string | null; perf: string;
 }
-interface BestLeg { ticker: string; name: string; industry: string; eraLabel: string; multiple: number; }
+interface BestLeg {
+  ticker: string; name: string; industry: string; eraLabel: string; location: string;
+  multiple: number; skips: string[];
+}
 interface Result {
   day: string; dayNumber: number; mode: string; seed: string; legs: Leg[]; invested: number; finalValue: number;
   multiple: number; gainPct: number; grade: string; verdict: string; gradeColor: string;
@@ -66,6 +69,9 @@ const dayTag = (mode: string, dayNumber: number) =>
 
 function renderDayTag(el: HTMLElement, mode: string, dayNumber: number) {
   el.textContent = dayTag(mode, dayNumber);
+  // Address bar follows the board in play: /d/N for the daily, / for practice.
+  const path = mode === "daily" ? `/d/${dayNumber}` : "/";
+  if (location.pathname !== path) history.replaceState(null, "", path);
   el.classList.toggle("daily", mode === "daily");
 }
 
@@ -447,7 +453,8 @@ function renderBest(res: Result) {
     const row = document.createElement("div");
     row.className = "ideal-leg";
     row.innerHTML = `
-      <span class="ideal-tag">${l.eraLabel} · ${l.industry}</span>
+      <span class="ideal-tag">${l.eraLabel} · ${l.location} · ${l.industry}${
+        l.skips.map((k) => ` <span class="skip-chip">↻ ${k} skip</span>`).join("")}</span>
       <span class="ideal-name">${l.name} <small>${l.ticker}</small></span>
       <span class="ideal-mult">${l.multiple}×</span>`;
     ideal.appendChild(row);
@@ -464,9 +471,10 @@ function shareText(res: Result): string {
   const pW = Math.max(...rows.map((r) => r.pct.length));
   const grid = rows.map((r) => `${r.emoji}  ${r.ticker.padEnd(tW)}  ${r.pct.padStart(pW)}`).join("\n");
   const pct = Math.round(res.gainPct).toLocaleString("en-US");
+  const link = res.mode === "daily" ? `www.play100x.com/d/${res.dayNumber}` : "play100x.com";
   const headline = res.multiple >= 100
-    ? `I retired with ${pct}% gains, can you beat me? play100x.com`
-    : `I returned ${pct}%, can you beat me? play100x.com`;
+    ? `I retired with ${pct}% gains, can you beat me? ${link}`
+    : `I returned ${pct}%, can you beat me? ${link}`;
   return `${dayTag(res.mode, res.dayNumber)}\n${headline}\n\n${grid}`;
 }
 

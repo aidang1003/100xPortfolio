@@ -1,6 +1,7 @@
 """Game engine: seeded (era, HQ region) rounds, five distinct industries, stake parlays through picks."""
 
 import hashlib
+import math
 import random
 import secrets
 from datetime import date, datetime
@@ -227,11 +228,12 @@ def _best_possible(rounds):
                 best_prod, best_assign, best_cells = prod, assign, cells
 
     balance, legs = STARTING_STAKE, []
-    for (ind, s), (era, _loc) in zip(best_assign, best_cells):
+    for (ind, s), (era, loc), r in zip(best_assign, best_cells, rounds):
         balance *= s["multiple"]
         legs.append({
             "ticker": s["ticker"], "name": s["name"], "industry": ind,
-            "eraLabel": era_label(era), "multiple": round(s["multiple"], 2),
+            "eraLabel": era_label(era), "location": loc, "multiple": round(s["multiple"], 2),
+            "skips": [k for k, used in (("era", era != r["era"]), ("region", loc != r["location"])) if used],
         })
     return {"multiple": round(max(best_prod, 0.0), 2), "finalValue": round(balance, 2), "legs": legs}
 
@@ -293,7 +295,9 @@ def score(picks, seed=None):
     worst = min(legs, key=lambda l: l["multiple"])
 
     best_possible = _best_possible(rounds)
-    captured = round(final_value / best_possible["finalValue"] * 100, 1) if best_possible["finalValue"] else 0.0
+    # Log scale; losing runs floor at 0.
+    best_mult = best_possible["multiple"]
+    captured = round(math.log(multiple) / math.log(best_mult) * 100, 1) if multiple > 1 and best_mult > 1 else 0.0
 
     return {
         "day": data["day"],

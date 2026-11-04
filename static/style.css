@@ -804,8 +804,13 @@ main {
   font-family: "JetBrains Mono", monospace;
   font-size: 11px;
   color: var(--muted);
-  width: 200px;
+  width: 300px;
   flex-shrink: 0;
+}
+.skip-chip {
+  color: var(--green);
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 .ideal-leg .ideal-name {
   flex: 1;

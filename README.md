@@ -28,7 +28,8 @@ date *is* the daily's seed, so the five rounds and each round's two skip alterna
 all come off one seeded RNG and match for every player. `/api/daily` serves the daily
 until the browser's `100x_daily` cookie reads today's date; the cookie is set when the
 daily is **scored**, so an abandoned run is still there later. Every board after it is
-a `practice_seed()` roll. Dailies are numbered from `config.DAY_ONE` (`100x #71`).
+a `practice_seed()` roll. Dailies are numbered from `config.DAY_ONE` (`100x #1`) and live at `/d/<n>`;
+any other day number redirects to today.
 
 ## Stack
 

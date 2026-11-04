@@ -1,11 +1,12 @@
 import os
 
-from flask import Flask, jsonify, render_template, request, send_from_directory
+from flask import Flask, jsonify, redirect, render_template, request, send_from_directory
 
 from . import config
 from .data import ERAS, INDUSTRIES
 from .game import (
-    LOCATIONS, cell_stocks, daily_rounds, era_label, learn_data, practice_seed, score, today_str,
+    LOCATIONS, cell_stocks, daily_rounds, day_number, era_label, learn_data, practice_seed, score,
+    today_str,
 )
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,6 +26,13 @@ def create_app():
     @app.route("/")
     def index():
         return render_template("index.html")
+
+    @app.route("/d/<int:n>")
+    def daily_page(n):
+        today = day_number(today_str())
+        if n != today:  # only today's board is playable
+            return redirect(f"/d/{today}")
+        return render_template("index.html", day=n)
 
     @app.route("/favicon.ico")
     def favicon():

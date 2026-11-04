@@ -5,7 +5,7 @@ from zoneinfo import ZoneInfo
 
 # DAY_ONE is daily #1.
 GAME_TZ = ZoneInfo("America/Denver")
-DAY_ONE = date(2026, 6, 10)
+DAY_ONE = date(2026, 11, 3)
 
 STARTING_STAKE = 10_000
 NUM_ROUNDS = 5
