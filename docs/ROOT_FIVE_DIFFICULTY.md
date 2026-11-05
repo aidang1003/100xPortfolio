@@ -97,7 +97,7 @@ The intro copy tells players that each round scores up to 100 at 2.51×.
 
 ## Results
 
-- Each leg shows its round score. The total shows out of 500.
+- The total game score shows out of 500. Each round score shows on its reveal card.
 - The investor badge works as it does today, without a leaderboard list.
 - The best possible portfolio and captured % never use the score. They stay on
   uncapped returns.

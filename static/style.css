@@ -249,12 +249,6 @@ main {
   color: var(--muted);
   font-size: 13px;
 }
-.hint {
-  color: var(--muted);
-  font-size: 13px;
-  text-align: center;
-  margin-top: 12px;
-}
 
 /* Board label */
 .day-tag {
@@ -446,6 +440,7 @@ main {
   font-size: 14px;
   width: 66px;
   flex-shrink: 0;
+  align-self: center;
 }
 .stock-row .stock-name {
   font-weight: 700;
@@ -676,7 +671,7 @@ main {
 
 .result-legs {
   display: grid;
-  grid-template-columns: max-content minmax(0, 1fr) auto auto;
+  grid-template-columns: max-content minmax(0, 1fr) auto;
   gap: 8px 20px;
   margin-bottom: 16px;
 }
@@ -698,17 +693,19 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* Name with medal after it, ticker below */
 .leg .leg-name {
   font-weight: 700;
+  overflow-wrap: anywhere;
 }
 .leg .leg-medal {
-  margin-right: 6px;
+  margin-left: 6px;
   font-size: 15px;
 }
 .leg .leg-name small {
+  display: block;
   color: var(--muted);
   font-weight: 400;
-  margin-left: 6px;
 }
 .leg .leg-mult {
   font-family: "JetBrains Mono", monospace;
@@ -725,13 +722,6 @@ main {
 }
 .leg .leg-mult.down {
   color: var(--red);
-}
-.leg .leg-score {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 13px;
-  color: var(--muted);
-  text-align: right;
-  min-width: 3ch;
 }
 
 .result-callouts {
@@ -765,10 +755,12 @@ main {
   }
   /* tags take their own row in portrait */
   .result-legs {
-    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 10px;
   }
   .ideal-legs {
     grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 10px;
   }
   .leg,
   .ideal-leg {
@@ -894,13 +886,11 @@ main {
 }
 .ideal-leg .ideal-name {
   min-width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
 }
 .ideal-leg .ideal-name small {
+  display: block;
   color: var(--muted);
-  margin-left: 4px;
 }
 .ideal-leg .ideal-mult {
   font-family: "JetBrains Mono", monospace;

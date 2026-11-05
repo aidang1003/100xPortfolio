@@ -638,9 +638,8 @@ function showResult(res: Result) {
     row.className = "leg";
     row.innerHTML = `
       <div class="leg-tag" title="${tag}">${chip}${tag}</div>
-      <div class="leg-name">${medal}${l.name} <small>${l.ticker}</small></div>
-      <div class="leg-mult ${cls}">${l.multiple}× <small>${sign}${l.gainPct}%</small></div>
-      <div class="leg-score">${l.score != null ? l.score : ""}</div>`;
+      <div class="leg-name">${l.name}${medal}<small>${l.ticker}</small></div>
+      <div class="leg-mult ${cls}">${l.multiple}× <small>${sign}${l.gainPct}%</small></div>`;
     legs.appendChild(row);
   });
 
@@ -666,7 +665,7 @@ function renderBest(res: Result) {
     row.innerHTML = `
       <span class="ideal-tag">${l.industry} · ${l.eraLabel} · ${l.location}${
         l.skips.map((k) => ` <span class="skip-chip">↻ ${k} skip</span>`).join("")}</span>
-      <span class="ideal-name">${l.name} <small>${l.ticker}</small></span>
+      <span class="ideal-name">${l.name}<small>${l.ticker}</small></span>
       <span class="ideal-mult">${l.multiple}×</span>`;
     ideal.appendChild(row);
   });
@@ -675,24 +674,21 @@ function renderBest(res: Result) {
 function shareText(res: Result): string {
   const rows = res.legs.map((l) => ({
     emoji: l.multiple >= 2 ? "🟩" : l.multiple >= 1 ? "🟨" : "🟥",
-    ticker: l.ticker,
+    cell: `${l.eraLabel} ${l.location}`,
     pct: `${l.gainPct >= 0 ? "+" : ""}${Math.round(l.gainPct).toLocaleString("en-US")}%`,
   }));
-  const tW = Math.max(...rows.map((r) => r.ticker.length));
+  const cW = Math.max(...rows.map((r) => r.cell.length));
   const pW = Math.max(...rows.map((r) => r.pct.length));
-  const grid = rows.map((r) => `${r.emoji}  ${r.ticker.padEnd(tW)}  ${r.pct.padStart(pW)}`).join("\n");
-  const pct = Math.round(res.gainPct).toLocaleString("en-US");
+  const grid = rows.map((r) => `${r.emoji}  ${r.cell.padEnd(cW)}  ${r.pct.padStart(pW)}`).join("\n");
   const link = res.mode === "daily" ? `www.play100x.com/d/${res.dayNumber}` : "play100x.com";
-  const headline = res.multiple >= 100
-    ? `I retired with ${pct}% gains, can you beat me? ${link}`
-    : `I returned ${pct}%, can you beat me? ${link}`;
+  const headline = `${res.multiple >= 100 ? "I retired with" : "I made"} ${res.multiple}x, can you beat me? ${link}`;
   return `${dayTag(res.mode, res.dayNumber)}\n${headline}\n\n${grid}`;
 }
 
-function flashToast() {
-  const t = $("share-toast");
-  t.classList.remove("hidden");
-  setTimeout(() => t.classList.add("hidden"), 2000);
+function flashCopied() {
+  const btn = $("copy-btn");
+  btn.textContent = "Copied to clipboard";
+  setTimeout(() => (btn.textContent = "📋 Share"), 2000);
 }
 
 function legacyCopy(text: string): boolean {
@@ -716,9 +712,9 @@ async function copyResults() {
   if (!res) return;
   const text = shareText(res);
   try {
-    if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(text); flashToast(); return; }
+    if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(text); flashCopied(); return; }
   } catch { /* fall through */ }
-  if (legacyCopy(text)) { flashToast(); return; }
+  if (legacyCopy(text)) { flashCopied(); return; }
   window.prompt("Copy your result:", text);
 }
 
