@@ -145,30 +145,54 @@ def _annual_pct(multiple):
     return round((max(multiple, 0) ** (1 / (NUM_ROUNDS * ERA_YEARS)) - 1) * 100, 1)
 
 
+# A round scores 100 at the 5th root of 100, the per-pick pace for a 100x pot.
+ROUND_CAP = 100 ** (1 / NUM_ROUNDS)
+MAX_GAME_SCORE = 100 * NUM_ROUNDS
+
+
+def _curve(multiple):
+    """S-curve fitted so 1x scores 10 and 1.5x scores 50 once rescaled."""
+    return 1 / (1 + (1.54 / multiple) ** 5.28) if multiple > 0 else 0.0
+
+
+def round_score(multiple):
+    """0-100. Only a wipeout scores 0; a loss scales down from 10 at flat; 100 at ROUND_CAP and above."""
+    if multiple <= 0:
+        return 0
+    if multiple < 1:
+        return max(1, round(10 * multiple))
+    return round(min(100, 100 * _curve(multiple) / _curve(ROUND_CAP)))
+
+
 def _inv(name, photo, credit, weight=1):
     return {"name": name, "photo": "/static/investors/" + photo, "credit": "Photo: " + credit,
             "wiki": "https://en.wikipedia.org/wiki/" + name.replace(" ", "_"), "weight": weight}
 
 
-# (min multiple, verdict, color, investors); one investor is drawn by weight.
+# Best first, ranked by lifetime return; one investor is drawn by weight.
+# Each rung gets an equal band of the game score, so the list length sets the bands.
 _TIERS = [
-    (100, "You 100×'d the pot. Legendary.", "gold", [_inv("Jim Simons", "simons.jpg", "Gleuschk, CC BY-SA 3.0")]),
-    (56, "Elite stock-picking.", "green", [
+    ("Legendary stock-picking.", "gold", [_inv("Jim Simons", "simons.jpg", "Gleuschk, CC BY-SA 3.0")]),
+    ("Elite stock-picking.", "green", [
         _inv("Warren Buffett", "buffett.jpg", "U.S. International Trade Administration, public domain", 19),
         _inv("Warren Buffett", "sanders.jpg", "Anderseidesvik, CC BY-SA 4.0"),
     ]),
-    (36, "A strong book.", "blue", [_inv("Jack Bogle", "bogle.jpg", "Bill Cramer, CC BY-SA 4.0")]),
-    (16, "A respectable haul.", "yellow", [
-        _inv("Cathie Wood", "wood.jpg", "3948wmc, CC BY-SA 4.0"),
-        _inv("Nancy Pelosi", "pelosi.jpg", "John Harrington, public domain"),
-    ]),
-    (2, "Barely beat the pack.", "red", [_inv("Jim Cramer", "cramer.jpg", "Bear Bull Traders, CC BY 2.0")]),
-    (0, "You barely moved.", "gray", [_inv("Sam Bankman-Fried", "sbf.png", "Cointelegraph, CC BY 3.0")]),
+    ("A strong book.", "blue", [_inv("Jack Bogle", "bogle.jpg", "Bill Cramer, CC BY-SA 4.0")]),
+    ("Well-timed trades.", "yellow", [_inv("Nancy Pelosi", "pelosi.jpg", "John Harrington, public domain")]),
+    ("A respectable haul.", "orange", [_inv("Cathie Wood", "wood.jpg", "3948wmc, CC BY-SA 4.0")]),
+    ("Barely beat the pack.", "red", [_inv("Jim Cramer", "cramer.jpg", "Bear Bull Traders, CC BY 2.0")]),
+    ("You barely moved.", "gray", [_inv("Sam Bankman-Fried", "sbf.png", "Cointelegraph, CC BY 3.0")]),
 ]
 
 
-def _grade(multiple, rng):
-    _, verdict, color, investors = next(t for t in _TIERS if multiple >= t[0])
+def _tier_floor(i):
+    """Lowest game score for rung i (0 = top)."""
+    n = len(_TIERS)
+    return MAX_GAME_SCORE * (n - 1 - i) / n
+
+
+def _grade(game_score, rng):
+    verdict, color, investors = next(t for i, t in enumerate(_TIERS) if game_score >= _tier_floor(i))
     inv = rng.choices(investors, weights=[i["weight"] for i in investors])[0]
     return {k: inv[k] for k in ("name", "photo", "credit", "wiki")}, verdict, color
 
@@ -196,6 +220,29 @@ def _perf_class(rank, n):
     if frac < 2 / 3:
         return "flat"
     return "down"
+
+
+def _outcome(era, loc, stock):
+    """What a pick earned: return, round score, and rank in its pool."""
+    rank, pool_size = _pool_rank(era, loc, stock["ticker"])
+    return {
+        "ticker": stock["ticker"],
+        "multiple": round(stock["multiple"], 2),
+        "gainPct": round((stock["multiple"] - 1) * 100, 1),
+        "score": round_score(stock["multiple"]),
+        "rank": rank,
+        "cellSize": pool_size,
+        "medal": _MEDALS.get(rank),
+        "perf": _perf_class(rank, pool_size),
+    }
+
+
+def reveal(era, loc, ticker):
+    """One pick's outcome, shown on the card right after it's made."""
+    stock = _pool_lookup(era, loc, ticker)
+    if not stock:
+        raise ValueError(f"Unknown stock {ticker} in {era} / {loc}")
+    return _outcome(era, loc, stock)
 
 
 def _best_lineup(cells):
@@ -284,9 +331,7 @@ def score(picks, seed=None):
 
         invested = balance
         balance = balance * stock["multiple"]
-        rank, pool_size = _pool_rank(era, loc, stock["ticker"])
         legs.append({
-            "ticker": stock["ticker"],
             "name": stock["name"],
             "industry": industry,
             "era": era,
@@ -294,21 +339,17 @@ def score(picks, seed=None):
             "location": loc,
             "hq": stock.get("hq"),
             "metrics": stock.get("metrics", {}),
-            "multiple": round(stock["multiple"], 2),
             "invested": round(invested, 2),
             "finalValue": round(balance, 2),
-            "gainPct": round((stock["multiple"] - 1) * 100, 1),
-            "rank": rank,
-            "cellSize": pool_size,
-            "medal": _MEDALS.get(rank),
-            "perf": _perf_class(rank, pool_size),
+            **_outcome(era, loc, stock),
         })
 
     final_value = balance
     multiple = final_value / STARTING_STAKE
     # Seeded by game and picks, so a result always shows the same investor.
     tickers = ",".join(l["ticker"] for l in legs)
-    investor, verdict, color = _grade(multiple, random.Random(_seed_for(f"{data['seed']}|{tickers}")))
+    game_score = sum(l["score"] for l in legs)
+    investor, verdict, color = _grade(game_score, random.Random(_seed_for(f"{data['seed']}|{tickers}")))
 
     best = max(legs, key=lambda l: l["multiple"])
     worst = min(legs, key=lambda l: l["multiple"])
@@ -329,6 +370,7 @@ def score(picks, seed=None):
         "multiple": round(multiple, 2),
         "gainPct": round((multiple - 1) * 100, 1),
         "annualPct": annual,
+        "gameScore": game_score,
         "investor": investor,
         "verdict": verdict,
         "gradeColor": color,

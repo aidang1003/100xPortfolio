@@ -5,8 +5,8 @@ from flask import Flask, jsonify, redirect, render_template, request, send_from_
 from . import config
 from .data import ERAS, INDUSTRIES
 from .game import (
-    LOCATIONS, cell_stocks, daily_rounds, day_number, era_label, learn_data, practice_seed, score,
-    today_str,
+    LOCATIONS, cell_stocks, daily_rounds, day_number, era_label, learn_data, practice_seed, reveal,
+    score, today_str,
 )
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -73,6 +73,14 @@ def create_app():
             "industries": INDUSTRIES,
             "locations": LOCATIONS,
         })
+
+    @app.route("/api/reveal", methods=["POST"])
+    def api_reveal():
+        body = request.get_json(silent=True) or {}
+        try:
+            return jsonify(reveal(body.get("era"), body.get("location"), body.get("ticker")))
+        except ValueError as e:
+            return jsonify({"error": str(e)}), 400
 
     @app.route("/api/score", methods=["POST"])
     def api_score():
