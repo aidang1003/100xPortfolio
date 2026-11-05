@@ -10,6 +10,7 @@
   --muted: #a59d85;
   --green: #2ee06b; /* the single accent */
   --yellow: #f5b301; /* flat returns only */
+  --orange: #f08a24;
   --red: #ff4d4f;
   --blue: #4a90e2;
   --gold: #d4af37; /* S badge and the investor reveal */
@@ -21,6 +22,12 @@
 
 * {
   box-sizing: border-box;
+}
+
+/* Keep the scrollbar's space reserved, so the page doesn't shift sideways when a
+   short reveal card swaps with a long stock list. */
+html {
+  scrollbar-gutter: stable;
 }
 
 html,
@@ -65,8 +72,7 @@ body {
 }
 
 .site-header,
-main,
-.site-footer {
+main {
   position: relative;
   z-index: 1;
 }
@@ -381,6 +387,13 @@ main {
   font-size: 11px;
   min-height: 13px;
 }
+.slot-chip.open {
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.slot-chip.open:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
 .slot-chip.filled {
   border-color: transparent;
   color: #fff;
@@ -498,6 +511,12 @@ main {
   text-overflow: ellipsis;
 }
 /* All its industries used */
+/* The chosen row lights up as the list fades away */
+.stock-row.picked {
+  border-color: var(--green);
+  background: var(--surface-2);
+  box-shadow: 0 0 0 1px var(--green);
+}
 .stock-row.disabled {
   opacity: 0.4;
   cursor: not-allowed;
@@ -561,6 +580,10 @@ main {
 .grade-badge.yellow {
   color: var(--yellow);
   border-color: var(--yellow);
+}
+.grade-badge.orange {
+  color: var(--orange);
+  border-color: var(--orange);
 }
 .grade-badge.red {
   color: var(--red);
@@ -653,7 +676,7 @@ main {
 
 .result-legs {
   display: grid;
-  grid-template-columns: max-content minmax(0, 1fr) auto;
+  grid-template-columns: max-content minmax(0, 1fr) auto auto;
   gap: 8px 20px;
   margin-bottom: 16px;
 }
@@ -703,6 +726,13 @@ main {
 .leg .leg-mult.down {
   color: var(--red);
 }
+.leg .leg-score {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: right;
+  min-width: 3ch;
+}
 
 .result-callouts {
   display: grid;
@@ -734,7 +764,9 @@ main {
     font-size: 13px;
   }
   /* tags take their own row in portrait */
-  .result-legs,
+  .result-legs {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+  }
   .ideal-legs {
     grid-template-columns: minmax(0, 1fr) auto;
   }
@@ -899,9 +931,72 @@ main {
   margin-top: 12px;
 }
 
-.site-footer {
+/* Reveal card: replaces the stock list after each pick */
+.reveal {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
   text-align: center;
+}
+.reveal-stock {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+.reveal-stock .stock-ticker {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  color: var(--green);
+}
+.reveal-name {
+  font-weight: 700;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.reveal-return {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 32px;
+}
+.reveal-return.up {
+  color: var(--green);
+}
+.reveal-return.flat {
+  color: var(--yellow);
+}
+.reveal-return.down {
+  color: var(--red);
+}
+.reveal-score {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.reveal-points {
+  font-family: "JetBrains Mono", monospace;
   color: var(--muted);
-  font-size: 12px;
-  padding: 28px 16px 40px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.reveal-points b {
+  color: var(--text);
+  font-size: 20px;
+  display: inline-block;
+  min-width: 3ch;
+  text-align: right;
+}
+.reveal-rank {
+  font-size: 13px;
+  color: var(--muted);
+}
+.reveal-continue {
+  justify-self: center;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--green);
 }

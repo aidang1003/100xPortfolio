@@ -22,15 +22,21 @@ interface Daily { seed: string; day: string; dayNumber: number; mode: string; ro
 interface Leg {
   ticker: string; name: string; industry: string; era: string; eraLabel: string;
   location: string; hq: HQ | null; metrics: Metrics; multiple: number; gainPct: number;
+  rank: number; cellSize: number; medal: string | null; perf: string; score?: number;
+}
+// One pick's outcome, from /api/reveal.
+interface Reveal {
+  ticker: string; multiple: number; gainPct: number; score: number;
   rank: number; cellSize: number; medal: string | null; perf: string;
 }
+interface Revealed extends Reveal { name: string; industry: string; location: string; }
 interface BestLeg {
   ticker: string; name: string; industry: string; eraLabel: string; location: string;
   multiple: number; skips: string[];
 }
 interface Result {
   day: string; dayNumber: number; mode: string; seed: string; legs: Leg[]; invested: number; finalValue: number;
-  multiple: number; gainPct: number; annualPct: number; investor: { name: string; photo: string; credit: string; wiki: string }; verdict: string; gradeColor: string; revealed?: boolean;
+  multiple: number; gainPct: number; annualPct: number; gameScore?: number; investor: { name: string; photo: string; credit: string; wiki: string }; verdict: string; gradeColor: string; revealed?: boolean;
   bestPick: { ticker: string; name: string; multiple: number };
   weakness: { ticker: string; name: string; multiple: number };
   best: { annualPct: number; legs: BestLeg[] };
@@ -48,6 +54,9 @@ interface LearnData { stocks: Record<string, Record<string, { ticker: string; ga
 const $ = (id: string) => document.getElementById(id) as HTMLElement;
 const STORAGE_KEY = "100x_result";
 const SESSION_KEY = "100x_session";
+const REGION_ADJ: Record<string, string> = {
+  Northeast: "Northeastern", Midwest: "Midwestern", South: "Southern", West: "Western",
+};
 const MEDAL_EMOJI: Record<string, string> = { gold: "🥇", silver: "🥈", bronze: "🥉" };
 
 const usd = (n: number) => "$" + Math.round(n).toLocaleString("en-US");
@@ -94,13 +103,15 @@ const state = {
   learnMode: false,
   screen: null as string | null,
   lastResult: null as Result | null,
+  reveal: null as Revealed | null,  // card showing for the pick just made
+  focus: null as string | null,     // open industry sorted to the top of the list
 };
 
 function snapshot() {
   return {
     screen: state.screen, seed: state.data?.seed, learnMode: state.learnMode,
     round: state.round, picks: state.picks, used: [...state.used], result: state.lastResult,
-    skips: state.skips,
+    skips: state.skips, reveal: state.reveal,
     active: state.active && { era: state.active.era, location: state.active.location },
   };
 }
@@ -125,6 +136,8 @@ async function boot() {
   $("start-btn").onclick = () => { state.learnMode = false; startGame(); };
   $("skip-era").onclick = () => useSkip("era");
   $("skip-location").onclick = () => useSkip("location");
+  $("lineup-bar").onclick = focusIndustry;
+  $("lineup-bar").onkeydown = focusIndustry;
   $("copy-btn").onclick = copyResults;
   $("replay-btn").onclick = replay;
   $("brand").onclick = (e) => {
@@ -177,6 +190,7 @@ async function restoreSession(s: any) {
   state.picks = Array.isArray(s.picks) ? s.picks : [];
   state.used = new Set<string>(s.used || []);
   state.skips = { era: !!s.skips?.era, location: !!s.skips?.location };
+  state.reveal = s.reveal || null;
   const rnd = state.data!.rounds[state.round];
   const a = s.active;  // may be a skipped-into cell
   state.active = a && (a.era !== rnd.era || a.location !== rnd.location)
@@ -207,6 +221,8 @@ function startGame() {
   state.picks = [];
   state.used = new Set();
   state.lastResult = null;
+  state.reveal = null;
+  disarmContinue();
   show("game");
   renderRound(true);
 }
@@ -248,18 +264,37 @@ function renderProgress() {
 function renderLineup() {
   const filled: Record<string, string> = {};
   for (const p of state.picks) filled[p.industry] = p.ticker;
+  if (state.focus && state.used.has(state.focus)) state.focus = null;
   $("lineup-bar").innerHTML = state.config.industries.map((ind) => {
     const color = state.config.industryColors[ind] || "#888";
     const ticker = filled[ind];
-    const style = ticker ? `background:${color}` : `border-color:${color}55;color:${color}`;
-    return `<div class="slot-chip${ticker ? " filled" : ""}" style="${style}">
+    const focused = ind === state.focus;
+    const style = ticker ? `background:${color}`
+      : focused ? `border-color:${color};color:${color};background:${color}26`
+      : `border-color:${color}55;color:${color}`;
+    const open = ticker ? "" : ` open" role="button" tabindex="0" aria-pressed="${focused}`;
+    return `<div class="slot-chip${ticker ? " filled" : ""}${open}" data-ind="${ind}" style="${style}">
       <span class="slot-ind">${ind}</span><span class="slot-pick">${ticker || ""}</span></div>`;
   }).join("");
+}
+
+// Clicking an open industry brings its stocks to the top; clicking it again clears that.
+function focusIndustry(e: Event) {
+  const chip = (e.target as HTMLElement).closest<HTMLElement>(".slot-chip.open");
+  if (!chip || state.reveal || $("stock-grid").inert) return;
+  if (e instanceof KeyboardEvent) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+  }
+  state.focus = state.focus === chip.dataset.ind ? null : chip.dataset.ind!;
+  renderLineup();
+  renderStocks();
 }
 
 function renderRound(animate: boolean) {
   state.active = state.data!.rounds[state.round];
   state.swapped = { era: false, location: false };
+  state.focus = null;
   drawRound(animate);
 }
 
@@ -272,7 +307,8 @@ function drawRound(animate: boolean) {
   setSkipButtons();
   $("round-counter").textContent = `Pick ${state.round + 1} / ${state.data!.rounds.length}`;
   $("stock-grid").innerHTML = "";
-  if (animate) spinReels(cell, () => renderStocks());
+  if (state.reveal) { setReels(cell); renderReveal(false); }
+  else if (animate) spinReels(cell, () => renderStocks());
   else { setReels(cell); renderStocks(); }
 }
 
@@ -284,7 +320,7 @@ const setReels = (cell: Cell) => {
 // Learning mode skips are unlimited.
 function setSkipButtons() {
   for (const kind of ["era", "location"] as const) {
-    ($(`skip-${kind}`) as HTMLButtonElement).disabled = state.skips[kind] && !state.learnMode;
+    ($(`skip-${kind}`) as HTMLButtonElement).disabled = (state.skips[kind] && !state.learnMode) || !!state.reveal;
   }
 }
 
@@ -333,15 +369,19 @@ function spinReels(cell: Cell, done: () => void) {
 function renderStocks() {
   const grid = $("stock-grid");
   grid.innerHTML = "";
+  slide(grid, "in");
   const cell = state.active!;
   setReels(cell);
 
   const returns = state.learnMode ? learnReturns(cell.era) : null;
-  // Pickable first, then by dividend yield (learning mode: by return); missing last.
+  // Pickable first, then the focused industry, then by dividend yield (learning mode:
+  // by return); missing last.
   const isOpen = (s: Stock) => s.industries.some((i) => !state.used.has(i));
+  const inFocus = (s: Stock) => !!state.focus && s.industries.includes(state.focus);
   const rank = (s: Stock) => (returns ? returns[s.ticker] : s.metrics.divYield) ?? -Infinity;
   const stocks = [...cell.stocks].sort((a, b) =>
-    Number(isOpen(b)) - Number(isOpen(a)) || rank(b) - rank(a) || a.name.localeCompare(b.name));
+    Number(isOpen(b)) - Number(isOpen(a)) || Number(inFocus(b)) - Number(inFocus(a)) ||
+    rank(b) - rank(a) || a.name.localeCompare(b.name));
 
   const head = document.createElement("div");
   head.className = "stock-list-head";
@@ -367,7 +407,7 @@ function renderStocks() {
       <span class="stock-ticker">${s.ticker}</span>
       <span class="stock-name">${s.name}<small class="stock-hq">${hq}</small></span>
       ${detail}`;
-    if (open) row.onclick = () => pick(s);
+    if (open) row.onclick = () => pick(s, row);
     else row.title = "You've already used all of this company's industries";
     grid.appendChild(row);
   }
@@ -376,15 +416,145 @@ function renderStocks() {
 const revealCol = (g?: number) =>
   g === undefined ? "" : `<span class="stock-pct ${g >= 0 ? "up" : "down"}">${g >= 0 ? "+" : ""}${g}%</span>`;
 
-function pick(s: Stock) {
+async function pick(s: Stock, row: HTMLElement) {
   const industry = s.industries.find((i) => !state.used.has(i));
   if (!industry) return;
   const cell = state.active!;
+  const grid = $("stock-grid");
+  grid.inert = true;  // no second pick while the list slides away
+  row.classList.add("picked");
+  // Glide back up to the lineup while the list fades, both on one clock, so the short
+  // card never lands while the page is still scrolled down a long list.
+  const top = $("lineup-bar").getBoundingClientRect().top + scrollY - 12;
+  const ms = Math.round(Math.min(700, Math.max(SLIDE.out.ms, Math.abs(scrollY - top) * 0.6)));
+  const [out]: [Reveal & { error?: string }, void, void] = await Promise.all([
+    fetch("/api/reveal", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ era: cell.era, location: cell.location, ticker: s.ticker }),
+    }).then((r) => r.json()),
+    slide(grid, "out", ms),
+    scrollY > top ? glideTo(top, ms) : Promise.resolve(),
+  ]);
+  if (out.error) { alert("Reveal error: " + out.error); renderStocks(); return; }
+
   state.picks.push({ era: cell.era, location: cell.location, ticker: s.ticker, industry });
   state.used.add(industry);
+  state.reveal = { ...out, name: s.name, industry, location: cell.location };
+  saveSession();
+  renderLineup();
+  setSkipButtons();
+  renderReveal(true);
+}
 
-  if (state.round + 1 >= state.data!.rounds.length) submit();
-  else { state.round += 1; renderRound(true); }
+const REVEAL_MS = 1800;
+const easeOut = (k: number) => 1 - (1 - k) ** 3;
+
+// Out: a short drop and fade, then stay hidden. In: a slower, gentle rise into place.
+// Small distance, soft easing: the content drifts in rather than landing hard.
+const SLIDE = {
+  out: { ms: 220, easing: "cubic-bezier(0.4, 0, 1, 1)" },
+  in: { ms: 520, easing: "cubic-bezier(0.25, 0.8, 0.35, 1)" },
+};
+function slide(el: HTMLElement, dir: "in" | "out", ms = SLIDE[dir].ms): Promise<void> {
+  const old = el.getAnimations();
+  const low = { transform: "translateY(16px)", opacity: 0 };
+  const home = { transform: "translateY(0)", opacity: 1 };
+  const anim = el.animate(dir === "in" ? [low, home] : [home, low], {
+    duration: ms,
+    easing: SLIDE[dir].easing,
+    fill: dir === "in" ? "backwards" : "forwards",
+  });
+  old.forEach((a) => a.cancel());  // after the new one starts, so nothing flashes
+  return anim.finished.then(() => { if (dir === "in") el.inert = false; });
+}
+
+// Scroll on our own clock (native smooth scroll has no set duration).
+function glideTo(top: number, ms: number): Promise<void> {
+  const from = scrollY, dist = top - from;
+  const easeInOut = (k: number) => (k < 0.5 ? 4 * k ** 3 : 1 - (-2 * k + 2) ** 3 / 2);
+  return new Promise((done) => {
+    const t0 = performance.now();
+    const step = (t: number) => {
+      const k = Math.min(1, (t - t0) / ms);
+      scrollTo(0, from + dist * easeInOut(k));
+      if (k < 1) requestAnimationFrame(step); else done();
+    };
+    requestAnimationFrame(step);
+  });
+}
+
+async function renderReveal(animate: boolean) {
+  const r = state.reveal!;
+  const last = state.round + 1 >= state.data!.rounds.length;
+  const sign = r.gainPct >= 0 ? "+" : "";
+  const medal = r.medal ? ` ${MEDAL_EMOJI[r.medal]}` : "";
+  $("stock-grid").innerHTML = `
+    <div class="reveal card">
+      <div class="reveal-rank">${ordinal(r.rank)} of ${r.cellSize} ${REGION_ADJ[r.location] || r.location} stocks${medal}</div>
+      <div class="reveal-stock">
+        <span class="stock-chip" style="background:${industryStyle([r.industry])}"></span>
+        <span class="stock-ticker">${r.ticker}</span>
+        <span class="reveal-name">${r.name}</span>
+      </div>
+      <div class="reveal-return ${r.multiple >= 2 ? "up" : r.multiple >= 1.5 ? "flat" : "down"}">${sign}${r.gainPct}%</div>
+      <div class="reveal-score">
+        <div class="captured-track"><div class="captured-fill" id="reveal-fill"></div></div>
+        <div class="reveal-points"><b id="reveal-points">0</b> / 100</div>
+      </div>
+      <div class="reveal-continue">Click anywhere to ${last ? "see results" : "continue"}</div>
+    </div>`;
+  armContinue();
+
+  const fill = $("reveal-fill"), points = $("reveal-points");
+  fill.style.transition = "none";  // the frame loop below drives it
+  const paint = (k: number) => {
+    fill.style.width = r.score * k + "%";
+    points.textContent = String(Math.round(r.score * k));
+  };
+  if (!animate) { slide($("stock-grid"), "in"); paint(1); return; }
+
+  paint(0);
+  await slide($("stock-grid"), "in");
+  if (state.reveal !== r) return;  // already moved on
+  const t0 = performance.now();
+  const tick = (t: number) => {
+    const k = Math.min(1, (t - t0) / REVEAL_MS);
+    paint(easeOut(k));
+    if (k < 1 && state.reveal === r) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+
+// While the card is up, any click (or Enter/Space) moves on. Links and buttons keep their own job.
+let onContinue: ((e: Event) => void) | null = null;
+function armContinue() {
+  disarmContinue();
+  onContinue = (e: Event) => {
+    if (e instanceof KeyboardEvent) {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      e.preventDefault();
+    } else if ((e.target as HTMLElement).closest("a, button")) return;
+    disarmContinue();
+    nextRound();
+  };
+  document.addEventListener("click", onContinue);
+  document.addEventListener("keydown", onContinue);
+}
+function disarmContinue() {
+  if (!onContinue) return;
+  document.removeEventListener("click", onContinue);
+  document.removeEventListener("keydown", onContinue);
+  onContinue = null;
+}
+
+function nextRound() {
+  if (state.round + 1 >= state.data!.rounds.length) { submit(); return; }  // card stays until scored
+  state.reveal = null;
+  state.round += 1;
+  const grid = $("stock-grid");
+  grid.inert = true;
+  slide(grid, "out").then(() => renderRound(true));
 }
 
 async function submit() {
@@ -394,7 +564,12 @@ async function submit() {
     body: JSON.stringify({ picks: state.picks, seed: state.data!.seed }),
   }).then((r) => r.json());
 
-  if (res.error) { alert("Scoring error: " + res.error); return; }
+  if (res.error) {
+    alert("Scoring error: " + res.error);
+    if (state.reveal) armContinue();
+    return;
+  }
+  state.reveal = null;
   // Only the daily is saved.
   if (res.mode === "daily" && !state.learnMode) save({ day: res.day, result: res });
   $("learn-btn").classList.remove("hidden");
@@ -444,6 +619,10 @@ function showResult(res: Result) {
   $("res-invested").textContent = usd(res.invested);
   $("res-final").textContent = usd(res.finalValue);
   $("res-annual").textContent = annual(res.annualPct);
+  // Results saved before round scores existed have no score.
+  const scored = res.gameScore != null;
+  $("res-score-row").classList.toggle("hidden", !scored);
+  if (scored) $("res-score").textContent = `${res.gameScore} / ${state.config.numRounds * 100}`;
 
   const legs = $("result-legs");
   legs.innerHTML = "";
@@ -460,7 +639,8 @@ function showResult(res: Result) {
     row.innerHTML = `
       <div class="leg-tag" title="${tag}">${chip}${tag}</div>
       <div class="leg-name">${medal}${l.name} <small>${l.ticker}</small></div>
-      <div class="leg-mult ${cls}">${l.multiple}× <small>${sign}${l.gainPct}%</small></div>`;
+      <div class="leg-mult ${cls}">${l.multiple}× <small>${sign}${l.gainPct}%</small></div>
+      <div class="leg-score">${l.score != null ? l.score : ""}</div>`;
     legs.appendChild(row);
   });
 

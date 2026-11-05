@@ -1,6 +1,8 @@
 """Lineup engine tests."""
 
+import math
 import os
+import random
 import sys
 import unittest
 from datetime import datetime, timezone
@@ -123,6 +125,49 @@ class LineupEngineTests(unittest.TestCase):
         for i in range(60):
             rounds = game.daily_rounds(f"seed-{i}")["rounds"]
             self.assertEqual(len(_legal_lineup(rounds)), game.NUM_ROUNDS, f"seed-{i} unsolvable")
+
+
+class ScoringTests(unittest.TestCase):
+    def test_round_score_anchors(self):
+        for multiple, expected in [(0, 0), (0.01, 1), (0.5, 5), (0.94, 9), (1, 10), (1.5, 50), (2, 86), (game.ROUND_CAP, 100), (10, 100)]:
+            self.assertEqual(game.round_score(multiple), expected, multiple)
+
+    def test_round_score_never_falls_as_return_rises(self):
+        scores = [game.round_score(m / 100) for m in range(0, 400)]
+        self.assertEqual(scores, sorted(scores))
+
+    def test_bands_split_the_game_score_evenly(self):
+        rng = lambda: random.Random(0)  # noqa: E731
+        n = len(game._TIERS)
+        for i, (verdict, _, _) in enumerate(game._TIERS):
+            floor = game._tier_floor(i)
+            self.assertAlmostEqual(floor, game.MAX_GAME_SCORE * (n - 1 - i) / n)
+            self.assertEqual(game._grade(math.ceil(floor), rng())[1], verdict)
+            if i:  # just under a floor falls to the rung below
+                self.assertEqual(game._grade(math.ceil(game._tier_floor(i - 1)) - 1, rng())[1], verdict)
+
+    def test_score_reports_round_and_game_scores(self):
+        data = game.daily_rounds("test-seed")
+        res = game.score(_legal_lineup(data["rounds"]), seed="test-seed")
+        for leg in res["legs"]:
+            self.assertEqual(leg["score"], game.round_score(leg["multiple"]))
+        self.assertEqual(res["gameScore"], sum(l["score"] for l in res["legs"]))
+
+    def test_pot_still_compounds_uncapped(self):
+        data = game.daily_rounds("test-seed")
+        res = game.score(_legal_lineup(data["rounds"]), seed="test-seed")
+        pot = math.prod(l["multiple"] for l in res["legs"])
+        self.assertAlmostEqual(res["multiple"], pot, delta=0.05 * pot + 0.01)
+
+    def test_reveal_matches_the_scored_leg(self):
+        data = game.daily_rounds("test-seed")
+        picks = _legal_lineup(data["rounds"])
+        leg = game.score(picks, seed="test-seed")["legs"][0]
+        out = game.reveal(picks[0]["era"], picks[0]["location"], picks[0]["ticker"])
+        for k in ("ticker", "multiple", "gainPct", "score", "rank", "cellSize", "medal"):
+            self.assertEqual(out[k], leg[k])
+        with self.assertRaises(ValueError):
+            game.reveal(picks[0]["era"], picks[0]["location"], "ZZZZ")
 
 
 class DayTests(unittest.TestCase):

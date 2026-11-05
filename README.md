@@ -10,7 +10,13 @@ the engine grades the run. Can you go **100×** and turn it into a million?
 
 - **5 picks, one per industry.** Multi-industry names (Amazon = Tech *or* Consumer) are flexible.
 - Each round is an **(era × HQ region)** spin — pick a company based there.
-- Returns are **hidden**; the **entry price, P/E and dividend yield** are shown.
+- Returns are **hidden** while you choose; the **entry price, P/E and dividend yield** are shown.
+  Each pick's return is **revealed** right after you make it.
+- Each round scores **0–100**. Matching the 100× pace (100^(1/5) ≈ **2.51×**) or better
+  scores 100, a flat return scores 10, a loss scores under 10, and only a bankruptcy
+  scores 0. The five scores
+  add up to a game score out of **500**, which decides your investor. The pot still
+  compounds on the full returns.
 - **One era skip + one region skip** per game. Each re-rolls its own reel, once.
 - The **daily board** is the same for everyone, skip alternates included, and it
   rolls over at **midnight Mountain time**.
@@ -105,7 +111,7 @@ vercel --prod
 .
 ├── api/index.py            # Vercel entrypoint (exposes Flask `app`)
 ├── app/
-│   ├── __init__.py         # Flask factory + routes (/api/daily, /cell, /score, /learn, /config)
+│   ├── __init__.py         # Flask factory + routes (/api/daily, /cell, /reveal, /score, /learn, /config)
 │   ├── config.py           # single source: stake, rounds, industry colors, era labels
 │   ├── data.py             # runtime loader for universe.json
 │   ├── game.py             # (era, HQ-location) spins + one-per-industry scoring
