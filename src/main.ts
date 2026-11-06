@@ -164,14 +164,16 @@ async function boot() {
 function initSubscribe() {
   const form = $("sub-form") as HTMLFormElement;
   const input = $("sub-email") as HTMLInputElement;
-  const showEntry = (on: boolean) => {
-    $("sub-prompt").classList.toggle("hidden", on);
-    $("sub-entry").classList.toggle("hidden", !on);
+  // View transition morphs the prompt into one line and slides the entry in; plain swap where unsupported.
+  const setState = (cls: string, on: boolean) => {
+    if (form.classList.contains(cls) === on) return;
+    const flip = () => form.classList.toggle(cls, on);
+    document.startViewTransition ? document.startViewTransition(flip) : flip();
   };
-  $("sub-prompt").onclick = () => { showEntry(true); input.focus(); };
+  input.addEventListener("focus", () => setState("open", true));
   // Back to the prompt if they click away without typing.
   form.addEventListener("focusout", () => setTimeout(() => {
-    if (!form.contains(document.activeElement) && !input.value) showEntry(false);
+    if (!form.contains(document.activeElement) && !input.value) setState("open", false);
   }));
   form.onsubmit = async (e) => {
     e.preventDefault();
@@ -181,8 +183,8 @@ function initSubscribe() {
       body: JSON.stringify({ email: input.value }),
     }).catch(() => null);
     if (!res?.ok) { form.classList.add("invalid"); input.focus(); return; }
-    $("sub-entry").classList.add("hidden");
-    $("sub-done").classList.remove("hidden");
+    input.blur();
+    setState("done", true);
   };
 }
 

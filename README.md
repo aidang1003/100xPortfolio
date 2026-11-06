@@ -41,7 +41,9 @@ any other day number redirects to today.
 
 - **Flask** (Python) backend — daily spins + server-authoritative scoring.
 - **TypeScript** frontend bundled with **esbuild** to `static/app.js` (no framework).
-- Normalized static JSON data (no database).
+- Normalized static JSON data for the game.
+- **Upstash Redis** for the daily email list and game history, **Resend** to send the emails,
+  and a **Vercel Cron** (`/api/cron/daily`, 14:00 UTC) to trigger the daily send.
 
 ## Data model
 
@@ -95,6 +97,32 @@ python api/index.py    # http://localhost:5000
 The compiled `static/app.js` is committed, so **run `npm run build` after editing
 `src/`**. `npm run watch` rebuilds on save; `npm run typecheck` runs `tsc`.
 
+## Secrets on a new device
+
+API keys live on the Vercel project, not in git. Pull them into a gitignored
+`.env.local` on each machine instead of copying the file around:
+
+```bash
+npm i -g vercel@latest
+vercel login
+vercel link                   # pick the 100xportfolio project
+vercel env pull .env.local    # rerun whenever a key changes
+```
+
+`LINK_SECRET` and `CRON_SECRET` are production/preview secrets and never download.
+Local work only needs `LINK_SECRET` to test signup links (confirm, unsubscribe, play),
+so give development its own, separate from production:
+
+```bash
+openssl rand -hex 32 | vercel env add LINK_SECRET --environment development
+```
+
+`python api/index.py` doesn't read `.env.local` on its own; load it into the shell first:
+
+```bash
+set -a && . ./.env.local && set +a && python api/index.py
+```
+
 ## Deploy to Vercel
 
 `vercel.json` wires the Flask app (`api/index.py`) as a Python serverless function
@@ -113,6 +141,7 @@ vercel --prod
 ├── app/
 │   ├── __init__.py         # Flask factory + routes (/api/daily, /cell, /reveal, /score, /learn, /config)
 │   ├── config.py           # single source: stake, rounds, industry colors, era labels
+│   ├── subscribers.py      # email list (Upstash Redis) + confirm/daily emails (Resend)
 │   ├── data.py             # runtime loader for universe.json
 │   ├── game.py             # (era, HQ-location) spins + one-per-industry scoring
 │   ├── universe.json       # built dataset (companies × eras, with HQ + metrics)
