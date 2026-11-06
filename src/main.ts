@@ -680,15 +680,17 @@ function shareText(res: Result): string {
   const cW = Math.max(...rows.map((r) => r.cell.length));
   const pW = Math.max(...rows.map((r) => r.pct.length));
   const grid = rows.map((r) => `${r.emoji}  ${r.cell.padEnd(cW)}  ${r.pct.padStart(pW)}`).join("\n");
-  const link = res.mode === "daily" ? `www.play100x.com/d/${res.dayNumber}` : "play100x.com";
+  const link = res.mode === "daily" ? `https://play100x.com/d/${res.dayNumber}` : "https://play100x.com";
   const headline = `${res.multiple >= 100 ? "I retired with" : "I made"} ${res.multiple}x, can you beat me? ${link}`;
-  return `${dayTag(res.mode, res.dayNumber)}\n${headline}\n\n${grid}`;
+  return `Play 100x: ${dayTag(res.mode, res.dayNumber)}\n${headline}\n\n${grid}`;
 }
 
+let toastTimer = 0;
 function flashCopied() {
-  const btn = $("copy-btn");
-  btn.textContent = "Copied to clipboard";
-  setTimeout(() => (btn.textContent = "📋 Share"), 2000);
+  const toast = $("copy-toast");
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = window.setTimeout(() => toast.classList.remove("show"), 2000);
 }
 
 function legacyCopy(text: string): boolean {

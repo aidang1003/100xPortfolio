@@ -900,6 +900,7 @@ main {
 }
 
 .result-actions {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 10px 12px;
@@ -908,6 +909,28 @@ main {
 /* Share: full row */
 .result-actions .btn-primary {
   flex: 1 1 100%;
+}
+/* Clipboard confirmation floats above Share */
+.copy-toast {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.copy-toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 /* Secondary actions share a row */
 .result-actions .btn-ghost {
