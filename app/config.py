@@ -7,7 +7,7 @@ from zoneinfo import ZoneInfo
 GAME_TZ = ZoneInfo("America/Denver")
 DAY_ONE = date(2026, 11, 3)
 
-SITE_URL = "https://play100x.com"
+SITE_URL = "https://www.play100x.com"
 
 STARTING_STAKE = 10_000
 NUM_ROUNDS = 5
