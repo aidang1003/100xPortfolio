@@ -46,7 +46,6 @@ interface Result {
 interface Config {
   startingStake: number; numRounds: number; industryColors: Record<string, string>;
   eras: string[]; eraLabels: Record<string, string>; industries: string[]; locations: string[];
-  industryBlurbs: Record<string, string>;
 }
 interface PickChoice { era: string; location: string; ticker: string; industry: string; }
 interface LearnData { stocks: Record<string, Record<string, { ticker: string; gainPct: number }[]>>; }
@@ -131,7 +130,6 @@ function loadSaved(): any {
 async function boot() {
   state.config = await fetch("/api/config").then((r) => r.json());
   applyIndustryColors();
-  renderLegend();
 
   $("start-btn").onclick = () => { state.learnMode = false; startGame(); };
   $("skip-era").onclick = () => useSkip("era");
@@ -145,16 +143,14 @@ async function boot() {
     const midGame = state.screen === "game" && state.picks.length > 0;
     if (!midGame || confirm("Start over? You'll lose your picks from this game.")) replay();
   };
-  $("learn-btn").onclick = startLearnGame;
   $("learn-btn-result").onclick = startLearnGame;
-
-  if (loadSaved()) $("learn-btn").classList.remove("hidden");
 
   const sess = loadSession();
   if (sess && (sess.screen === "game" || sess.screen === "result")) {
     try { await restoreSession(sess); return; } catch { /* fall through */ }
   }
   await loadRounds();
+  $("day-tag-intro").textContent = `Daily Puzzle #${state.data!.dayNumber}`;
   // Daily already scored here: show it; Play again rolls practice.
   const saved = loadSaved();
   if (state.data!.mode === "practice" && saved?.day === state.data!.day) {
@@ -171,13 +167,6 @@ function applyIndustryColors() {
   }
 }
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z]+/g, "-");
-
-function renderLegend() {
-  $("industry-legend").innerHTML = state.config.industries.map((ind) => `
-    <li><span class="legend-dot" style="background:${industryStyle([ind])}"></span>
-      <span class="legend-name">${ind}</span>
-      <span class="legend-blurb">${state.config.industryBlurbs[ind] || ""}</span></li>`).join("");
-}
 
 async function restoreSession(s: any) {
   state.learnMode = !!s.learnMode;
@@ -572,7 +561,6 @@ async function submit() {
   state.reveal = null;
   // Only the daily is saved.
   if (res.mode === "daily" && !state.learnMode) save({ day: res.day, result: res });
-  $("learn-btn").classList.remove("hidden");
   showResult(res);
 }
 

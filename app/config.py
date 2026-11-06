@@ -19,16 +19,6 @@ INDUSTRY_COLORS = {
     "Industry & Energy": "#8b5cf6",
 }
 
-# Intro screen copy.
-INDUSTRY_BLURBS = {
-    "Technology": "Software, chips, telecom, media",
-    "Financials": "Banks, insurers, payments, real estate",
-    "Consumer": "Retail, food, cars, restaurants, brands",
-    "Health & Utilities": "Drugs, hospitals, power, water",
-    "Industry & Energy": "Machines, defense, chemicals, oil, transport",
-}
-
-
 def era_label(era):
     """'2020-2024' -> '2020-2025'"""
     start = era.split("-")[0]

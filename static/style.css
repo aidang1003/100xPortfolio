@@ -182,6 +182,31 @@ main {
   font-size: 17px;
 }
 /* Intro */
+body:has(#intro:not(.hidden)) .site-header {
+  display: none;
+}
+body:has(#intro:not(.hidden)) main {
+  display: grid;
+  align-content: center;
+  min-height: 100svh;
+  padding-bottom: 20svh; /* sits 10% above center */
+}
+.intro {
+  padding: 64px 28px;
+  text-align: center;
+  /* Drop the .screen GPU layer once the fade ends: centering can land it on a half pixel and blur the logo. */
+  transform: none;
+}
+.intro-logo {
+  display: block;
+  margin: 0 auto 16px;
+}
+.intro-actions {
+  display: grid;
+  gap: 10px;
+  width: min(100%, 360px);
+  margin: 0 auto 18px;
+}
 .hero-title {
   font-family: "Playfair Display", Georgia, serif;
   font-size: 38px;
@@ -198,10 +223,48 @@ main {
   line-height: 1.55;
   margin: 0 0 20px;
 }
+/* How to play: popover from the header ? button */
+/* ? sits beside the brand without pulling it off center */
+.brand-row {
+  position: relative;
+}
+.help-btn {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 12px);
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.help-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+.how-to {
+  width: min(100% - 32px, 420px);
+  color: var(--text);
+  text-align: left;
+}
+.how-to::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+.how-to-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 22px;
+  margin: 0 0 14px;
+}
 .rules {
   list-style: none;
   padding: 0;
-  margin: 0 0 26px;
+  margin: 0;
   display: grid;
   gap: 10px;
 }
@@ -215,39 +278,6 @@ main {
 .rules .dot {
   color: var(--purple-1);
   font-weight: 700;
-}
-.legend-head {
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  color: var(--muted);
-  margin-bottom: 8px;
-}
-.legend {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 26px;
-  display: grid;
-  gap: 8px;
-}
-.legend li {
-  display: grid;
-  grid-template-columns: 10px auto 1fr;
-  align-items: baseline;
-  gap: 8px;
-  font-size: 14px;
-}
-.legend-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  align-self: center;
-}
-.legend-name {
-  font-weight: 700;
-}
-.legend-blurb {
-  color: var(--muted);
-  font-size: 13px;
 }
 
 /* Board label */
@@ -843,20 +873,20 @@ main {
   color: var(--muted);
   margin-bottom: 10px;
 }
-.ideal-toggle > summary {
+.toggle > summary {
   cursor: pointer;
   list-style: none;
   font-size: 13px;
   color: var(--green);
   padding: 4px 0;
 }
-.ideal-toggle > summary::-webkit-details-marker {
+.toggle > summary::-webkit-details-marker {
   display: none;
 }
-.ideal-toggle > summary::before {
+.toggle > summary::before {
   content: "▸ ";
 }
-.ideal-toggle[open] > summary::before {
+.toggle[open] > summary::before {
   content: "▾ ";
 }
 .ideal-legs {
@@ -936,12 +966,6 @@ main {
 .result-actions .btn-ghost {
   flex: 1 1 0;
   min-width: 140px;
-}
-
-/* Learning mode button */
-.learn-link {
-  display: block;
-  margin-top: 12px;
 }
 
 /* Reveal card: replaces the stock list after each pick */
