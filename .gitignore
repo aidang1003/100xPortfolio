@@ -5,3 +5,6 @@ __pycache__/
 scripts/.cache/
 node_modules/
 static/app.js.map
+.vercel
+.env*
+.env*.local

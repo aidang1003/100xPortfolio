@@ -223,6 +223,61 @@ body:has(#intro:not(.hidden)) main {
   line-height: 1.55;
   margin: 0 0 20px;
 }
+/* Email signup: prompt, then input + Submit, then Subscribed, all in one box */
+.sub-box {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  min-height: 62px;
+  display: grid;
+  align-items: center;
+}
+.sub-box:focus-within {
+  border-color: var(--green);
+}
+.sub-box.invalid {
+  border-color: var(--red);
+}
+.sub-prompt,
+.sub-done {
+  display: grid;
+  gap: 2px;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+.sub-prompt {
+  background: none;
+  border: 0;
+  font-family: inherit;
+  cursor: text;
+}
+.sub-prompt small,
+.sub-done small {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+}
+.sub-entry {
+  display: flex;
+  gap: 8px;
+  padding: 6px 6px 6px 14px;
+}
+.sub-entry input {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: 0;
+  outline: none;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+}
+.sub-entry input::placeholder {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
 /* How to play: popover from the header ? button */
 /* ? sits beside the brand without pulling it off center */
 .brand-row {

@@ -132,6 +132,7 @@ async function boot() {
   applyIndustryColors();
 
   $("start-btn").onclick = () => { state.learnMode = false; startGame(); };
+  initSubscribe();
   $("skip-era").onclick = () => useSkip("era");
   $("skip-location").onclick = () => useSkip("location");
   $("lineup-bar").onclick = focusIndustry;
@@ -158,6 +159,31 @@ async function boot() {
     return;
   }
   renderProgress();
+}
+
+function initSubscribe() {
+  const form = $("sub-form") as HTMLFormElement;
+  const input = $("sub-email") as HTMLInputElement;
+  const showEntry = (on: boolean) => {
+    $("sub-prompt").classList.toggle("hidden", on);
+    $("sub-entry").classList.toggle("hidden", !on);
+  };
+  $("sub-prompt").onclick = () => { showEntry(true); input.focus(); };
+  // Back to the prompt if they click away without typing.
+  form.addEventListener("focusout", () => setTimeout(() => {
+    if (!form.contains(document.activeElement) && !input.value) showEntry(false);
+  }));
+  form.onsubmit = async (e) => {
+    e.preventDefault();
+    form.classList.remove("invalid");
+    const res = await fetch("/api/subscribe", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: input.value }),
+    }).catch(() => null);
+    if (!res?.ok) { form.classList.add("invalid"); input.focus(); return; }
+    $("sub-entry").classList.add("hidden");
+    $("sub-done").classList.remove("hidden");
+  };
 }
 
 function applyIndustryColors() {

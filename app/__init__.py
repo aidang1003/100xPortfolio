@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, jsonify, redirect, render_template, request, send_from_directory
 
-from . import config
+from . import config, subscribers
 from .data import ERAS, INDUSTRIES
 from .game import (
     LOCATIONS, cell_stocks, daily_rounds, day_number, era_label, learn_data, practice_seed, reveal,
@@ -13,6 +13,8 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Last day this browser scored the daily.
 DAILY_COOKIE = "100x_daily"
+# Signed email token from a daily email link; ties scored dailies to that email.
+EMAIL_COOKIE = "100x_email"
 _COOKIE_MAX_AGE = 400 * 24 * 60 * 60  # browser max
 
 
@@ -27,12 +29,55 @@ def create_app():
     def index():
         return render_template("index.html")
 
+    def _set_cookie(resp, name, value):
+        resp.set_cookie(name, value, max_age=_COOKIE_MAX_AGE,
+                        httponly=True, samesite="Lax", secure=request.is_secure)
+
     @app.route("/d/<int:n>")
     def daily_page(n):
         today = day_number(today_str())
-        if n != today:  # only today's board is playable
-            return redirect(f"/d/{today}")
+        token = request.args.get("k")
+        if n != today or token:  # only today's board is playable; strip the email token
+            resp = redirect(f"/d/{today}")
+            if subscribers.read_token(token):
+                _set_cookie(resp, EMAIL_COOKIE, token)
+            return resp
         return render_template("index.html", day=n)
+
+    @app.route("/api/subscribe", methods=["POST"])
+    def api_subscribe():
+        email = subscribers.normalize((request.get_json(silent=True) or {}).get("email"))
+        if not email:
+            return jsonify({"error": "invalid email"}), 400
+        subscribers.subscribe(email)
+        return jsonify({"ok": True})
+
+    @app.route("/confirm")
+    def confirm():
+        email = subscribers.read_token(request.args.get("k"))
+        if not email:
+            return "That link is broken. Try subscribing again.", 400
+        subscribers.confirm(email)
+        resp = redirect("/")
+        _set_cookie(resp, EMAIL_COOKIE, request.args["k"])
+        return resp
+
+    # POST is the one-click unsubscribe from the List-Unsubscribe header.
+    @app.route("/unsubscribe", methods=["GET", "POST"])
+    def unsubscribe():
+        email = subscribers.read_token(request.args.get("k"))
+        if not email:
+            return "That link is broken.", 400
+        subscribers.unsubscribe(email)
+        return "You're unsubscribed from Play 100x daily puzzles."
+
+    # Vercel Cron sends the CRON_SECRET as a bearer token.
+    @app.route("/api/cron/daily")
+    def cron_daily():
+        secret = os.environ.get("CRON_SECRET")
+        if not secret or request.headers.get("Authorization") != f"Bearer {secret}":
+            return jsonify({"error": "unauthorized"}), 401
+        return jsonify({"sent": subscribers.send_daily(day_number(today_str()))})
 
     @app.route("/favicon.ico")
     def favicon():
@@ -95,8 +140,13 @@ def create_app():
         resp = jsonify(result)
         if result["mode"] == "daily":
             # Spent on score, not on deal, so an abandoned run survives.
-            resp.set_cookie(DAILY_COOKIE, result["day"], max_age=_COOKIE_MAX_AGE,
-                            httponly=True, samesite="Lax", secure=request.is_secure)
+            _set_cookie(resp, DAILY_COOKIE, result["day"])
+            email = subscribers.read_token(request.cookies.get(EMAIL_COOKIE))
+            if email:
+                try:
+                    subscribers.record_game(email, result)
+                except OSError:
+                    pass  # history is a bonus; never fail the score over it
         return resp
 
     return app

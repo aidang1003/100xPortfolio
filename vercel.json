@@ -7,5 +7,6 @@
       "config": { "includeFiles": "{templates/**,static/**,app/*.py,app/universe.json}" }
     }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "api/index.py" }]
+  "routes": [{ "src": "/(.*)", "dest": "api/index.py" }],
+  "crons": [{ "path": "/api/cron/daily", "schedule": "0 14 * * *" }]
 }

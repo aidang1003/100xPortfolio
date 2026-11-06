@@ -59,10 +59,19 @@
       <section id="intro" class="screen card intro">
         <img class="intro-logo" src="{{ url_for('static', filename='logo.svg') }}" alt="" width="96" height="96" />
         <h1 class="hero-title">Play <span class="gradient">100x</span></h1>
-        <p class="hero-sub">Pick 5 stocks from history to build a portfolio.</p>
+        <p class="hero-sub">Pick 5 stocks and see how they really played out.<br />Learn from the past to invest better today.</p>
         <div class="intro-actions">
           <button id="start-btn" class="btn btn-primary btn-lg">Play</button>
-          <button id="auth-btn" class="btn btn-ghost btn-lg">Sign up / Sign in</button>
+          <form id="sub-form" class="sub-box" novalidate>
+            <button type="button" id="sub-prompt" class="sub-prompt">
+              Enter your email for daily puzzles<small>Unsubscribe anytime</small>
+            </button>
+            <div id="sub-entry" class="sub-entry hidden">
+              <input id="sub-email" type="email" placeholder="you@example.com" autocomplete="email" aria-label="Email" required />
+              <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+            </div>
+            <div id="sub-done" class="sub-done hidden" role="status">Subscribed<small>Check your inbox to confirm</small></div>
+          </form>
         </div>
         <div class="day-tag daily" id="day-tag-intro"></div>
       </section>
