@@ -55,7 +55,7 @@ def build():
             continue
         industries = [cat] + [i for i in MULTI_INDUSTRY.get(sym, []) if i != cat]
         entry = {
-            "name": r["Security"],
+            "name": r["Security"].removesuffix(" (The)"),  # "Home Depot (The)" -> "Home Depot"
             "industries": industries,
             "sub": r["GICS Sub-Industry"],
             "hq": _parse_hq(r.get("Headquarters Location", "")),

@@ -64,12 +64,31 @@ const ordinal = (n: number) => {
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
 };
 
+// One line on desktop; phones stack each metric and use the short dividend form ("5.2% Div").
 function metricLine(m: Metrics): string {
   const bits: string[] = [];
-  if (m.price != null) bits.push(usd(m.price));
+  if (m.price != null) bits.push(`${usd(m.price)} Price`);
   if (m.pe != null) bits.push(`${m.pe}× P/E`);
-  if (m.divYield != null) bits.push(`${m.divYield}% dividend`);
-  return bits.join(" · ");
+  if (m.divYield != null) bits.push(
+    `<span class="wide-only">${m.divYield}% Dividend</span><span class="narrow-only">${m.divYield.toFixed(1)}% Div</span>`);
+  return bits.map((b) => `<span class="metric">${b}</span>`).join(`<span class="metric-sep"> · </span>`);
+}
+
+const STATE_ABBR: Record<string, string> = {
+  Alabama: "AL", Alaska: "AK", Arizona: "AZ", Arkansas: "AR", California: "CA", Colorado: "CO", Connecticut: "CT",
+  Delaware: "DE", "D.C.": "DC", Florida: "FL", Georgia: "GA", Hawaii: "HI", Idaho: "ID", Illinois: "IL", Indiana: "IN",
+  Iowa: "IA", Kansas: "KS", Kentucky: "KY", Louisiana: "LA", Maine: "ME", Maryland: "MD", Massachusetts: "MA",
+  Michigan: "MI", Minnesota: "MN", Mississippi: "MS", Missouri: "MO", Montana: "MT", Nebraska: "NE", Nevada: "NV",
+  "New Hampshire": "NH", "New Jersey": "NJ", "New Mexico": "NM", "New York": "NY", "North Carolina": "NC",
+  "North Dakota": "ND", Ohio: "OH", Oklahoma: "OK", Oregon: "OR", Pennsylvania: "PA", "Rhode Island": "RI",
+  "South Carolina": "SC", "South Dakota": "SD", Tennessee: "TN", Texas: "TX", Utah: "UT", Vermont: "VT",
+  Virginia: "VA", Washington: "WA", "West Virginia": "WV", Wisconsin: "WI", Wyoming: "WY",
+};
+// "Richmond, VA"; foreign HQs keep the country name. Strips stray "[2]" footnotes from the source data.
+function hqLine(hq: HQ | null): string {
+  if (!hq?.city) return hq?.region || "";
+  const state = hq.state.replace(/\[\d+\]$/, "");
+  return `${hq.city}, ${STATE_ABBR[state] || state}`;
 }
 
 const dayTag = (mode: string, dayNumber: number) =>
@@ -132,12 +151,14 @@ async function boot() {
   applyIndustryColors();
 
   $("start-btn").onclick = () => { state.learnMode = false; startGame(); };
-  initSubscribe();
+  document.querySelectorAll<HTMLFormElement>(".sub-box").forEach(initSubscribe);
   $("skip-era").onclick = () => useSkip("era");
   $("skip-location").onclick = () => useSkip("location");
   $("lineup-bar").onclick = focusIndustry;
   $("lineup-bar").onkeydown = focusIndustry;
   $("copy-btn").onclick = copyResults;
+  // Outside clicks close the popover natively; this makes a click inside close it too.
+  $("how-to").onclick = () => $("how-to").hidePopover();
   $("replay-btn").onclick = replay;
   $("brand").onclick = (e) => {
     e.preventDefault();
@@ -161,9 +182,8 @@ async function boot() {
   renderProgress();
 }
 
-function initSubscribe() {
-  const form = $("sub-form") as HTMLFormElement;
-  const input = $("sub-email") as HTMLInputElement;
+function initSubscribe(form: HTMLFormElement) {
+  const input = form.querySelector("input")!;
   // View transition morphs the prompt into one line and slides the entry in; plain swap where unsupported.
   const setState = (cls: string, on: boolean) => {
     if (form.classList.contains(cls) === on) return;
@@ -414,7 +434,6 @@ function renderStocks() {
 
     const chip = `<span class="stock-chip" style="background:${industryStyle(s.industries)}"
       title="${s.industries.join(" / ")}"></span>`;
-    const hq = s.hq && s.hq.city ? `${s.hq.city}, ${s.hq.state}` : (s.hq?.region || "");
     const detail = returns
       ? revealCol(returns[s.ticker])
       : `<span class="stock-metrics">${metricLine(s.metrics) || s.sub}</span>`;
@@ -422,7 +441,7 @@ function renderStocks() {
     row.innerHTML = `
       ${chip}
       <span class="stock-ticker">${s.ticker}</span>
-      <span class="stock-name">${s.name}<small class="stock-hq">${hq}</small></span>
+      <span class="stock-name">${s.name}<small class="stock-hq">${hqLine(s.hq)}</small></span>
       ${detail}`;
     if (open) row.onclick = () => pick(s, row);
     else row.title = "You've already used all of this company's industries";
@@ -600,7 +619,8 @@ function renderInvestor(res: Result) {
   const label = $("result-investor");
   const shown = !!res.revealed;
   badge.src = shown ? res.investor.photo : "/static/investors/hidden.svg";
-  badge.alt = badge.title = shown ? res.investor.credit : "Click to reveal";
+  // Name first, so a photographer's name (Bogle's is Bill Cramer) isn't read as the subject.
+  badge.alt = badge.title = shown ? `${res.investor.name}. ${res.investor.credit}` : "Click to reveal";
   badge.className = "grade-badge " + (shown ? res.gradeColor : "unrevealed");
   label.textContent = shown ? "You invested like " : "Which legendary investor did you emulate?";
   if (shown) {

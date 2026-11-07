@@ -165,7 +165,7 @@ def round_score(multiple):
 
 
 def _inv(name, photo, credit, weight=1):
-    return {"name": name, "photo": "/static/investors/" + photo, "credit": "Photo: " + credit,
+    return {"name": name, "photo": "/static/investors/" + photo, "credit": "Photo by " + credit,
             "wiki": "https://en.wikipedia.org/wiki/" + name.replace(" ", "_"), "weight": weight}
 
 

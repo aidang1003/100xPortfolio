@@ -98,11 +98,6 @@ main {
 .brand-rest {
   color: var(--text);
 }
-.tagline {
-  color: var(--muted);
-  margin-top: 4px;
-  font-size: 14px;
-}
 
 main {
   max-width: 760px;
@@ -226,6 +221,7 @@ body:has(#intro:not(.hidden)) main {
 /* Email signup: two-line prompt; on focus the title shrinks, the note drops, and the entry slides in below */
 .sub-box {
   position: relative;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
   min-height: 62px;
@@ -245,6 +241,7 @@ body:has(#intro:not(.hidden)) main {
   justify-content: center;
   column-gap: 6px;
   padding: 10px 18px;
+  text-align: center;
   font-size: 15px;
   font-weight: 700;
 }
@@ -307,6 +304,7 @@ body:has(#intro:not(.hidden)) main {
 }
 .sub-done {
   display: none;
+  text-align: center;
   gap: 2px;
   padding: 10px 18px;
   font-size: 15px;
@@ -337,25 +335,26 @@ body:has(#intro:not(.hidden)) main {
 }
 
 /* How to play: popover from the header ? button */
-/* ? sits beside the brand without pulling it off center */
-.brand-row {
-  position: relative;
-}
+/* Top right of the header: labeled on desktop, a menu icon on phones */
 .help-btn {
   position: absolute;
-  top: 50%;
-  left: calc(100% + 12px);
-  transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  padding: 8px 14px;
   border: 1px solid var(--border);
-  border-radius: 50%;
+  border-radius: 10px;
   background: transparent;
   color: var(--muted);
   font-family: inherit;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
+}
+.help-icon {
+  display: none;
+  fill: currentColor;
 }
 .help-btn:hover {
   border-color: var(--green);
@@ -365,6 +364,25 @@ body:has(#intro:not(.hidden)) main {
   width: min(100% - 32px, 420px);
   color: var(--text);
   text-align: left;
+  cursor: pointer;
+}
+.how-to-dismiss {
+  margin: 18px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--green);
+}
+/* Touchscreens say Press, mouse users say Click */
+.on-touch {
+  display: none;
+}
+@media (pointer: coarse) {
+  .on-mouse {
+    display: none;
+  }
+  .on-touch {
+    display: inline;
+  }
 }
 .how-to::backdrop {
   background: rgba(0, 0, 0, 0.5);
@@ -603,6 +621,10 @@ body:has(#intro:not(.hidden)) main {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+/* Text swaps for phone width */
+.narrow-only {
+  display: none;
 }
 /* Learning mode return */
 .stock-row .stock-pct {
@@ -874,6 +896,29 @@ body:has(#intro:not(.hidden)) main {
   margin-bottom: 20px;
 }
 @media (max-width: 560px) {
+  /* tighter top: logo near the top edge, day tag close below it */
+  .site-header {
+    padding-top: 12px;
+    padding-bottom: 0;
+  }
+  main {
+    padding-top: 8px;
+  }
+  .help-btn {
+    top: 14px;
+    padding: 8px;
+  }
+  .help-label {
+    display: none;
+  }
+  .help-icon {
+    display: block;
+  }
+  /* money table wraps below the headline; center it */
+  .result-money {
+    flex-basis: 100%;
+    justify-content: center;
+  }
   .result-callouts {
     grid-template-columns: 1fr;
   }
@@ -883,14 +928,31 @@ body:has(#intro:not(.hidden)) main {
     padding: 10px 12px;
   }
   .stock-row .stock-ticker {
-    width: 52px;
+    width: 5ch; /* longest ticker is 5 letters */
     font-size: 13px;
   }
+  /* name over city, centered against the stacked metrics */
   .stock-row .stock-name {
+    display: grid;
+    grid-template-rows: auto auto;
+    align-self: center;
     font-size: 14px;
   }
   .stock-row .stock-metrics {
+    align-self: center;
+  }
+  .stock-row .stock-metrics {
     font-size: 11px;
+  }
+  .wide-only,
+  .metric-sep {
+    display: none;
+  }
+  .stock-row .metric {
+    display: block;
+  }
+  .narrow-only {
+    display: inline;
   }
   .stock-row .stock-pct {
     width: 70px;
@@ -1043,15 +1105,17 @@ body:has(#intro:not(.hidden)) main {
 }
 
 .result-actions {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 10px 12px;
   margin-top: 28px;
 }
-/* Share: full row */
-.result-actions .btn-primary {
-  flex: 1 1 100%;
+/* Share + email signup: a tight pair below the replay row */
+.result-share {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
 }
 /* Clipboard confirmation floats above Share */
 .copy-toast {

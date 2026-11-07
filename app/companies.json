@@ -1366,7 +1366,7 @@
   "cik": 1679788
  },
  "COO": {
-  "name": "Cooper Companies (The)",
+  "name": "Cooper Companies",
   "industries": [
    "Health & Utilities"
   ],
@@ -1782,7 +1782,7 @@
   "cik": 313616
  },
  "DIS": {
-  "name": "Walt Disney Company (The)",
+  "name": "Walt Disney Company",
   "industries": [
    "Technology"
   ],
@@ -2042,7 +2042,7 @@
   "cik": 827052
  },
  "EL": {
-  "name": "Est\u00e9e Lauder Companies (The)",
+  "name": "Est\u00e9e Lauder Companies",
   "industries": [
    "Consumer"
   ],
@@ -2874,7 +2874,7 @@
   "cik": 860730
  },
  "HD": {
-  "name": "Home Depot (The)",
+  "name": "Home Depot",
   "industries": [
    "Consumer"
   ],
@@ -2887,7 +2887,7 @@
   "cik": 354950
  },
  "HIG": {
-  "name": "Hartford (The)",
+  "name": "Hartford",
   "industries": [
    "Financials"
   ],
@@ -3030,7 +3030,7 @@
   "cik": 1070750
  },
  "HSY": {
-  "name": "Hershey Company (The)",
+  "name": "Hershey Company",
   "industries": [
    "Consumer"
   ],
@@ -3524,7 +3524,7 @@
   "cik": 1506307
  },
  "KO": {
-  "name": "Coca-Cola Company (The)",
+  "name": "Coca-Cola Company",
   "industries": [
    "Consumer"
   ],
@@ -4031,7 +4031,7 @@
   "cik": 764180
  },
  "MOS": {
-  "name": "Mosaic Company (The)",
+  "name": "Mosaic Company",
   "industries": [
    "Industry & Energy"
   ],
@@ -5240,7 +5240,7 @@
   "cik": 89800
  },
  "SJM": {
-  "name": "J.M. Smucker Company (The)",
+  "name": "J.M. Smucker Company",
   "industries": [
    "Consumer"
   ],
@@ -5760,7 +5760,7 @@
   "cik": 1113169
  },
  "TRV": {
-  "name": "Travelers Companies (The)",
+  "name": "Travelers Companies",
   "industries": [
    "Financials"
   ],
@@ -5826,7 +5826,7 @@
   "cik": 1466258
  },
  "TTD": {
-  "name": "Trade Desk (The)",
+  "name": "Trade Desk",
   "industries": [
    "Technology"
   ],
